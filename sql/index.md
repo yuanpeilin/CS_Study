@@ -1,0 +1,61 @@
+# 索引
+
+#### 基础
+* 索引是帮助MySQL高效获取数据的**排好序**的**数据结构**
+* 索引存储在文件里
+* InnoDB表必须要有主键
+* 非叶子节点不存储数据
+* 一个节点16KB(innodb_page_size) `show variables like 'innodb_page_size';`
+* 不用**B- Tree**的原因是范围查询性能太差
+* 不用**平衡树**的原因是高度太高
+* 数据即索引, 索引即数据
+
+#### 相关文件
+* MyISAM
+    * \*myisam.frm 表结构 
+    * \*myisam.MYD 数据
+    * \*myisam.MYI 索引. 叶子节点存储对应记录所在.MYD位置的指针
+* InnoDB
+    * \*innodb.frm 表结构
+    * \*innodb.idb 数据与索引. 叶子节点存储对应记录的其他数据
+
+#### 索引分类
+* 普通索引
+* 唯一索引
+* 复合索引
+* 联合索引
+
+<br>
+
+* 聚集索引(InnoDB): 索引和数据存在一起
+* 非聚集索引(MyISAM): 索引和数据分开存放
+
+#### 使用方式
+1. **全值匹配**
+2. **最左前缀匹配**
+3. **不再索引列做任何操作**
+4. **范围条件放在最后:** 要范围查询的字段在创建索引时放在最后
+5. **尽量使用覆盖索引**
+6. **不要用不等于(!=):** 使用不等于会导致全表扫描
+7. **NULL/NOT有对索引影响**
+8. **注意LIKE:** 通配符(%)开头会变成全表扫描
+9. **字符类型加引号**
+10. **UNION效率高**
+
+#### 操作索引
+* 新建索引
+```sql
+INDEX index_name (column_name(length)),
+```
+* 增加索引
+```sql
+ALTER TABLE table_name ADD INDEX index_name(column_name)
+```
+* 删除索引
+```sql
+DROP INDEX [index_name] ON table_name;
+```
+* 查看索引
+```sql
+SHOW INDEXS FROM table_name\G;
+```

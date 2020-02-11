@@ -1,0 +1,1232 @@
+# 索引
+* [at](#user-content-at-顶部)
+* [atq](#user-content-atq-顶部)
+* [atrm](#user-content-atrm-顶部)
+* [awk](#user-content-awk-顶部)
+* [bg](#user-content-bg-顶部)
+* [chattr](#user-content-chattr-顶部)
+* [chgrp](#user-content-chgrp-顶部)
+* [chkconfig](#user-content-chkconfig-顶部)
+* [chmod](#user-content-chmod-顶部)
+* [chown](#user-content-chown-顶部)
+* [corntab](#user-content-corntab-顶部)
+* [cp](#user-content-cp-顶部)
+* [cut](#user-content-cut-顶部)
+* [df](#user-content-df-顶部)
+* [disown](#user-content-disown-顶部)
+* [du](#user-content-du-顶部)
+* [egrep](#user-content-egrep-顶部)
+* [fallocate](#user-content-fallocate-顶部)
+* [fdisk](#user-content-fdisk-顶部)
+* [fg](#user-content-fg-顶部)
+* [find](#user-content-find-顶部)
+* [finger](#user-content-finger-顶部)
+* [gpasswd](#user-content-gpasswd-顶部)
+* [grep](#user-content-grep-顶部)
+* [groupadd](#user-content-groupadd-顶部)
+* [groupdel](#user-content-groupdel-顶部)
+* [groupmod](#user-content-groupmod-顶部)
+* [gzip](#user-content-gzip-顶部)
+
+<br>
+
+* [id](#user-content-id-顶部)
+* [ifconfig](#user-content-ifconfig-顶部)
+* [imagemagick](#user-content-imagemagick-顶部)
+* [jobs](#user-content-jobs-顶部)
+* [join](#user-content-join-顶部)
+* [jq](#user-content-jq-顶部)
+* [kill](#user-content-kill-顶部)
+* [less](#user-content-less-顶部)
+* [ln](#user-content-ln-顶部)
+* [locate](#user-content-locate-顶部)
+* [ls](#user-content-ls-顶部)
+* [lsattr](#user-content-lsattr-顶部)
+* [lsblk](#user-content-lsblk-顶部)
+* [lsof](#user-content-lsof-顶部)
+* [md5sum](#user-content-md5sum-顶部)
+* [mkdir](#user-content-mkdir-顶部)
+* [mkfs](#user-content-mkfs-顶部)
+* [mount](#user-content-mount-顶部)
+* [ncdu](#user-content-ncdu-顶部)
+* [netstat](#user-content-netstat-顶部)
+
+<br>
+
+* [pandoc](#user-content-pandoc-顶部)
+* [pgrep](#user-content-pgrep-顶部)
+* [pkill](#user-content-pkill-顶部)
+* [ps -aux](#user-content-ps--aux-顶部)
+* [passwd](#user-content-passwd-顶部)
+* [pstree](#user-content-pstree-顶部)
+* [rsync](#user-content-rsync-顶部)
+* [runlevel](#user-content-runlevel-顶部)
+* [scp](#user-content-scp-顶部)
+* [sed](#user-content-sed-顶部)
+* [sort](#user-content-sort-顶部)
+* [ssh](#user-content-ssh-顶部)
+* [tail](#user-content-tail-顶部)
+* [tar](#user-content-tar-顶部)
+* [tee](#user-content-tee-顶部)
+* [top](#user-content-top-顶部)
+* [tree](#user-content-tree-顶部)
+* [truncate](#user-content-truncate-顶部)
+* [type](#user-content-type-顶部)
+
+<br>
+
+* [ufw](#user-content-ufw-顶部)
+* [uniq](#user-content-uniq-顶部)
+* [useradd](#user-content-useradd-顶部)
+* [userdel](#user-content-userdel-顶部)
+* [usermod](#user-content-usermod-顶部)
+* [whereis](#user-content-whereis-顶部)
+* [xargs](#user-content-xargs-顶部)
+* [xmlstarlet](#user-content-xmlstarlet-顶部)
+
+***************************************************************************************************************************************
+
+# at [`顶部`](#user-content-索引)
+> 定时启动任务, 属于一次性计划任务
+* 位置: /etc/init.d/atd
+* 格式: `at [HH:MM] [yyyy-mm-dd]`
+```sh
+[root@localhost ~]# service atd start
+启动 atd: [确定]
+
+# ctrl+D提交任务
+[root@localhost ~]# at 23:45
+at> shutdown -h now
+at> <EOT>
+job 1 at 2009-09-14 23: 45
+```
+
+<br>
+
+# atq [`顶部`](#user-content-索引)
+> 查询当前设置的at任务列表
+###### 例子
+```sh
+$ atq
+1 2009-09-14 23: 45 a root
+```
+
+<br>
+
+# atrm [`顶部`](#user-content-索引)
+> 删除指定任务编号的at任务
+###### 用法
+**`atrm 编号`**
+
+<br>
+
+# awk [`顶部`](#user-content-索引)
+###### 文件
+```
+$ cat netstat.txt
+Proto Recv-Q Send-Q Local Address           Foreign Address         State
+tcp        0      0 0.0.0.0: 139             0.0.0.0: *               LISTEN
+tcp        0      0 127.0.0.53: 53           0.0.0.0: *               LISTEN
+tcp        0      0 0.0.0.0: 22              0.0.0.0: *               LISTEN
+tcp        0      0 127.0.0.1: 631           0.0.0.0: *               LISTEN
+tcp        0      0 0.0.0.0: 445             0.0.0.0: *               LISTEN
+tcp        0     36 192.168.226.131: 22      192.168.226.1: 50944     ESTABLISHED
+tcp        0      0 192.168.226.131: 22      192.168.226.1: 50942     ESTABLISHED
+```
+###### 内置变量
+
+变量 | 说明
+:-- | :--
+$0 | 当前记录(这个变量中存放着整个行的内容)
+$1\~$n | 当前记录的第n个字段, 字段间由FS分隔
+FILENAME | 当前输入文件的名字
+FS | 输入字段分隔符 默认是空格或Tab
+OFS | 输出字段分隔符,  默认也是空格
+RS | 输入的记录分隔符,  默认为换行符
+ORS | 输出的记录分隔符, 默认为换行符
+NF | 当前记录中的字段个数, 就是有多少列
+NR | 已经读出的记录数, 就是行号, 从1开始, 如果有多个文件话, 这个值也是不断累加中. 
+FNR | 当前记录数, 与NR不同的是, 这个值会是各个文件自己的行号
+
+```sh
+# 显示指定列
+awk '{print $1, $4}' netstat.txt
+# 只显示最后一列
+awk -F' ' '{print $NF}' test1
+
+# 显示第一行 
+awk 'NR==1' <filename>
+# 不显示第一行
+awk 'NR!=1' <filename>
+# 显示最后一行
+awk 'END{print $0}' <filename>
+
+# 记录过滤
+awk '$3>0' netstat.txt
+# 加上表头
+awk '$3==0 && $6=="LISTEN" || NR==1 ' netstat.txt
+# 显示行号
+awk '$3==0{print NR,$0}' netstat.txt
+```
+```sh
+# 不显示最后一列
+awk 'BEGIN{OFS="";ORS=""}{ for(i=1;i<NF;i++){print $i" "}{print "\n"} }' test1
+
+# 以|做分隔符
+awk -F' ' 'BEGIN{OFS="-";ORS="|"}{print $1,$2,$3}' test1
+
+# 输出前两列并以--连接
+# OFS=Output Fields Operator 给输出结果指定分隔符
+awk -F' ' 'BEGIN{OFS="--"}{print $1,$2}' test1
+```
+###### 函数
+* **`toupper()`** 字符转为大写
+* **`tolower()`** 字符转为小写
+* **`length()`** 返回字符串长度
+* **`substr()`** 返回子字符串
+* **`sin()`** 正弦
+* **`cos()`** 余弦
+* **`sqrt()`** 平方根
+* **`rand()`** 随机数
+```sh
+$ awk -F ': ' '{ print toupper($1) }' demo.txt  
+```
+###### 条件
+```sh
+$ awk  -F  ': '  '/usr/ {print $1}'  demo.txt
+上面代码中, print命令前面是一个正则表达式, 只输出包含usr的行. 
+
+# 输出奇数行
+$ awk -F ': ' 'NR % 2 == 1 {print $1}' demo.txt
+
+# 输出第三行以后的行
+$ awk -F ': ' 'NR >3 {print $1}' demo.txt
+
+下面的例子输出第一个字段等于指定值的行. 
+$ awk -F ': ' '$1 == "root" {print $1}' demo.txt
+$ awk -F ': ' '$1 == "root" || $1 == "bin" {print $1}' demo.txt
+```
+###### if语句
+```sh
+if结构还可以指定else部分. 
+$ awk -F ': ' '{if ($1 > "m") print $1; else print "---"}' demo.txt
+```
+
+<br>
+
+# bg [`顶部`](#user-content-索引)
+> 将处于后台的进程放到后台继续运行, 需指定任务序号
+
+<br>
+
+# chattr [`顶部`](#user-content-索引)
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# chgrp [`顶部`](#user-content-索引)
+`chgrp [选项] ... 新文件所有组 文件`
+
+<br>
+
+# chkconfig [`顶部`](#user-content-索引)
+###### 用法
+**`chkconfig [--add][--del][--list]<service_name>`**
+* **`--add <service_name>`** 增加httpd服务
+* **`--del <service_name>`** 删除httpd服务
+* **`--list`** 列出所有的系统服务
+* **`--list <service_name`** 列出服务设置情况
+
+<br>
+
+**`chkconfig [--level <等级代号>][系统服务][on/off/reset]`**
+* **`--level <service_name> <runlevel> <on|off>`** 设置服务的运行级别为on或off
+
+###### 例子
+```sh
+$ chkconfig --list network
+network         0:关闭  1:关闭  2:启用  3:启用  4:启用  5:启用  6:关闭
+
+$ chkconfig --list
+acpid           0:关闭  1:关闭  2:关闭  3:启用  4:启用  5:启用  6:关闭
+anacron         0:关闭  1:关闭  2:启用  3:关闭  4:启用  5:关闭  6:关闭
+apmd            0:关闭  1:关闭  2:启用  3:启用  4:启用  5:启用  6:关闭
+
+$ chkconfig --level 35 mysqld on
+
+$ chkconfig --level httpd 2345 on
+
+$ chkconfig --add httpd
+```
+
+<br>
+
+# chmod [`顶部`](#user-content-索引)
+###### 用法
+**`-R`** 对目前目录下的所有文件与子目录进行相同的权限变更
+
+<br>
+
+# chown [`顶部`](#user-content-索引)
+`chown [新文件所有者]:[新文件所属组] 文件`
+* 新文件所有者和新文件所属组可以省略一个, 但是冒号不能省
+<br>
+
+# corntab [`顶部`](#user-content-索引)
+> 周期性执行任务
+* 位置: /etc/init.d/crond
+* 用户只需执行“crontab -e”命令后会自动调用文本编辑器并打开“/var/spool/cron/用户名”文件, 无需手动指定文件位置
+* 编辑计划任务:  crontab  -e  [-u  用户名]
+* 查看计划任务:  crontab  -l  [-u  用户名]
+* 删除计划任务:  crontab  -r  [-u  用户名]
+
+###### 语法
+* **`*`** 表示该范围内的任意时间, 表示间隔的多个不连续时间点
+* **`-`** 表示一个连续的时间范围,如“1-4”表示整数1,2,3,4
+* **`/`** 指定间隔的时间频率,如在日期字段中的“\*/3”表示每隔3天
+```
+分钟  小时  天  月  星期  命令
+0  17     *   *  1-5     周一到周五每天17: 00
+30 8      *   *  1,3,5   每周一、三、五的8点30分
+0  8-18/2 *   *  *       8点到18点之间每隔2小时
+0  *      */3 *  *       每隔3天
+```
+```sh
+root@localhost ~]# cat /etc/crontab
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+HOME=/
+# run-parts
+01 * * * * root run-parts /etc/cron.hourly
+02 4 * * * root run-parts /etc/cron.daily
+22 4 * * 0 root run-parts /etc/cron.weekly
+42 4 1 * * root run-parts /etc/cron.monthly
+```
+
+<br>
+
+# cp [`顶部`](#user-content-索引)
+###### 用法
+* **`-r`** 复制该目录下所有的子目录和文件
+* **`-p`** 拷贝文件会发生权限、时间戳等变化. `-p`会将文件原封不动的拷贝, 前提是用户对文件有写权限
+
+<br>
+
+# cut [`顶部`](#user-content-索引)
+###### 用法
+* **`-d`** 指定分隔符, 默认分隔符为tab键
+* **`-c 范围`** 显示范围的字符
+* **`-f 范围`** 显示范围的字段
+* **`--complement`** 显示指定字段/字符/字节之外的列
+###### 文件
+```
+No Name Mark Percent
+01 tom 69 91
+03  alex  68  98
+```
+###### 例子
+* 显示指定的字段
+```sh
+$ cut -d " " -f 2,3 file
+Name Mark
+tom 69
+ alex
+
+$ cut -d " " -f 2- file
+Name Mark Percent
+tom 69 91
+ alex  68  98
+```
+* 显示指定字段之外的字段
+```sh
+$ cut -d " " -f 2- --complement file
+No
+01
+03
+```
+
+<br>
+
+# df [`顶部`](#user-content-索引)
+###### 用法
+**`-i`** 
+###### 例子
+
+<br>
+
+### disown [`顶部`](#user-content-索引)
+> 使一个后台进程持续运行
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# du [`顶部`](#user-content-索引)
+> 用于显示目录或文件的大小, 单位为Byte. 无参数递归显示当前目录下所有文件的大小
+###### 用法
+**`du [-hHs] [--max-depth=<目录层数>] [目录或文件]`**
+* **`-h`** 以K, M, G为单位
+* **`-H`** 与`-h`参数相同, 但是K, M, G是以1000为换算单位
+* **`-s`** 仅显示总计
+###### 例子
+* 显示当前目录的大小
+```sh
+$ du -hs
+1.6M    .
+```
+* 显示当前下目录下所有目录及文件的大小
+```sh
+$ du -hs *
+4.0K    ARCHITECTURE.md
+72K     BlueBlood-OS-v0.1
+4.0K    bluebloodv0.1
+4.0K    bluebloodv0.1.pub
+508K    imgs
+4.0K    README.md
+```
+
+<br>
+
+# egrep [`顶部`](#user-content-索引)
+###### 用法
+**`-i`** 
+**`-o`** 
+**`-v`** 
+**`-A`** 
+**`-B`** 
+**`-C`** 
+###### 例子
+
+<br>
+
+# fallocate [`顶部`](#user-content-索引)
+> 创建空文件
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# fdisk [`顶部`](#user-content-索引)
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# fg [`顶部`](#user-content-索引)
+> 将处于后台的进程恢复到前台运行, 需指定任务序号
+
+<br>
+
+# find [`顶部`](#user-content-索引)
+> 不设置查找范围参数, 则find命令将在当前目录下查找子目录与文件
+###### 用法
+**`find [查找范围] [查找条件] [动作]`**
+
+选项 | 说明
+:-- | :--
+**`-name file_name`** | 根据**名称**进行查找, 大小写**敏感**
+**`-iname file_name`** | 根据**名称**进行查找, 大小写**不敏感**
+**`-type [d \| f \| c \| b \| l]`** | 根据**文件类型**进行查找
+**`-amin \| -atime`** | 根据**文件被读取/执行的时间**进行查找
+**`-cmin \| -ctime`** | 根据**文件属性被修改的时间**进行查找
+**`-mmin \| -mtime`** | 根据**文件被修改的时间**进行查找
+**`-size`** | 根据**文件的大小**进行查找. 单位为: c(字节) k M G
+**`-user uid \| -group gid`** | 根据**所属用户**进行查找
+**`-perm 访问权限`** | 根据**访问权限**进行查找 
+**`-exec 命令`** | 详见例子
+###### 例子
+* 根据**时间**查找
+```sh
+# 七天前, 内容发生改变的文件
+$ find / -mtime +7
+
+# 四天前那天, 内容发生改变的文件
+$ find / -mtime 4
+
+# 七天之内, 内容发生改变的文件
+$ find / -mtime -7
+```
+* 根据**大小**进行查找
+```sh
+# 查找小于3k的文件
+$ find / -size -3k -ls
+
+# 查找大小为10M的文件
+$ find / -size 10M -ls
+
+# 查找大于100字节的文件
+$ find / -size +100c -ls
+```
+* 根据**所属用户**进行查找
+```sh
+# 在根目录下找到文件拥有者为root的文件
+$ find / -user root -ls
+$ find / -user 0 -ls
+```
+* 根据**访问权限**进行查找 
+```sh
+# 找到制定权限的文件
+$ find / -perm 754 -ls
+```
+* **多个条件** 使用多个条件时, 要用圆括号, 且要使用\进行转义
+    * **`-a`** 与 
+    * **`-o`** 或 
+    * **`!`** 非
+```sh
+$ find / \( -size +1k -a -size -10M -a -type f \) -ls;
+```
+* **动作选项** 
+    * `-exec`表示动作的开始
+    * `{}`表示查找到的文件
+    * `\;`表示动作的结束
+```sh
+# 找到指定文件并删除
+$ find / \( -size +1k -a -size -10M -a -type f \) -exec rm -rf {} \;
+```
+
+<br>
+
+# finger [`顶部`](#user-content-索引)
+> 查看用户详细信息
+###### 例子
+```sh
+$ finger ypl
+Login:  ypl                      Name:  ypl
+Directory:  /home/ypl                    Shell:  /bin/bash
+On since Thu Jun 13 13: 57 (CST) on : 0 from : 0 (messages off)
+No mail.
+No Plan.
+```
+
+<br>
+
+# gpasswd [`顶部`](#user-content-索引)
+###### 用法
+**`gpasswd <用户名> <组名>`**
+* **`-a 用户名`** 向组内添加一个用户
+* **`-d 用户名`** 从组内删除一个用户成员
+* **`-M`** 定义组成员列表, 以逗号分隔
+###### 例子
+* 将用户 root 从 market 组中删除
+```sh
+gpasswd -d root market
+```
+* 将用户 benet 加入到 market 组中
+```sh
+gpasswd -a benet market
+```
+
+<br>
+
+# grep [`顶部`](#user-content-索引)
+###### 用法
+**`-i`** 
+**`-o`** 
+**`-v`** 
+**`-A`** 
+**`-B`** 
+**`-C`** 
+###### 例子
+
+<br>
+
+# groupadd [`顶部`](#user-content-索引)
+###### 用法
+**`groupadd <Group Name> `**
+* **`-g <GID>`** 指定GID
+
+<br>
+
+# groupdel [`顶部`](#user-content-索引)
+###### 用法
+**`groupdel <Group Name>`**
+
+<br>
+
+# groupmod [`顶部`](#user-content-索引)
+###### 用法
+**`groupmod  <Group Name>`**
+* **`-n <Group Name>`**
+* **`-g <GID>`**
+
+<br>
+
+# gzip [`顶部`](#user-content-索引)
+###### 例子
+* 解压文件
+```sh
+gzip -d test.gz
+```
+* 调节压缩比(默认为6. 9为最大压缩比, 压缩的文件最小)
+```sh
+gzip -9 test.txt
+```
+
+<br>
+
+# id [`顶部`](#user-content-索引)
+> 显示用户的UID与所属组
+###### 例子
+```sh
+id ypl
+uid=1000(ypl) gid=1000(ypl) groups=1000(ypl),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),116(lpadmin),126(sambashare)
+```
+
+<br>
+
+# ifconfig [`顶部`](#user-content-索引)
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# imagemagick [`顶部`](#user-content-索引)
+* 获取图片信息
+```sh
+identify test.jpg
+```
+* 转化图片格式
+```sh
+convert  test.jpg  test.png
+```
+* 改变图像大小
+```sh
+convert -resize 1024x768 test.jpg test_modify.jpg
+```
+设置图像质量, 质量值为0-100之间的数值, 数字越大, 质量越好. 一般指定70-80
+```sh
+convert -resize 1024x768 -quality 75 test.jpg test_modify.jpg
+```
+* 缩放图片
+```sh
+convert -sample 50%x50% test.jpg test_modify.jpg
+```
+
+<br>
+
+# jobs [`顶部`](#user-content-索引)
+> 查看处于后台的任务列表
+###### 例子
+```sh
+$ jobs
+[1]-  Stopped   cp /dev/cdrom mycd.iso
+[2]+  Stopped   top
+```
+
+<br>
+
+# join [`顶部`](#user-content-索引)
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# jq [`顶部`](#user-content-索引)
+> 处理XMl
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# kill [`顶部`](#user-content-索引)
+> 默认的信号为SIGTERM(15)
+###### 例子
+* 强制杀死进程
+```sh
+$ kill -9 PID
+```
+
+<br>
+
+# less [`顶部`](#user-content-索引)
+###### 用法
+**`+F`** 
+###### 例子
+
+<br>
+
+# ln [`顶部`](#user-content-索引)
+###### 用法
+**`ln [-s] [链接指向的文件] [链接名]`**
+
+<br>
+
+# locate [`顶部`](#user-content-索引)
+> 在数据库(/var/lib/mlocate/mlocate.db)中查找符合条件的文档  
+> 更新数据库使用`updatedb`
+
+<br>
+
+# lsattr [`顶部`](#user-content-索引)
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# lsblk [`顶部`](#user-content-索引)
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# lsof [`顶部`](#user-content-索引)
+> 查看开启的套接字和文件
+###### 用法
+**`-`** 
+###### 例子
+`netstat -lntp`
+
+<br>
+
+# ls [`顶部`](#user-content-索引)
+###### 用法
+**`ls [-alhtAi] [name...]`**
+* **`-h`** 以更易读的字节单位(K、M等)显示信息
+* **`-i`** 查看inode
+* **`-t`** 将文件依建立时间的先后次序列出
+* **`-A`** 同\-a, 但不列出`.`(目前目录)及`..`(父目录)
+
+###### 例子
+```
+类型和权限 :  文件硬链接数目 :  文件拥有者 :  文件从属用户组 :  文件大小 :  时间戳 :  文件名
+drwxr-xr-x 2 ypl  ypl  4096 Jan 13 20: 04 Desktop
+-rw------- 1 ypl  ypl    32 May 28 13: 53 .lesshst
+-rw-r--r-- 1 ypl  ypl   807 May 12 17: 54 .profile
+drwx------ 1 ypl  ypl  4096 May 12 18: 40 .ssh
+```
+* 文件类型
+    * d 目录文件
+    * \- 普通文件
+    * c 字符设备文件
+    * b 块设备文件
+    * l 符号链接文件
+
+<br>
+
+# md5sum [`顶部`](#user-content-索引)
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# mkdir [`顶部`](#user-content-索引)
+###### 用法
+* **`-m`** 设置存取权限
+* **`-p`** 确保目录名称存在, 不存在的就建一个(嵌套创建目录)
+###### 例子
+```sh
+mkdir -p -m 700 test
+```
+
+<br>
+
+# mkfs [`顶部`](#user-content-索引)
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# mount [`顶部`](#user-content-索引)
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# ncdu [`顶部`](#user-content-索引)
+> 创建稀疏文件
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# netstat [`顶部`](#user-content-索引)
+###### 用法
+**`-u`** 
+**`-l`** 
+**`-n`** 
+**`-t`** 
+**`-p`** 
+###### 例子
+`netstat -lntp`
+
+<br>
+
+# pandoc [`顶部`](#user-content-索引)
+> Markdown, HTML, 以及所有文档格式之间的转换
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# pgrep [`顶部`](#user-content-索引)
+###### 用法
+**`pgrep [-l] [-U username] [-t tty_name] <progress_name>`**
+* **`-l`** 列出进程的名称
+* **`-U`** 根据进程所属的用户名进行查找
+* **`-t`** 根据进程所在的终端进行查找
+
+###### 例子
+* 一个简单的例子
+```sh
+$ pgrep "init"
+1
+```
+* 列出进程名
+```sh
+$ pgrep -l "log"
+2538 syslogd
+2541 klogd
+```
+* 根据用户名列出进程
+```sh
+$ pgrep -l -U teacher -t tty1
+27483 bash
+27584 vim
+```
+
+<br>
+
+# pkill [`顶部`](#user-content-索引)
+###### 用法
+**`-f`** 
+###### 例子
+
+<br>
+
+# ps \-aux [`顶部`](#user-content-索引)
+###### 用法
+* **`a`** 显示当前终端下的所有进程信息
+* **`u`** 使用以用户为主的格式输出进程信息
+* **`x`** 显示当前用户在所有终端下的进程信息
+
+###### 说明
+```
+用户名　PID　CPU百分比　物理内存　  虚拟内存　 实际内存　控制终端　  状态  被触发启动的时间　已执行时间
+USER   PID  %CPU 　　　%MEM  　　  VSZ  　　 RSS 　TTY      STAT　START  　　　　 TIME COMMAND
+root     1   0.0 　　　 0.3 　　225384  　　9216　 ?        Ss    Mar27   　　　　0: 03 /sbin/init auto noprompt
+root     2 　0.0 　　　 0.0   　    0  　　　  0　 ?        S 　   Mar27   　　　　0: 00 [kthreadd]
+```
+* **`VSZ(Virtual Memory Size)`** It includes all memory that the process can access, including memory that is swapped out, memory that is allocated, but not used, and memory that is from shared libraries.
+* **`RSS(Resident Set Size)`** used to show how much memory is allocated to that process and is in RAM. It does not include memory that is swapped out. 
+* **`STAT`** 由两个字符组成的状态码, 用于表示当前进程的状态. **第一个字符**如下
+
+缩写 | 状态 | 状态 | 说明
+:-- | :-- | :-- | :--
+D | uninterruptible sleep(usually IO) | 不可中断 | 收到信号不唤醒和不可运行, 进程必须等待直到有中断发生
+R | runnable(on run queue) | 运行 | 正在运行或在运行队列中等待
+S | sleeping | 中断 | 休眠中, 受阻, 在等待某个条件的形成或接受到信号
+T | traced or stopped | 停止 | 进程收到SIGSTOP, SIGSTP, SIGTIN, SIGTOU信号后停止运行运行
+Z | zombie | 僵死 | 进程已终止, 但进程描述符存在, 直到父进程调用wait4()系统调用后释放
+* **第二个字符**如下:  
+    * **<** 进程正以高优先级运行
+    * **N** 进程正以低优先级运行
+    * **L** 进程在内存中存在锁定页面
+    * **s** 进程是会话领导者(session leader)
+    * **l** 进程是多线程的
+    * **+** 进程正在前台运行
+
+<br>
+
+# passwd [`顶部`](#user-content-索引)
+###### 用法
+**`-d`** 清空用户的密码, 使之无需密码即可登录
+**`-u`** 解锁用户帐号 
+**`-l`** 锁定用户帐号
+**`-S`** 查看用户帐号的状态是否被锁定
+
+<br>
+
+# pstree [`顶部`](#user-content-索引)
+###### 用法
+* **`-p`** 列出进程的PID号
+* **`-u`** 列出进程对应的用户名
+* **`-a`** 列出进程对应的完整命令
+
+###### 例子
+```sh
+$ pstree -aup
+init,1
+  ├─acpid,2866
+  ├─atd,3060
+  ├─auditd,2516
+  │   ├─python,2518 /sbin/audispd
+  │   └─{auditd},2517
+  ├─automount,2842
+```
+
+<br>
+
+# rsync [`顶部`](#user-content-索引)
+###### 用法
+**`-f`** 
+###### 例子
+
+<br>
+
+# runlevel [`顶部`](#user-content-索引)
+> 查看运行级别. 分别显示: 切换前的运行级别、当前运行级别
+###### 例子
+```sh
+$ runlevel
+N 5
+$ init 3
+$ runlevel
+5 3
+```
+
+<br>
+
+# scp [`顶部`](#user-content-索引)
+###### 用法
+**`scp [-pr] [-P port] [[user@]host1: ]file1 [...] [[user@]host2: ]file2`**
+* **`-p`** 保留原文件的修改时间, 访问时间和访问权限
+* **`-r`** 递归复制整个目录
+###### 例子
+* 从远程复制到本地
+```sh
+scp username@ip: remote_file local_file
+```
+* 从本地复制到远程
+```sh
+scp local_file username@ip: remote_file
+```
+
+<br>
+
+# sed [`顶部`](#user-content-索引)
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# sort [`顶部`](#user-content-索引)
+> 对文本文件的内容, 以行为单位来排序
+###### 用法
+**`sort [-bcdfimMnr][-o<输出文件>][-t<分隔字符>][+<起始栏位>-<结束栏位>][文件]`**
+* **`-n`** 
+* **`-h`** 
+* **`-t`** 明白排序时关键字的工作原理
+* **`-k field_number`** 指定字段进行排序
+* **`-u`** 
+* **`-s`** 稳定排序
+###### 例子
+* -k1, 1 来仅按第一个域来排序, 而 -k1 意味着按整行排序
+* 对文本文件做集合交、并、差运算
+```
+sort a b | uniq > c   # c 是 a 并 b
+sort a b | uniq -d > c   # c 是 a 交 b
+sort a b | uniq -u > c   # c 是 a - b
+```
+* 以第二个域为主关键字, 第一个域为次关键字进行排序
+```sh
+sort -k1, 1 | sort -s -k2, 2
+```
+
+<br>
+
+# ssh [`顶部`](#user-content-索引)
+###### 用法
+**`-L`** 
+**`-D`** 
+**`-R`** 
+###### 例子
+
+<br>
+
+# tail [`顶部`](#user-content-索引)
+###### 用法
+**`-f`** 循环读取
+**`-n <行数>`** 显示文件的尾部 n 行内容
+**`-c <数目>`** 显示的字节数
+###### 例子
+* 显示文件 notes.log 的内容, 从第 20 行至文件末尾: 
+```sh
+tail +20 notes.log
+```
+* 显示文件 notes.log 的最后 10 个字符: 
+```sh
+tail -c 10 notes.log
+```
+
+<br>
+
+# tar [`顶部`](#user-content-索引)
+###### 用法
+* **`-f`** **指定打包文件名**
+* **`-z`** 通过gzip指令处理打包文件
+* **`-j`** 通过bz2指令处理打包文件
+* **`-c`** 建立打包文件
+* **`-x`** 从打包文件中还原文件
+* **`-v`** 显示指令执行过程
+* **`-t`** 列出打包文件的内容
+* **`-A`** 合并打包文件
+* **`-r`** 向打包文件中增加文件
+* **`-C`** 指定解压路径
+* **`--delete`** 从打包文件中删除指定的文件
+
+###### 例子
+* 多个文件打包成一个文件
+```sh
+tar -cf test.tar test1.txt test2.txt test3.txt
+```
+* 查看打包文件的内容
+```sh
+tar -tf test.tar
+```
+* 删除打包文件中的指定文件
+```sh
+tar -f test.tar --delete test3.txt
+```
+* 将test01.tar合并到test.tar中
+```sh
+tar -f test.tar -A test01.tar
+```
+* 向打包文件中增加文件
+```sh
+tar -f test.tar -r test4.txt
+```
+
+<br>
+
+# tee [`顶部`](#user-content-索引)
+> 从标准输入读取数据, 并将其输出到文件中
+###### 用法
+**`tee [-ai][文件...]`**
+* **`-a`** 附加到文件的后面, 而非覆盖它
+* **`-i`** 忽略中断信号
+###### 例子
+* 将用户输入的数据同时保存到文件"file1"和"file2"中
+```sh
+tee file1 file2
+```
+* 将标准输入复制到文件
+```sh
+ls -al | tee file.txt
+```
+
+<br>
+
+# top [`顶部`](#user-content-索引)
+> 强烈建议使用htop
+###### 说明
+* **`PR`** 进程优先级
+* **`NI`** 进程的 "nice value"(越高的nice value值表示优先级越低, 默认为0)
+* **`VIRT`** 虚拟内存
+* **`RES`** 驻留内存
+* **`SHR`** 共享内存
+* **`S`** 进程状态(D=可中断睡眠, R=运行中, S=睡眠, T=已跟踪或已停止, Z=僵死)
+* **`%CPU`** 进程正在使用的CPU时间份额
+* **`%MEM`** 进程正在使用的可用物理内存份额
+* **`TIME+`** 进程启动后已经使用的总CPU时间(从启动到此时此刻)
+* **`COMMAND`** 进程的命令行名称(已启动程序)
+```sh
+PID  用户名 优先级  NI 虚拟内存 物理内存 共享内存   状态 CPU 物理内存  运行时间    名称
+PID  USER   PR    NI   VIRT    RES    SHR     S  %CPU %MEM    TIME+     COMMAND
+3165 ypl    20    0   51320   4132   3392     R   6.2  0.1    0: 00.01  top
+1    root   20    0  225528   9336   6740     S   0.0  0.3    0: 02.87  systemd
+2    root   20    0       0      0      0     S   0.0  0.0    0: 00.02  kthreadd
+```
+
+<br>
+
+* 按P键根据CPU占用情况对进程列表进行排序 
+* 按M键根据内存占用情况进行排序
+* 按N键根据启动时间进行排序
+
+<br>
+
+# tree [`顶部`](#user-content-索引)
+###### 用法
+**`tree [-d] [-L n]`**
+* **`-d`** 只列出目录
+* **`-L n`** 递归深度
+
+<br>
+
+### truncate [`顶部`](#user-content-索引)
+> 创建稀疏文件
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+# type [`顶部`](#user-content-索引)
+> 判断命令到底是可执行文件、shell内置命令还是别名
+###### 例子
+```sh
+$ type mv
+mv is /bin/mv
+
+$ type ls
+ls is aliased to `ls --color=auto'
+```
+
+<br>
+
+# ufw [`顶部`](#user-content-索引)
+###### 例子
+* 启用
+```sh
+sudo ufw enable
+```
+* 关闭
+```sh
+sudo ufw disable
+```
+* 查看防火墙状态
+```sh
+sudo ufw status
+```
+* 允许外部访问80端口
+```sh
+sudo ufw allow 80
+```
+* 禁止外部访问80 端口
+```sh
+sudo ufw delete allow 80
+```
+* 允许此IP访问所有的本机端口
+```sh
+sudo ufw allow from 192.168.1.1 
+```
+
+<br>
+
+# useradd [`顶部`](#user-content-索引)
+###### 用法
+**`useradd [选项] <User Name>`**
+* **`-u <UID>`** 指定UID
+* **`-g <主用户组>`** 指定主用户组, 可以为组名称或GID
+* **`-G <从属用户组>`** 指定从属用户组, 可以为组名称或GID, 多个从属组以逗号分隔
+* **`-d <主目录>`** 指定用户主目录
+* **`-M`** 不为用户建立并初始化宿主目录
+* **`-s <shell类型>`**
+* **`-e <时间>`** 指定账号失效时间, 如`-e 2018-01-01`
+
+<br>
+
+# userdel [`顶部`](#user-content-索引)
+###### 用法
+**`userdel <User Name>`**
+* **`-r`** 将用户目录一并删除
+
+<br>
+
+# usermod [`顶部`](#user-content-索引)
+###### 用法
+**`usermod <User Name>`**
+* **`-l`** 修改用户名
+* **`-u <UID>`** 
+* **`-g <主用户组>`**
+* **`-G <从属用户组>`**
+* **`-d <主目录>`**
+* **`-s <shell类型>`**
+* **`-L`** 锁定用户账户, 与passwd命令的"-l"、"-u"选项作用基本相同, 只不过大小写存在区别 
+* **`-U`** 解锁用户账户, 与passwd命令的"-l"、"-u"选项作用基本相同, 只不过大小写存在区别 
+
+<br>
+
+# uniq [`顶部`](#user-content-索引)
+> 检查及删除文本文件中重复出现的行列(但是要求重复的行在相邻的行!!!)
+###### 用法
+**`uniq [-cdu] [输入文件] [输出文件]`**
+* **`-d`** 仅显示重复出现的行列
+* **`-u`** 仅显示出一次的行列
+* **`-c`** 在每列旁边显示该行重复出现的次数
+* **`[输入文件]`** 指定已排序好的文本文件. 如果不指定此项, 则从标准输入读取数据
+* **`[输出文件]`** 指定输出的文件. 如果不指定此选项, 则将内容显示到标准输出设备
+###### 文件
+```
+1a
+2b
+2b
+3c
+4d
+4d
+4d
+```
+###### 例子
+* 去掉重复的行
+```sh
+$ uniq file1 
+1a
+2b
+3c
+4d
+```
+* 删除文件中重复出现的行, 并显示该行重复出现的次数
+```sh
+$ uniq -c file1
+  1 1a
+  2 2b
+  1 3c
+  3 4d
+```
+* 问题
+```
+uniq file file
+```
+
+<br>
+
+# whereis [`顶部`](#user-content-索引)
+> whereis命令用于查找文件, 只能用于查找二进制文件、源代码文件和man手册页
+###### 用法
+**`whereis [-bfmsu][-B <目录>...][-M <目录>...][-S <目录>...][文件...]`**
+* **`-b`** 只查找二进制文件
+* **`-B<目录>`** 只在设置的目录下查找二进制文件
+* **`-m`** 只查找说明文件
+* **`-M<目录>`** 只在设置的目录下查找说明文件
+* **`-s`** 只查找原始代码文件
+* **`-S<目录>`** 只在设置的目录下查找原始代码文件
+
+<br>
+
+# xargs [`顶部`](#user-content-索引)
+> 可以控制每行参数个数(-L)和最大并行数(-P)
+###### 用法
+**`-i`** 
+###### 例子
+如果你不确定它们是否会按你想的那样工作, 先使用 xargs echo 查看一下. 此外, 使用 -I{} 会很方便. 例如:  
+```
+  find . -name '*.py' | xargs grep some_function
+      cat hosts | xargs -I{} ssh root@{} hostname
+```
+
+<br>
+
+# xmlstarlet [`顶部`](#user-content-索引)
+> 处理XMl
+###### 用法
+**`-`** 
+###### 例子
+
+<br>
+
+********************************************************************************************************************
+
+学会使用 /proc. 它在调试正在出现的问题的时候有时会效果惊人. 比如 /proc/cpuinfo, /proc/meminfo, /proc/cmdline, /proc/xxx/cwd, /proc/xxx/exe, /proc/xxx/fd/, /proc/xxx/smaps
+ctrl-a 可以将光标移至行首, ctrl-e 可以将光标移至行尾
+set -o vi 来使用 vi 风格的快捷键, 而执行 set -o emacs
+设置你的默认编辑器后(例如 export EDITOR=vim
+如果你输入命令的时候中途改了主意, 按下 alt-# 在行首添加 # 把它当做注释再按下回车执行(或者依次按下 ctrl-a,  #,  enter). 这样做的话, 之后借助命令行历史记录, 你可以很方便恢复你刚才输入到一半的命令. 
+获取 CPU 和硬盘的使用状态, 通常使用使用 top(htop 更佳), iostat 和 iotop. 而 iostat -mxz 15 可以让你获悉 CPU 和每个硬盘分区的基本信息和性能表现. 
+若要了解内存状态, 运行并理解 free 和 vmstat 的输出. 值得留意的是“cached”的值, 它指的是 Linux 内核用来作为文件缓存的内存大小, 而与空闲内存无关. 
