@@ -1,6 +1,6 @@
 # HashMap
 * [ConcurrentHashMap](https://blog.csdn.net/justloveyou_/article/details/72783008)
-* ConcurrentHashMap(没有fast-fail机制, HashMap才有)(fail fast 是对容器进行操作 此时新进来有元素 跟以前的记忆不一样 所以会抛异常 然后重新进行操作；fail safe 是以快照的形式进行操作，来个快照 然后进行数据操作，此时进来新的元素，不会抛出异常，会按照以前的快照继续进行操作)
+* ConcurrentHashMap(没有fast-fail机制, HashMap才有)(fail fast 是对容器进行操作 此时新进来有元素 跟以前的记忆不一样 所以会抛异常 然后重新进行操作；fail safe 是以快照的形式进行操作 来个快照 然后进行数据操作 此时进来新的元素 不会抛出异常 会按照以前的快照继续进行操作)
 * HashMap 和 ConcurrentHashMap 的区别
 * HashMap和 HashTable有何不同
 * ConcurrentHashMap和LinkedHashMap有什么区别
@@ -25,13 +25,16 @@
 * Linux下进程虚拟空间布局 
 * 进程与线程的切换
 * 线程同步几种方式 锁, 信息量还有条件
-* 计算机中进程同步的方法 线程同步的方法
+* 计算机中进程同步的方法 线程同步的方法* [进程 线程](http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html)
+* [线程通信:全局变量](https://blog.csdn.net/u011514810/article/details/77131296)
+* [死锁](https://juejin.im/post/5aaf6ee76fb9a028d3753534)
 
 # HTTP 
 * http和https有什么区别
 * http 状态码
 * 一个http请求流转过程
 * get post的区别, 我说到get的能接受的数据量比较小的时候, 面试官就说当传输数据量比较大会怎么样
+* [HTTP报文: 请求行 请求头 空行 请求数据](https://www.cnblogs.com/biyeymyhjob/archive/2012/07/28/2612910.html)
 
 # TCP
 * 为什么tcp需要第三次握手 
@@ -40,6 +43,10 @@
 * TCP滑动窗口, 可靠性保证
 * 四次挥手timewait作用 为什么2msl
 * time_wait状态产生的原因、危害以及如何避免
+* [三次握手四次挥手](https://blog.csdn.net/smileiam/article/details/78226816)
+* [OSI七层模型](https://blog.csdn.net/yaopeng_2005/article/details/7064869)
+* [TCP UDP](https://zhuanlan.zhihu.com/p/24860273)
+* AB两台机器都正常工作, B机器未监听任何端口, 如果A机器向B机器80端口发送SYN包, 会收到何种类型的回包?(ACK RST FIN 不受到回包)
 
 # Java多线程
 * synchronized lock
@@ -121,23 +128,56 @@
 * mysql集群
 * 自增ID(锁太严重) UUID(不是顺序插入, 性能低) snowflake
 * 聚簇索引 非聚簇索引
+* [从一个表中选出A A在表中有重复 要求A不重复 然后最小值(B-C)排序 按C降序排列](http://www.runoob.com/mysql/mysql-handling-duplicates.html)
+* 事物隔离级别 [1](http://www.cnblogs.com/zhoujinyi/p/3437475.html) [2](https://www.jianshu.com/p/4e3edbedb9a8)
+* 索引 [1](https://blog.csdn.net/suifeng3051/article/details/52669644) [2](https://blog.csdn.net/weiliangliang111/article/details/51333169)
+
 
 # Java
 * equals设计原则
 * ==, .isEquals()区别
-* wait() notify()
+* wait() notify() sleep()
+* 三对一错
+```
+sleep()是Thread类的方法 wait()是Object类的方法
+sleep()暂停线程, 但监控状态任然保持, 结束后会自动恢复
+wait()后进入等待锁定池, 只有针对此对象发出notify()方法后获得对象锁进入运行状态
+sleep()不释放对象锁, wait()放弃对象锁
+```
 * 泛型是否能重载?
 * NIO byteBuffer channel selector
-* jvm的原理, GC堆的垃圾回收机制
-* 类加载机制, 过程, 双亲委派
-* 常见的GC算法, 最好能说一种并行的, 延伸-FGC/YGC, 延伸-CMS vs G1
 * Object下面的方法
+* static关键字
+* netty网络编程
+* [线程池](https://www.cnblogs.com/dolphin0520/p/3932921.html)
+* 深copy 浅copy
+* [异常处理](https://blog.csdn.net/hguisu/article/details/6155636)
+* `ArrayList list = new ArrayList();` 中的list扩容几次 
+* 返回值
+```
+public boolean test(){
+    try{
+        return true;
+    } catch (Exception e){
+
+    } finally {
+        return false;
+    }
+}
+```
+
+# JVM
+* [内存分配](https://blog.csdn.net/suifeng3051/article/details/48292193)
+* [GC](https://blog.csdn.net/suifeng3051/article/details/48292193)
 * JVM内存 - 基础 堆栈区别, 延伸 JDK 6 7 8 的不同
 * OOM发生的情况, 处理, 发生的区域
-* Java内存回收机制和方法
-* static关键字
+* jvm的原理, GC堆的垃圾回收机制
 * 垃圾回收器有哪些
-* netty网络编程
+* 类加载机制, 过程, 双亲委派
+* 常见的GC算法, 最好能说一种并行的, 延伸-FGC/YGC, 延伸-CMS vs G1
+* Java内存回收机制和方法
+* 类的加载机制: 双亲模型
+
 
 
 *****************************************************************************************************
@@ -215,4 +255,8 @@ username,date,time
 1. 10月15日当天, 有多少人迟到
 2. 10月整月, 有哪些人迟到超过3次, 列出姓名和迟到次数 
 ```
-
+* [一条木棍上有十只蚂蚁、求离开木棍的最短、最长时间](https://blog.csdn.net/seagal890/article/details/79360665)
+* [单列模式 设计模式](http://www.runoob.com/design-pattern/design-pattern-intro.html)
+* 10^n不充分数字
+* [多线程实现](https://blog.csdn.net/u013278099/article/details/52317355)
+* [大量url找某个是否存在](https://blog.csdn.net/v_JULY_v/article/details/6279498)
