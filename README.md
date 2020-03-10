@@ -5,6 +5,8 @@
 * [Linux](linux/README.md)
 * [计算机网络](network/README.md)
 * [操作系统](os/README.md)
+* [其他](others/README.md)
 * [Python](python/README.md)
 * [数据库](sql/README.md)
 * [剑指Offer](swordToOffer/README.md)
+* [WEB](web/README.md)
