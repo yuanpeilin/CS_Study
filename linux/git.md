@@ -10,11 +10,19 @@
 *************************************************************************
 
 ### 初始配置 [`顶部`](#user-content-索引)
-name会在`git lo`中显示
+* name会在`git log`中显示
 ```sh
-git config --global user.name [name]
-git config --global user.email [email address]
+git config --global user.name NAME
+git config --global user.email ENAIL ADDRESS
 ```
+
+<br>
+
+* 查看配置
+```sh
+git config --list
+```
+
 
 ### 日志 [`顶部`](#user-content-索引)
 * **`git log`** 查看最近三次的提交
