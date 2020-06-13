@@ -23,16 +23,13 @@
 
 
 # 初始配置 [`顶部`](#user-content-索引)
-* name会在`git log`中显示
 ```sh
+# name会在 git log 中显示
 git config --global user.name NAME
 git config --global user.email ENAIL ADDRESS
 ```
-
-<br>
-
-* 查看配置
 ```sh
+# 查看配置
 git config --list
 ```
 
@@ -61,22 +58,17 @@ git config --list
 
 
 # 撤销 [`顶部`](#user-content-索引)
-* 回退到上一个版本
-    * `git reset [--hard | --mixed | --soft] HEAD^`
-* 回退到指定版本
-    * `git reset [--hard | --mixed | --soft] <COMMIT_ID>`
-* 说明
-    * **--soft** 不修改working directory和index, 只修改**HEAD**的内容. 本质上是撤销了上一次的commit命令
-    * **--mixed** 不修改working directory, 只修改**index**和**HEAD**的内容
-    * **--hard** 修改**working directory**和**index**和**HEAD**的内容
+### 版本回退
+* **回退到上一个版本** `git reset [--hard | --mixed | --soft] HEAD^`
+* **回退到指定版本** `git reset [--hard | --mixed | --soft] <COMMIT_ID>`
+* **说明**
+    * `--soft` 不修改working directory和index, 只修改**HEAD**的内容. 本质上是撤销了上一次的commit命令
+    * `--mixed` 不修改working directory, 只修改**index**和**HEAD**的内容
+    * `--hard` 修改**working directory**和**index**和**HEAD**的内容
 
 <br>
 
-* 修改提交信息
-    * `git commit --amend`
-
-<br>
-
+### 文件回退
 * **Modified -> Unmodified:** 撤销尚未提交到暂存区的修改
     * `git checkout -- <file>`
     * `git restore <FILE>`
@@ -90,6 +82,11 @@ git config --list
 
 ![](src/git.png)
 
+<br>
+
+### 其他
+* 修改提交信息 `git commit --amend`
+
 
 
 
@@ -100,24 +97,23 @@ git config --list
 
 
 # 分支 [`顶部`](#user-content-索引)
-* **新建与删除分支**
-    * **`git branch`** 查看所有分支
-    * **`git branch <BRANCH_NAME>`** 创建分支
-    * **`git branch <BRANCH_NAME> <COMMIT_HASH>`** 新建一个分支并使分支指向对应的提交对象
-    * **`git branch -d <BRANCH_NAME>`** 删除 一个已合并的分支
-    * **`git branch -D <BRANCH_NAME>`** 强制删除一个未合并的分支
+### 新建与删除分支
+* **`git branch`** 查看所有分支
+* **`git branch <BRANCH_NAME> [COMMIT_HASH]`** 新建一个分支并使分支指向对应的提交对象, 默认为当前分支
+* **`git branch -d <BRANCH_NAME>`** 删除 一个已合并的分支
+* **`git branch -D <BRANCH_NAME>`** 强制删除一个未合并的分支
 
 <br>
 
-* **切换分支**
-    * **`git checkout <BRANCH_NAME | TAG_NAME>`** 切换分支
-    * **`git checkout -b <name>`** 创建并切换到创建的分支
+### 切换分支
+* **`git checkout <BRANCH_NAME | TAG_NAME>`** 切换分支
+* **`git checkout -b <name>`** 创建并切换到创建的分支
 
 <br>
 
-* **合并分支**
-    * **`git merge <name>`** 合并某分支到当前分支
-    * **`git merge --no-ff [-m message] <name>`** --no-ff参数, 表示禁用 **Fast forward** 模式
+### 合并分支
+* **`git merge <name>`** 合并某分支到当前分支
+* **`git merge --no-ff [-m message] <name>`** --no-ff参数, 表示禁用 **Fast forward** 模式
 
 
 
@@ -130,13 +126,17 @@ git config --list
 
 # 远程 [`顶部`](#user-content-索引)
 * **`git remote add <repository name> <SSH | HTTPS>`** 使本地仓库与远程仓库关联
-* **`git push -u origin master`** 把本地仓库推送给远程仓库. 第一次推送给远程仓库加上-u参数的话, 会把本地的master分支和远程master分支关联, 以后拉取和推送就不要-u参数了
+* **`git push -u origin master`** 把本地仓库推送给远程仓库. 加上-u参数会把本地的master分支和远程master分支关联
 * **`git clone <SSH | HTTPS>`** 克隆一个远程仓库
 * **`git pull`** 更新代码
 * **`git remote -v`** 查看远程库信息
+
+<br>
+
+### 远程分支
+* **`git branch -vv`** 查看分支详细信息
 * **`git branch -u [local-branch-name] origin/<remote-branch-name>`** 本地与远程分支关联, 不写本地分支名默认为当前分支
 * **`git checkout --track origin/<remote-branch-name>`** 创建和远程分支相同的本地分支
-* **`git branch -vv`** 查看分支详细信息
 * **`git push origin --delete <remote-branch-name>`** 删除远程分支
 * **`git remote prune origin --dry-rnu`** 列出仍在跟踪但远程已删除的分支
 
