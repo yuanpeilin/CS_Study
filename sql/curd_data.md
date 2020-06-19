@@ -91,7 +91,7 @@ SET（column_name1={expr1 | DEFAULT} [, column_name2={expr2 | DEFAULT}]...
 
 
 # 查询数据
-1. **格式**
+### 1. 格式
 ```sql
 SELECT select_expr [, select_expr ...]
 [
@@ -104,7 +104,7 @@ SELECT select_expr [, select_expr ...]
 ]
 ```
 
-2. **检索不同的行 DISTINCT**  
+### 2. 检索不同的行 DISTINCT
 DESTINCT关键字只返回不同的值, 即相同的值只返回一次  
 如果修饰两个或两个以上的列, 那么以两个列同时为条件, 只有两个列的值都相同时, 才算相同  
 ```sql
@@ -129,7 +129,7 @@ SELECT DISTINCT vend_id, prod_price FROM products ORDER BY vend_id,prod_price;
 +---------+------------+
 ```
 
-3. **限制行数 LIMIT**  
+### 3. 限制行数 LIMIT
 `LIMIT 3` 返回前三条记录(返回第零条 第一条 第二条记录)  
 `LIMIT 3, 2` 从0开始编号, 包括第三条记录, 返回两条记录(返回第三条 第四条记录)  
 ```sql
@@ -137,7 +137,7 @@ SELECT * FROM users LIMIT 3;
 SELECT * FROM users LIMIT 3, 2;
 ```
 
-4. **排序 ORDER BY**  
+### 4. 排序 ORDER BY
 默认为ASC升序(A-Z 1-9), 还可以设置为DESC降序(Z-A 9-1)  
 ORDER BY子句应该保证它位于FROM子句之后. 如果使用LIMIT, 它必须位于ORDER BY之后  
 ```sql
@@ -145,7 +145,7 @@ ORDER BY子句应该保证它位于FROM子句之后. 如果使用LIMIT, 它必�
 SELECT * FROM users ORDER BY id, age DESC;
 ```
 
-5. **空值检查 IS NULL**  
+### 5. 空值检查 IS NULL
 ```sql
 SELECT cust_id FROM customers WHERE cust_email IS NULL;
 
@@ -157,7 +157,7 @@ SELECT cust_id FROM customers WHERE cust_email IS NULL;
 +---------+
 ```
 
-6. **过滤数据 WHERE**  
+### 6. WHERE子句过滤数据 BETWEEN
 ```sql
 SELECT prod_name, prod_price FROM products WHERE prod_price BETWEEN 5 AND 10;
 
@@ -171,7 +171,7 @@ SELECT prod_name, prod_price FROM products WHERE prod_price BETWEEN 5 AND 10;
 +----------------+------------+
 ```
 
-7. **组合WHERE子句 AND OR**  
+### 7. 组合WHERE子句过滤数据 AND OR
 SQL在处理OR操作符之前, 会优先处理AND操作符. 在同时使用AND和OR时, 应使用圆括号明确地分组相应的操作符  
 ```sql
 SELECT prod_name, prod_price 
@@ -188,7 +188,7 @@ WHERE (vend_id=1002 OR vend_id=1003) AND prod_price>=10;
 +----------------+------------+
 ```
 
-8. **WHERE子句 IN**  
+### 8. WHERE子句过滤数据 IN
 IN操作符用来指定条件范围, 范围中的每个条件都可以进行匹配. IN取合法值的由逗号分隔的清单, 全都括在圆括号中  
 ```sql
 SELECT prod_name, prod_price 
@@ -209,6 +209,59 @@ WHERE vend_id IN (1002, 1003);
 | TNT (5 sticks) |      10.00 |
 +----------------+------------+
 ```
+### 9. WHERE子句过滤数据 通配符 LIKE
+* **`%`通配符** 此通配符表示匹配任意个字符, 不仅包括一个字符和多个字符, 还可以代表0个字符. 此通配符 **不能匹配NULL**  
+```sql
+SELECT prod_id, prod_name FROM products WHERE prod_name LIKE 'jet%';
+
++---------+--------------+
+| prod_id | prod_name    |
++---------+--------------+
+| JP1000  | JetPack 1000 |
+| JP2000  | JetPack 2000 |
++---------+--------------+
+```
+* **`_`通配符** 此通配符表示匹配单个字符  
+```sql
+SELECT prod_id, prod_name FROM products WHERE prod_name LIKE '_ ton anvil';
+
++---------+-------------+
+| prod_id | prod_name   |
++---------+-------------+
+| ANV02   | 1 ton anvil |
+| ANV03   | 2 ton anvil |
++---------+-------------+
+```
+### 10. 正则表达式 REGEXP
+* **基本格式** 用REGEXP关键字代替LIKE  
+```sql
+SELECT prod_name FROM products WHERE prod_name REGEXP 'jetpack .000';
+
++--------------+
+| prod_name    |
++--------------+
+| JetPack 1000 |
+| JetPack 2000 |
++--------------+
+```
+* **`BINARY`区分大小写**
+```sql
+SELECT prod_name FROM products WHERE prod_name REGEXP BINARY 'jetpack .000';
+
+Empty set
+```
+* **匹配特殊字符**
+```sql
+SELECT prod_name FROM products WHERE prod_name REGEXP '\\.';
+
++--------------+
+| prod_name    |
++--------------+
+| .5 ton anvil |
++--------------+
+```
+
+
 
 
 
