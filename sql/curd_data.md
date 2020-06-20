@@ -233,6 +233,16 @@ SELECT prod_id, prod_name FROM products WHERE prod_name LIKE '_ ton anvil';
 +---------+-------------+
 ```
 ### 10. 正则表达式 REGEXP
+* **测试** 若匹配返回1, 不匹配返回0
+```sql
+SELECT 'hello' REGEXP '[0-9]';
+
++------------------------+
+| 'hello' regexp '[0-9]' |
++------------------------+
+|                      0 |
++------------------------+
+```
 * **基本格式** 用REGEXP关键字代替LIKE  
 ```sql
 SELECT prod_name FROM products WHERE prod_name REGEXP 'jetpack .000';
@@ -250,7 +260,7 @@ SELECT prod_name FROM products WHERE prod_name REGEXP BINARY 'jetpack .000';
 
 Empty set
 ```
-* **匹配特殊字符**
+* **匹配特殊字符** 转义字符要使用两个反斜线
 ```sql
 SELECT prod_name FROM products WHERE prod_name REGEXP '\\.';
 
@@ -260,7 +270,17 @@ SELECT prod_name FROM products WHERE prod_name REGEXP '\\.';
 | .5 ton anvil |
 +--------------+
 ```
+* **使用字符集**
+```sql
+SELECT prod_name FROM products WHERE prod_name REGEXP '[[:digit:]]{4}';
 
++--------------+
+| prod_name    |
++--------------+
+| JetPack 1000 |
+| JetPack 2000 |
++--------------+
+```
 
 
 
