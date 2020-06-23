@@ -14,25 +14,6 @@ SELECT Concat(vend_name, '(', vend_country, ')') FROM vendors;
 +-------------------------------------------+
 ```
 
-# 去掉空格
-* RTrim()去掉串右边的空格  
-* LTrim()去掉串左边的空格  
-* Trim()去掉串左右两边的空格  
-```sql
-SELECT Concat(RTrim(vend_name), '(', RTrim(vend_country), ')') FROM vendors;
-
-+---------------------------------------------------------+
-| Concat(RTrim(vend_name), '(', RTrim(vend_country), ')') |
-+---------------------------------------------------------+
-| Anvils R Us(USA)                                        |
-| LT Supplies(USA)                                        |
-| ACME(USA)                                               |
-| Furball Inc.(USA)                                       |
-| Jet Set(England)                                        |
-| Jouets Et Ours(France)                                  |
-+---------------------------------------------------------+
-```
-
 # 别名
 别名是一个字段或计算字段的替换值  
 ```sql
