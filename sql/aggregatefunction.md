@@ -1,0 +1,72 @@
+# 聚合函数
+
+FUNCTION | DESCRIPTION
+:------- | :----------
+AVG()    | 返回某列的平均值
+COUNT()  | 返回某列的行数
+MAX()    | 返回某列的最大值
+MIN()    | 返回某列的最小值
+SUM()    | 返回某列值之和
+
+# AVG()
+AVG()可用来返回所有列的平均值, 也可以用来返回特定列或行的平均值  
+AVG()函数忽略列值为NULL的行  
+```sql
+-- products表中所有产品的平均价格
+SELECT AVG(prod_price) AS avg_price FROM products;
+
++-----------+
+| avg_price |
++-----------+
+| 16.133571 |
++-----------+
+```
+```sql
+-- 1003供应商的产品的平均值
+SELECT AVG(prod_price) AS avg_price FROM products WHERE vend_id=1003;
+
++-----------+
+| avg_price |
++-----------+
+| 13.212857 |
++-----------+
+```
+
+
+
+# COUNT()
+用COUNT()确定表中行的数目或符合特定条件的行的数目  
+如果指定列名, 则指定列的值为空的行被COUNT()函数忽略, 但如果COUNT()函数中用的是星号(\*), 则不忽略  
+```sql
+SELECT COUNT(*) FROM customers;
+
++----------+
+| COUNT(*) |
++----------+
+|        5 |
++----------+
+```
+```sql
+SELECT COUNT(cust_email) FROM customers;
+
++-------------------+
+| COUNT(cust_email) |
++-------------------+
+|                 3 |
++-------------------+
+
+```
+
+
+
+# SUM()
+SUM()函数忽略列值为NULL的行  
+```sql
+SELECT SUM(quantity) FROM orderitems WHERE order_num=20005;
+
++---------------+
+| SUM(quantity) |
++---------------+
+|            19 |
++---------------+
+```

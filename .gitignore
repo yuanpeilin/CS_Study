@@ -9,6 +9,9 @@ out/
 *Main.java
 *Test.java
 
+tmp.md
+temp.md
+
 __pycache__/
 *.py[cod]
 *$py.class
