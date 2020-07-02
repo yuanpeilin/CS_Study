@@ -209,6 +209,7 @@ WHERE vend_id IN (1002, 1003);
 | TNT (5 sticks) |      10.00 |
 +----------------+------------+
 ```
+
 ### 9. WHERE子句过滤数据 通配符 LIKE
 * **`%`通配符** 此通配符表示匹配任意个字符, 不仅包括一个字符和多个字符, 还可以代表0个字符. 此通配符 **不能匹配NULL**  
 ```sql
@@ -232,6 +233,7 @@ SELECT prod_id, prod_name FROM products WHERE prod_name LIKE '_ ton anvil';
 | ANV03   | 2 ton anvil |
 +---------+-------------+
 ```
+
 ### 10. 正则表达式 REGEXP
 * **测试** 若匹配返回1, 不匹配返回0
 ```sql
@@ -282,20 +284,53 @@ SELECT prod_name FROM products WHERE prod_name REGEXP '[[:digit:]]{4}';
 +--------------+
 ```
 
+### 11. 分组
+注意事项:  
+* GROUP BY子句必须出现在WHERE子句之后, ORDER BY子句之前
+* 除聚集计算语句外, SELECT语句中的每个列都必须在GROUP BY子句中给出
+* 如果在SELECT中使用表达式, 则必须在GROUP BY子句中指定相同的表达式, 不能使用别名
 
-
-
-
-
-
-
-* 别名
 ```sql
-# 别名
-SELECT id AS i, username AS un FROM user;
+SELECT vend_id, COUNT(*) FROM products GROUP BY vend_id;
+
++---------+----------+
+| vend_id | COUNT(*) |
++---------+----------+
+|    1001 |        3 |
+|    1002 |        2 |
+|    1003 |        7 |
+|    1005 |        2 |
++---------+----------+
 ```
+
+### 12. 汇总分组
+使用`WITH ROLLUP`关键字可以得到每个分组汇总级别的值  
 ```sql
-# 默认情况下HAVING对所有记录分组, HAVING可以只对指定记录分组
-# 分组条件要么为聚合函数, 要么出现在SELECT中
-SELECT sex FROM users GROUP BY sex HAVING SUM(age)>30;
+SELECT vend_id, COUNT(*) FROM products GROUP BY vend_id WITH ROLLUP;
+
++---------+----------+
+| vend_id | COUNT(*) |
++---------+----------+
+|    1001 |        3 |
+|    1002 |        2 |
+|    1003 |        7 |
+|    1005 |        2 |
+|    NULL |       14 |
++---------+----------+
 ```
+
+### 13. 过滤分组
+WHERE过滤指定的是行而不是分组, WHERE过滤行, 而HAVING过滤分组  
+或者说: WHERE在数据分组前进行过滤，HAVING在数据分组后进行过滤
+```sql
+SELECT vend_id, COUNT(*) FROM products GROUP BY vend_id WITH ROLLUP HAVING COUNT(*)>=3;
+
++---------+----------+
+| vend_id | COUNT(*) |
++---------+----------+
+|    1001 |        3 |
+|    1003 |        7 |
+|    NULL |       14 |
++---------+----------+
+```
+
