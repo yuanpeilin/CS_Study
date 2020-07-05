@@ -6,7 +6,7 @@
 * [**执行计划**](explain.md)
 * [**函数**](function.md)
 * [**索引**](index.md)
-* [**连接**](join.md)
+* [**联结**](join.md)
 * [**范式**](nf.md)
 * [**其他**](others.md)
 * [**慢查询**](slowquery.md)
