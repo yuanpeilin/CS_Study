@@ -1,29 +1,34 @@
-# 索引
-* **用户**
-    * [**增**](#user-content-增加用户-顶部)
-    * [**删**](#user-content-删除用户-顶部)
-    * [**查**](#user-content-查看用户-顶部)
-    * [**改**](#user-content-修改用户-顶部)
-* **组**
-    * [**增**](#user-content-增加组-顶部)
-    * [**删**](#user-content-删除组-顶部)
-    * [**查**](#user-content-查看组-顶部)
-    * [**改**](#user-content-修改组-顶部)
-* [**初始配置文件**](#user-content-初始配置文件-顶部)
+# 目录
+- [用户](#用户)
+    - [增加用户](#增加用户)
+    - [删除用户](#删除用户)
+    - [查看用户](#查看用户)
+    - [修改用户](#修改用户)
+- [组](#组)
+    - [增加组](#增加组)
+    - [删除组](#删除组)
+    - [查看组](#查看组)
+    - [修改组](#修改组)
+- [初始配置文件](#初始配置文件)
 
-******************************************************************************
 
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+
+# 用户
 * root的UID一定为0, 被分配的UID范围在500\~4294967295之间
 
-### 增加用户 [`顶部`](#user-content-索引)
-* [**useradd**](command.md/#user-content-useradd-顶部)
+### 增加用户
+* [**useradd**](command.md/#useradd)
 
-### 删除用户 [`顶部`](#user-content-索引)
-* [**userdel**](command.md/#user-content-userdel-顶部)
+### 删除用户
+* [**userdel**](command.md/#userdel)
 
-### 查看用户 [`顶部`](#user-content-索引)
-* [**finger**](command.md/#user-content-finger-顶部) 查看用户详细信息
-* [**id**](command.md/#user-content-id-顶部) 显示用户的UID与所属组 
+### 查看用户
+* [**finger**](command.md/#finger) 查看用户详细信息
+* [**id**](command.md/#id) 显示用户的UID与所属组 
 <br>
 
 * **`/etc/passwd`** 用户信息
@@ -47,17 +52,25 @@ bin:*:17937:0:99999:7:::
 保留字段(未使用)
 ```
 
-### 修改用户 [`顶部`](#user-content-索引)
-* [**usermod**](command.md/#user-content-usermod-顶部)
-* [**passwd**](command.md/#user-content-passwd-顶部)
+### 修改用户
+* [**usermod**](command.md/#usermod)
+* [**passwd**](command.md/#passwd)
 
-### 增加组 [`顶部`](#user-content-索引)
-* [**groupadd**](command.md/#user-content-groupadd-顶部)
 
-### 删除组 [`顶部`](#user-content-索引)
-* [**groupdel**](command.md/#user-content-groupdel-顶部)
 
-### 查看组 [`顶部`](#user-content-索引)
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+
+
+# 组
+### 增加组
+* [**groupadd**](command.md/#groupadd)
+
+### 删除组
+* [**groupdel**](command.md/#groupdel)
+
+### 查看组
 * **`/etc/group`** 组群信息
 ```
 ypl : x : 0 : ypl
@@ -65,11 +78,18 @@ ypl : x : 0 : ypl
 ```
 * **`/etc/ gshadow`** 组群密码
 
-### 修改组 [`顶部`](#user-content-索引)
-* [**groupmod**](command.md/#user-content-groupmod-顶部)
-* [**gpasswd**](command.md/#user-content-gpasswd-顶部) 添加或删除组员
+### 修改组
+* [**groupmod**](command.md/#groupmod)
+* [**gpasswd**](command.md/#gpasswd) 添加或删除组员
 
-### 初始配置文件 [`顶部`](#user-content-索引)
+
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+
+
+# 初始配置文件
 用户配置文件:
 * **`~/.bash_profile`** 用户每次登录时执行
 * **`~/.bashrc`** 每次进入新的Bash环境时执行

@@ -1,6 +1,17 @@
-# 慢查询
+# 目录
+- [参数](#参数)
+- [慢查询设置](#慢查询设置)
+- [mysqldumpslow](#mysqldumpslow)
+- [优化方式](#优化方式)
 
-#### 参数
+
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+
+
+# 参数
 
 参数 | 说明
 :--  | :--
@@ -10,7 +21,7 @@
 `log_queries_not_using_indexes` | 记录未使用索引的SQL
 `log_output [[table] [,] [file]]` | 日志存放的地方
 
-#### 慢查询设置
+# 慢查询设置
 * 查看慢查询参数
 ```sql
 root@localhost (none)>  show variables like 'slow_query%';
@@ -50,7 +61,7 @@ slow_query_log_file = /usr/local/mysql/data/slow.log
 long_query_time = 1
 ```
 
-#### mysqldumpslow
+# mysqldumpslow
 * 一个处理慢查询日志的工具
 * **参数**
     * **`-s [al | ar | at | c | l | r | t]`** 
@@ -73,7 +84,7 @@ mysqldumpslow -s t -t 3 /usr/local/mysql/data/slow.log
 mysqldumpslow -s t -t 3 -g “left join” /database/mysql/mysql06_slow.log
 ```
 
-#### 优化方式
+# 优化方式
 * **服务器硬件:** 换固态......
 * **SQL语句优化**
 * **反范式设计优化:** 适当违反对数据库范式设计的要求(空间换时间)

@@ -1,21 +1,38 @@
-# 索引
-* [**定义**](#user-content-约束-顶部)
-* [**空值约束**](#user-content-空值约束-顶部)
-* [**唯一约束**](#user-content-唯一约束-顶部)
-* [**主键约束**](#user-content-主键约束-顶部)
-* [**外键约束**](#user-content-外键约束-顶部)
-* [**检查约束**](#user-content-检查约束-顶部)
-* [**默认约束**](#user-content-默认约束-顶部)
+# 目录
+- [约束](#约束)
+- [空值约束](#空值约束)
+    - [新建空值约束](#新建空值约束)
+- [唯一约束](#唯一约束)
+    - [建立唯一约束](#建立唯一约束)
+    - [增加唯一约束](#增加唯一约束)
+    - [删除唯一约束](#删除唯一约束)
+- [主键约束](#主键约束)
+    - [建立主键约束](#建立主键约束)
+    - [增加主键约束](#增加主键约束)
+    - [删除主键约束](#删除主键约束)
+- [外键约束](#外键约束)
+    - [要求](#要求)
+    - [参照条件](#参照条件)
+    - [父表和子表](#父表和子表)
+    - [新建外键约束](#新建外键约束)
+    - [增加外键约束](#增加外键约束)
+    - [删除外键约束](#删除外键约束)
+- [检查约束](#检查约束)
+    - [新建检查约束](#新建检查约束)
+    - [增加检查约束](#增加检查约束)
+    - [删除检查约束](#删除检查约束)
+- [默认约束](#默认约束)
+    - [新建默认约束](#新建默认约束)
+    - [增加默认约束](#增加默认约束)
+    - [删除默认约束](#删除默认约束)
 
 
-<br>
 
-**********************************************************************************************************************
-
-<br>
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 
 
-# 约束 [`顶部`](#user-content-索引)
+# 约束
 * **约束(Constraint)** 是保持数据完整性的一种方法, 有以下几种约束
   * **空值约束(Null Constraint)** 
   * **主键约束(Primary Key Constraint)** 唯一且非null
@@ -25,15 +42,14 @@
   * **默认约束(Default Constraint)** 
 
 
-<br>
 
-**********************************************************************************************************************
-
-<br>
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 
 
-# 空值约束 [`顶部`](#user-content-索引)
-#### 新建空值约束
+
+# 空值约束
+### 新建空值约束
 ```sql
 column_name column_definition NOT NULL
 ```
@@ -42,19 +58,18 @@ column_name column_definition NULL
 ```
 
 
-<br>
 
-**********************************************************************************************************************
-
-<br>
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 
 
-# 唯一约束 [`顶部`](#user-content-索引)
+
+# 唯一约束
 * 唯一约束允许有空值, 但是只能有一个空值
 * 主键约束拥有自动定义的唯一约束
 * 一张表允许有多个唯一约束, 只能有一个主键约束
 
-#### 建立唯一约束
+### 建立唯一约束
 ```sql
 `username` VARCHAR(45) UNIQUE,
 ```
@@ -71,7 +86,7 @@ CONSTRAINT constraint_name UNIQUE (username),
 UNIQUE constraint_name (username);
 ```
 
-#### 增加唯一约束
+### 增加唯一约束
 ```sql
 ALTER TABLE table_name ADD UNIQUE (column_name)
 
@@ -85,26 +100,26 @@ ALTER TABLE table_name ADD [CONSTRAINT [symbol]] UNIQUE [INDEX | KEY] [index_nam
     ALTER TABLE user ADD UNIQUE (username);
 ```
 
-#### 删除唯一约束
+### 删除唯一约束
 ```sql  
 ALTER TABLE table_name DROP {INDEX | KEY} index_name
 ```
 
 
-<br>
 
-**********************************************************************************************************************
-
-<br>
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 
 
-# 主键约束 [`顶部`](#user-content-索引)
+
+# 主键约束
 * 要求唯一且非null
 * 每个表只能有一个主键
 * 主键约束拥有自动定义的唯一约束
-* AUTO_INCREMENT必须和主键一起使用
+* 
+_INCREMENT必须和主键一起使用
 
-#### 建立主键约束
+### 建立主键约束
 ```sql
 `username` VARCHAR(45),
 PRIMARY KEY (`username`)
@@ -113,7 +128,7 @@ PRIMARY KEY (`username`)
 `username` VARCHAR(45) PRIMARY KEY,
 ```
 
-#### 增加主键约束
+### 增加主键约束
 ```sql
 ALTER TABLE table_name ADD [CONSTRAINT [symbol]] [constraint_name] PRIMARY KEY [index_type] (index_column_name,..)
 
@@ -124,7 +139,7 @@ ALTER TABLE table_name ADD [CONSTRAINT [symbol]] [constraint_name] PRIMARY KEY [
 ALTER TABLE table_name ADD PRIMARY KEY (column_name),
 ```
 
-#### 删除主键约束
+### 删除主键约束
 ```sql
 ALTER TABLE table_name DROP PRIMARY KEY
 ```
@@ -133,33 +148,33 @@ ALTER TABLE table_name DROP CONSTRAINT primary_key_name
 ```
 
 
-<br>
 
-**********************************************************************************************************************
-
-<br>
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 
 
-# 外键约束 [`顶部`](#user-content-索引)
+
+# 外键约束
 * 保证数据的一致性和完整性
 
-#### 要求
+### 要求
 * 父表和子表必须使用相同的存储引擎, 并且禁止使用临时表
 * 数据库的存储引擎只能为InnoDB
 * 外键列和参照列必须具有 **相似的数据类型**. 其中数字的长度和是否有符号位必须相同, 而字符的长度则可以不同
 * 外键列和参照列 **必须创建索引**. 如果外键列/参照列不存在索引的话MySQL将会自动创建索引
 
-#### 参照条件
+### 参照条件
 * **CASCADE** 从父表删除或更新且自动删除或更新子表中匹配的行
 * **SET NULL** 从父表中删除或更新行, 并设置子表的中的外键列为NULL. 如果使用该选项, 必须保证子表列没有指定NOT NULL
 * **RESTRICT** 拒绝对父表的更新或删除操作
 * **NO ACTION** 标准的SQL关键字, 在MySQL中与RESTRICT相同
 
-#### 父表和子表
+### 父表和子表
 * 有**外键列**(有FOREIGN KEY关键词的一列)的表为**子表**
 ```sql
 CREATE TABLE user (
-    id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    id SMALLINT UNSIGNED PRIMARY KEY 
+_INCREMENT,
     username VARCHAR(10) NOT NULL,
     pid SMALLINT UNSIGNED,
     FOREIGN KEY (pid) REFERENCES province (id)
@@ -168,12 +183,13 @@ CREATE TABLE user (
 * 子表所参照的表为**父表**. 外键列所参照的一列为**参照列**
 ```sql
 CREATE TABLE province (
-    id SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    id SMALLINT UNSIGNED PRIMARY KEY 
+_INCREMENT,
     pname VARCHAR(20) NOT NULL
 );
 ```
 
-#### 新建外键约束
+### 新建外键约束
 ```sql
 column_name INT FOREIGN KEY REFERENCES 主表名（主键列名）
 ```
@@ -186,7 +202,7 @@ FOREIGN KEY (column_name) REFERENCES 主表名（主键列名）
     FOREIGN KEY (pid) REFERENCES province (id) ON DELETE CASCADE ON UPDATE CASCADE
 ```
 
-#### 增加外键约束
+### 增加外键约束
 ```sql
 ALTER TABLE table_name ADD FOREIGN KEY (列名) REFERENCES 主表名（主键列名）
 
@@ -197,23 +213,22 @@ ALTER TABLE table_name ADD FOREIGN KEY (列名) REFERENCES 主表名（主键列
 ALTER TABLE table_name ADD [CONSTRAINT [symbol]] FOREIGN KEY [index_name] (index_column_name,..) reference_ definition
 ```
 
-#### 删除外键约束
+### 删除外键约束
 ```sql
 ALTER TABLE table_name DROP FOREIGN KEY foreign_key_name
 ```
 
 
-<br>
 
-**********************************************************************************************************************
-
-<br>
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 
 
-# 检查约束 [`顶部`](#user-content-索引)
+
+# 检查约束
 * 用于限制列中值的范围  
 
-#### 新建检查约束
+### 新建检查约束
 ```sql
 id INT CHECK (id>0),
 sex varchar(2) CHECK (sex='男' or sex='女'),
@@ -223,32 +238,31 @@ id INT,
 check (id>0),
 ```
 
-#### 增加检查约束
+### 增加检查约束
 ```sql
 ALTER TABLE table_name ADD CHECK (condition)
 ```
 
-#### 删除检查约束
+### 删除检查约束
 ```sql
 ALTER TABLE table_name DROP CONSTRAINT check_constraint_name
 ```
 
 
-<br>
 
-**********************************************************************************************************************
-
-<br>
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 
 
-# 默认约束 [`顶部`](#user-content-索引)
-#### 新建默认约束
+
+# 默认约束
+### 新建默认约束
 ```sql
 `username` VARCHAR(45) DEFAULT 'xiaoming',
 `systemtime` DATE DEFAULT gatedate(),
 ```
 
-#### 增加默认约束
+### 增加默认约束
 ```sql
 ALTER TABLE table_name ALTER [COLUMN] column_name SET DEFAULT value;
 
@@ -256,7 +270,7 @@ ALTER TABLE table_name ALTER [COLUMN] column_name SET DEFAULT value;
     ALTER TABLE user ALTER id SET DEFAULT 10;
 ```
 
-#### 删除默认约束
+### 删除默认约束
 ```sql
 ALTER TABLE table_name ALTER [COLUMN] column_name DROP DEFAULT;
 
