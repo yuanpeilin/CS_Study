@@ -1,5 +1,9 @@
 # 目录
 - [新增数据](#新增数据)
+    - [插入完整的行](#插入完整的行)
+    - [插入部分数据](#插入部分数据)
+    - [插入多个记录](#插入多个记录)
+    - [插入搜索出来的数据](#插入搜索出来的数据)
 - [删除数据](#删除数据)
 - [修改数据](#修改数据)
 - [查询数据](#查询数据)
@@ -25,27 +29,32 @@
 
 
 # 新增数据
-* 可以一次性插入多条数据
+### 插入完整的行
 ```sql
-INSERT [INTO] table_name [(column_name1, column_name2,...column_nameN)]
-VALUES
-({value1 | DEFAULT}, {value2 | DEFAULT},...{valueN | DEFAULT}),
-(...);
+INSERT INTO customers 
+VALUES (NULL, 'Bob', '100 Street', 'Los Angeles', 'CA', 90046, 'USA', NULL, NULL);
+```
 
-    # 例子
-    INSERT INTO runoob_tbl 
-    (runoob_title, runoob_author, submission_date)
-    VALUES
-    ("学习 PHP", "菜鸟教程", NOW());
-```
-* 此方法可以使用子查询（SubQuery）
+### 插入部分数据
 ```sql
-INSERT [INTO] table_name SET column_name={value | DEFAULT),column_name={value | DEFAULT),...
-    
-    # 例子
-    INSERT INTO test(username) 
-    SELECT username FROM users WHERE age>50; 
+INSERT INTO customers(cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country)
+VALUES ('Bob', '100 Street', 'Los Angeles', 'CA', 90046, 'USA');
 ```
+
+### 插入多个记录
+```sql
+INSERT INTO customers(cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country) 
+VALUES('Bob', '100 Street', 'Los Angeles', 'CA', '90046', 'USA'),
+      ('Aoa', '999 Street', 'New York', 'NY', '11213', 'USA');
+```
+
+### 插入搜索出来的数据
+```sql
+INSERT INTO customers(cust_id, cust_contact)
+SELECT cust_id, cust_contact
+FROM custnew;
+```
+
 
 
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
