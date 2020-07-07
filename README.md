@@ -39,6 +39,7 @@
     * [增删查改](sql/curd.md)
     * [增删查改 数据](sql/curd_data.md)
     * [执行计划](sql/explain.md)
+    * [全文搜索](sql/fulltext.md)
     * [函数](sql/function.md)
     * [索引](sql/index.md)
     * [联结](sql/join.md)
