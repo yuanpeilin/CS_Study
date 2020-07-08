@@ -16,15 +16,10 @@
     - 外键约束
     - 检查约束
     - 默认约束
-* [增删查改](curd.md)
-    - 操作数据库
-    - 操作表
-    - 操作表的结构
-* [增删查改 数据](curd_data.md)
-    - 新增数据
-    - 删除数据
-    - 修改数据
-    - 查询数据
+* [增删查改_列](curd_column.md)
+* [增删查改_数据](curd_data.md)
+* [增删查改_数据库](curd_database.md)
+* [增删查改_表](curd_table.md)
 * [执行计划](explain.md)
 * [全文搜索](sql/fulltext.md)
     - 概述
