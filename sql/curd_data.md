@@ -6,6 +6,8 @@
     - [插入搜索出来的数据](#插入搜索出来的数据)
 - [删除数据](#删除数据)
 - [修改数据](#修改数据)
+    - [修改单条记录](#修改单条记录)
+    - [修改多条记录](#修改多条记录)
 - [查询数据](#查询数据)
     - [1. 格式](#1-格式)
     - [2. 检索不同的行 DISTINCT](#2-检索不同的行-distinct)
@@ -63,23 +65,10 @@ FROM custnew;
 
 # 删除数据
 ```sql
-# 单表删除
-DELETE FROM table_name [WHERE where_condition];
-
-    DELETE FROM runoob_tbl WHERE runoob_id=3;
+DELETE FROM customers
+WHERE cust_id = 10006;
 ```
-```sql
-# 多表删除
-DELETE table_name[.*] [, table_name[.*l] ...
-FROM table_references
-[WHERE where_condition]
 
-    DELETE t1 FROM tdb_goods AS t1 LEFT JOIN (
-    SELECT goods_id,goods_name FROM tdb_goods 
-    GROUP BY goods_name HAVING COUNT(goods_name) >= 2) AS t2
-    ON t1.goods_name = t2.goods_name
-    WHERE t1.goods_id > t2.goods_id;
-```
 
 
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
@@ -87,32 +76,21 @@ FROM table_references
 
 
 # 修改数据
+### 修改单条记录
 ```sql
-# 单表更新
-UPDATE [LOW_PRIORITY] [IGNORE] table_reference 
-SET column_name1={VALUE1 | DEFAULT} [, column_name2={VALUE12 | DEFAULT}]... 
-[WHERE where_condition]
-
-    # 例子
-    UPDATE user SET age = age + 5 WHERE id % 2 = 0;
-
-    # 例子
-    UPDATE user SET age = age - id, sex = 0;
+UPDATE customers
+SET cust_email = 'example@mail.com'
+WHERE cust_id = 10005;
 ```
+
+### 修改多条记录
 ```sql
-# 多表更新
-UPDATE table_references
-SET（column_name1={expr1 | DEFAULT} [, column_name2={expr2 | DEFAULT}]...
-[WHERE where_condition]
-
-    # 例子
-    UPDATE tdb_goods INNER JOIN tdb_goods_cates ON goods_cate = cate_name
-    SET goods_cate = cate_id;
-
-    # 例子
-    UPDATE tdb_goods INNER JOIN tdb_goods_brands ON tdb_goods.brand_name = tdb_goods_brands.brand_name
-    SET tdb_goods.brand_name = tdb_goods_brands.brand_id;
+UPDATE customers
+SET cust_email = 'example@Email.com',
+    cust_name = 'Bob'
+WHERE cust_id = 10005;
 ```
+
 
 
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
