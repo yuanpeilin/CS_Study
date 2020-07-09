@@ -47,6 +47,7 @@
     * [联结](sql/join.md)
     * [范式](sql/nf.md)
     * [其他](sql/others.md)
+    * [存储过程](sql/procedure.md)
     * [慢查询](sql/slowquery.md)
     * [子查询](sql/subquery.md)
     * [视图](sql/view.md)
