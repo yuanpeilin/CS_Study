@@ -49,6 +49,7 @@
     * [其他](sql/others.md)
     * [慢查询](sql/slowquery.md)
     * [子查询](sql/subquery.md)
+    * [视图](sql/view.md)
 * [**WEB**](web/README.md)
     * [Ajax](web/ajax.md)
     * [CSS](web/css.md)
