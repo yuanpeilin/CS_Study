@@ -20,6 +20,7 @@
 * [增删查改_数据](curd_data.md)
 * [增删查改_数据库](curd_database.md)
 * [增删查改_表](curd_table.md)
+* [游标](cursor.md)
 * [执行计划](explain.md)
 * [全文搜索](sql/fulltext.md)
     - 概述
