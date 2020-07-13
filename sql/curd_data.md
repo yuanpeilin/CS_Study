@@ -126,7 +126,9 @@ SELECT DISTINCT  vend_id, prod_price FROM products;
 |    1003 |      10.00 |
 +---------+------------+
 
-SELECT DISTINCT vend_id, prod_price FROM products ORDER BY vend_id,prod_price;
+SELECT DISTINCT vend_id, prod_price
+FROM products
+ORDER BY vend_id,prod_price;
 +---------+------------+
 | vend_id | prod_price |
 +---------+------------+
@@ -166,7 +168,9 @@ SELECT cust_id FROM customers WHERE cust_email IS NULL;
 
 ### 6. WHERE子句过滤数据 BETWEEN
 ```sql
-SELECT prod_name, prod_price FROM products WHERE prod_price BETWEEN 5 AND 10;
+SELECT prod_name, prod_price
+FROM products
+WHERE prod_price BETWEEN 5 AND 10;
 
 +----------------+------------+
 | prod_name      | prod_price |

@@ -19,7 +19,9 @@
 3. 检索前一步骤返回的所有客户ID的客户信息
 
 ```sql
-SELECT order_num FROM orderitems WHERE prod_id='TNT2';
+SELECT order_num
+FROM orderitems
+WHERE prod_id='TNT2';
 +-----------+
 | order_num |
 +-----------+
@@ -27,7 +29,9 @@ SELECT order_num FROM orderitems WHERE prod_id='TNT2';
 |     20007 |
 +-----------+
 
-SELECT cust_id FROM orders WHERE order_num IN (20005,20007);
+SELECT cust_id
+FROM orders
+WHERE order_num IN (20005,20007);
 +---------+
 | cust_id |
 +---------+
@@ -35,7 +39,9 @@ SELECT cust_id FROM orders WHERE order_num IN (20005,20007);
 |   10004 |
 +---------+
 
-SELECT cust_name FROM customers WHERE cust_id IN (10001,10004);
+SELECT cust_name
+FROM customers
+WHERE cust_id IN (10001,10004);
 +----------------+
 | cust_name      |
 +----------------+
@@ -43,7 +49,7 @@ SELECT cust_name FROM customers WHERE cust_id IN (10001,10004);
 | Yosemite Place |
 +----------------+
 ```
-
+  
 将上述三句组成一个句子:  
 
 ```sql
@@ -54,7 +60,6 @@ WHERE cust_id IN (SELECT cust_id
                   WHERE order_num IN (SELECT order_num 
                                       FROM orderitems 
                                       WHERE prod_id='TNT2') );
-
 +----------------+
 | cust_name      |
 +----------------+

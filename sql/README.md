@@ -1,13 +1,3 @@
-* [聚合函数](aggregatefunction.md)
-    - 聚合函数
-    - AVG()
-    - COUNT()
-    - SUM()
-* [计算字段](calfield.md)
-    - 拼接字段 Concat()
-    - 别名
-    - 测试
-    - 算术计算
 * [约束](constraint.md)
     - 约束
     - 空值约束
@@ -33,6 +23,7 @@
     - 文本处理函数
     - 时间和日期函数
     - 数值处理函数
+    - 聚合函数
 * [索引](index.md)
     - 基础
     - 相关文件
@@ -49,11 +40,8 @@
 * [范式](nf.md)
 * [其他](others.md)
     - ACID
-    - 隔离级别
     - 提示符
     - 数据类型
-    - 存储过程
-    - 函数
 * [存储过程](procedure.md)
     - 创建存储过程
     - 调用存储过程
@@ -71,6 +59,11 @@
     - SELECT引发的子查询
     - INSERT引发的子查询
 * [事务](transaction.md)
+    - 事务
+    - 隔离级别
+    - ROLLBACK
+    - COMMIT
+    - 保留点
 * [触发器](trigger.md)
     - 创建触发器
     - 删除触发器

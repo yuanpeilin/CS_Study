@@ -33,8 +33,6 @@
     * [jupyter](python/jupyter.md)
     * [python](python/python.md)
 * [**数据库**](sql/README.md)
-    * [聚合函数](sql/aggregatefunction.md)
-    * [计算字段](sql/calfield.md)
     * [约束](sql/constraint.md)
     * [增删查改_列](sql/curd_column.md)
     * [增删查改_数据](sql/curd_data.md)
