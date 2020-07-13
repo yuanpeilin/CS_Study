@@ -51,6 +51,7 @@
     * [存储过程](sql/procedure.md)
     * [慢查询](sql/slowquery.md)
     * [子查询](sql/subquery.md)
+    * [事务](sql/transaction.md)
     * [触发器](sql/trigger.md)
     * [视图](sql/view.md)
 * [**WEB**](web/README.md)

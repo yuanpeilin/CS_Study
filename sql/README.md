@@ -66,11 +66,11 @@
     - mysqldumpslow
     - 优化方式
 * [子查询](subquery.md)
-    - 引言
     - 子查询概述
     - 计算字段使用子查询
     - SELECT引发的子查询
     - INSERT引发的子查询
+* [事务](transaction.md)
 * [触发器](trigger.md)
     - 创建触发器
     - 删除触发器
