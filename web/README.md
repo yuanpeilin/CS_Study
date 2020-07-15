@@ -4,7 +4,7 @@
     - 常用样式
     - 选择器
 * [HTML](html.md)
-    - 字符实体(特殊字符)
+    - 字符实体
     - 表格
 * [jQuery](jquery.md)
 * [JavaScript](js.md)

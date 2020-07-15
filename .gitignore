@@ -11,6 +11,9 @@ out/
 
 tmp.md
 temp.md
+*test*
+*temp*
+*tmp*
 
 __pycache__/
 *.py[cod]
