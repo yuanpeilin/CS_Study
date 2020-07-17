@@ -55,6 +55,7 @@
 * [**WEB**](web/README.md)
     * [Ajax](web/ajax.md)
     * [CSS](web/css.md)
+    * [DOM](web/dom.md)
     * [HTML](web/html.md)
     * [jQuery](web/jquery.md)
     * [JavaScript](web/js.md)

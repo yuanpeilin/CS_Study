@@ -162,6 +162,7 @@
 ### 提交
 * `type='submit'`
 * `value` 属性可以修改按钮默认的文本
+* 在`onsubmit`事件中返回值代表提交与否
 
 ### 按钮
 * `type='button'`

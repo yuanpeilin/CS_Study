@@ -3,12 +3,20 @@
     - 使用css
     - 常用样式
     - 选择器
+* [DOM](dom.md)
+    - document对象的三个方法
+    - DOM对象的常用方法与属性
 * [HTML](html.md)
     - 字符实体
     - 表格
     - 表单
 * [jQuery](jquery.md)
 * [JavaScript](js.md)
+    - 使用js
+    - 函数
+    - 自定义对象
+    - 事件
+    - 事件注册
 * [JSP](jsp.md)
     - 指令标识
     - 脚本标识
