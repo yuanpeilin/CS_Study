@@ -3,6 +3,9 @@
     - 使用css
     - 常用样式
     - 选择器
+* [DOM](dom.md)
+    - document对象的三个方法
+    - DOM对象的常用方法与属性
 * [HTML](html.md)
     - 字符实体
     - 表格
