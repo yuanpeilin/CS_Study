@@ -11,6 +11,11 @@
     - 表格
     - 表单
 * [jQuery](jquery.md)
+    - 核心函数$()
+    - 选择器
+    - 元素筛选
+    - 属性
+    - crud操作
 * [JavaScript](js.md)
     - 使用js
     - 函数
