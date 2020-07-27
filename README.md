@@ -60,3 +60,4 @@
     * [jQuery](web/jquery.md)
     * [JavaScript](web/js.md)
     * [JSP](web/jsp.md)
+    * [Servlet](web/servlet.md)
