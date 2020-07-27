@@ -24,6 +24,7 @@
     * [网络层](network/network.md)
     * [数据链路层](network/datalink.md)
     * [物理层](network/physical.md)
+    * [HTTP](network/http.md)
 * [**操作系统**](os/README.md)
     * [其他](os/others.md)
 * [**Python**](python/README.md)
