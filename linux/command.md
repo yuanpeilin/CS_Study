@@ -2,31 +2,31 @@
 
 ----------------------- | ------------------------- | --------------------------- | --------------------- | --------------------
 ----------------------- | ------------------------- | --------------------------- | --------------------- | --------------------
-[at](#at)               | [atq](#atq)               | [atrm](#atrm)               | [awk](#awk)           | /
-[bg](#bg)               | /                         | /                           | /                     | /
+[at](#at)               | [atq](#atq)               | [atrm](#atrm)               | [awk](#awk)           |  
+[bg](#bg)               |                           |                             |                       |  
 [chattr](#chattr)       | [chgrp](#chgrp)           | [chkconfig](#chkconfig)     | [chmod](#chmod)       | [chown](#chown)
-\-                      | [corntab](#corntab)       | [cp](#cp)                   | [cut](#cut)           | /
-[df](#df)               | [disown](#disown)         | [du](#du)                   | /                     | /
-[egrep](#egrep)         | /                         | /                           | /                     | /
+                        | [corntab](#corntab)       | [cp](#cp)                   | [cut](#cut)           |  
+[df](#df)               | [disown](#disown)         | [du](#du)                   |                       |  
+[egrep](#egrep)         |                           |                             |                       |  
 [fallocate](#fallocate) | [fdisk](#fdisk)           | [fg](#fg)                   | [find](#find)         | [finger](#finger)
 [gpasswd](#gpasswd)     | [grep](#grep)             | [groupadd](#groupadd)       | [groupdel](#groupdel) | [groupmod](#groupmod)
-\-                      | [gzip](#gzip)             | /                           | /                     | /
-[id](#id)               | [ifconfig](#ifconfig)     | [imagemagick](#imagemagick) | /                     | /
-[jobs](#jobs)           | [join](#join)             | [jq](#jq)                   | /                     | /
-[kill](#kill)           | /                         | /                           | /                     | /
+                        | [gzip](#gzip)             |                             |                       |  
+[id](#id)               | [ifconfig](#ifconfig)     | [imagemagick](#imagemagick) |                       |  
+[jobs](#jobs)           | [join](#join)             | [jq](#jq)                   |                       |  
+[kill](#kill)           |                           |                             |                       |  
 [less](#less)           | [ln](#ln)                 | [locate](#locate)           | [ls](#ls)             | [lsattr](#lsattr)
-\-                      | [lsblk](#lsblk)           | [lsof](#lsof)               | /                     | /
-[md5sum](#md5sum)       | [mkdir](#mkdir)           | [mkfs](#mkfs)               | [mount](#mount)       | /
-[ncdu](#ncdu)           | [netstat](#netstat)       | /                           | /                     | /
+                        | [lsblk](#lsblk)           | [lsof](#lsof)               |                       |  
+[md5sum](#md5sum)       | [mkdir](#mkdir)           | [mkfs](#mkfs)               | [mount](#mount)       |  
+[ncdu](#ncdu)           | [netstat](#netstat)       |                             |                       |  
 [pandoc](#pandoc)       | [pgrep](#pgrep)           | [pkill](#pkill)             | [ps -aux](#ps--aux)   | [passwd](#passwd)
-\-                      | [pstree](#pstree)         | /                           | /                     | /
-[rsync](#rsync)         | [runlevel](#runlevel)     | /                           | /                     | /
-[scp](#scp)             | [sed](#sed)               | [sort](#sort)               | /                     | /
+                        | [pstree](#pstree)         |                             |                       |  
+[rsync](#rsync)         | [runlevel](#runlevel)     |                             |                       |  
+[scp](#scp)             | [sed](#sed)               | [sort](#sort)               |                       |  
 [tail](#tail)           | [tar](#tar)               | [tee](#tee)                 | [top](#top)           | [tree](#tree)
-\-                      | [truncate](#truncate)     | [type](#type)               | /                     | /
+                        | [truncate](#truncate)     | [type](#type)               |                       |  
 [ufw](#ufw)             | [uniq](#uniq)             | [useradd](#useradd)         | [userdel](#userdel)   | [usermod](#usermod)
-[whereis](#whereis)     | /                         | /                           | /                     | /
-[xargs](#xargs)         | [xmlstarlet](#xmlstarlet) | /                           | /                     | /
+[whereis](#whereis)     |                           |                             |                       |  
+[xargs](#xargs)         | [xmlstarlet](#xmlstarlet) |                             |                       |  
 
 
 
