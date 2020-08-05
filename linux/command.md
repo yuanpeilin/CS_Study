@@ -687,18 +687,21 @@ uid=1000(ypl) gid=1000(ypl) groups=1000(ypl),4(adm),24(cdrom),27(sudo),30(dip),4
 ```sh
 identify test.jpg
 ```
+
 * 转化图片格式
 ```sh
 convert  test.jpg  test.png
 ```
+
 * 改变图像大小
 ```sh
 convert -resize 1024x768 test.jpg test_modify.jpg
 ```
-设置图像质量, 质量值为0-100之间的数值, 数字越大, 质量越好. 一般指定70-80
+* 设置图像质量, 质量值为0-100之间的数值, 数字越大, 质量越好. 一般指定70-80
 ```sh
 convert -resize 1024x768 -quality 75 test.jpg test_modify.jpg
 ```
+
 * 缩放图片
 ```sh
 convert -sample 50%x50% test.jpg test_modify.jpg
@@ -1493,8 +1496,8 @@ uniq file file
 ### 例子
 如果你不确定它们是否会按你想的那样工作, 先使用 xargs echo 查看一下. 此外, 使用 -I{} 会很方便. 例如:  
 ```
-  find . -name '*.py' | xargs grep some_function
-      cat hosts | xargs -I{} ssh root@{} hostname
+find . -name '*.py' | xargs grep some_function
+    cat hosts | xargs -I{} ssh root@{} hostname
 ```
 
 
@@ -1509,18 +1512,3 @@ uniq file file
 ### 用法
 **`-`** 
 ### 例子
-
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
-学会使用 /proc. 它在调试正在出现的问题的时候有时会效果惊人. 比如 /proc/cpuinfo, /proc/meminfo, /proc/cmdline, /proc/xxx/cwd, /proc/xxx/exe, /proc/xxx/fd/, /proc/xxx/smaps
-ctrl-a 可以将光标移至行首, ctrl-e 可以将光标移至行尾
-set -o vi 来使用 vi 风格的快捷键, 而执行 set -o emacs
-设置你的默认编辑器后(例如 export EDITOR=vim
-如果你输入命令的时候中途改了主意, 按下 alt-# 在行首添加 # 把它当做注释再按下回车执行(或者依次按下 ctrl-a,  #,  enter). 这样做的话, 之后借助命令行历史记录, 你可以很方便恢复你刚才输入到一半的命令. 
-获取 CPU 和硬盘的使用状态, 通常使用使用 top(htop 更佳), iostat 和 iotop. 而 iostat -mxz 15 可以让你获悉 CPU 和每个硬盘分区的基本信息和性能表现. 
-若要了解内存状态, 运行并理解 free 和 vmstat 的输出. 值得留意的是“cached”的值, 它指的是 Linux 内核用来作为文件缓存的内存大小, 而与空闲内存无关. 
