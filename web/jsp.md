@@ -39,57 +39,55 @@
 > page是JSP页面最常用的指令, 用于定义整个JSP页面的相关属性, 这些属性在JSP中被服务器解析成Servlet时会转换为相应的Java程序代码  
 
 1. language属性
-    > 用于设置JSP页面使用的语言, 目前只支持Java语言  
-    ```jsp
-    <%@ page language="java" %>
-    ```
+> 用于设置JSP页面使用的语言, 目前只支持Java语言  
+```jsp
+<%@ page language="java" %>
+```
 2. extends属性
-    > 用于设置JSP页面继承的Java类, 所有JSP页面在执行之前都会被服务器解析成Servlet, 而ServIet是由Java类定义的, 所以JSP和ServIet都可以继承指定的父类  
+> 用于设置JSP页面继承的Java类, 所有JSP页面在执行之前都会被服务器解析成Servlet, 而ServIet是由Java类定义的, 所以JSP和ServIet都可以继承指定的父类  
 3. import属性
-    > 用于设置JSP导入的类包. JSP页面可以嵌入Java代码片段, 这些Java代码在调用API时需要导入相应的类包  
-    ```jsp
-    <%@ page import="java.util.Date"%>
-    ```
+> 用于设置JSP导入的类包. JSP页面可以嵌入Java代码片段, 这些Java代码在调用API时需要导入相应的类包  
+```jsp
+<%@ page import="java.util.Date"%>
+```
 4. pageEncoding属性
-    > 用于定义JSP页面的编码格式, 也就是指定文件编码  
-    ```jsp
-    <%@ page pageEncoding="UTF-8"%>
-    ```
+> 用于定义JSP页面本身的编码格式  
+```jsp
+<%@ page pageEncoding="UTF-8"%>
+```
 5. contentType属性
-    > 用于设置JSP页面的MIME类型和字符编码, 浏览器会据此显示网页内容  
-    ```jsp
-    <%@ page contentType="text/html; charset=UTF-8" %>
-    ```
+> 用于设置JSP返回的数据类型, 与`response.setContentType()`的作用一样  
+```jsp
+<%@ page contentType="text/html; charset=UTF-8" %>
+```
 6. session属性
-    > 指定JSP页面是否使用HTTP的session会话对象. 其属性值是boolean类型, 默认值为true, 表示可以使用session会话对象  
-    ```jsp
-    <%@ page session="true" %>
-    ```
+> 指定JSP页面是否使用HTTP的session会话对象. 其属性值是boolean类型, 默认值为true, 表示可以使用session会话对象  
+```jsp
+<%@ page session="true" %>
+```
 7. buffer属性
-    > 用于设置JSP的out输出对象使用的缓冲区大小, 默认大小为8KB, 且单位只能使用KB. 建议使用8的倍数16、32、64、128等  
-    ```jsp
-    <%@ page buffer="128KB" %>
-    ```
-8. 
-Flush属性
-    > 用于设置JSP页面缓存满时, 是否自动刷新缓存  
-    > 默认值为true, 如果设置为false, 则缓存被填满时将抛出异常  
-    ```jsp
-    <%@ page 
-Flush="false" %>
-    ```
+> 用于设置JSP的out输出对象使用的缓冲区大小, 默认大小为8KB, 且单位只能使用KB. 建议使用8的倍数16、32、64、128等  
+```jsp
+<%@ page buffer="128KB" %>
+```
+8. autoFlush属性
+> 用于设置JSP页面缓存满时, 是否自动刷新缓存  
+> 默认值为true, 如果设置为false, 则缓存被填满时将抛出异常  
+```jsp
+<%@ page autoFlush="false" %>
+```
 9. isErrorPage属性
-    > 可以将当前JSP页而设置成错误处理页面, 以处理另一个JSP页面的错误, 也就是异常处理  
-    ```jsp
-    <%@ page isErrorPage="true" %>
-    ```
+> 可以将当前JSP页而设置成错误处理页面, 以处理另一个JSP页面的错误, 也就是异常处理  
+```jsp
+<%@ page isErrorPage="true" %>
+```
 10. errorPage属性
-    > 用于指定处理当前JSP页面异常错误的另一个JSP页面, 指定的JSP错误处理页面必须设置isErrorPage属性为true  
-    > errorPage属性的属性值是一个url字符串  
-    > 如果设置该属性, 那么在web.xml文件中定义的任何错误页面都将被忽略, 而优先使用该属性定义的错误处理页面  
-    ```jsp
-    <%@ page errorPage="error/login/ErrorPage.jsp" %>
-    ```
+> 用于指定处理当前JSP页面异常错误的另一个JSP页面, 指定的JSP错误处理页面必须设置isErrorPage属性为true  
+> errorPage属性的属性值是一个url字符串  
+> 如果设置该属性, 那么在web.xml文件中定义的任何错误页面都将被忽略, 而优先使用该属性定义的错误处理页面  
+```jsp
+<%@ page errorPage="error/login/ErrorPage.jsp" %>
+```
 
 ### 2. include指令
 > 文件包含指令include是JSP的另一条指令标识, 通过该指令可以在一个JSP贞面中包含另一个JSP页面  
@@ -103,7 +101,7 @@ Flush="false" %>
 ### 3. taglib指令
 > 通过taglib指令标识声明该页面中所使用的标签库, 同时引用标签库, 并指定标签的前缀  
 > 在页面中引用标签库后, 就可以通过前缀来引用标签库中的标签  
-* prefix: 用于指定标签的前缀。该前缀不能命名为jsp、jspx、java、javax、sun、servlet和sun
+* prefix: 用于指定标签的前缀. 该前缀不能命名为jsp、jspx、java、javax、sun、servlet和sun
 * uri: 用于指定标签库文件的存放位置
 ```jsp
 <%@ taglib prefix="tagPrefix" uri="tagURI" %>
@@ -135,8 +133,6 @@ Flush="false" %>
 
 ### 2. 声明标识
 > 声明标识用于在JSP页面中定义全局的变量或方法  
-> 通过声明标识定义的变量和方法可以被整个JSP页面访问, 所以通常使用该标识定义整个JSP页面需要引用的变量或方法  
-> 服务器执行JSP页面时, 会将JSP页面转化为Servlet类, 在该类中会把使用JSP声明标识定义的变量和方法转换为类的成员变量和方法  
 ```
 <%! 声明的变量或方法 %>
 ```
@@ -183,8 +179,8 @@ Flush="false" %>
 <br>
 <br>
 
-* **page**: 用于指定被包含文件的相对路径。例如, 指定属性值为top.jsp.则表示包含的是与当前JSP文件相同文件夹中的top.jsp文件包含到当前JSP页面中
-* **flush**: 可选属性, 用于设置是否刷新缓冲区。默认值为false, 如果设置为true, 在当前页面输出使用了缓冲区的情况下, 先刷新缓冲区, 然后再执行包含工作
+* **page**: 用于指定被包含文件的相对路径. 例如, 指定属性值为top.jsp.则表示包含的是与当前JSP文件相同文件夹中的top.jsp文件包含到当前JSP页面中
+* **flush**: 可选属性, 用于设置是否刷新缓冲区. 默认值为false, 如果设置为true, 在当前页面输出使用了缓冲区的情况下, 先刷新缓冲区, 然后再执行包含工作
 * **子动作标识\<jsp:param\>**: 用于向被包含的动态页面中传递参数
 ```
 <jsp:include page="url" flush="true|false" />
@@ -237,63 +233,42 @@ include指令与文件标识\<jsp:include\>的区别
 
 # 内置对象
 ### 1. request
-> request对象用于处理HTTP请求中的各项参数, 最常用的是 **获取请求参数** 
+* **作用范围:** 一次请求内有效  
 
-<br>
-<br>
-
-当通过超链接的形式发送请求时, 可以为该请求 **传递参数** , 这可以通过在超链接的后面加上"? "来实现. 如果要同时指定多个参数, 各参数间使用与符号"&"分隔即可  
-例如, 发送一个请求到delete.jsp页面, 并传递一个名称为id的参数  
+* **获取请求参数**  
+发送一个请求到delete.jsp页面, 并传递一个名称为id的参数  
 ```html
 <a href="delete.jsp?id=l">删除</a> 
 ```
-在delete.jsp页面中, 可以通过request对象的getParameter()方法获取传递的参数值
+在delete.jsp页面中, 可以通过request对象的`getParameter()`方法获取传递的参数值  
 ```jsp
 <%
 request.getParameter("id");
 %>
 ```
 
-<br>
-<br>
-
-在进行请求转发时, 需要把一些数据传递到转发后的页面进行处理。这时, 就需要使用request对象的`setAttribute()`方法将数据保存到request范围内的变量中。 
+* **保存变量**  
+在进行请求转发时, 需要把一些数据传递到转发后的页面进行处理. 这时, 就需要使用request对象的`setAttribute()`方法将数据保存到request范围内的变量中  
 ```
 request.setAttribute(String name, Object object);
 ```
-在将数据保存到request范围内的变量中后, 可以通过request对象的getAttribute()方法获取该变量的值
+
+在将数据保存到request范围内的变量中后, 可以通过request对象的getAttribute()方法获取该变量的值  
 ```
 request.getAttribute(String name);
 ```
 
-<br>
-<br>
-
-
-* request对象的 **`getookies()`** 方法可获取到所有cookie对象的集合
-* cookie对象的 **`getName()`** 方法可以获取到指定名称的cookie
-* cookie对象的 **`getValue()`** 方法可获取到cookie对象的值
-* response对象的 **`addCookie()`** 方法将一个cookie对象发送到客户端
-
 ![获取客户端信息](./src/jsp_request.png)
 
 ### 2. response
-> respondse对象用于响应客户请求, 向客户端输出信息
-
-<br>
-<br>
-
-* 重定向  
-response对象的`sendRedirect()`方法可以将网页重定向到另一个页面。与转发不同的是, 重定向操作支持将 地址重定向到不同的主机上。进行重定向操作后, request中的属性全部失效, 并且开始一个新的request对象
+* **重定向**  
+response对象的`sendRedirect()`方法可以将网页重定向到另一个页面. 与转发不同的是, 重定向操作支持将地址重定向到不同的主机上. 进行重定向操作后, request中的属性全部失效, 并且开始一个新的request对象  
 ```java
 response.sendRedirect(String path);
 ```
 
-<br>
-<br>
-
-* 处理HTTP文件头  
-通过response对象可以设置HTTP响应报头, 其中, 最常用的是禁用缓存、设置页面自动刷新和定时跳转网页
+* **处理HTTP文件头**  
+通过response对象可以设置HTTP响应报头, 其中, 最常用的是禁用缓存、设置页面自动刷新和定时跳转网页  
 ```java
 // 禁用缓存
 response.setHeader("Cache-Control","no-store");
@@ -305,42 +280,39 @@ response.setHeader("refresh","10");
 ```
 ```java
 // 5秒钟后自动跳转到指定的网页 
-response.setHeader("refresh", "5;URL=Iogin.jsp");
+response.setHeader("refresh", "5;URL=login.jsp");
 ```
 
-<br>
-<br>
-
-* 设置输出缓冲  
-通常情况下, 服务器要输出到客户端的内容不会直接写到客户端, 而是先写到一个输出缓冲区, 当满足以下3种情况之一, 就会把缓冲区的内容写到客户端。
+* **设置输出缓冲**  
+通常情况下, 服务器要输出到客户端的内容不会直接写到客户端, 而是先写到一个输出缓冲区, 当满足以下3种情况之一, 就会把缓冲区的内容写到客户端  
     * JSP页而的输出信息己经全部写入到了缓冲区
     * 缓冲区己满
     * 在JSP页面中, 调用了对象的flushBuffer()方法或out对象的flush()方法  
 
 ![配置缓冲区](./src/jsp_buffer.png)
 
-
 ### 3. session
-> 通过session可以存储或读取客户相关的信息
+**作用范围:** 会话范围内有效(浏览器打开到关闭)  
 
-<br>
-
-* 创建及获取会话
+* **创建及获取会话**  
 ```java
 session.setAttribute(String name, Object obj);
 ```
 ```java
 session.getAttribute(String name);
 ```
-* 从会话删除对象
+
+* **从会话删除对象**  
 ```java
 session.removeAttribute(String name);
 ```
-* 销毁对话
+
+* **销毁对话**  
 ```java
 session.invalidate();
 ```
-* 会话超时管理
+
+* **会话超时管理**  
 ```java
 // 返回客户端最后一次与会话相关联的请求时间
 session.getLastAccessedTime()
@@ -351,14 +323,12 @@ session.setMaxInactiveIntervaI()
 ```
 
 ### 4. application
-> applicauon对象用于保存所有应用程序中的公有数据  
-> 它在服务器启动时自动创建，在服务器停止时销毁  
+* **作用范围:** 在服务器启动时自动创建，服务器停止时销毁(整个web工程都有效)  
+applicauon对象是一个ServletContext对象, 用于保存所有应用程序中的公有数据  
 
-<br>
-
-* 访问应用程序初始化参数
+* **访问应用程序初始化参数**  
 application对象提供了对应用程序初始化参数进行访问的方法  
-应用程序初始化参数在web.xml文件中进行设置，web.xml文件位于Web应用所在目录下的WEB-INF子目录中。在webxml文件中通过\<context\-param\>标记配置应用程序初始化参数  
+应用程序初始化参数在web.xml文件中进行设置，web.xml文件位于Web应用所在目录下的WEB-INF子目录中. 在webxml文件中通过\<context\-param\>标记配置应用程序初始化参数  
 ```xml
 <!-- 在web.xml文件中配置连接MySQL数据库所需的url参数  -->
 <context-param>
@@ -379,9 +349,9 @@ application.getAttributeNames();
 ```
 
 ### 5. out
-> 用于在web浏览器内输出信息, 并管理服务器上的输出缓冲区
+用于在web浏览器内输出信息, 并管理服务器上的输出缓冲区  
 
-* 输出信息
+* **输出信息**  
 ```java
 out.print();
 out.printl();
@@ -389,21 +359,21 @@ out.printl();
 ![管理缓冲区的方法](./src/jsp_out.png)
 
 ### 6. pageContent
-> 通过它可以过去JSP页面的request, response, session, application等对象  
+**作用范围:** 整个jsp页面有效  
 
 ![pageContext](./src/jsp_pagecontext.png)
 
 ### 7. config
-> 用于取得服务器的配置信息  
+用于取得服务器的配置信息  
 
 ![config](./src/jsp_config.png)
 
 ### 8. page
-> page对象代表JSP本身  
+page对象代表JSP本身  
 
 ![page](./src/jsp_page.png)
 
 ### 9. exception
-> exception对象用来处理JSP文件执行时发生的所 有错误和异常，只有在page指令中设置isErrorPage属 性值为true的页面中才可以被使用  
+exception对象用来处理JSP文件执行时发生的所有错误和异常，只有在page指令中设置isErrorPage属性值为true的页面中才可以被使用  
 
 ![page](./src/jsp_exception.png)
