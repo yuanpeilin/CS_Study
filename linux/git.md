@@ -2,15 +2,15 @@
 - [初始配置](#初始配置)
 - [日志](#日志)
 - [撤销](#撤销)
-        - [版本回退](#版本回退)
-        - [文件回退](#文件回退)
-        - [其他](#其他)
+    - [版本回退](#版本回退)
+    - [文件回退](#文件回退)
+    - [其他](#其他)
 - [分支](#分支)
-        - [新建与删除分支](#新建与删除分支)
-        - [切换分支](#切换分支)
-        - [合并分支](#合并分支)
+    - [新建与删除分支](#新建与删除分支)
+    - [切换分支](#切换分支)
+    - [合并分支](#合并分支)
 - [远程](#远程)
-        - [远程分支](#远程分支)
+    - [远程分支](#远程分支)
 - [储存现场](#储存现场)
 - [标签](#标签)
 - [底层命令](#底层命令)
@@ -42,8 +42,7 @@ git config --list
 
 # 日志
 * **`git log`** 查看最近三次的提交
-* **`git log --pretty=oneline`** 一行简要查看最近三次的提交
-* **`git log --graph --pretty=oneline --abbrev-commit`** 看到分支合并图
+* **`git log --oneline --all --graph`** 查看分支图
 * **`git reflog`** 查看所有历史日志
 
 
@@ -110,15 +109,14 @@ git config --list
 
 # 远程
 * **`git remote add <repository name> <SSH | HTTPS>`** 使本地仓库与远程仓库关联
-* **`git push -u origin master`** 把本地仓库推送给远程仓库. 加上-u参数会把本地的master分支和远程master分支关联
 * **`git clone <SSH | HTTPS>`** 克隆一个远程仓库
-* **`git pull`** 更新代码
-* **`git remote -v`** 查看远程库信息
+* **`git pull origin <REMOTE_BRANCH_NAME>`** 更新代码
+* **`git remote -v`** 查看远程仓库信息
 
 ### 远程分支
 * **`git branch -vv`** 查看分支详细信息
-* **`git branch -u [local-branch-name] origin/<remote-branch-name>`** 本地与远程分支关联, 不写本地分支名默认为当前分支
-* **`git checkout --track origin/<remote-branch-name>`** 创建和远程分支相同的本地分支
+* **`git branch --set-upstream-to=origin/dev dev`** 将本地已有的分支和远程已有的分支关联起来
+* **`git push -u origin master`** 把本地仓库推送给远程仓库. 加上-u参数会把本地的master分支和远程master分支关联
 * **`git push origin --delete <remote-branch-name>`** 删除远程分支
 * **`git remote prune origin --dry-rnu`** 列出仍在跟踪但远程已删除的分支
 
