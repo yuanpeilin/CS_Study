@@ -96,8 +96,7 @@
 ```
 
 ### 1.2 include指令
-
-该指令可以在一个JSP页面中包含另一个JSP页面  
+`<%@ include %>`指令可以在一个JSP页面中包含另一个JSP页面  
 该指令是**静态包含**, 也就是说被包含文件中所有内容会被原样包含到该JSP页面中, 即使被包含文件中有JSP代码, 在包含时也不会被编译执行  
 使用include指令, 最终将生成一个文件, 所以在被包含和包含的文件中, 不能有相同名称的变量  
 该指令只有一个file属性, 用于指定要包含文件的路径. 不可以是通过<%=%>表达式所代表的文件  
@@ -106,14 +105,18 @@
 ```
 
 ### 1.3 taglib指令
-通过taglib指令标识声明该页面中所使用的标签库, 同时引用标签库, 并指定标签的前缀. 在页面中引用标签库后, 就可以通过前缀来引用标签库中的标签  
-* prefix: 用于指定标签的前缀. 该前缀不能命名为jsp、jspx、java、javax、sun、servlet和sun  
-* uri: 用于指定标签库文件的存放位置  
-
+`<%@ taglib %>`指令声明页面中所使用的标签库. 在页面中引用标签库后, 就可以通过前缀来引用标签库中的标签  
 ```jsp
-<%@ taglib prefix="tagPrefix" uri="tagURI" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 ```
+
+NAME           | PROFIX | URI
+-------------- | ------ | ---------------------------------
+核心标签库     | c      | http://java.sun.com/jsp/jstl/core
+格式化         | fmt    | http://java.sun.com/jsp/jstl/fmt
+函数           | fn     | http://java.sun.com/jsp/jstl/functions
+数据库(不使用) | sql    | http://java.sun.com/jsp/jstl/sql
+XML(不使用)    | x      | http://java.sun.com/jsp/jstl/xml
 
 
 
