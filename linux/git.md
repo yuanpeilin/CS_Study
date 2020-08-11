@@ -2,18 +2,22 @@
 - [初始配置](#初始配置)
 - [日志](#日志)
 - [撤销](#撤销)
-        - [版本回退](#版本回退)
-        - [文件回退](#文件回退)
-        - [其他](#其他)
+    - [版本回退](#版本回退)
+    - [文件回退](#文件回退)
+    - [其他](#其他)
 - [分支](#分支)
-        - [新建与删除分支](#新建与删除分支)
-        - [切换分支](#切换分支)
-        - [合并分支](#合并分支)
+    - [新建与删除分支](#新建与删除分支)
+    - [切换分支](#切换分支)
+    - [合并分支](#合并分支)
 - [远程](#远程)
-        - [远程分支](#远程分支)
+    - [远程分支](#远程分支)
+    - [远程仓库](#远程仓库)
+    - [远程标签](#远程标签)
 - [储存现场](#储存现场)
 - [标签](#标签)
-- [底层命令](#底层命令)
+- [底层](#底层)
+    - [四大对象](#四大对象)
+    - [底层命令](#底层命令)
 
 
 
@@ -24,9 +28,19 @@
 
 # 初始配置
 ```sh
-# name会在 git log 中显示
+# 身份配置, name会在git log中显示
 git config --global user.name NAME
 git config --global user.email ENAIL ADDRESS
+```
+```sh
+# 配置别名
+git config --global alias.st status
+git config --global alias.sa stash
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.cm commit
+git config --global alias.lo "log --graph --all --oneline"
+git config --global alias.lol "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 ```
 ```sh
 # 查看配置
@@ -74,8 +88,6 @@ git config --list
 * **Staged -> Untracked:** 取消追踪已追踪文件
     * `git rm [-r] --cached <file>`
 
-![](src/git.png)
-
 ### 其他
 * 修改提交信息 `git commit --amend`
 
@@ -109,6 +121,7 @@ git config --list
 
 
 # 远程
+### 远程仓库
 * **`git remote add <repository name> <SSH | HTTPS>`** 使本地仓库与远程仓库关联
 * **`git push -u origin master`** 把本地仓库推送给远程仓库. 加上-u参数会把本地的master分支和远程master分支关联
 * **`git clone <SSH | HTTPS>`** 克隆一个远程仓库
@@ -121,6 +134,10 @@ git config --list
 * **`git checkout --track origin/<remote-branch-name>`** 创建和远程分支相同的本地分支
 * **`git push origin --delete <remote-branch-name>`** 删除远程分支
 * **`git remote prune origin --dry-rnu`** 列出仍在跟踪但远程已删除的分支
+
+### 远程标签
+* **`git push origin <tag_name>`** 推送标签到远程
+* **`git push origin --tags`** 推送所有标签到远程
 
 
 
@@ -146,19 +163,11 @@ git config --list
 # 标签
 * **`git tag`** 查看所有标签
 * **`git show <tag_name>`** 查看标签具体信息
-
-<br>
-
 * **`git tag <tag_name> [COMMIT_ID]`** 新建一个标签, 不输入版本号则默认在当前分支的最新提交
 * **`git tag -a <tag_name> -m <"message"> [version]`** 指定标签信息
 * **`git tag -d <tag name>`** 删除本地标签
 * **`git push origin :refs/tags/<tag_name>`** 删除远程标签
 
-<br>
-
-* **`git push origin <tag_name>`** 推送标签到远程
-* **`git push origin --tags`** 推送所有标签到远程
-
 
 
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
@@ -166,17 +175,18 @@ git config --list
 
 
 
-# 底层命令
+# 底层
+### 四大对象
+1. **Blob对象**  
+2. **Tree对象**  
+3. **Commit对象**  
+4. **Tag对象**  
+
+### 底层命令
+* **`git cat-file -p [COMMIT_HASH]`** 查对象的**内容**
+* **`git cat-file -t [COMMIT_HASH]`** 查对象的**类型**
 * **`git hash-object -w FILE_URL`** 生成一个key:value(HashCode:压缩后的文件)存储到.git/object
 * **`git update-index --add --cacheinfo 100644 hash test.txt`** 往暂存区添加一条记录
 * **`git write-tree`** 生成一个tree对象存储到.git/object
 * **`echo '' | git commit-tree treehash`** 生成一个commit对象
-
-<br>
-
-* **`git cat-file -p HASH_CODE`** 查对象的**内容**
-* **`git cat-file -t HASH_CODE`** 查对象的**类型**
-
-<br>
-
 * **`git ls-files -s`** 查看暂存区
