@@ -62,3 +62,4 @@
     * [JavaScript](web/js.md)
     * [JSP](web/jsp.md)
     * [Servlet](web/servlet.md)
+    * [Vue](web/vue.md)
