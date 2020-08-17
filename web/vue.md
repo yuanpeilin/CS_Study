@@ -9,13 +9,25 @@
     - [v-if](#v-if)
     - [v-show](#v-show)
     - [v-for](#v-for)
-- [Component](#component)
+- [组件](#组件)
+    - [组件的使用](#组件的使用)
+    - [父组件向子组件传值](#父组件向子组件传值)
+    - [子组件向父组件传值](#子组件向父组件传值)
 
 
 
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 
+# 安装卸载
+```
+npm uninstall vue/cli -g
+npm install -g @vue/cli
+```
+```
+vue create PROJECT_NAME
+npm run serve
+```
 
 
 # 目录结构
@@ -132,7 +144,8 @@ new Vue({
 
 
 
-# Component
+# 组件
+### 组件的使用
 ```vue
 <div id="root">
     <input v-model='inputValue' placeholder="type something here"/>
@@ -158,6 +171,56 @@ new Vue({
             submitClick: function(){
                 this.list.push(this.inputValue);
                 this.inputValue = '';
+            }
+        }
+    })
+</script>
+```
+
+### 父组件向子组件传值
+通过 **属性** 传递给子组件  
+```vue
+<ul>
+    <todo-item v-for='item of list' :content='item'></todo-item>
+</ul>
+
+<script>
+    Vue.component('todo-item',{
+        props: ['content'],
+        template: '<li>{{content}}</li>'
+    })
+</script>
+```
+
+### 子组件向父组件传值
+通过 **发布订阅** 传递给父组件  
+1. 当创建子组件的时候, 向子组件传递了两个数据: `content`和`index`  
+2. 当点击子组件时, 触发`handleClick()`函数, 并向外触发`delete`事件, 传递`index`参数  
+3. 父组件监听到`delete`事件, 触发`handleDelete()`函数  
+
+```
+<ul>
+    <todo-item v-for='item of list' :content='item' :index='index' @delete='handleDelete'></todo-item>
+</ul>
+
+<script>
+    Vue.component('todo-item',{
+        props: ['content', 'index'],
+        template: '<li @click='handleClick'>{{content}}</li>',
+        methods: {
+            handleClick: function(){
+                this.$emit('delete', this.index)
+            }
+        }
+    })
+
+    new Vue({
+        data: {
+            list: []
+        },
+        methods: {
+            handleDelete: function(index){
+                this.list.splice(index, 1)
             }
         }
     })
