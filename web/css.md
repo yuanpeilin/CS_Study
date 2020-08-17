@@ -88,6 +88,22 @@ a {
 }
 ```
 
+### 子选择器
+作用于所有的直接后代(子代). 子代可能不止一个, 只要是子代都生效  
+```css
+ul > li {
+    color: red;
+}
+```
+
+### 后代选择器
+作用于所有后代
+```css
+ul li {
+    color: red;
+}
+```
+
 
 
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
@@ -100,3 +116,4 @@ a {
 * `margin-left: auto; margin-right: auto;` div居中
 * `text-decoration: none;` 超链接去掉下划线
 * `border-collapse: collapse;` 表格合并边框
+* `border-radius: 40px;` 设置i边框圆角
