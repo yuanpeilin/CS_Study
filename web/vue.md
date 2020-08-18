@@ -61,14 +61,11 @@ npm run serve
 ### v-on:click
 可简写为`@click`  
 ```vue
-<h1 v-on:click="clickTest">{{msg}}<h1/>
-<h1 @click="clickTest">{{msg}}<h1/>
+<h1 v-on:click="clickTest">Title<h1/>
+<h1 @click="clickTest">Title<h1/>
 
 <script>
     new Vue({
-        data: {
-            msg: "Vue",
-        },
         methods: {
             clickTest: function(){
                 this.msg = "Hello World";
@@ -86,6 +83,7 @@ npm run serve
 双向绑定: 数据可以决定页面的内容, 页面可以改变数据  
 ```vue
 <input v-model='inputText'>
+{{inputText}}
 ```
 
 ### v-if
@@ -179,6 +177,8 @@ new Vue({
 
 ### 父组件向子组件传值
 通过 **属性** 传递给子组件  
+
+##### 全局组件
 ```vue
 <ul>
     <todo-item v-for='item of list' :content='item'></todo-item>
@@ -192,12 +192,51 @@ new Vue({
 </script>
 ```
 
+##### 局部组件
+```vue
+<template>
+    <div>
+        father: <input v-model='inputText'>
+        <Son :money='inputText'></Son>
+    </div>
+</template>
+
+<script>
+import Son from './Son.vue'
+
+export default {
+    components: {
+        Son
+    },
+    data(){
+        return {
+            inputText: 0
+        }
+    }
+}
+</script>
+```
+```vue
+<template>
+    <div>
+        son: {{number}}
+    </div>
+</template>
+
+<script>
+export default {
+    props: ['money']
+}
+</script>
+```
+
 ### 子组件向父组件传值
 通过 **发布订阅** 传递给父组件  
 1. 当创建子组件的时候, 向子组件传递了两个数据: `content`和`index`  
 2. 当点击子组件时, 触发`handleClick()`函数, 并向外触发`delete`事件, 传递`index`参数  
 3. 父组件监听到`delete`事件, 触发`handleDelete()`函数  
 
+##### 全局组件
 ```
 <ul>
     <todo-item v-for='item of list' :content='item' :index='index' @delete='handleDelete'></todo-item>
@@ -224,5 +263,53 @@ new Vue({
             }
         }
     })
+</script>
+```
+
+##### 局部组件
+```vue
+<template>
+    father's money: {{bank}}
+    <Son @send='receiveEvent'></Son>
+</template>
+
+<script>
+import Son from './Son'
+
+export default {
+    data(){
+        return {
+            bank: 0
+        }
+    },
+    methods: {
+        receiveEvent(val){
+            this.bank += val
+        }
+    },
+    components: {
+        Son
+    }
+}
+</script>
+```
+```vue
+<template>
+    <button @click='clickEvent'>son send to father</button>
+</template>
+
+<script>
+export default {
+    data(){
+        return {
+            money: 1
+        }
+    },
+    methods {
+        sendEvent: function() {
+            this.$emit('send', this.money)
+        }
+    }
+}
 </script>
 ```
