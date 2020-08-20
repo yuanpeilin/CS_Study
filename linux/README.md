@@ -1,3 +1,4 @@
+* [awk](awk.md)
 * [命令](command.md)
 * [文件系统](filesystem.md)
     - 文件系统概念

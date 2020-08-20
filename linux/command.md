@@ -1,32 +1,87 @@
 # 目录
-
------------------------ | ------------------------- | --------------------------- | --------------------- | --------------------
------------------------ | ------------------------- | --------------------------- | --------------------- | --------------------
-[at](#at)               | [atq](#atq)               | [atrm](#atrm)               | [awk](#awk)           |  
-[bg](#bg)               |                           |                             |                       |  
-[chattr](#chattr)       | [chgrp](#chgrp)           | [chkconfig](#chkconfig)     | [chmod](#chmod)       | [chown](#chown)
-\-                      | [corntab](#corntab)       | [cp](#cp)                   | [cut](#cut)           |  
-[df](#df)               | [disown](#disown)         | [du](#du)                   |                       |  
-[egrep](#egrep)         |                           |                             |                       |  
-[fallocate](#fallocate) | [fdisk](#fdisk)           | [fg](#fg)                   | [find](#find)         | [finger](#finger)
-[gpasswd](#gpasswd)     | [grep](#grep)             | [groupadd](#groupadd)       | [groupdel](#groupdel) | [groupmod](#groupmod)
-\-                      | [gzip](#gzip)             |                             |                       |  
-[id](#id)               | [ifconfig](#ifconfig)     | [imagemagick](#imagemagick) |                       |  
-[jobs](#jobs)           | [join](#join)             | [jq](#jq)                   |                       |  
-[kill](#kill)           |                           |                             |                       |  
-[less](#less)           | [ln](#ln)                 | [locate](#locate)           | [ls](#ls)             | [lsattr](#lsattr)
-\-                      | [lsblk](#lsblk)           | [lsof](#lsof)               |                       |  
-[md5sum](#md5sum)       | [mkdir](#mkdir)           | [mkfs](#mkfs)               | [mount](#mount)       |  
-[ncdu](#ncdu)           | [netstat](#netstat)       |                             |                       |  
-[pandoc](#pandoc)       | [pgrep](#pgrep)           | [pkill](#pkill)             | [ps -aux](#ps--aux)   | [passwd](#passwd)
-\-                      | [pstree](#pstree)         |                             |                       |  
-[rsync](#rsync)         | [runlevel](#runlevel)     |                             |                       |  
-[scp](#scp)             | [sed](#sed)               | [sort](#sort)               |                       |  
-[tail](#tail)           | [tar](#tar)               | [tee](#tee)                 | [top](#top)           | [tree](#tree)
-\-                      | [truncate](#truncate)     | [type](#type)               |                       |  
-[ufw](#ufw)             | [uniq](#uniq)             | [useradd](#useradd)         | [userdel](#userdel)   | [usermod](#usermod)
-[whereis](#whereis)     |                           |                             |                       |  
-[xargs](#xargs)         | [xmlstarlet](#xmlstarlet) |                             |                       |  
+* a
+    - [at](#at)
+    - [atq](#atq)
+    - [atrm](#atrm)
+* b
+    - [bg](#bg)
+* c
+    - [chattr](#chattr)
+    - [chgrp](#chgrp)
+    - [chkconfig](#chkconfig)
+    - [chmod](#chmod)
+    - [chown](#chown)
+    - [corntab](#corntab)
+    - [cp](#cp)
+    - [cut](#cut)
+* d
+    - [df](#df)
+    - [disown](#disown)
+    - [du](#du)
+* e
+    - [egrep](#egrep)
+* f
+    - [fallocate](#fallocate)
+    - [fdisk](#fdisk)
+    - [fg](#fg)
+    - [find](#find)
+* g
+    - [grep](#grep)
+    - [gzip](#gzip)
+* i
+    - [ifconfig](#ifconfig)
+    - [imagemagick](#imagemagick)
+* j
+    - [jobs](#jobs)
+    - [join](#join)
+    - [jq](#jq)
+* k
+    - [kill](#kill)
+* l
+    - [less](#less)
+    - [ln](#ln)
+    - [locate](#locate)
+    - [ls](#ls)
+    - [lsattr](#lsattr)
+    - [lsblk](#lsblk)
+    - [lsof](#lsof)
+* m
+    - [md5sum](#md5sum)
+    - [mkdir](#mkdir)
+    - [mkfs](#mkfs)
+    - [mount](#mount)
+* n
+    - [ncdu](#ncdu)
+    - [netstat](#netstat)
+* p
+    - [pandoc](#pandoc)
+    - [pgrep](#pgrep)
+    - [pkill](#pkill)
+    - [ps -aux](#ps--aux)
+    - [pstree](#pstree)
+* r
+    - [rsync](#rsync)
+    - [runlevel](#runlevel)
+* s
+    - [scp](#scp)
+    - [sed](#sed)
+    - [sort](#sort)
+* t
+    - [tail](#tail)
+    - [tar](#tar)
+    - [tee](#tee)
+    - [top](#top)
+    - [tree](#tree)
+    - [truncate](#truncate)
+    - [type](#type)
+* u
+    - [ufw](#ufw)
+    - [uniq](#uniq)
+* w
+    - [whereis](#whereis)
+* x
+    - [xargs](#xargs)
+    - [xmlstarlet](#xmlstarlet)
 
 
 
@@ -76,105 +131,6 @@ $ atq
 > 删除指定任务编号的at任务
 ### 用法
 **`atrm 编号`**
-
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
-# awk
-### 文件
-```
-$ cat netstat.txt
-Proto Recv-Q Send-Q Local Address           Foreign Address         State
-tcp        0      0 0.0.0.0: 139             0.0.0.0: *               LISTEN
-tcp        0      0 127.0.0.53: 53           0.0.0.0: *               LISTEN
-tcp        0      0 0.0.0.0: 22              0.0.0.0: *               LISTEN
-tcp        0      0 127.0.0.1: 631           0.0.0.0: *               LISTEN
-tcp        0      0 0.0.0.0: 445             0.0.0.0: *               LISTEN
-tcp        0     36 192.168.226.131: 22      192.168.226.1: 50944     ESTABLISHED
-tcp        0      0 192.168.226.131: 22      192.168.226.1: 50942     ESTABLISHED
-```
-### 内置变量
-
-变量 | 说明
-:-- | :--
-$0 | 当前记录(这个变量中存放着整个行的内容)
-$1\~$n | 当前记录的第n个字段, 字段间由FS分隔
-FILENAME | 当前输入文件的名字
-FS | 输入字段分隔符 默认是空格或Tab
-OFS | 输出字段分隔符,  默认也是空格
-RS | 输入的记录分隔符,  默认为换行符
-ORS | 输出的记录分隔符, 默认为换行符
-NF | 当前记录中的字段个数, 就是有多少列
-NR | 已经读出的记录数, 就是行号, 从1开始, 如果有多个文件话, 这个值也是不断累加中. 
-FNR | 当前记录数, 与NR不同的是, 这个值会是各个文件自己的行号
-
-```sh
-# 显示指定列
-awk '{print $1, $4}' netstat.txt
-# 只显示最后一列
-awk -F' ' '{print $NF}' test1
-
-# 显示第一行 
-awk 'NR==1' <filename>
-# 不显示第一行
-awk 'NR!=1' <filename>
-# 显示最后一行
-awk 'END{print $0}' <filename>
-
-# 记录过滤
-awk '$3>0' netstat.txt
-# 加上表头
-awk '$3==0 && $6=="LISTEN" || NR==1 ' netstat.txt
-# 显示行号
-awk '$3==0{print NR,$0}' netstat.txt
-```
-```sh
-# 不显示最后一列
-awk 'BEGIN{OFS="";ORS=""}{ for(i=1;i<NF;i++){print $i" "}{print "\n"} }' test1
-
-# 以|做分隔符
-awk -F' ' 'BEGIN{OFS="-";ORS="|"}{print $1,$2,$3}' test1
-
-# 输出前两列并以--连接
-# OFS=Output Fields Operator 给输出结果指定分隔符
-awk -F' ' 'BEGIN{OFS="--"}{print $1,$2}' test1
-```
-### 函数
-* **`toupper()`** 字符转为大写
-* **`tolower()`** 字符转为小写
-* **`length()`** 返回字符串长度
-* **`substr()`** 返回子字符串
-* **`sin()`** 正弦
-* **`cos()`** 余弦
-* **`sqrt()`** 平方根
-* **`rand()`** 随机数
-```sh
-$ awk -F ': ' '{ print toupper($1) }' demo.txt  
-```
-### 条件
-```sh
-$ awk  -F  ': '  '/usr/ {print $1}'  demo.txt
-上面代码中, print命令前面是一个正则表达式, 只输出包含usr的行. 
-
-# 输出奇数行
-$ awk -F ': ' 'NR % 2 == 1 {print $1}' demo.txt
-
-# 输出第三行以后的行
-$ awk -F ': ' 'NR >3 {print $1}' demo.txt
-
-下面的例子输出第一个字段等于指定值的行. 
-$ awk -F ': ' '$1 == "root" {print $1}' demo.txt
-$ awk -F ': ' '$1 == "root" || $1 == "bin" {print $1}' demo.txt
-```
-### if语句
-```sh
-if结构还可以指定else部分. 
-$ awk -F ': ' '{if ($1 > "m") print $1; else print "---"}' demo.txt
-```
 
 
 
@@ -542,48 +498,6 @@ $ find / \( -size +1k -a -size -10M -a -type f \) -exec rm -rf {} \;
 
 
 
-# finger
-> 查看用户详细信息
-### 例子
-```sh
-$ finger ypl
-Login:  ypl                      Name:  ypl
-Directory:  /home/ypl                    Shell:  /bin/bash
-On since Thu Jun 13 13: 57 (CST) on : 0 from : 0 (messages off)
-No mail.
-No Plan.
-```
-
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
-# gpasswd
-### 用法
-**`gpasswd <用户名> <组名>`**
-* **`-a 用户名`** 向组内添加一个用户
-* **`-d 用户名`** 从组内删除一个用户成员
-* **`-M`** 定义组成员列表, 以逗号分隔
-### 例子
-* 将用户 root 从 market 组中删除
-```sh
-gpasswd -d root market
-```
-* 将用户 benet 加入到 market 组中
-```sh
-gpasswd -a benet market
-```
-
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
 # grep
 ### 用法
 **`-i`** 
@@ -601,42 +515,6 @@ gpasswd -a benet market
 
 
 
-# groupadd
-### 用法
-**`groupadd <Group Name> `**
-* **`-g <GID>`** 指定GID
-
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
-# groupdel
-### 用法
-**`groupdel <Group Name>`**
-
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
-# groupmod
-### 用法
-**`groupmod  <Group Name>`**
-* **`-n <Group Name>`**
-* **`-g <GID>`**
-
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
 # gzip
 ### 例子
 * 解压文件
@@ -646,21 +524,6 @@ gzip -d test.gz
 * 调节压缩比(默认为6. 9为最大压缩比, 压缩的文件最小)
 ```sh
 gzip -9 test.txt
-```
-
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
-# id
-> 显示用户的UID与所属组
-### 例子
-```sh
-id ypl
-uid=1000(ypl) gid=1000(ypl) groups=1000(ypl),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),116(lpadmin),126(sambashare)
 ```
 
 
@@ -1046,20 +909,6 @@ Z | zombie | 僵死 | 进程已终止, 但进程描述符存在, 直到父进�
 
 
 
-# passwd
-### 用法
-**`-d`** 清空用户的密码, 使之无需密码即可登录
-**`-u`** 解锁用户帐号 
-**`-l`** 锁定用户帐号
-**`-S`** 查看用户帐号的状态是否被锁定
-
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
 # pstree
 ### 用法
 * **`-p`** 列出进程的PID号
@@ -1366,55 +1215,6 @@ sudo ufw delete allow 80
 ```sh
 sudo ufw allow from 192.168.1.1 
 ```
-
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
-# useradd
-### 用法
-**`useradd [选项] <User Name>`**
-* **`-u <UID>`** 指定UID
-* **`-g <主用户组>`** 指定主用户组, 可以为组名称或GID
-* **`-G <从属用户组>`** 指定从属用户组, 可以为组名称或GID, 多个从属组以逗号分隔
-* **`-d <主目录>`** 指定用户主目录
-* **`-M`** 不为用户建立并初始化宿主目录
-* **`-s <shell类型>`**
-* **`-e <时间>`** 指定账号失效时间, 如`-e 2018-01-01`
-
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
-# userdel
-### 用法
-**`userdel <User Name>`**
-* **`-r`** 将用户目录一并删除
-
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
-# usermod
-### 用法
-**`usermod <User Name>`**
-* **`-l`** 修改用户名
-* **`-u <UID>`** 
-* **`-g <主用户组>`**
-* **`-G <从属用户组>`**
-* **`-d <主目录>`**
-* **`-s <shell类型>`**
-* **`-L`** 锁定用户账户, 与passwd命令的"-l"、"-u"选项作用基本相同, 只不过大小写存在区别 
-* **`-U`** 解锁用户账户, 与passwd命令的"-l"、"-u"选项作用基本相同, 只不过大小写存在区别 
 
 
 
