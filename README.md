@@ -8,6 +8,7 @@
     * [其他](java/others.md)
     * [String](java/string.md)
 * [**Linux**](linux/README.md)
+    * [awk](linux/awk.md)
     * [命令](linux/command.md)
     * [文件系统](linux/filesystem.md)
     * [git](linux/git.md)
