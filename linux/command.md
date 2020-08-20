@@ -1,30 +1,88 @@
 # 目录
-
------------------------ | ------------------------- | --------------------------- | --------------------- | --------------------
------------------------ | ------------------------- | --------------------------- | --------------------- | --------------------
-[at](#at)               | [atq](#atq)               | [atrm](#atrm)               | [awk](#awk)           |  
-[bg](#bg)               |                           |                             |                       |  
-[chattr](#chattr)       | [chgrp](#chgrp)           | [chkconfig](#chkconfig)     | [chmod](#chmod)       | [chown](#chown)
-\-                      | [corntab](#corntab)       | [cp](#cp)                   | [cut](#cut)           |  
-[df](#df)               | [disown](#disown)         | [du](#du)                   |                       |  
-[egrep](#egrep)         |                           |                             |                       |  
-[fallocate](#fallocate) | [fdisk](#fdisk)           | [fg](#fg)                   | [find](#find)         |  
-[grep](#grep)           | [gzip](#gzip)             |                             |                       |  
-[ifconfig](#ifconfig)   | [imagemagick](#imagemagick) |                           |                       |  
-[jobs](#jobs)           | [join](#join)             | [jq](#jq)                   |                       |  
-[kill](#kill)           |                           |                             |                       |  
-[less](#less)           | [ln](#ln)                 | [locate](#locate)           | [ls](#ls)             | [lsattr](#lsattr)
-\-                      | [lsblk](#lsblk)           | [lsof](#lsof)               |                       |  
-[md5sum](#md5sum)       | [mkdir](#mkdir)           | [mkfs](#mkfs)               | [mount](#mount)       |  
-[ncdu](#ncdu)           | [netstat](#netstat)       |                             |                       |  
-[pandoc](#pandoc)       | [pgrep](#pgrep)           | [pkill](#pkill)             | [ps -aux](#ps--aux)   | [pstree](#pstree)
-[rsync](#rsync)         | [runlevel](#runlevel)     |                             |                       |  
-[scp](#scp)             | [sed](#sed)               | [sort](#sort)               |                       |  
-[tail](#tail)           | [tar](#tar)               | [tee](#tee)                 | [top](#top)           | [tree](#tree)
-\-                      | [truncate](#truncate)     | [type](#type)               |                       |  
-[ufw](#ufw)             | [uniq](#uniq)             |                             |                       |  
-[whereis](#whereis)     |                           |                             |                       |  
-[xargs](#xargs)         | [xmlstarlet](#xmlstarlet) |                             |                       |  
+* a
+    - [at](#at)
+    - [atq](#atq)
+    - [atrm](#atrm)
+    - [awk](#awk)
+* b
+    - [bg](#bg)
+* c
+    - [chattr](#chattr)
+    - [chgrp](#chgrp)
+    - [chkconfig](#chkconfig)
+    - [chmod](#chmod)
+    - [chown](#chown)
+    - [corntab](#corntab)
+    - [cp](#cp)
+    - [cut](#cut)
+* d
+    - [df](#df)
+    - [disown](#disown)
+    - [du](#du)
+* e
+    - [egrep](#egrep)
+* f
+    - [fallocate](#fallocate)
+    - [fdisk](#fdisk)
+    - [fg](#fg)
+    - [find](#find)
+* g
+    - [grep](#grep)
+    - [gzip](#gzip)
+* i
+    - [ifconfig](#ifconfig)
+    - [imagemagick](#imagemagick)
+* j
+    - [jobs](#jobs)
+    - [join](#join)
+    - [jq](#jq)
+* k
+    - [kill](#kill)
+* l
+    - [less](#less)
+    - [ln](#ln)
+    - [locate](#locate)
+    - [ls](#ls)
+    - [lsattr](#lsattr)
+    - [lsblk](#lsblk)
+    - [lsof](#lsof)
+* m
+    - [md5sum](#md5sum)
+    - [mkdir](#mkdir)
+    - [mkfs](#mkfs)
+    - [mount](#mount)
+* n
+    - [ncdu](#ncdu)
+    - [netstat](#netstat)
+* p
+    - [pandoc](#pandoc)
+    - [pgrep](#pgrep)
+    - [pkill](#pkill)
+    - [ps -aux](#ps--aux)
+    - [pstree](#pstree)
+* r
+    - [rsync](#rsync)
+    - [runlevel](#runlevel)
+* s
+    - [scp](#scp)
+    - [sed](#sed)
+    - [sort](#sort)
+* t
+    - [tail](#tail)
+    - [tar](#tar)
+    - [tee](#tee)
+    - [top](#top)
+    - [tree](#tree)
+    - [truncate](#truncate)
+    - [type](#type)
+* u
+    - [ufw](#ufw)
+    - [uniq](#uniq)
+* w
+    - [whereis](#whereis)
+* x
+    - [xargs](#xargs)
+    - [xmlstarlet](#xmlstarlet)
 
 
 
