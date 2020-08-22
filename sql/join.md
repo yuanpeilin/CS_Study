@@ -145,7 +145,7 @@ ON customers.cust_id = orders.cust_id;
 
 
 # 自联结
-**自联结**表示一个表出现两次, 自己联结自己  
+**自联结** 表示一个表出现两次, 自己联结自己  
 
 假如某物品(其ID为DTNTR)存在问题, 因此想知道生产该物品的供应商生产的其他物品是否也存在这些问题, 列出该供应商的所有物品:  
 ```sql
@@ -184,8 +184,7 @@ WHERE a.vend_id = b.vend_id
 
 
 # 自然联结
-**自然联结**排除多次出现, 使每个列只返回一次  
-一般是通过对表使用通配符(SELECT \*), 对所有其他表的列使用明确的列来完成的来实现  
+**自然联结** 在两个表有相同名称的列且列定义类似时使用, 在同名列上进行相等连接  
 ```sql
 SELECT c.*, o.order_num, o.order_date, oi.prod_id, oi.quantity, oi.item_price
 FROM customers AS c, orders AS o, orderitems AS oi

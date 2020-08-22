@@ -34,12 +34,16 @@ WHERE orderitems.prod_id = 'TNT2'
   AND orders.cust_id = customers.cust_id;
 ```
 
+<br>
+
 假如可以把整个查询包装成一个名为productcustomers的虚拟表，则可以如下轻松地检索出相同的数据  
 ```sql
 SELECT cust_name, cust_contact
 FROM productcustomers
 WHERE prod_id = 'TNT2';
 ```
+
+<br>
 
 创建视图  
 ```sql
@@ -49,6 +53,8 @@ FROM customers, orders, orderitems
 WHERE customers.cust_id = orders.cust_id
   AND orderitems.order_num = orders.order_num;
 ```
+
+<br>
 
 使用视图  
 ```sql

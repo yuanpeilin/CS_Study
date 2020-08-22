@@ -1,9 +1,8 @@
 # 目录
-- [操作列](#操作列)
-    - [添加列](#添加列)
-    - [删除列](#删除列)
-    - [查看列](#查看列)
-    - [修改列定义](#修改列定义)
+- [添加列](#添加列)
+- [删除列](#删除列)
+- [查看列](#查看列)
+- [修改列定义](#修改列定义)
 
 
 
@@ -12,52 +11,76 @@
 
 
 
-# 操作列
-### 添加列 
+# 添加列
+### 语法
 ```sql
-ALTER TABLE table_name 
-ADD [COLUMN] column_name column_definition 
-[FIRST | AFTER column_name]
+ALTER TABLE <TABLE_NAME> 
+ADD [COLUMN] COLUMN_NAME COLUMN_DEFINITION 
+[FIRST | AFTER COLUMN_NAME]
 ```
+
+### 例子
 ```sql
 ALTER TABLE student
 ADD age TINYINT NOT NULL
 AFTER name;
 ```
 
-### 删除列
+
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+
+
+# 删除列
+### 语法
 ```sql
-ALTER TABLE table_name 
-DROP [COLUMN] column_name
+ALTER TABLE <TABLE_NAME> 
+DROP [COLUMN] COLUMN_NAME
 ```
 
-### 查看列
-以下两句等价  
+
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+
+
+# 查看列
+### 语法
 ```sql
-SHOW COLUMNS FROM <table_name>;
+SHOW COLUMNS FROM <TABLE_NAME>;
 ```
 ```sql
-DESCRIBE <table_name>;
+DESCRIBE <TABLE_NAME>;
 ```
 
-### 修改列定义
+
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+
+
+# 修改列定义
+### 语法
 ```sql
-ALTER TABLE table_name 
-MODIFY [COLUMN] column_name column_definition 
-[FIRST丨AFTER column_name]
+ALTER TABLE <TABLE_NAME> 
+MODIFY [COLUMN] COLUMN_NAME COLUMN_DEFINITION 
+[FIRST丨AFTER COLUMN_NAME]
 ```
+```sql
+ALTER TABLE <TABLE_NAME> 
+CHANGE [COLUMN] old_COLUMN_NAME new_COLUMN_NAME COLUMN_DEFINITION 
+[FIRST | AFTER COLUMN_NAME]
+```
+
+### 例子
 ```sql
 ALTER TABLE qq
 MODIFY username VARCHAR(45)
 FIRST;
-```
-
-<br>
-
-```sql
-ALTER TABLE table_name 
-CHANGE [COLUMN] old_column_name new_column_name column_definition 
-[FIRST | AFTER column_name]
 ```
 ```sql
 ALTER TABLE qq

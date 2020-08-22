@@ -1,5 +1,10 @@
 # 目录
-- [操作数据库](#操作数据库)
+- [新建数据库](#新建数据库)
+- [删除数据库](#删除数据库)
+- [查看所有数据库](#查看所有数据库)
+- [查看数据库结构](#查看数据库结构)
+- [修改数据库字符集](#修改数据库字符集)
+- [使用数据库](#使用数据库)
 
 
 
@@ -8,33 +13,75 @@
 
 
 
-# 操作数据库
-* 新建数据库
+# 新建数据库
+### 语法
 ```sql
-CREATE DATABAS [IF NOT EXISTS] database_name [DEFAULT] CHARACTER SET [=] charset_name;
+CREATE DATABASE [IF NOT EXISTS] <DATABASE_NAME> [ [DEFAULT] CHARACTER SET [=] <CHARACTER_SET_NAME> ];
 ```
 
-* 删除数据库
+### 例子
 ```sql
-DROP DATABASE [IF EXISTS] database_name;
+CREATE DATABASE test CHARACTER SET utf8;
+CREATE DATABASE test CHARACTER SET = utf8;
+CREATE DATABASE test DEFAULT CHARACTER SET utf8;
 ```
 
-* 查看所有数据库
+
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+
+
+# 删除数据库
+```sql
+DROP DATABASE [IF EXISTS] <DATABASE_NAME>;
+```
+
+
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+
+
+# 查看所有数据库
 ```sql
 SHOW DATABASES;
 ```
 
-* 查看数据库结构
+
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+
+
+# 查看数据库结构
 ```sql
-SHOW CREATE DATABASE database_name;
+SHOW CREATE DATABASE <DATABASE_NAME>;
 ```
 
-* 修改数据库(字符集)
+
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+
+
+# 修改数据库字符集
 ```sql
-ALTER DATABASE database_name [CHARACTER SET charset_name];
+ALTER DATABASE <DATABASE_NAME> CHARACTER SET <CHARACTER_SET_NAME>;
 ```
 
-* 使用数据库
+
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+
+
+# 使用数据库
 ```sql
-USE database_name;
+USE <DATABASE_NAME>;
 ```

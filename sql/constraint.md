@@ -33,13 +33,13 @@
 
 
 # 约束
-* **约束(Constraint)** 是保持数据完整性的一种方法, 有以下几种约束
-  * **空值约束(Null Constraint)** 
-  * **主键约束(Primary Key Constraint)** 唯一且非null
-  * **唯一约束(Unique Key)** 可以为null, 但只能有一个null
-  * **外键约束(Foreign Key Constraint)** 保证数据一致性和完整性, 实现一对一或一对多的关系
-  * **检查约束(Check Constraint)**
-  * **默认约束(Default Constraint)** 
+**约束(Constraint)** 是保持数据完整性的一种方法, 有以下几种约束
+* 空值约束(Null Constraint) 
+* 主键约束(Primary Key Constraint) 唯一且非null
+* 唯一约束(Unique Key) 可以为null, 但只能有一个null
+* 外键约束(Foreign Key Constraint) 保证数据一致性和完整性, 实现一对一或一对多的关系
+* 检查约束(Check Constraint)
+* 默认约束(Default Constraint) 
 
 
 
@@ -89,15 +89,18 @@ UNIQUE constraint_name (username);
 ### 增加唯一约束
 ```sql
 ALTER TABLE table_name ADD UNIQUE (column_name)
-
-    # 例子
-    ALTER TABLE user ADD CONSTRAINT UNIQUE (username);
 ```
 ```sql
 ALTER TABLE table_name ADD [CONSTRAINT [symbol]] UNIQUE [INDEX | KEY] [index_name] [index_type] (index_column_name,..)
+```
 
-    # 例子
-    ALTER TABLE user ADD UNIQUE (username);
+<br>
+
+```sql
+ALTER TABLE user ADD CONSTRAINT UNIQUE (username);
+```
+```sql
+ALTER TABLE user ADD UNIQUE (username);
 ```
 
 ### 删除唯一约束
@@ -116,8 +119,7 @@ ALTER TABLE table_name DROP {INDEX | KEY} index_name
 * 要求唯一且非null
 * 每个表只能有一个主键
 * 主键约束拥有自动定义的唯一约束
-* 
-_INCREMENT必须和主键一起使用
+* AUTO_INCREMENT必须和主键一起使用
 
 ### 建立主键约束
 ```sql
@@ -130,13 +132,16 @@ PRIMARY KEY (`username`)
 
 ### 增加主键约束
 ```sql
-ALTER TABLE table_name ADD [CONSTRAINT [symbol]] [constraint_name] PRIMARY KEY [index_type] (index_column_name,..)
-
-    # 例子
-    ALTER TABLE user ADD CONSTRAINT pk_user_id PRIMARY KEY (id);
+ALTER TABLE table_name ADD [CONSTRAINT] [constraint_name] PRIMARY KEY [index_type] (index_column_name,..)
 ```
 ```sql
 ALTER TABLE table_name ADD PRIMARY KEY (column_name),
+```
+
+<br>
+
+```sql
+ALTER TABLE user ADD CONSTRAINT pk_user_id PRIMARY KEY (id);
 ```
 
 ### 删除主键约束
@@ -155,7 +160,7 @@ ALTER TABLE table_name DROP CONSTRAINT primary_key_name
 
 
 # 外键约束
-* 保证数据的一致性和完整性
+保证数据的一致性和完整性
 
 ### 要求
 * 父表和子表必须使用相同的存储引擎, 并且禁止使用临时表
