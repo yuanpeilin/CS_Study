@@ -9,19 +9,19 @@
     - [修改单条记录](#修改单条记录)
     - [修改多条记录](#修改多条记录)
 - [查询数据](#查询数据)
-    - [1. 格式](#1-格式)
-    - [2. 检索不同的行 DISTINCT](#2-检索不同的行-distinct)
-    - [3. 限制行数 LIMIT](#3-限制行数-limit)
-    - [4. 排序 ORDER BY](#4-排序-order-by)
-    - [5. 空值检查 IS NULL](#5-空值检查-is-null)
-    - [6. WHERE子句过滤数据 BETWEEN](#6-where子句过滤数据-between)
-    - [7. 组合WHERE子句过滤数据 AND OR](#7-组合where子句过滤数据-and-or)
-    - [8. WHERE子句过滤数据 IN](#8-where子句过滤数据-in)
-    - [9. WHERE子句过滤数据 通配符 LIKE](#9-where子句过滤数据-通配符-like)
-    - [10. 正则表达式 REGEXP](#10-正则表达式-regexp)
-    - [11. 分组](#11-分组)
-    - [12. 汇总分组](#12-汇总分组)
-    - [13. 过滤分组](#13-过滤分组)
+    - [格式](#1-格式)
+    - [检索不同的行 DISTINCT](#2-检索不同的行-distinct)
+    - [限制行数 LIMIT](#3-限制行数-limit)
+    - [排序 ORDER BY](#4-排序-order-by)
+    - [空值检查 IS NULL](#5-空值检查-is-null)
+    - [WHERE子句过滤数据 BETWEEN](#6-where子句过滤数据-between)
+    - [组合WHERE子句过滤数据 AND OR](#7-组合where子句过滤数据-and-or)
+    - [WHERE子句过滤数据 IN](#8-where子句过滤数据-in)
+    - [WHERE子句过滤数据 通配符 LIKE](#9-where子句过滤数据-通配符-like)
+    - [正则表达式 REGEXP](#10-正则表达式-regexp)
+    - [分组](#11-分组)
+    - [汇总分组](#12-汇总分组)
+    - [过滤分组](#13-过滤分组)
 
 
 
@@ -63,6 +63,7 @@ FROM custnew;
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 
 
+
 # 删除数据
 ```sql
 DELETE FROM customers
@@ -73,6 +74,7 @@ WHERE cust_id = 10006;
 
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
 
 
 # 修改数据
@@ -95,6 +97,7 @@ WHERE cust_id = 10005;
 
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
 
 
 # 查询数据
@@ -222,7 +225,8 @@ WHERE vend_id IN (1002, 1003);
 ```
 
 ### 9. WHERE子句过滤数据 通配符 LIKE
-* **`%`通配符** 此通配符表示匹配任意个字符, 不仅包括一个字符和多个字符, 还可以代表0个字符. 此通配符 **不能匹配NULL**  
+**`%`** 通配符表示匹配任意个字符, 不仅包括一个字符和多个字符, 还可以代表0个字符. 此通配符 **不能匹配NULL**  
+**`_`配符** 通配符表示匹配单个字符  
 ```sql
 SELECT prod_id, prod_name FROM products WHERE prod_name LIKE 'jet%';
 
@@ -233,7 +237,6 @@ SELECT prod_id, prod_name FROM products WHERE prod_name LIKE 'jet%';
 | JP2000  | JetPack 2000 |
 +---------+--------------+
 ```
-* **`_`通配符** 此通配符表示匹配单个字符  
 ```sql
 SELECT prod_id, prod_name FROM products WHERE prod_name LIKE '_ ton anvil';
 
@@ -246,7 +249,10 @@ SELECT prod_id, prod_name FROM products WHERE prod_name LIKE '_ ton anvil';
 ```
 
 ### 10. 正则表达式 REGEXP
-* **测试** 若匹配返回1, 不匹配返回0
+**测试:** 若匹配返回1, 不匹配返回0  
+**基本格式:** 用REGEXP关键字代替LIKE  
+**`BINARY`** 关键字表示区分大小写  
+**匹配特殊字符** 要使用两个反斜线  
 ```sql
 SELECT 'hello' REGEXP '[0-9]';
 
@@ -256,7 +262,6 @@ SELECT 'hello' REGEXP '[0-9]';
 |                      0 |
 +------------------------+
 ```
-* **基本格式** 用REGEXP关键字代替LIKE  
 ```sql
 SELECT prod_name FROM products WHERE prod_name REGEXP 'jetpack .000';
 
@@ -267,13 +272,11 @@ SELECT prod_name FROM products WHERE prod_name REGEXP 'jetpack .000';
 | JetPack 2000 |
 +--------------+
 ```
-* **`BINARY`区分大小写**
 ```sql
 SELECT prod_name FROM products WHERE prod_name REGEXP BINARY 'jetpack .000';
 
 Empty set
 ```
-* **匹配特殊字符** 转义字符要使用两个反斜线
 ```sql
 SELECT prod_name FROM products WHERE prod_name REGEXP '\\.';
 
@@ -283,7 +286,6 @@ SELECT prod_name FROM products WHERE prod_name REGEXP '\\.';
 | .5 ton anvil |
 +--------------+
 ```
-* **使用字符集**
 ```sql
 SELECT prod_name FROM products WHERE prod_name REGEXP '[[:digit:]]{4}';
 
@@ -332,7 +334,7 @@ SELECT vend_id, COUNT(*) FROM products GROUP BY vend_id WITH ROLLUP;
 
 ### 13. 过滤分组
 WHERE过滤指定的是行而不是分组, WHERE过滤行, 而HAVING过滤分组  
-或者说: WHERE在数据分组前进行过滤，HAVING在数据分组后进行过滤
+或者说: WHERE在数据分组前进行过滤，HAVING在数据分组后进行过滤  
 ```sql
 SELECT vend_id, COUNT(*) FROM products GROUP BY vend_id WITH ROLLUP HAVING COUNT(*)>=3;
 
