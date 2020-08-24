@@ -18,6 +18,7 @@
     * [正则表达式](linux/regex.md)
     * [shell](linux/shell.md)
     * [用户管理](linux/user.md)
+    * [Vim](linux/vim.md)
 * [**计算机网络**](network/README.md)
     * [其他](network/others.md)
     * [应用层](network/application.md)
