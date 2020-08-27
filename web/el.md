@@ -1,5 +1,13 @@
 # 目录
-
+- [输出域对象](#输出域对象)
+    - [基本用法](#基本用法)
+    - [空字符串](#空字符串)
+    - [相同的key](#相同的key)
+    - [输出ojbect](#输出ojbect)
+- [empty运算](#empty运算)
+- [11个隐含对象](#11个隐含对象)
+    - [四个域对象](#四个域对象)
+    - [pageContext对象](#pagecontext对象)
 
 
 
@@ -23,10 +31,8 @@ EL表达式: ${key}
 <%
     request.setAttribute("key", "Hello World");
 %>
-JSP表达式: <%=request.getAttribute("key1")%>
-EL表达式: ${key1}
-<!-- JSP表达式: null -->
-<!-- EL表达式: -->
+JSP表达式: <%=request.getAttribute("key1")%> <!-- JSP表达式: null -->
+EL表达式: ${key1} <!-- EL表达式: -->
 ```
 
 ### 相同的key
@@ -88,6 +94,7 @@ person.map: ${key.map.key3} <!-- value3 -->
 * 长度为0的数组
 * 没有元素的List对象
 * 没有元素的Map对象
+
 ```jsp
 <%
     request.setAttribute("key1", null);
@@ -113,17 +120,17 @@ ${ empty key }
 
 变量               | 类型                   | 作用
 ------------------ | ---------------------- | -----
-`pageScope`        | `Map<String,Object>`   | 它可以获取 pageContext 域中的数据
-`requestScope`     | `Map<String,Object>`   | 它可以获取 Request 域中的数据
-`sessionScope`     | `Map<String,Object>`   | 它可以获取 Session 域中的数据
-`applicationScope` | `Map<String,Object>`   | 它可以获取 ServletContext 域中的数据
-`pageContext`      | `PageContextImpl`      | 它可以获取 jsp 中的九大内置对象
-`param`            | `Map<String,String>`   | 它可以获取请求参数的值
-`paramValues`      | `Map<String,String[]>` | 它也可以获取请求参数的值，获取多个值的时候使用。
-`header`           | `Map<String,String>`   | 它可以获取请求头的信息
-`headerValues`     | `Map<String,String[]>` | 它可以获取请求头的信息，它可以获取多个值的情况
-`cookie`           | `Map<String,Cookie>`   | 它可以获取当前请求的 Cookie 信息
-`initParam`        | `Map<String,String>`   | 它可以获取在 web.xml 中配置的`<context-param>`上下文参数
+`pageScope`        | `Map<String,Object>`   | 获取 pageContext 域中的数据
+`requestScope`     | `Map<String,Object>`   | 获取 Request 域中的数据
+`sessionScope`     | `Map<String,Object>`   | 获取 Session 域中的数据
+`applicationScope` | `Map<String,Object>`   | 获取 ServletContext 域中的数据
+`pageContext`      | `PageContextImpl`      | 获取 jsp 中的九大内置对象
+`param`            | `Map<String,String>`   | 获取请求参数的值
+`paramValues`      | `Map<String,String[]>` | 获取请求参数的值，获取多个值的时候使用。
+`header`           | `Map<String,String>`   | 获取请求头的信息
+`headerValues`     | `Map<String,String[]>` | 获取请求头的信息，获取多个值的情况
+`cookie`           | `Map<String,Cookie>`   | 获取当前请求的 Cookie 信息
+`initParam`        | `Map<String,String>`   | 获取在 web.xml 中配置的`<context-param>`上下文参数
 
 ### 四个域对象
 ```jsp
