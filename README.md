@@ -59,6 +59,7 @@
     * [Ajax](web/ajax.md)
     * [CSS](web/css.md)
     * [DOM](web/dom.md)
+    * [EL 表达式](web/el.md)
     * [HTML](web/html.md)
     * [jQuery](web/jquery.md)
     * [JavaScript](web/js.md)
