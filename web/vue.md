@@ -16,19 +16,23 @@
 
 
 
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+***************************************************************************************************************
+***************************************************************************************************************
 
-# 安装卸载
+
+
+# 安装运行
+### 安装与卸载
 ```
 npm uninstall vue/cli -g
 npm install -g @vue/cli
 ```
+
+### 创建与运行项目
 ```
 vue create PROJECT_NAME
 npm run serve
 ```
-
 
 # 目录结构
 ```
@@ -46,154 +50,148 @@ npm run serve
 └── test   初始测试目录
 ```
 
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
 # 模板指令
 ### v-text
 
 ### v-html
-
-### v-on:click
-可简写为`@click`  
+用于输出html代码  
 ```vue
-<h1 v-on:click="clickTest">Title<h1/>
-<h1 @click="clickTest">Title<h1/>
+<template>
+    <div v-html="message"></div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            message: '<h1>Test</h1>'
+        }
+    }
+}
+</script>
+```
+
+### v-on:
+用于绑定事件, 可简写为`@`. 如`<div @click='clickAction'></div>`  
+```vue
+<template>
+    <h1 v-on:click="clickTest">Title<h1/>
+    <h1 @click="clickTest">Title<h1/>
+</template>
+
+<script>
+export default {
+    methods: {
+        clickTest() {
+            console.log("Hello World");
+        }
+    }
+}
+</script>
+```
+```vue
 
 <script>
     new Vue({
-        methods: {
-            clickTest: function(){
-                this.msg = "Hello World";
-            }
-        }
     })
 </script>
 ```
 
 ### v-bind:
-可简写为`:`  
-属性绑定(单向绑定, 由数据来决定页面内容)  
+可简写为`:`, 用于属性绑定(单向绑定, 由数据来决定页面内容)  
 
 ### v-model
 双向绑定: 数据可以决定页面的内容, 页面可以改变数据  
 ```vue
-<input v-model='inputText'>
-{{inputText}}
+<template>
+    <input v-model='inputText'>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            inputText: ''
+        }
+    }
+}
+</script>
 ```
 
 ### v-if
 此指令直接删除/增加对应的DOM标签  
 ```vue
-<button @click='toggleTest'>toggle</button>
-<div v-if='appear'>as we can</div>
+<template>
+    <button @click='toggleTest'>toggle</button>
+    <div v-if='appear'>as we can</div>
+</template>
 
-new Vue({
-    data: {
-        appear: true
+<script>
+export default {
+    data() {
+        return {
+            appear: true
+        }
     },
     methods: {
         toggleTest: function(){
             this.appear = !this.appear;
         }
     }
-})
+}
+</script>
 ```
 
 ### v-show
-此指令设置标签的`dispaly:none`属性  
-```vue
-<button @click='toggleTest'>toggle</button>
-<div v-show='appear'>as we can</div>
-
-new Vue({
-    data: {
-        appear: true
-    },
-    methods: {
-        toggleTest: function(){
-            this.appear = !this.appear;
-        }
-    }
-})
-```
+此指令设置标签的`dispaly: none`  
 
 ### v-for
 ```vue
-<ul>
-    <li v-for='(i, index) of list' :key='index'>{{index}}: {{i}}</li>
-</ul>
+<template>
+    <ul>
+        <li v-for='(i, index) of list' :key='index'>{{index}}: {{i}}</li>
+    </ul>
+</template>
 
-new Vue({
-    data: {
-        list: [1, 2, 4, 5, 6]
+<script>
+export default {
+    data() {
+        return {
+            list: [1, 2, 4, 5, 6]
+        }
     }
-})
+}
+</script>
 ```
 
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
-# 组件
-### 组件的使用
+# 注册组件
+### 注册全局组件
 ```vue
-<div id="root">
-    <input v-model='inputValue' placeholder="type something here"/>
-    <button @click='submitClick'>Submit</button>
+<template>
     <ul>
         <todo-item v-for='item of list' :content='item'></todo-item>
     </ul>
-</div>
+</template>
 
 <script>
-    Vue.component('todo-item',{
-        props: ['content'],
-        template: '<li>{{content}}</li>'
-    })
+Vue.component('todo-item',{
+    props: ['content'],
+    template: '<li>{{content}}</li>'
+})
 
-    new Vue({
-        el: "#root",
-        data: {
-            inputValue: '',
-            list: []
-        },
-        methods: {
-            submitClick: function(){
-                this.list.push(this.inputValue);
-                this.inputValue = '';
-            }
+export default {
+    data() {
+        return {
+            list: [1, 2, 3]
         }
-    })
+    }
+}
 </script>
 ```
 
-### 父组件向子组件传值
-通过 **属性** 传递给子组件  
-
-##### 全局组件
+### 注册局部组件
 ```vue
-<ul>
-    <todo-item v-for='item of list' :content='item'></todo-item>
-</ul>
-
-<script>
-    Vue.component('todo-item',{
-        props: ['content'],
-        template: '<li>{{content}}</li>'
-    })
-</script>
-```
-
-##### 局部组件
-```vue
+<!-- 父组件 -->
 <template>
     <div>
         father: <input v-model='inputText'>
@@ -205,9 +203,7 @@ new Vue({
 import Son from './Son.vue'
 
 export default {
-    components: {
-        Son
-    },
+    components: { Son },
     data(){
         return {
             inputText: 0
@@ -217,9 +213,10 @@ export default {
 </script>
 ```
 ```vue
+<!-- 子组件 -->
 <template>
     <div>
-        son: {{number}}
+        son: {{money}}
     </div>
 </template>
 
@@ -230,44 +227,17 @@ export default {
 </script>
 ```
 
+# 组件通信
+### 父组件向子组件传值
+通过 **属性** 传递给子组件, 代码参照 [注册局部组件](#注册局部组件)  
+
 ### 子组件向父组件传值
 通过 **发布订阅** 传递给父组件  
 1. 当创建子组件的时候, 向子组件传递了两个数据: `content`和`index`  
 2. 当点击子组件时, 触发`handleClick()`函数, 并向外触发`delete`事件, 传递`index`参数  
 3. 父组件监听到`delete`事件, 触发`handleDelete()`函数  
-
-##### 全局组件
-```
-<ul>
-    <todo-item v-for='item of list' :content='item' :index='index' @delete='handleDelete'></todo-item>
-</ul>
-
-<script>
-    Vue.component('todo-item',{
-        props: ['content', 'index'],
-        template: '<li @click='handleClick'>{{content}}</li>',
-        methods: {
-            handleClick: function(){
-                this.$emit('delete', this.index)
-            }
-        }
-    })
-
-    new Vue({
-        data: {
-            list: []
-        },
-        methods: {
-            handleDelete: function(index){
-                this.list.splice(index, 1)
-            }
-        }
-    })
-</script>
-```
-
-##### 局部组件
 ```vue
+<!-- 父组件 -->
 <template>
     father's money: {{bank}}
     <Son @send='receiveEvent'></Son>
@@ -277,6 +247,7 @@ export default {
 import Son from './Son'
 
 export default {
+    components: { Son },
     data(){
         return {
             bank: 0
@@ -286,14 +257,12 @@ export default {
         receiveEvent(val){
             this.bank += val
         }
-    },
-    components: {
-        Son
     }
 }
 </script>
 ```
 ```vue
+<!-- 子组件 -->
 <template>
     <button @click='clickEvent'>son send to father</button>
 </template>
@@ -306,8 +275,141 @@ export default {
         }
     },
     methods {
-        sendEvent: function() {
+        sendEvent() {
             this.$emit('send', this.money)
+        }
+    }
+}
+</script>
+```
+
+### 非父子组件通信
+使用`ref`给元素或子组件注册引用信息, 引用的信息将被注册到父组件的`$refs`对象上  
+个人理解是, 父组件中使用`this.$refs.子组建ref值`相当于拿到了子组件的DOM对象  
+```vue
+<template>
+    <div>
+        <h3>父组件</h3>
+        <span @click="clickAction">给子组件发消息</span>
+        <my-component ref="child"></my-component>
+    </div>
+</template>
+
+<script>
+import MyComponent from './MyComponent'
+export default {
+    components: { MyComponent },
+    data() {
+        return {
+
+        }
+    },
+    methods: {
+        clickAction() {
+            this.$refs.child.show("来自父组件的消息");
+        }
+    }
+}
+</script>
+```
+```vue
+<template>
+    <div>
+        <h3>子组件</h3>
+        <span>{{message}}</span>
+    </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            message: ''
+        }
+    },
+    methods: {
+        show(msg) {
+            this.message = msg;
+        }
+    }
+}
+</script>
+```
+
+# 路由配置
+```js
+import Vue from 'vue'
+import Router from 'vue-router'
+Vue.use(Router);
+
+const router = new Router({
+    mode: 'history',
+    routers: [{
+        path: '/test',
+        name: test,
+        component: ()=>import ('../views/Test')
+    }]
+})
+
+export default router
+```
+
+# 路由传参
+query对应path, params对应name  
+
+### params方式
+```vue
+// 父组件发送
+this.$router.push({
+    name: 'test',
+    params: {
+        myParam: this.message
+    }
+});
+```
+```vue
+// 子组件接受
+this.value = this.$route.params.myParam
+```
+
+### query方式
+注意此处的`path`值里面的斜线, 代表路径  
+```vue
+// 父组件发送
+this.$router.push({
+    path: '/test',
+    query: {
+        myParam: this.message
+    }
+});
+```
+```vue
+// 子组件接受
+this.value = this.$route.query.myParam
+```
+
+# 过滤器
+```vue
+<template>
+    <div>
+        <span>{{value | format}}</span>
+    </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            value: 10
+        }
+    },
+    fliters: {
+        format(val) {
+            if(val > 0) {
+                return val;
+            } else {
+                return 0;
+            }
         }
     }
 }
