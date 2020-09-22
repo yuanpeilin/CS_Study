@@ -15,6 +15,7 @@
     - [远程标签](#远程标签)
 - [储存现场](#储存现场)
 - [标签](#标签)
+- [差异](#差异)
 - [底层](#底层)
     - [四大对象](#四大对象)
     - [底层命令](#底层命令)
@@ -165,6 +166,25 @@ git config --list
 * **`git tag -a <tag_name> -m <"message"> [version]`** 指定标签信息
 * **`git tag -d <tag name>`** 删除本地标签
 * **`git push origin :refs/tags/<tag_name>`** 删除远程标签
+
+
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+
+
+# 差异
+### 语法
+`git [--name-only | --name-status] [COMMIT_ID1 COMMIT_ID2 ...] [FILE_NAME]`  
+* `--name-only`将只展示文件名
+* `--name-status`展示文件名和文件状态
+* 添加`FILE_NAME`可以指定比较的文件, 否则将比较所有文件
+
+### 例子
+* **`git diff --name-status <COMMIT_ID1> <COMMIT_ID2>`** 获取两次commit修改的文件
+* **`git diff`** 查看尚未暂存的文件和上个版本之间的差异
+* **`git diff [--cached | --staged]`** 查看已暂存文件和上个版本之间的差异
 
 
 
