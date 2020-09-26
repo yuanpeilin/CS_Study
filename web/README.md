@@ -7,6 +7,7 @@
     - document对象的三个方法
     - DOM对象的常用方法与属性
 * [EL 表达式](el.md)
+* [flex布局](flex.md)
 * [HTML](html.md)
     - 字符实体
     - 表格

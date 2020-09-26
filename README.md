@@ -60,6 +60,7 @@
     * [CSS](web/css.md)
     * [DOM](web/dom.md)
     * [EL 表达式](web/el.md)
+    * [flex布局](web/flex.md)
     * [HTML](web/html.md)
     * [jQuery](web/jquery.md)
     * [JavaScript](web/js.md)
