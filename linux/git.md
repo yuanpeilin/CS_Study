@@ -128,6 +128,7 @@ git config --list
 * **`git remote -v`** 查看远程仓库信息
 
 ### 远程分支
+* **`git checkout -b <LOCAL_BRANCH_NAME> origin/<REMOTE_BRANCH_NAME>`** 本地创建一个跟踪远程的分支
 * **`git branch -vv`** 查看分支详细信息
 * **`git branch --set-upstream-to=origin/dev dev`** 将本地已有的分支和远程已有的分支关联起来
 * **`git push -u origin master`** 把本地仓库推送给远程仓库. 加上-u参数会把本地的master分支和远程master分支关联
