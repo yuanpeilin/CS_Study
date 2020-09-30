@@ -34,14 +34,14 @@ git config --global user.name NAME
 git config --global user.email ENAIL ADDRESS
 ```
 ```sh
-# 配置别名
-git config --global alias.st status
-git config --global alias.sa stash
-git config --global alias.co checkout
 git config --global alias.br branch
 git config --global alias.cm commit
-git config --global alias.lo "log --graph --all --oneline"
-git config --global alias.lol "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global alias.co checkout
+git config --global alias.di diff
+git config --global alias.lo "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global alias.re remote
+git config --global alias.sa stash
+git config --global alias.st status
 ```
 ```sh
 # 查看配置
@@ -163,10 +163,9 @@ git config --list
 # 标签
 * **`git tag`** 查看所有标签
 * **`git show <tag_name>`** 查看标签具体信息
-* **`git tag <tag_name> [COMMIT_ID]`** 新建一个标签, 不输入版本号则默认在当前分支的最新提交
-* **`git tag -a <tag_name> -m <"message"> [version]`** 指定标签信息
+* **`git tag <tag_name> [COMMIT_ID]`** 新建一个lightweight标签, 本质是一个指向commit对象的指针, 使用`git cat-file -t`查看为commit
+* **`git tag -a <tag_name> -m <TAG_DESCRIPTION> [COMMIT_ID]`** 新建一个annotate标签, 是一个tag对象
 * **`git tag -d <tag name>`** 删除本地标签
-* **`git push origin :refs/tags/<tag_name>`** 删除远程标签
 
 
 
@@ -186,6 +185,7 @@ git config --list
 * **`git diff --name-status <COMMIT_ID1> <COMMIT_ID2>`** 获取两次commit修改的文件
 * **`git diff`** 查看尚未暂存的文件和上个版本之间的差异
 * **`git diff [--cached | --staged]`** 查看已暂存文件和上个版本之间的差异
+* **`git diff HEAD`** 查看尚未提交文件与上次提交的差异
 
 
 
@@ -209,3 +209,44 @@ git config --list
 * **`git write-tree`** 生成一个tree对象存储到.git/object
 * **`echo '' | git commit-tree treehash`** 生成一个commit对象
 * **`git ls-files -s`** 查看暂存区
+
+# 目录结构
+```
+.git
+├── COMMIT_EDITMSG   最后一次提交的注释
+├── config   git有关配置
+├── FETCH_HEAD   每个分支最后一次和服务器通信的SHA1值
+├── HEAD   `ref: refs/heads/dev` 当前工作区所在分支
+├── index   二进制文件, 暂存区, 使用 git ls-files -s 查看
+├── ORIG_HEAD
+├── packed-refs
+├── hooks   钩子
+│   ├── applypatch-msg.sample
+│   ├── commit-msg.sample
+│   └── ......
+├── info
+│   └── exclude
+├── logs 提交日志
+│   ├── HEAD
+│   └── refs
+│       ├── heads
+│       └── remotes
+├── objects   存储对象
+│   ├── d0
+│   │   ├── 17c08b44aa8abf163e98693d57536a9cfc863f   二进制文件
+│   │   └── b81b4bf9f7134ed9d898af1fbadb6de51fa492
+│   ├── d1
+│   │   └── f941b9270a3aac4d9832bb0b597deaaf6036e9
+│   ├── ......
+│   ├── info
+│   └── pack
+│       ├── pack-9ac9585083426804d36449397d78a3ae6d5ddff8.idx
+│       └── pack-9ac9585083426804d36449397d78a3ae6d5ddff8.pack
+└── refs   文件内容都是SHA1值
+    ├── heads
+    │   ├── dev
+    │   └── master
+    ├── remotes
+    │   └── origin
+    └── tags
+```
