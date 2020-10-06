@@ -6,9 +6,145 @@
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 
+# 分支控制循环
+### if
+`if`和`then`在同一行的话, 判断条件后要加一个分号
+
+##### 语法
+```sh
+if condition1 then
+    command1
+elif condition2 then
+    command2
+else
+    commandN
+fi
+```
+##### 例子
+```sh
+#!/bin/bash
+read -p "input number " input
+if [ $input -lt 0 ]; then
+    echo 'Positive number'
+elif [ $input -gt 0 ]; then
+    echo 'negative number'
+else
+    echo 'zero'
+fi
+```
+
+### for
+##### 语法
+```sh
+for var in item1 item2 ... itemN
+do
+    command1
+    command2
+    ...
+    commandN
+done
+```
+
+##### 例子
+```sh
+#!/bin/bash
+for TIME in "Morning" "Noon" "Evening"
+do
+    echo "The $TIME of the day."
+done
+```
+
+### while
+##### 语法
+```sh
+while condition
+do
+    command
+done
+```
+
+##### 例子
+```sh
+#!/bin/bash
+num=1
+while [ $num -lt 10 ]
+do
+    echo $num
+    num=`expr $num + 1`
+done
+```
+```sh
+#!/bin/bash
+# 批量增加20个用户并设置密码
+declare –i num=1
+while [ $num -le 20 ]
+do
+    useradd stu$num
+    echo "123456" | passwd --stdin stu$num &> /dev/null
+    num=`expr $num + 1`
+done
+```
+
+### case
+##### 语法
+```sh
+case variable in
+pattern1)
+    command1
+    command2
+    ...
+    commandN
+    ;;
+pattern2）
+    command1
+    command2
+    ...
+    commandN
+    ;;
+*)
+    command
+    ;;
+esac
+```
+
+##### 例子
+```sh
+#!/bin/bash
+read -p "Press a character " KEY
+case $KEY in
+[a-z]|[A-Z])
+    echo "It's a letter."
+    ;;
+[0-9])
+    echo "It's a digit."
+    ;;
+*)
+    echo "It's a symbol."
+esac
+```
+
+### select
+##### 语法
+```sh
+select variable in [list]
+do
+    command
+done
+```
+
+##### 例子
+```sh
+#!/bin/bash
+select var in "dog" "cat" "bee"
+do
+    echo "you like $var"
+    break
+done
+```
 
 
-### 存在性测试
+
+# 存在性测试
 
 表达式           | 存在且非null | 值为null             | 不存在               | 意图
 :--             | :--        | :--                 | :--                  | :-- 
@@ -31,7 +167,7 @@ requires an argument
 Hello jerry
 ```
 
-### 切割字符串
+# 切割字符串
 
 表达式 | 说明
 :--  | :--
@@ -44,7 +180,7 @@ echo ${filename:1:3} # etc
 echo ${filename:5} # apache2
 ```
 
-### 模式匹配
+# 模式匹配
 
 表达式                | 说明
 :--                  | :--
@@ -116,7 +252,7 @@ $?:上一条命令执行后返回的状态, 当返回状态值为0时表示执�
 $$:当前所在进程的进程号
 $!:后台运行的最后一个进程号
 
-### shift
+# shift
 若脚本参数多于9个, 就需要通过shift函数, 让第一个参数出队, 队列中顺序左移, 第10个参数入队到$9中, 因此shift可以处理脚本超过10个参数的情况
 例如:
 ```sh
@@ -208,124 +344,8 @@ file1-ot file2 file比file2旧  (文件修改时间)
 -u file set – user – ID 位被设置
 [ file1 –ef file2 ]  如果文件file1与file2有相同大小（设备数或i结点数）, 则为真
 
-# select
-```
-select  name [in list]
-do
-    statement that can use $name…
-done
-```
-```
-select var in "dog" "cat" "bee" 
-do         
-    break
-done 
-echo "you like $var"
 
-1) dog                                                                          
-2) cat                                                                          
-3) bee                                                                          
-#? 2                                                                            
-you like cat
-```
-# case
-```
-case  变量值  in
-    模式1)
-           命令序列1
-           ;;
-    模式2)
-          命令序列2
-           ;;
-　 ……
-    * )
-          默认执行的命令序列
-esac
-```
-```
-#!/bin/bash
-read  -p  "Press some key, then press Return:“  KEY
-case  "$KEY“  in
-  [a-z]|[A-Z])
-      echo "It's a letter."
-      ;;
-  [0-9])
-      echo "It's a digit."
-      ;;
-  *)
-      echo "It's function keys、Spacebar or other keys. "
-esac
-```
 
-# if
-```
-if  条件测试命令
-    then   命令序列1
-    else   命令序列2
-fi
-```
-```
-if  条件测试命令1;  then
-    命令序列1
-elif  条件测试命令2;  then
-    命令序列2
-elif  ...
-else
-    命令序列n
-fi
-```
-
-# for
-```
-for  变量名  in  取值列表
-do
-    命令序列
-done
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    for TM in "Morning"   "Noon"  "Evening"
-    do
-        echo "The $TM of the day."
-    done
-```
-```
-# 对于使用“/bin/bash”作为登录Shell的系统用户, 检查他们在“/opt”目录中拥有的子目录或文件数量
-# 如果超过100个, 则列出具体个数及对应的用户帐号
-#!/bin/bash
-DIR="/opt"
-LMT=100
-ValidUsers=`grep "/bin/bash" /etc/passwd | cut -d ":" -f 1`
-for UserName  in  $ValidUsers
-do
-    Num=`find $DIR -user $UserName | wc -l`
-    if  [  $Num  -gt  $LMT  ]  ;  then
-         echo "$UserName have $Num files."
-    fi
-done
-```
-# while
-```
- while  命令或表达式
- do
-     命令列表
- done
-```
-```
-# 批量增加20个用户并设置密码
-#!/bin/bash
-declare –i num=1
-while  [  $num -le  20  ]
-do
-    useradd stu$num
-    echo "123456" | passwd --stdin stu$num &> /dev/null
-    num=`expr $num + 1`
-done
-
-until
-until  条件测试命令
-do
-      命令序列
-done
-```
 
 # getopts 不支持长选项
 while getopts :xyn:name
@@ -404,3 +424,5 @@ let num=num+1
 
 --------------------------------------------------------------------------------
 
+
+变量赋值的时候等于号两边不能有空格
