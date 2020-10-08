@@ -28,6 +28,11 @@
 
 
 # 初始配置
+小范围会覆盖大范围的配置, .git/config的配置变量会覆盖/etc/gitconfig中的配置变量
+* `--system`选项对应的配置文件位于/etc/gitconfig, 每一个用户都会生效
+* `--global`选项对应的配置文件位于\~/.gitconfig, 对当前用户的的所有仓库生效
+* 不加参数对应的配置文件位于.git/config, 仅对当前仓库生效
+
 ```sh
 # 身份配置, name会在git log中显示
 git config --global user.name NAME
@@ -46,6 +51,7 @@ git config --global alias.st status
 ```sh
 # 查看配置
 git config --list
+git config --list --show-origin
 ```
 
 
