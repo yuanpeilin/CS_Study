@@ -122,7 +122,7 @@ git log --format="%h - %an, %ar : %s"
     * `git rm [-r] --cached <file>`
 
 ### 其他
-* 修改提交信息 `git commit --amend`
+* 修改提交信息或暂存区 `git commit --amend`
 
 
 
