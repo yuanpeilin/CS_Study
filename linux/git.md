@@ -1,6 +1,7 @@
 # 目录
 - [初始配置](#初始配置)
 - [日志](#日志)
+    - [格式化](#格式化)
 - [撤销](#撤销)
     - [版本回退](#版本回退)
     - [文件回退](#文件回退)
@@ -19,6 +20,7 @@
 - [底层](#底层)
     - [四大对象](#四大对象)
     - [底层命令](#底层命令)
+- [目录结构](#目录结构)
 
 
 
@@ -28,6 +30,11 @@
 
 
 # 初始配置
+小范围会覆盖大范围的配置, .git/config的配置变量会覆盖/etc/gitconfig中的配置变量
+* `--system`选项对应的配置文件位于/etc/gitconfig, 每一个用户都会生效
+* `--global`选项对应的配置文件位于\~/.gitconfig, 对当前用户的的所有仓库生效
+* 不加参数对应的配置文件位于.git/config, 仅对当前仓库生效
+
 ```sh
 # 身份配置, name会在git log中显示
 git config --global user.name NAME
@@ -38,7 +45,7 @@ git config --global alias.br branch
 git config --global alias.cm commit
 git config --global alias.co checkout
 git config --global alias.di diff
-git config --global alias.lo "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global alias.lo "log --graph --oneline --all --format='%C(yellow)%h%Creset %C(red)%d%Creset %s %C(green)(%cr) %C(blue)<%an>'"
 git config --global alias.re remote
 git config --global alias.sa stash
 git config --global alias.st status
@@ -46,6 +53,7 @@ git config --global alias.st status
 ```sh
 # 查看配置
 git config --list
+git config --list --show-origin
 ```
 
 
@@ -60,6 +68,31 @@ git config --list
 * **`git log --oneline --all --graph`** 查看分支图
 * **`git reflog`** 查看所有历史日志
 
+### 格式化
+`git log --pretty=format`常用的选项
+```sh
+git log --pretty=format:"%h - %an, %ar : %s"
+git log --format="%h - %an, %ar : %s"
+```
+
+选项 | 说明
+---- | ---
+%d   | HEAD指针, 分支等相关信息
+%H   | 提交的完整哈希值
+%h   | 提交的简写哈希值
+%T   | 树的完整哈希值
+%t   | 树的简写哈希值
+%P   | 父提交的完整哈希值
+%p   | 父提交的简写哈希值
+%an  | 作者名字
+%ae  | 作者的电子邮件地址
+%ad  | 作者修订日期（可以用 --date=选项 来定制格式）
+%ar  | 作者修订日期，按多久以前的方式显示
+%cn  | 提交者的名字
+%ce  | 提交者的电子邮件地址
+%cd  | 提交日期
+%cr  | 提交日期（距今多长时间）
+%s   | 提交说明
 
 
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
@@ -89,7 +122,7 @@ git config --list
     * `git rm [-r] --cached <file>`
 
 ### 其他
-* 修改提交信息 `git commit --amend`
+* 修改提交信息或暂存区 `git commit --amend`
 
 
 
