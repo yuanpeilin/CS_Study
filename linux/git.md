@@ -19,6 +19,8 @@
 - [底层](#底层)
     - [四大对象](#四大对象)
     - [底层命令](#底层命令)
+- [目录结构](#目录结构)
+- [格式化](#格式化)
 
 
 
@@ -43,7 +45,7 @@ git config --global alias.br branch
 git config --global alias.cm commit
 git config --global alias.co checkout
 git config --global alias.di diff
-git config --global alias.lo "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global alias.lo "log --graph --oneline --all --format='%C(yellow)%h%Creset %C(red)%d%Creset %s %C(green)(%cr) %C(blue)<%an>'"
 git config --global alias.re remote
 git config --global alias.sa stash
 git config --global alias.st status
@@ -256,3 +258,35 @@ git config --list --show-origin
     │   └── origin
     └── tags
 ```
+
+
+
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+
+
+
+# 格式化
+`git log --pretty=format`常用的选项
+```sh
+git log --pretty=format:"%h - %an, %ar : %s"
+git log --format="%h - %an, %ar : %s"
+```
+
+选项 | 说明
+---- | ---
+%H   | 提交的完整哈希值
+%h   | 提交的简写哈希值
+%T   | 树的完整哈希值
+%t   | 树的简写哈希值
+%P   | 父提交的完整哈希值
+%p   | 父提交的简写哈希值
+%an  | 作者名字
+%ae  | 作者的电子邮件地址
+%ad  | 作者修订日期（可以用 --date=选项 来定制格式）
+%ar  | 作者修订日期，按多久以前的方式显示
+%cn  | 提交者的名字
+%ce  | 提交者的电子邮件地址
+%cd  | 提交日期
+%cr  | 提交日期（距今多长时间）
+%s   | 提交说明
