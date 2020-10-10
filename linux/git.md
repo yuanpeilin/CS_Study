@@ -134,6 +134,7 @@ git log --format="%h - %an, %ar : %s"
 # 分支
 ### 新建与删除分支
 * **`git branch`** 查看所有分支
+* **`git branch -vv`** 查看分支详细信息
 * **`git branch <BRANCH_NAME> [COMMIT_HASH]`** 新建一个分支并使分支指向对应的提交对象, 默认为当前分支
 * **`git branch -d <BRANCH_NAME>`** 删除 一个已合并的分支
 * **`git branch -D <BRANCH_NAME>`** 强制删除一个未合并的分支
@@ -161,11 +162,12 @@ git log --format="%h - %an, %ar : %s"
 * **`git remote -v`** 查看远程仓库信息
 
 ### 远程分支
-* **`git checkout -b <LOCAL_BRANCH_NAME> origin/<REMOTE_BRANCH_NAME>`** 本地创建一个跟踪远程的分支
-* **`git branch -vv`** 查看分支详细信息
+* **`git branch -r`** 查看远程分支
+* **`git checkout -b <LOCAL_BRANCH_NAME> origin/<REMOTE_BRANCH_NAME>`** 本地新建一个跟踪远程的分支
 * **`git branch --set-upstream-to=origin/dev dev`** 将本地已有的分支和远程已有的分支关联起来
 * **`git push -u origin master`** 把本地仓库推送给远程仓库. 加上-u参数会把本地的master分支和远程master分支关联
 * **`git push origin --delete <remote-branch-name>`** 删除远程分支
+* **`git push origin :<remote-branch-name>`** 删除远程分支(推送空分支到远程)
 * **`git remote prune origin --dry-rnu`** 列出仍在跟踪但远程已删除的分支
 
 ### 远程标签
