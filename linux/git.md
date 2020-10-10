@@ -45,7 +45,7 @@ git config --global alias.br branch
 git config --global alias.cm commit
 git config --global alias.co checkout
 git config --global alias.di diff
-git config --global alias.lo "log --graph --oneline --all --format='%C(yellow)%h%Creset %C(red)%d%Creset %s %C(green)(%cr) %C(blue)<%an>'"
+git config --global alias.lo "log --graph --oneline --all --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(green)(%cr) %C(blue)<%an>'"
 git config --global alias.re remote
 git config --global alias.sa stash
 git config --global alias.st status
@@ -67,6 +67,7 @@ git config --list --show-origin
 * **`git log`** 查看最近三次的提交
 * **`git log --oneline --all --graph`** 查看分支图
 * **`git reflog`** 查看所有历史日志
+* **`git log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(green)(%cr) %C(blue)<%an> <FILE>'`** 查看某个文件的修改历史
 
 ### 格式化
 `git log --pretty=format`常用的选项
