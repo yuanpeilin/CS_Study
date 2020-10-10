@@ -159,6 +159,7 @@ git log --format="%h - %an, %ar : %s"
 * **`git remote add <repository name> <SSH | HTTPS>`** 使本地仓库与远程仓库关联
 * **`git clone <SSH | HTTPS>`** 克隆一个远程仓库
 * **`git pull origin <REMOTE_BRANCH_NAME>`** 更新代码
+* **`git push origin <local-branch-name>:<remote-branch-name>`** 推送本地分支到制定的远程分支
 * **`git remote -v`** 查看远程仓库信息
 
 ### 远程分支
