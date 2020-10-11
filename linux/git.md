@@ -21,6 +21,7 @@
     - [四大对象](#四大对象)
     - [底层命令](#底层命令)
 - [目录结构](#目录结构)
+- [变基](#变基)
 
 
 
@@ -289,3 +290,8 @@ git log --format="%h - %an, %ar : %s"
     │   └── origin
     └── tags
 ```
+
+# 变基
+* **`git rebase master`** 将当前分支(主题分支)的修改变基到master分支(目标分支)上
+* **`git rebase <BASE_BRANCH> <TOPIC_BRANC>`** 将主题分支变基到目标分支上(BASE_BRANCH <- TOPIC_BRANC)
+* **`git rebase --onto master server client`** 找出client分支从server分支分歧之后的补丁, 然后把这些补丁在master分支上应用, 让client看起来像直接基于master修改一样
