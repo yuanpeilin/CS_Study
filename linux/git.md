@@ -21,6 +21,7 @@
     - [四大对象](#四大对象)
     - [底层命令](#底层命令)
 - [目录结构](#目录结构)
+- [变基](#变基)
 
 
 
@@ -45,7 +46,7 @@ git config --global alias.br branch
 git config --global alias.cm commit
 git config --global alias.co checkout
 git config --global alias.di diff
-git config --global alias.lo "log --graph --oneline --all --format='%C(yellow)%h%Creset %C(red)%d%Creset %s %C(green)(%cr) %C(blue)<%an>'"
+git config --global alias.lo "log --graph --oneline --all --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(green)(%cr) %C(blue)<%an>'"
 git config --global alias.re remote
 git config --global alias.sa stash
 git config --global alias.st status
@@ -67,6 +68,7 @@ git config --list --show-origin
 * **`git log`** 查看最近三次的提交
 * **`git log --oneline --all --graph`** 查看分支图
 * **`git reflog`** 查看所有历史日志
+* **`git log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(green)(%cr) %C(blue)<%an> <FILE>'`** 查看某个文件的修改历史
 
 ### 格式化
 `git log --pretty=format`常用的选项
@@ -111,15 +113,15 @@ git log --format="%h - %an, %ar : %s"
 
 ### 文件回退
 * **Modified -> Unmodified:** 撤销尚未提交到暂存区的修改
-    * `git checkout -- <file>`
+    * `git checkout -- <FILE>`
     * `git restore <FILE>`
 * **Staged -> Modified:** 可以把提交到暂存区的修改unstaged(撤销)
-    * `git reset HEAD <file>`
+    * `git reset HEAD <FILE>`
     * `git restore --staged <FILE>`
 * **Unmodified -> Untracked:** 删除一个文件
-    * `git rm <file>`
+    * `git rm <FILE>`
 * **Staged -> Untracked:** 取消追踪已追踪文件
-    * `git rm [-r] --cached <file>`
+    * `git rm [-r] --cached <FILE>`
 
 ### 其他
 * 修改提交信息或暂存区 `git commit --amend`
@@ -141,11 +143,11 @@ git log --format="%h - %an, %ar : %s"
 
 ### 切换分支
 * **`git checkout <BRANCH_NAME | TAG_NAME>`** 切换分支
-* **`git checkout -b <name>`** 创建并切换到创建的分支
+* **`git checkout -b <BRANCH_NAME>`** 创建并切换到创建的分支
 
 ### 合并分支
-* **`git merge <name>`** 合并某分支到当前分支
-* **`git merge --no-ff [-m message] <name>`** --no-ff参数, 表示禁用 **Fast forward** 模式
+* **`git merge <BRANCH_NAME>`** 合并某分支到当前分支
+* **`git merge --no-ff [-m message] <BRANCH_NAME>`** --no-ff参数, 表示禁用 **Fast forward** 模式
 
 
 
@@ -156,24 +158,26 @@ git log --format="%h - %an, %ar : %s"
 
 # 远程
 ### 远程仓库
-* **`git remote add <repository name> <SSH | HTTPS>`** 使本地仓库与远程仓库关联
+* **`git remote add <REPOSITORY_NAME> <SSH | HTTPS>`** 使本地仓库与远程仓库关联
 * **`git clone <SSH | HTTPS>`** 克隆一个远程仓库
 * **`git pull origin <REMOTE_BRANCH_NAME>`** 更新代码
-* **`git push origin <local-branch-name>:<remote-branch-name>`** 推送本地分支到制定的远程分支
+* **`git push origin <LOCAL_BRANCH_NAME>:<REMOTE_BRANCH_NAME>`** 推送本地分支到制定的远程分支
 * **`git remote -v`** 查看远程仓库信息
 
 ### 远程分支
 * **`git branch -r`** 查看远程分支
 * **`git checkout -b <LOCAL_BRANCH_NAME> origin/<REMOTE_BRANCH_NAME>`** 本地新建一个跟踪远程的分支
-* **`git branch --set-upstream-to=origin/dev dev`** 将本地已有的分支和远程已有的分支关联起来
+* **`git branch --set-upstream-to=origin/<REMOTE_BRANCH_NAME> <LOCAL_BRANCH_NAME>`** 将本地已有的分支和远程已有的分支关联起来
 * **`git push -u origin master`** 把本地仓库推送给远程仓库. 加上-u参数会把本地的master分支和远程master分支关联
-* **`git push origin --delete <remote-branch-name>`** 删除远程分支
-* **`git push origin :<remote-branch-name>`** 删除远程分支(推送空分支到远程)
+* **`git push origin --delete <REMOTE_BRANCH_NAME>`** 删除远程分支
+* **`git push origin :<REMOTE_BRANCH_NAME>`** 删除远程分支(推送空分支到远程)
 * **`git remote prune origin --dry-rnu`** 列出仍在跟踪但远程已删除的分支
 
 ### 远程标签
-* **`git push origin <tag_name>`** 推送标签到远程
+* **`git push origin <TAG_NAME>`** 推送标签到远程
 * **`git push origin --tags`** 推送所有标签到远程
+* **`git push origin --delete <TAG_NAME>`** 删除远程标签(删除本地标签后, 远程标签不会删除, 必须手动删除远程标签)
+* **`git push origin :refs/tags/<TAG_NAME>`** 删除远程标签
 
 
 
@@ -198,10 +202,10 @@ git log --format="%h - %an, %ar : %s"
 
 # 标签
 * **`git tag`** 查看所有标签
-* **`git show <tag_name>`** 查看标签具体信息
-* **`git tag <tag_name> [COMMIT_ID]`** 新建一个lightweight标签, 本质是一个指向commit对象的指针, 使用`git cat-file -t`查看为commit
-* **`git tag -a <tag_name> -m <TAG_DESCRIPTION> [COMMIT_ID]`** 新建一个annotate标签, 是一个tag对象
-* **`git tag -d <tag name>`** 删除本地标签
+* **`git show <TAG_NAME>`** 查看标签具体信息
+* **`git tag <TAG_NAME> [COMMIT_ID]`** 新建一个lightweight标签, 本质是一个指向commit对象的指针, 使用`git cat-file -t`查看为commit
+* **`git tag -a <TAG_NAME> -m <TAG_DESCRIPTION> [COMMIT_ID]`** 新建一个annotate标签, 是一个tag对象
+* **`git tag -d <TAG_NAME>`** 删除本地标签
 
 
 
@@ -220,7 +224,7 @@ git log --format="%h - %an, %ar : %s"
 ### 例子
 * **`git diff --name-status <COMMIT_ID1> <COMMIT_ID2>`** 获取两次commit修改的文件
 * **`git diff`** 查看尚未暂存的文件和上个版本之间的差异
-* **`git diff [--cached | --staged]`** 查看已暂存文件和上个版本之间的差异
+* **`git diff <--cached | --staged>`** 查看已暂存文件和上个版本之间的差异
 * **`git diff HEAD`** 查看尚未提交文件与上次提交的差异
 
 
@@ -240,11 +244,11 @@ git log --format="%h - %an, %ar : %s"
 ### 底层命令
 * **`git cat-file -p [COMMIT_HASH]`** 查对象的**内容**
 * **`git cat-file -t [COMMIT_HASH]`** 查对象的**类型**
+* **`git ls-files -s`** 查看暂存区
 * **`git hash-object -w FILE_URL`** 生成一个key:value(HashCode:压缩后的文件)存储到.git/object
 * **`git update-index --add --cacheinfo 100644 hash test.txt`** 往暂存区添加一条记录
 * **`git write-tree`** 生成一个tree对象存储到.git/object
 * **`echo '' | git commit-tree treehash`** 生成一个commit对象
-* **`git ls-files -s`** 查看暂存区
 
 # 目录结构
 ```
@@ -286,3 +290,8 @@ git log --format="%h - %an, %ar : %s"
     │   └── origin
     └── tags
 ```
+
+# 变基
+* **`git rebase master`** 将当前分支(主题分支)的修改变基到master分支(目标分支)上
+* **`git rebase <BASE_BRANCH> <TOPIC_BRANC>`** 将主题分支变基到目标分支上(BASE_BRANCH <- TOPIC_BRANC)
+* **`git rebase --onto master server client`** 找出client分支从server分支分歧之后的补丁, 然后把这些补丁在master分支上应用, 让client看起来像直接基于master修改一样
