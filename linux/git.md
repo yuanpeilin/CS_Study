@@ -175,6 +175,8 @@ git log --format="%h - %an, %ar : %s"
 ### 远程标签
 * **`git push origin <TAG_NAME>`** 推送标签到远程
 * **`git push origin --tags`** 推送所有标签到远程
+* **`git push origin --delete <TAG_NAME>`** 删除远程标签(删除本地标签后, 远程标签不会删除, 必须手动删除远程标签)
+* **`git push origin :refs/tags/<TAG_NAME>`** 删除远程标签
 
 
 
