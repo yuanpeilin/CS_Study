@@ -1,5 +1,5 @@
 # 目录
-- [初始配置](#初始配置)
+- [配置](#配置)
 - [日志](#日志)
     - [格式化](#格式化)
 - [撤销](#撤销)
@@ -30,33 +30,26 @@
 
 
 
-# 初始配置
+# 配置
+### 范围
 小范围会覆盖大范围的配置, .git/config的配置变量会覆盖/etc/gitconfig中的配置变量
-* `--system`选项对应的配置文件位于/etc/gitconfig, 每一个用户都会生效
-* `--global`选项对应的配置文件位于\~/.gitconfig, 对当前用户的的所有仓库生效
 * 不加参数对应的配置文件位于.git/config, 仅对当前仓库生效
+* `--global`选项对应的配置文件位于\~/.gitconfig, 对当前用户的的所有仓库生效
+* `--system`选项对应的配置文件位于/etc/gitconfig, 每一个用户都会生效
 
+### 查看配置
 ```sh
-# 身份配置, name会在git log中显示
-git config --global user.name NAME
-git config --global user.email ENAIL ADDRESS
-```
-```sh
-git config --global alias.br branch
-git config --global alias.cm commit
-git config --global alias.co checkout
-git config --global alias.di diff
-git config --global alias.lo "log --graph --oneline --all --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(green)(%cr) %C(blue)<%an>'"
-git config --global alias.re remote
-git config --global alias.sa stash
-git config --global alias.st status
-```
-```sh
-# 查看配置
-git config --list
+git config [--system | --global] --list
 git config --list --show-origin
 ```
 
+### push.default
+2.0之前为matching, 2.0之后为simple
+* **nothing:** push操作无效, 除非显式指定远程分支, 例如git push origin develop
+* **current:** push当前分支到远程同名分支, 如果远程同名分支不存在则自动创建同名分支
+* **upstream:** push当前分支到它的upstream分支上（这一项其实用于经常从本地分支push/pull到同一远程仓库的情景, 这种模式叫做central workflow）
+* **simple:** simple和upstream是相似的, 只有一点不同, simple必须保证本地分支和它的远程 upstream分支同名, 否则会拒绝push操作
+* **matching:** push所有本地和远程两端都存在的同名分支
 
 
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
@@ -89,7 +82,7 @@ git log --format="%h - %an, %ar : %s"
 %an  | 作者名字
 %ae  | 作者的电子邮件地址
 %ad  | 作者修订日期（可以用 --date=选项 来定制格式）
-%ar  | 作者修订日期，按多久以前的方式显示
+%ar  | 作者修订日期, 按多久以前的方式显示
 %cn  | 提交者的名字
 %ce  | 提交者的电子邮件地址
 %cd  | 提交日期
@@ -167,7 +160,7 @@ git log --format="%h - %an, %ar : %s"
 ### 远程分支
 * **`git branch -r`** 查看远程分支
 * **`git checkout -b <LOCAL_BRANCH_NAME> origin/<REMOTE_BRANCH_NAME>`** 本地新建一个跟踪远程的分支
-* **`git branch --set-upstream-to=origin/<REMOTE_BRANCH_NAME> <LOCAL_BRANCH_NAME>`** 将本地已有的分支和远程已有的分支关联起来
+* **`git branch --set-upstream-to=origin/<REMOTE_BRANCH_NAME> <LOCAL_BRANCH_NAME>`** 将本地已有的分支和远程已有的分支关联起来(设置上游分支)
 * **`git push -u origin master`** 把本地仓库推送给远程仓库. 加上-u参数会把本地的master分支和远程master分支关联
 * **`git push origin --delete <REMOTE_BRANCH_NAME>`** 删除远程分支
 * **`git push origin :<REMOTE_BRANCH_NAME>`** 删除远程分支(推送空分支到远程)
