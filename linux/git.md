@@ -216,9 +216,9 @@ git log --format="%h - %an, %ar : %s"
 
 ### 例子
 * **`git diff --name-status <COMMIT_ID1> <COMMIT_ID2>`** 获取两次commit修改的文件
-* **`git diff`** 查看尚未暂存的文件和上个版本之间的差异
-* **`git diff <--cached | --staged>`** 查看已暂存文件和上个版本之间的差异
-* **`git diff HEAD`** 查看尚未提交文件与上次提交的差异
+* **`git diff`** 查看工作区和暂存区的差异(未暂存的修改)
+* **`git diff <--cached | --staged>`** 查看暂存区和版本库的差异(已暂存的修改)
+* **`git diff HEAD`** 查看工作区和版本库差异
 
 
 
