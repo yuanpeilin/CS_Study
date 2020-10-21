@@ -100,16 +100,16 @@ git log --format="%h - %an, %ar : %s"
 * **回退到上一个版本** `git reset [--hard | --mixed | --soft] HEAD^`
 * **回退到指定版本** `git reset [--hard | --mixed | --soft] <COMMIT_ID>`
 * **说明**
-    * `--soft` 不修改working directory和index, 只修改**HEAD**的内容. 本质上是撤销了上一次的commit命令
+    * `--soft` 不修改working directory和index, 只修改**HEAD**的内容. 本质上是撤销了某一次的commit命令
     * `--mixed` 不修改working directory, 只修改**index**和**HEAD**的内容
     * `--hard` 修改**working directory**和**index**和**HEAD**的内容
 
 ### 文件回退
 * **Modified -> Unmodified:** 撤销尚未提交到暂存区的修改
-    * `git checkout -- <FILE>`
+    * `git checkout HEAD -- <FILE>` 将暂存区和工作区换成HEAD指向的file
     * `git restore <FILE>`
-* **Staged -> Modified:** 可以把提交到暂存区的修改unstaged(撤销)
-    * `git reset HEAD <FILE>`
+* **Staged -> Modified:** 可以把提交到暂存区的修改unstaged
+    * `git reset HEAD -- <FILE>` 将暂存区的file替换成HEAD指向的file
     * `git restore --staged <FILE>`
 * **Unmodified -> Untracked:** 删除一个文件
     * `git rm <FILE>`
