@@ -4,6 +4,7 @@
     * [垃圾回收](java/gc.md)
     * [JVM](java/jvm.md)
     * [内存分配](java/memoryallocate.md)
+    * [消息队列](mq.md)
     * [多线程](java/mutithread.md)
     * [其他](java/others.md)
     * [String](java/string.md)

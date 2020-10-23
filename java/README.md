@@ -18,6 +18,7 @@
     - 堆区(Heap)
     - 方法区(Method Area)
     - 运行时常量池(Runtime Constant Pool)
+* [消息队列](mq.md)
 * [多线程](mutithread.md)
     - 基本性质
     - volatile
