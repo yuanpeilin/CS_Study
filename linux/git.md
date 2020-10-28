@@ -45,10 +45,10 @@ git config --list --show-origin
 
 ### push.default
 2.0之前为matching, 2.0之后为simple
-* **nothing:** push操作无效, 除非显式指定远程分支, 例如git push origin develop
+* **nothing:** push操作无效, 除非显式指定远程分支, 例如`git push origin develop`
 * **current:** push当前分支到远程同名分支, 如果远程同名分支不存在则自动创建同名分支
-* **upstream:** push当前分支到它的upstream分支上（这一项其实用于经常从本地分支push/pull到同一远程仓库的情景, 这种模式叫做central workflow）
-* **simple:** simple和upstream是相似的, 只有一点不同, simple必须保证本地分支和它的远程 upstream分支同名, 否则会拒绝push操作
+* **upstream:** push当前分支到它的upstream分支上(这种模式叫做central workflow)
+* **simple:** simple和upstream是相似的, 只有一点不同, simple必须保证本地分支和它的远程upstream分支同名, 否则会拒绝push操作
 * **matching:** push所有本地和远程两端都存在的同名分支
 
 
@@ -58,10 +58,10 @@ git config --list --show-origin
 
 
 # 日志
-* **`git log`** 查看最近三次的提交
+* **`git log`** 查看的提交
 * **`git log --oneline --all --graph`** 查看分支图
 * **`git reflog`** 查看所有历史日志
-* **`git log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(green)(%cr) %C(blue)<%an> <FILE>'`** 查看某个文件的修改历史
+* **`git log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(green)(%cr) %C(blue)<%an> <FILE_PATH>'`** 查看某个文件的修改历史
 
 ### 格式化
 `git log --pretty=format`常用的选项
@@ -81,12 +81,12 @@ git log --format="%h - %an, %ar : %s"
 %p   | 父提交的简写哈希值
 %an  | 作者名字
 %ae  | 作者的电子邮件地址
-%ad  | 作者修订日期（可以用 --date=选项 来定制格式）
+%ad  | 作者修订日期(可以用--date=选项 来定制格式)
 %ar  | 作者修订日期, 按多久以前的方式显示
 %cn  | 提交者的名字
 %ce  | 提交者的电子邮件地址
 %cd  | 提交日期
-%cr  | 提交日期（距今多长时间）
+%cr  | 提交日期(距今多长时间)
 %s   | 提交说明
 
 
@@ -130,8 +130,8 @@ git log --format="%h - %an, %ar : %s"
 ### 新建与删除分支
 * **`git branch`** 查看所有分支
 * **`git branch -vv`** 查看分支详细信息
-* **`git branch <BRANCH_NAME> [COMMIT_HASH]`** 新建一个分支并使分支指向对应的提交对象, 默认为当前分支
-* **`git branch -d <BRANCH_NAME>`** 删除 一个已合并的分支
+* **`git branch <BRANCH_NAME> [COMMIT_ID]`** 新建一个分支并使分支指向对应的提交对象, 默认为当前分支
+* **`git branch -d <BRANCH_NAME>`** 删除一个已合并的分支
 * **`git branch -D <BRANCH_NAME>`** 强制删除一个未合并的分支
 
 ### 切换分支
@@ -154,17 +154,17 @@ git log --format="%h - %an, %ar : %s"
 * **`git remote add <REPOSITORY_NAME> <SSH | HTTPS>`** 使本地仓库与远程仓库关联
 * **`git clone <SSH | HTTPS>`** 克隆一个远程仓库
 * **`git pull origin <REMOTE_BRANCH_NAME>`** 更新代码
-* **`git push origin <LOCAL_BRANCH_NAME>:<REMOTE_BRANCH_NAME>`** 推送本地分支到制定的远程分支
 * **`git remote -v`** 查看远程仓库信息
 
 ### 远程分支
 * **`git branch -r`** 查看远程分支
+* **`git branch --set-upstream-to=origin/<REMOTE_BRANCH_NAME> <LOCAL_BRANCH_NAME>`** 将本地已有分支和远程已有分支关联起来(设置上游分支)
 * **`git checkout -b <LOCAL_BRANCH_NAME> origin/<REMOTE_BRANCH_NAME>`** 本地新建一个跟踪远程的分支
-* **`git branch --set-upstream-to=origin/<REMOTE_BRANCH_NAME> <LOCAL_BRANCH_NAME>`** 将本地已有的分支和远程已有的分支关联起来(设置上游分支)
-* **`git push -u origin master`** 把本地仓库推送给远程仓库. 加上-u参数会把本地的master分支和远程master分支关联
+* **`git checkout <REMOTE_BRANCH_NAME>`** 本地不存在对应的分支, 新建一个跟踪远程的分支并切换
+* **`git remote prune origin --dry-rnu`** 列出仍在跟踪但远程已删除的分支
 * **`git push origin --delete <REMOTE_BRANCH_NAME>`** 删除远程分支
 * **`git push origin :<REMOTE_BRANCH_NAME>`** 删除远程分支(推送空分支到远程)
-* **`git remote prune origin --dry-rnu`** 列出仍在跟踪但远程已删除的分支
+* **`git push origin <LOCAL_BRANCH_NAME>:<REMOTE_BRANCH_NAME>`** 推送本地分支到制定的远程分支
 
 ### 远程标签
 * **`git push origin <TAG_NAME>`** 推送标签到远程
@@ -179,12 +179,12 @@ git log --format="%h - %an, %ar : %s"
 
 
 
-# 储存现场
-* **`git stach`** 储藏工作现场
-* **`git stash list`** 查看所有的储存现场
-* **`git stash apply`** 恢复现场, 不删除stash
-* **`git stash pop`** 恢复现场, 并删除stash
-* **`git stash drop`** 删除stach
+# 贮藏
+* **`git stach`** 
+* **`git stash list`** 查看所有的贮藏
+* **`git stash apply`** 恢复工作区, 不删除stash
+* **`git stash pop`** 恢复工作区现场, 并删除stash
+* **`git stash drop`** 删除stash
 
 
 
@@ -209,7 +209,7 @@ git log --format="%h - %an, %ar : %s"
 
 # 差异
 ### 语法
-`git [--name-only | --name-status] [COMMIT_ID1 COMMIT_ID2 ...] [FILE_NAME]`  
+`git [--name-only | --name-status] [COMMIT_ID...] [FILE_NAME]`  
 * `--name-only`将只展示文件名
 * `--name-status`展示文件名和文件状态
 * 添加`FILE_NAME`可以指定比较的文件, 否则将比较所有文件
