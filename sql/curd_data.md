@@ -118,7 +118,7 @@ SELECT select_expr [, select_expr ...]
 DESTINCT关键字只返回不同的值, 即相同的值只返回一次  
 如果修饰两个或两个以上的列, 那么以两个列同时为条件, 只有两个列的值都相同时, 才算相同  
 ```sql
-SELECT DISTINCT  vend_id, prod_price FROM products;
+SELECT vend_id, prod_price FROM products;
 +---------+------------+
 | vend_id | prod_price |
 +---------+------------+
