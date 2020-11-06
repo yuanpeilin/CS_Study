@@ -12,7 +12,7 @@
 * [增删查改_表](curd_table.md)
 * [游标](cursor.md)
 * [执行计划](explain.md)
-* [全文搜索](sql/fulltext.md)
+* [全文搜索](fulltext.md)
     - 概述
     - 创建全文本搜索
     - 使用全文本搜索
