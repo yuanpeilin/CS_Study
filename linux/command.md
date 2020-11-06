@@ -571,7 +571,8 @@ $ find / \( -size +1k -a -size -10M -a -type f \) -exec rm -rf {} \;
 
 # grep
 ### 语法
-`-i` 
+* `-i` 忽略大小写
+* `-r` 递归, 搜索目录
 `-o` 
 `-v` 
 `-A` 
