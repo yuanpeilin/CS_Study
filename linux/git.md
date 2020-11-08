@@ -22,6 +22,7 @@
     - [底层命令](#底层命令)
 - [目录结构](#目录结构)
 - [变基](#变基)
+- [revert](#revert)
 
 
 
@@ -289,3 +290,8 @@ git log --format="%h - %an, %ar : %s"
 * **`git rebase <BASE_BRANCH> <TOPIC_BRANC>`** 将主题分支变基到目标分支上(不指定TOPIC_BRANC则默认为当前分支)
 * **`git rebase --onto <BASE_BRANCH> <TOPIC_BRANC>`** 合并到目标分支时不会生产新的提交(类似amend)
 * **`git rebase --onto master server client`** 找出client分支从server分支分歧之后的补丁, 然后把这些补丁在master分支上应用, 让client看起来像直接基于master修改一样
+
+# revert
+* **`git revert HEAD`** 撤销HEAD的修改
+* **`git revert HEAD~`** 撤销HEAD~的修改(不会撤销HEAD的修改, 只撤销一个commit的修改)
+* **`git rebase <COMMIT_ID>`** 
