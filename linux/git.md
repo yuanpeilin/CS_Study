@@ -21,6 +21,7 @@
     - [四大对象](#四大对象)
     - [底层命令](#底层命令)
 - [目录结构](#目录结构)
+- [cherry-pick](#cherry-pick)
 - [变基](#变基)
 - [revert](#revert)
 
@@ -284,6 +285,9 @@ git log --format="%h - %an, %ar : %s"
     │   └── origin
     └── tags
 ```
+
+# cherry-pick
+* **`git cherry-pick <COMMIT_ID>`** 取出某一个提交应用到当前分支
 
 # 变基
 * **`git rebase master`** 将当前分支(主题分支)的修改变基到 **master** 分支(目标分支)上
