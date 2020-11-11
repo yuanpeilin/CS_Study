@@ -143,6 +143,7 @@ git log --format="%h - %an, %ar : %s"
 ### 合并分支
 * **`git merge <BRANCH_NAME>`** 合并某分支到当前分支
 * **`git merge --no-ff [-m message] <BRANCH_NAME>`** --no-ff参数, 表示禁用 **Fast forward** 模式
+* **`git merge --squash <BRANCH_NAME>`** 将某分支上所有的提交合并成一个, 应用到当前分支(只是到暂存区, 且不移动HEAD)
 
 
 
