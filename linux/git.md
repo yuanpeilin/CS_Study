@@ -299,4 +299,7 @@ git log --format="%h - %an, %ar : %s"
 # revert
 * **`git revert HEAD`** 撤销HEAD的修改
 * **`git revert HEAD~`** 撤销HEAD~的修改(不会撤销HEAD的修改, 只撤销一个commit的修改)
-* **`git rebase <COMMIT_ID>`** 
+* **`git revert <COMMIT_ID>`** 
+* **`git revert -m 1 <COMMIT_ID>`** 对于 **两个分支合并而来的提交** , 指定第一个分支为主线分支, 撤销第二个分支的修改
+* **`git revert --no-commit`** 不自动生成反向修改的提交, 只改动暂存区
+* **`git revert <COMMIT_ID1>..<COMMIT_ID2>`** 撤销一系列提交, 左开右闭, 不包括1包括2
