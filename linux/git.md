@@ -24,6 +24,7 @@
 - [变基](#变基)
 - [cherry-pick](#cherry-pick)
 - [revert](#revert)
+- [Others](#others)
 
 
 
@@ -303,3 +304,7 @@ git log --format="%h - %an, %ar : %s"
 * **`git revert -m 1 <COMMIT_ID>`** 对于 **两个分支合并而来的提交** , 指定第一个分支为主线分支, 撤销第二个分支的修改
 * **`git revert --no-commit`** 不自动生成反向修改的提交, 只改动暂存区
 * **`git revert <COMMIT_ID1>..<COMMIT_ID2>`** 撤销一系列提交, 左开右闭, 不包括1包括2
+
+# Others
+* **`git log --oneline --graph <BRANCH1>..<BRANCH2>`** 两点: 属于branch2但不属于branch1的提交
+* **`git log --left-right <BRANCH1>...<BRANCH2>`** 三点: 不同时属于branch1和branch2提交
