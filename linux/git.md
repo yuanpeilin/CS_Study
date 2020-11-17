@@ -21,8 +21,8 @@
     - [四大对象](#四大对象)
     - [底层命令](#底层命令)
 - [目录结构](#目录结构)
-- [cherry-pick](#cherry-pick)
 - [变基](#变基)
+- [cherry-pick](#cherry-pick)
 - [revert](#revert)
 
 
@@ -287,14 +287,14 @@ git log --format="%h - %an, %ar : %s"
     └── tags
 ```
 
-# cherry-pick
-* **`git cherry-pick <COMMIT_ID>`** 取出某一个提交应用到当前分支
-
 # 变基
 * **`git rebase master`** 将当前分支(主题分支)的修改变基到 **master** 分支(目标分支)上
 * **`git rebase <BASE_BRANCH> <TOPIC_BRANC>`** 将主题分支变基到目标分支上(不指定TOPIC_BRANC则默认为当前分支)
 * **`git rebase --onto <BASE_BRANCH> <TOPIC_BRANC>`** 合并到目标分支时不会生产新的提交(类似amend)
 * **`git rebase --onto master server client`** 找出client分支从server分支分歧之后的补丁, 然后把这些补丁在master分支上应用, 让client看起来像直接基于master修改一样
+
+# cherry-pick
+* **`git cherry-pick <COMMIT_ID>`** 取出某一个提交应用到当前分支
 
 # revert
 * **`git revert HEAD`** 撤销HEAD的修改
