@@ -185,10 +185,14 @@ git log --format="%h - %an, %ar : %s"
 
 # 贮藏
 * **`git stach`** 
+* **`git stash [-u | --include-untracked]`** stash未追踪的文件
+* **`git stash push [-m 'MESSAGE'] [-- FILE_PATH]`** stash指定文件
 * **`git stash list`** 查看所有的贮藏
-* **`git stash apply`** 恢复工作区, 不删除stash
-* **`git stash pop`** 恢复工作区现场, 并删除stash
-* **`git stash drop`** 删除stash
+* **`git satsh show [STASH]`** 查看某个stash
+* **`git stash apply [--index] [STASH]`** 应用某个stash(不删除)
+* **`git stash pop [--index] [STASH]`** 应用并删除某个stash
+* **`git stash drop [STASH]`** 删除stash
+* **`git stash clear`** 删除所有stash
 
 
 
@@ -308,3 +312,4 @@ git log --format="%h - %an, %ar : %s"
 # Others
 * **`git log --oneline --graph <BRANCH1>..<BRANCH2>`** 两点: 属于branch2但不属于branch1的提交
 * **`git log --left-right <BRANCH1>...<BRANCH2>`** 三点: 不同时属于branch1和branch2提交
+* **`git status -s`** 简单展示状态
