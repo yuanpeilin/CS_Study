@@ -48,6 +48,7 @@
 # commit
 * **`git commit --amend [--no-edit]`** 修改提交信息或暂存区
 
+# config
 ### 查看配置与范围
 * **`git config [--system | --global] --list [--show-origin]`** 小范围会覆盖大范围的配置, .git/config的配置变量会覆盖/etc/gitconfig中的配置变量
     * 不加参数对应的配置文件位于.git/config, 仅对当前仓库生效
