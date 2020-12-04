@@ -198,7 +198,10 @@ git log --format="%h - %an, %ar : %s"
 
 # remote
 * **`git remote add <repository_name> <ssh | https>`** 使本地仓库与远程仓库关联
+* **`git remote`** 查看所有远程仓库
 * **`git remote -v`** 查看远程仓库信息
+* **`git remote show origin`** 查看某个远程仓库详细信息(需要网络)
+* **`git remote rename <old name> <new name>`** 重命名仓库
 * **`git remote prune origin --dry-rnu`** 列出仍在跟踪但远程已删除的分支
 
 # reset
