@@ -80,11 +80,19 @@
 * **`git reflog`** 查看所有历史日志
 * **`git log --oneline --all --graph`** 查看分支图
 * **`git log --format='%c(yellow)%h%creset %c(auto)%d%creset %s %c(green)(%cr) %c(blue)<%an> <file_path>'`** 查看某个文件的修改历史
-* **`git log -s <string>`** 查看某个字符串的历史(俗称鹤嘴锄pickaxe)
+* **`git log -1`** 限制输出长度
+* **`git log [-p | --patch]`** 以补丁的形式查看日志(类似diff, 改动了哪些地方)
+* **`git log --stat`** 查看每一个日志的统计信息(增加多少行, 删除多少行)
+* **`git log --pretty=[oneline | short | full | medium | fuller | raw]`** 格式化日志, oneline最简略, fuller最详细, 默认为full
+* **`git log [--since | --after | --until | --before]=<time>`** 通过时间过滤. time可以是2008-01-15或是2 years 1 day 3 minutes ago
+    * since/after 指定时间开始, 一直输出到最近的一次提交
+    * 从最开始的提交开始, until/before 指定时间
+* **`git log -S <string>`** 查看某个字符串的历史(俗称鹤嘴锄pickaxe)
 * **`git log -g <string>`** 使用正则表达式
 * **`git log --oneline --graph <branch1>..<branch2>`** 两点: 属于branch2但不属于branch1的提交
 * **`git log --left-right <branch1>...<branch2>`** 三点: 不同时属于branch1和branch2提交
 
+### 格式化
 ```sh
 git log --pretty=format:"%h - %an, %ar : %s"
 git log --format="%h - %an, %ar : %s"
@@ -115,7 +123,10 @@ git log --format="%h - %an, %ar : %s"
 * **`git merge --squash <branch_name>`** 将某分支上所有的提交合并成一个, 应用到当前分支(只是到暂存区, 且不移动HEAD)
 
 # others
-* **`git status -s`** 简单展示状态
+* **`git add --renormalize <file_path>`** 设置autocrlf之后更新换行符
+* **`git add -u <file_path>`** 只添加已追踪文件, 不添加新增文件
+* **`git status [ -s | --short]`** 简单展示状态: 左栏为暂存区的状态, 右栏为工作区的状态
+* **`git difftool --tool-help`** 系统支持哪些Git Diff插件
 
 ### 目录结构
 ```
