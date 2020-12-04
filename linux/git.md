@@ -183,11 +183,12 @@ git log --format="%h - %an, %ar : %s"
 # push
 * **`git push origin <tag_name>`** 推送标签到远程
 * **`git push origin --tags`** 推送所有标签到远程
-* **`git push origin --delete <tag_name>`** 删除远程标签(删除本地标签后, 远程标签不会删除, 必须手动删除远程标签)
 * **`git push origin :refs/tags/<tag_name>`** 删除远程标签
 * **`git push origin <local_branch_name>:<remote_branch_name>`** 推送本地分支到制定的远程分支
 * **`git push origin --delete <remote_branch_name>`** 删除远程分支
+* **`git push origin --delete <tag_name>`** 删除远程标签(删除本地标签后, 远程标签不会删除, 必须手动删除远程标签)
 * **`git push origin :<remote_branch_name>`** 删除远程分支(推送空分支到远程)
+* **`git push origin :refs/tags/<tag_name>`** 删除远程标签
 
 # rebase
 * **`git rebase master`** 将当前分支(主题分支)的修改变基到 **master** 分支(目标分支)上
@@ -236,7 +237,8 @@ git log --format="%h - %an, %ar : %s"
 * **`git stash clear`** 删除所有stash
 
 # tag
-* **`git tag`** 查看所有标签
+* **`git tag`** 查看所有标签(可以不带-l)
+* **`git tag <-l | --list> v1.8.5*`** 按照特定模式查找标签
 * **`git tag <tag_name> [commit_id]`** 新建一个lightweight标签, 本质是一个指向commit对象的指针, 使用`git cat-file -t`查看为commit
-* **`git tag -a <tag_name> -m <tag_description> [commit_id]`** 新建一个annotate标签, 是一个tag对象
+* **`git tag -a <tag_name> -m <tag_description> [commit_id]`** 新建一个annotated标签, 是一个tag对象
 * **`git tag -d <tag_name>`** 删除本地标签
