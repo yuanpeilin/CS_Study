@@ -29,6 +29,7 @@
 * **`git branch`** 查看所有分支
 * **`git branch -vv`** 查看分支详细信息
 * **`git branch -r`** 查看远程分支
+* **`git branch [--merged | --no-nerged]`** 查看已/未合并的分支
 * **`git branch <branch_name> [commit_id]`** 新建一个分支并使分支指向对应的提交对象, 默认为当前分支
 * **`git branch -d <branch_name>`** 删除一个已合并的分支
 * **`git branch -d <branch_name>`** 强制删除一个未合并的分支
@@ -127,6 +128,8 @@ git log --format="%h - %an, %ar : %s"
 * **`git add -u <file_path>`** 只添加已追踪文件, 不添加新增文件
 * **`git status [ -s | --short]`** 简单展示状态: 左栏为暂存区的状态, 右栏为工作区的状态
 * **`git difftool --tool-help`** 系统支持哪些Git Diff插件
+* **`git remote show origin`** 查看某个远程仓库详细信息(需要网络)
+* **`git ls-remote <remote-repo>`** 查看某个远程仓库详细信息(需要网络)
 
 ### 目录结构
 ```
@@ -201,7 +204,6 @@ git log --format="%h - %an, %ar : %s"
 * **`git remote add <repository_name> <ssh | https>`** 使本地仓库与远程仓库关联
 * **`git remote`** 查看所有远程仓库
 * **`git remote -v`** 查看远程仓库信息
-* **`git remote show origin`** 查看某个远程仓库详细信息(需要网络)
 * **`git remote rename <old name> <new name>`** 重命名仓库
 * **`git remote prune origin --dry-rnu`** 列出仍在跟踪但远程已删除的分支
 
