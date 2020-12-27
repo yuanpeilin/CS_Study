@@ -71,6 +71,7 @@
     - [scp](#scp)
     - [sed](#sed)
     - [sort](#sort)
+    - [ssh](#ssh)
 * t
     - [tail](#tail)
     - [tar](#tar)
@@ -761,6 +762,17 @@ sort a b | uniq -u > c   # c 是 a - b
 以第二个域为主关键字, 第一个域为次关键字进行排序  
 ```sh
 sort -k1, 1 | sort -s -k2, 2
+```
+
+# ssh
+配置文件位于 */etc/ssh/sshd_config*
+```sh
+PermitRootLogin no # 禁止root登录
+ClientAliveInterval 600 # 断线重连时间
+MaxAuthTries 3 # 最大尝试次数
+PasswordAuthentication no # 禁止密码登录
+PermitEmptyPasswords no # 禁止空白密码登录
+PubkeyAuthentication yes # 使用密钥登录
 ```
 
 # tail
