@@ -1,5 +1,0 @@
-* [colaboratory](colaboratory.md)
-* [conda](conda.md)
-* [ipython](ipython.md)
-* [jupyter](jupyter.md)
-* [python](python.md)

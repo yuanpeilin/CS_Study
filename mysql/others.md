@@ -15,6 +15,51 @@
 <!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 
 
+# MySQL
+### 初始配置
+1. Linux下的mysql安装好之后未设置root密码, 需要使用系统分配的初始帐号登录
+    ```sh
+    $ sudo cat /etc/mysql/debian.cnf
+
+    # Automatically generated for Debian scripts. DO NOT TOUCH!
+    [client]
+    host     = localhost
+    user     = debian-sys-maint
+    password = St749MTlhAuOqlKi
+    socket   = /var/run/mysqld/mysqld.sock
+    [mysql_upgrade]
+    host     = localhost
+    user     = debian-sys-maint
+    password = St749MTlhAuOqlKi
+    socket   = /var/run/mysqld/mysqld.sock
+    ```
+2. 登录方式: mysql有 **auth_socket** 和 **mysql_native_password** 两种登录方式
+    ```sql
+    select user, plugin from mysql.user;
+    +------------------+-----------------------+
+    | user             | plugin                |
+    +------------------+-----------------------+
+    | root             | auth_socket           |
+    | mysql.session    | mysql_native_password |
+    | mysql.sys        | mysql_native_password |
+    | debian-sys-maint | mysql_native_password |
+    +------------------+-----------------------+
+    ```
+3. 修改root密码和登录方式
+    ```sql
+    update mysql.user set authentication_string=PASSWORD('newPwd'), plugin='mysql_native_password' where user='root';
+    ```
+
+### 修改字符集
+* 查看字符集
+    ```sql
+    SHOW VARIABLES LIKE 'character%';
+    ```
+* 修改字符集
+    ```sql
+    set character_set_server = utf8;
+    ```
+
 
 # 数据存放位置
 表的组成详见[索引](index.md/#相关文件)  

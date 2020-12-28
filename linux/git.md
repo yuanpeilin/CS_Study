@@ -64,6 +64,38 @@
 * **simple:** simple和upstream是相似的, 只有一点不同, simple必须保证本地分支和它的远程upstream分支同名, 否则会拒绝push操作
 * **matching:** push所有本地和远程两端都存在的同名分支
 
+### 配置别名
+```sh
+git config --global alias.br      branch
+git config --global alias.cat     cat-file
+git config --global alias.cm      commit
+git config --global alias.co      checkout
+git config --global alias.cp      cherry-pick
+git config --global alias.di      diff
+git config --global alias.dn      'diff --name-status'
+git config --global alias.dc      'diff --cached'
+git config --global alias.ds      'diff --staged'
+git config --global alias.ft      fetch
+git config --global alias.index   'ls-files -s'
+git config --global alias.lo      'log --oneline --graph --all'
+git config --global alias.loa     "log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>' --graph --all"
+git config --global alias.lol     "log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>' --graph"
+git config --global alias.lof     "log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>'"
+git config --global alias.ls      ls-files
+git config --global alias.print   'cat-file -p'
+git config --global alias.rb      rebase
+git config --global alias.re      remote
+git config --global alias.roll    'checkout HEAD --'
+git config --global alias.rs      reset
+git config --global alias.rv      revert
+git config --global alias.sa      stash
+git config --global alias.st      status
+git config --global alias.type    'cat-file -t'
+git config --global alias.tree    'ls-tree -r'
+git config --global alias.unstage 'reset HEAD --'
+git config --global core.editor vim
+```
+
 # diff
 * **`git [--name-only | --name-status] [commit_id...] [file_name]`** 
 * **`git diff --name-status <commit_id1> <commit_id2>`** 获取两次commit修改的文件
@@ -131,7 +163,15 @@ git log --format="%h - %an, %ar : %s"
 * **`git remote show origin`** 查看某个远程仓库详细信息(需要网络)
 * **`git ls-remote <remote-repo>`** 查看某个远程仓库详细信息(需要网络)
 
-### 目录结构
+### 在浏览器打开帮助手册
+安装git-doc
+```sh
+git config --global help.browser google-chrome
+git config --global help.format web
+git config --global web.browser open
+```
+
+### .git目录结构
 ```
 .git
 ├── commit_editmsg   最后一次提交的注释
