@@ -201,7 +201,6 @@ alias .bashrc='vim ~/.bashrc && source ~/.bashrc'
 alias bgrep='cat ~/.bashrc | grep'
 alias calculator='python3'
 alias clean='sudo apt autoclean'
-alias csstudy='cd ~/workspace/cs_study && git status'
 alias desktop='cd ~/Desktop && ls'
 alias document='cd ~/Documents && ls'
 alias download='cd ~/Downloads && ls'
@@ -212,6 +211,7 @@ alias free='free -h'
 alias hgrep='history | grep'
 alias id_rsa.pub='echo "~/.ssh/id_rsa.pub: " && cat ~/.ssh/id_rsa.pub'
 alias install='sudo apt install'
+alias jnotebook='jupyter notebook &>/dev/null &'
 alias l='ls -C'
 alias la='ls -CA'
 alias ll='ls -ClhA'
@@ -237,10 +237,11 @@ alias upgrade='sudo apt full-upgrade'
 alias .vimrc='vim ~/.vimrc'
 alias wl='wc -l'
 alias ws='cd ~/workspace && ls'
-alias yuanpeilin='cd ~/workspace/yuanpeilin.github.io && git status'
 
 # +----------------------------------+
 # |            USER alias            |
 # +----------------------------------+
+alias yuanpeilin='cd ~/workspace/yuanpeilin.github.io && git status'
+alias csstudy='cd ~/workspace/yuanpeilin.github.io && git status'
 alias vultr_japen='ssh ypl@149.28.29.166'
 
