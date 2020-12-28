@@ -6,12 +6,14 @@ conda install jupyter notebook
 ```
 * pip
 ```sh
-pip3 install jupyter
+sudo apt install python3-pip
+sudo pip3 install jupyter
 ```
 
 ### 启动jupyter notebook
 ```
 jupyter notebook
+jupyter notebook &>/dev/null &
 ```
 
 ### 关联conda环境
@@ -45,4 +47,5 @@ Out[2]: 'sha1:1b4ea9662b35:3e3d6a823d264d466f125a0939623c05e7b66007'
 c.NotebookApp.ip='*'
 c.NotebookApp.open_browser = False
 c.NotebookApp.port =8888
+c.ContentsManager.root_dir = '/home/jupyter'
 ```
