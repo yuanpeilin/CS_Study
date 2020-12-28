@@ -1,3 +1,6 @@
+# He is GOD
+![He is GOD](linus.jpg)
+
 * [**面试**](interview/)
     - [面试合集](interview/questions.md)
 * [**Java**](java/)
