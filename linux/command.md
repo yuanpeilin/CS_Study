@@ -347,6 +347,7 @@ $ du -hs *
 * `-size` 根据文件的大小进行查找. 单位为: c(字节) k M G
 * `-user uid | -group gid` 根据所属用户进行查找
 * `-perm 访问权限` 根据访问权限进行查找
+* `-inum <number>` 根据inode进行查找
 
 ### 例子
 根据时间查找:  
