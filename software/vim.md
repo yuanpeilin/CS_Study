@@ -163,4 +163,4 @@ Vim启动时会查找包含在`pack/*/start`中的插件
     ```
 
 ### vimrc
-[vimrc](src/vimrc.md)
+[vimrc](src/vimrc)
