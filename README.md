@@ -20,6 +20,7 @@
     - [Gnome](linux/gnome.md)
     - [Kconfig](linux/kconfig.md)
     - [Makefile](linux/makefile.md)
+    - [Others](linux/others.md)
     - [进程](linux/process.md)
     - [RegEx](linux/regex.md)
     - [shell](linux/shell.md)
