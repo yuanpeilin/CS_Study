@@ -25,6 +25,7 @@
     - [fallocate](#fallocate)
     - [fdisk](#fdisk)
     - [fg](#fg)
+    - [file](#file)
     - [find](#find)
     - [free](#free)
 * g
@@ -332,6 +333,15 @@ $ du -hs *
 
 # fg
 将处于后台的进程恢复到前台运行, 需指定任务序号  
+
+# file
+查看文件详细信息(主要用来查看编码)
+
+### 例子
+```sh
+$ file shell.md 
+shell.md: exported SGML document, UTF-8 Unicode text
+```
 
 # find
 不设置查找范围参数, 则find命令将在当前目录下查找子目录与文件  
