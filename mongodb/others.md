@@ -10,8 +10,33 @@ port=27017 # 端口
 ```
 
 ### 远程访问
-/etc/mongodb.conf 把 bind_ip=127.0.0.1 这一行注释掉或者是修改成 bind_ip=0.0.0.0
+db.createUser({user:'root',pwd:'980620',roles:['root']}) 创建root用户并设置密码
+db.createUser({user:'ypl',pwd:'980620',roles: [{role:'readWrite',db:'ypl'}]})
+db.auth('root','980620') 验证用户, 返回1表示成功(要先执行use admin)
+db.system.users.find() 查看所有用户(要先执行use admin)
+修改 /etc/mongodb.conf
+```
+bind_ip=0.0.0.0
+noauth = off
+auth = true
+```
 
+# 角色
+
+| 角色                 | 描述                                           |
+| -------------------- | ---------------------------------------------- |
+| read                 | 指定数据库的读权限                             |
+| readWrite            | 指定数据库的读写权限                           |
+| readAnyDatabase      | 任何数据的读权限（除了config和local）          |
+| readWriteAnyDatabase | 任何数据的读写权限（除了config和local）        |
+| userAdminAnyDatabase | 指定数据库创建修改用户的权限                   |
+| dbAdminAnyDatabase   | 任何数据库的读取、清理、修改、压缩、统计等权限 |
+| dbAdmin              | 指定数据库的读取、清理、修改、压缩、统计等权限 |
+| userAdmin            | 指定数据库创建和修改用户                       |
+| clusterAdmin         | 对整个集群或者数据库系统进行管理操作           |
+| backup               | 备份MongoDB数据                                |
+| restore              | 还原MongoDB数据                                |
+| root                 | 超级权限                                       |
 
 # 系统初始数据库
 * **local** 这个数据库永远不会被复制, 可以用来存储本地单台服务器的任意集合
