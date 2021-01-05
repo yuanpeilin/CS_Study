@@ -7,8 +7,12 @@
 - [diff](#diff)
 - [grep](#grep)
 - [log](#log)
+    - [格式化](#格式化)
 - [merge](#merge)
 - [others](#others)
+    - [使用不同的配置文件](#使用不同的配置文件)
+    - [在浏览器打开帮助手册](#在浏览器打开帮助手册)
+    - [git目录结构](#git目录结构)
 - [plumbing](#plumbing)
 - [push](#push)
 - [rebase](#rebase)
@@ -160,12 +164,24 @@ git log --format="%h - %an, %ar : %s"
 * **`git add -u <file_path>`** 只添加已追踪文件, 不添加新增文件
 * **`git status [ -s | --short]`** 简单展示状态: 左栏为暂存区的状态, 右栏为工作区的状态
 * **`git difftool --tool-help`** 系统支持哪些Git Diff插件
-* **`git remote show origin`** 查看某个远程仓库详细信息(需要网络)
 * **`git ls-remote <remote-repo>`** 查看某个远程仓库详细信息(需要网络)
+* **`git show <reversion id>:<file apth>`** 查看某个版本中的某个文件
+* **`git gc --prune=now --aggressive`** 清理仓库中的孤儿对象
+* **`git rev-list --count <branch name>`** 计算制定分支的提交数量
+
+### 使用不同的配置文件
+* **`gitdir`** 匹配目录, 注意是 **git** 不是get
+* **`gitdir/i`** 忽略大小写
+* **`onbranch`** 根据分支匹配
+
+```
+[includeIf "gitdir/i:~/Desktop/"]
+    path = ~/Desktop/.gitconfig 
+```
 
 ### 在浏览器打开帮助手册
-安装git-doc
 ```sh
+sudo apt install git-doc
 git config --global help.browser google-chrome
 git config --global help.format web
 git config --global web.browser open
@@ -244,6 +260,7 @@ git config --global web.browser open
 * **`git remote add <repository_name> <ssh | https>`** 使本地仓库与远程仓库关联
 * **`git remote`** 查看所有远程仓库
 * **`git remote -v`** 查看远程仓库信息
+* **`git remote show origin`** 查看某个远程仓库详细信息(需要网络)
 * **`git remote rename <old name> <new name>`** 重命名仓库
 * **`git remote prune origin --dry-rnu`** 列出仍在跟踪但远程已删除的分支
 
