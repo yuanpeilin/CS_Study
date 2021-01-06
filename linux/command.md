@@ -1,95 +1,26 @@
 # 目录
-* a
-    - [at](#at)
-    - [atq](#atq)
-    - [atrm](#atrm)
-* b
-    - [bg](#bg)
-* c
-    - [cat](#cat)
-    - [chattr](#chattr)
-    - [chgrp](#chgrp)
-    - [chkconfig](#chkconfig)
-    - [chmod](#chmod)
-    - [chown](#chown)
-    - [corntab](#corntab)
-    - [cp](#cp)
-    - [cut](#cut)
-* d
-    - [df](#df)
-    - [disown](#disown)
-    - [du](#du)
-* e
-    - [egrep](#egrep)
-* f
-    - [fallocate](#fallocate)
-    - [fdisk](#fdisk)
-    - [fg](#fg)
-    - [file](#file)
-    - [find](#find)
-    - [free](#free)
-* g
-    - [grep](#grep)
-    - [gzip](#gzip)
-* h
-    - [head](#head)
-* i
-    - [ifconfig](#ifconfig)
-    - [imagemagick](#imagemagick)
-* j
-    - [jobs](#jobs)
-    - [join](#join)
-    - [jq](#jq)
-* k
-    - [kill](#kill)
-* l
-    - [less](#less)
-    - [ln](#ln)
-    - [locate](#locate)
-    - [ls](#ls)
-    - [lsattr](#lsattr)
-    - [lsblk](#lsblk)
-    - [lsof](#lsof)
-* m
-    - [md5sum](#md5sum)
-    - [mkdir](#mkdir)
-    - [mkfs](#mkfs)
-    - [mount](#mount)
-* n
-    - [ncdu](#ncdu)
-    - [netstat](#netstat)
-    - [nohub](#nohub)
-* p
-    - [pandoc](#pandoc)
-    - [pgrep](#pgrep)
-    - [pkill](#pkill)
-    - [ps](#ps)
-    - [pstree](#pstree)
-* r
-    - [rsync](#rsync)
-    - [runlevel](#runlevel)
-* s
-    - [scp](#scp)
-    - [sed](#sed)
-    - [shopt](#shopt)
-    - [sort](#sort)
-    - [ssh](#ssh)
-* t
-    - [tail](#tail)
-    - [tar](#tar)
-    - [tee](#tee)
-    - [top](#top)
-    - [tree](#tree)
-    - [truncate](#truncate)
-    - [type](#type)
-* u
-    - [ufw](#ufw)
-    - [uniq](#uniq)
-* w
-    - [whereis](#whereis)
-* x
-    - [xargs](#xargs)
-    - [xmlstarlet](#xmlstarlet)
+* **a** [`at`](#at) [`atq`](#atq) [`atrm`](#atrm)
+* **b** [`bg`](#bg)
+* **c** [`cat`](#cat) [`chattr`](#chattr) [`chgrp`](#chgrp) [`chkconfig`](#chkconfig) [`chmod`](#chmod) [`chown`](#chown) [`corntab`](#corntab) [`cp`](#cp) [`cut`](#cut)
+* **d** [`df`](#df) [`disown`](#disown) [`du`](#du)
+* **e** [`egrep`](#egrep)
+* **f** [`fallocate`](#fallocate) [`fdisk`](#fdisk) [`fg`](#fg) [`file`](#file) [`find`](#find) [`free`](#free)
+* **g** [`grep`](#grep) [`gzip`](#gzip)
+* **h** [`head`](#head)
+* **i** [`ifconfig`](#ifconfig) [`imagemagick`](#imagemagick)
+* **j** [`jobs`](#jobs) [`join`](#join) [`jq`](#jq)
+* **k** [`kill`](#kill)
+* **l** [`less`](#less) [`ln`](#ln) [`locate`](#locate) [`ls`](#ls) [`lsattr`](#lsattr) [`lsblk`](#lsblk) [`lsof`](#lsof)
+* **m** [`md5sum`](#md5sum) [`mkdir`](#mkdir) [`mkfs`](#mkfs) [`mount`](#mount)
+* **n** [`ncdu`](#ncdu) [`netstat`](#netstat) [`nohub`](#nohub)
+* **p** [`pandoc`](#pandoc) [`pgrep`](#pgrep) [`pkill`](#pkill) [`ps`](#ps) [`pstree`](#pstree)
+* **r** [`rsync`](#rsync) [`runlevel`](#runlevel)
+* **s** [`scp`](#scp) [`sed`](#sed) [`shopt`](#shopt) [`sort`](#sort) [`ssh`](#ssh)
+* **t** [`tail`](#tail) [`tar`](#tar) [`tee`](#tee) [`top`](#top) [`tree`](#tree) [`truncate`](#truncate) [`type`](#type)
+* **u** [`ufw`](#ufw) [`uniq`](#uniq)
+* **w** [`whereis`](#whereis)
+* **x** [`xargs`](#xargs) [`xmlstarlet`](#xmlstarlet)
+
 
 
 *****************************************************************************
