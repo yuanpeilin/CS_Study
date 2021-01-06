@@ -71,6 +71,7 @@
 * s
     - [scp](#scp)
     - [sed](#sed)
+    - [shopt](#shopt)
     - [sort](#sort)
     - [ssh](#ssh)
 * t
@@ -747,6 +748,14 @@ scp local_file username@ip: remote_file
 ```
 
 # sed
+
+# shopt
+显示和设置shell中的行为选项
+
+### 例子
+* `shopt` 显示所有的行为及其状态
+* `shopt -s <behavior>` 打开行为
+* `shopt -u <behavior>` 关闭行为
 
 # sort
 对文本文件的内容, 以行为单位来排序  
