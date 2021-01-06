@@ -117,3 +117,4 @@ ul li {
 * `text-decoration: none;` 超链接去掉下划线
 * `border-collapse: collapse;` 表格合并边框
 * `border-radius: 40px;` 设置i边框圆角
+* `font-weight: bold;` 字体加粗
