@@ -182,35 +182,15 @@ HOME=/
 * `--complement` 显示指定字段/字符/字节之外的列
 
 ### 例子
-```
-No Name Mark Percent
-01 tom 69 91
-03  alex  68  98
-```
-
-显示指定的字段:  
 ```sh
+# 显示第2, 3列
 cut -d " " -f 2,3 file
 
-Name Mark
-tom 69
- alex
-```
-
-```sh
+# 显示第2列及之后内容
 cut -d " " -f 2- file
 
-Name Mark Percent
-tom 69 91
- alex  68  98
-```
-
-显示指定字段之外的字段  
-```sh
+# 显示除了第2列及之后的内容(只显示第一列)
 cut -d " " -f 2- --complement file
-No
-01
-03
 ```
 
 # df
