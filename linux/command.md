@@ -374,36 +374,20 @@ gzip -9 test.txt
 
 # imagemagick
 ### 例子
-获取图片信息  
 ```sh
+# 获取图片信息
 identify test.jpg
-```
 
-<br>
-
-转化图片格式  
-```sh
+# 转化图片格式
 convert  test.jpg  test.png
-```
 
-<br>
-
-改变图像大小  
-```sh
+# 改变图像大小
 convert -resize 1024x768 test.jpg test_modify.jpg
-```
 
-<br>
-
-设置图像质量, 质量值为0-100之间的数值, 数字越大, 质量越好. 一般指定70-80  
-```sh
+# 设置图像质量, 质量值为0-100之间的数值, 数字越大, 质量越好. 一般指定70-80
 convert -resize 1024x768 -quality 75 test.jpg test_modify.jpg
-```
 
-<br>
-
-缩放图片  
-```sh
+# 缩放图片
 convert -sample 50%x50% test.jpg test_modify.jpg
 ```
 
