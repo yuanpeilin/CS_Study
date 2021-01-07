@@ -73,7 +73,6 @@
     - [Jupyter](software/jupyter.md)
     - [Linux](software/linux.md)
     - [Shadowsocks](software/shadowsocks.md)
-    - [ssh](software/ssh.md)
     - [Sublime](software/sublime.md)
     - [Vim](software/vim.md)
 * [**Web**](web/)
