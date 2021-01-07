@@ -133,17 +133,14 @@ mkcd() {
     cd "$1"
 }
 
-# +----------------------------------+
-# |             set PS1              |
-# +----------------------------------+
-# \[\e[01;32m\] 设置字体, 01代表加粗, 32代表颜色(范围30-40)
-# \[\e[00m\] 重置颜色
-PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\] \[\e[01;34m\]\w$(git_branch)\[\e[00m\]\$ '
+gadd() {
+    git add "${1:-.}"
+    git status
+}
 
 # +----------------------------------+
 # |          some GIT alias          |
 # +----------------------------------+
-alias gadd='git add'
 alias gbr='git branch'
 alias gbrvv='git branch -vv'
 alias gclone='git clone'
@@ -242,7 +239,6 @@ alias ws='cd ~/workspace && ls'
 # +----------------------------------+
 # |            USER alias            |
 # +----------------------------------+
+PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\] \[\e[01;34m\]\w$(git_branch)\[\e[00m\]\$ '
 alias yuanpeilin='cd ~/workspace/yuanpeilin.github.io && git status'
-alias csstudy='cd ~/workspace/yuanpeilin.github.io && git status'
 alias vultr_japen='ssh ypl@149.28.29.166'
-
