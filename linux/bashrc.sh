@@ -1,8 +1,9 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
+# +----------------------------------+
+# |         System Setting           |
+# +----------------------------------+
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
 
-# If not running interactively, don't do anything
+# If not running interactively, don't do anything ($- will output himBHs)
 case $- in
     *i*) ;;
       *) return;;
@@ -11,9 +12,16 @@ esac
 # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+# History
+HISTSIZE=3000
+HISTFILESIZE=6000
+# don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL=ignoreboth
+# format
+HISTTIMEFORMAT='%F %T '
+# append to the history file, don't overwrite it
+# 多个终端的情况下, 改为追加命令(默认最后的终端会覆盖以前的)
+shopt -s histappend
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -23,70 +31,12 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -98,22 +48,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-# +----------------------------------+
-# |             History              |
-# +----------------------------------+
-HISTSIZE=3000
-HISTFILESIZE=6000
-# don't put duplicate lines or lines starting with space in the history.
-# 忽略连续相同的命令 忽略空格开头的命令
-HISTCONTROL=ignoreboth
-# 格式化历史记录
-HISTTIMEFORMAT='%F %T '
-# append to the history file, don't overwrite it
-# 多个终端的情况下, 改为追加命令(默认最后的终端会覆盖以前的)
-shopt -s histappend
-# 实时追加当前终端的命令到历史
-PROMPT_COMMAND="history -a"
 
 # +----------------------------------+
 # |             function             |
@@ -135,6 +69,7 @@ mkcd() {
 
 gadd() {
     git add "${1:-.}"
+    clear
     git status
 }
 
@@ -175,14 +110,14 @@ alias gsdrop='git stash drop'
 alias gslist='git stash list'
 alias gsshow='git stash show'
 alias gspop='git stash pop'
-alias gst='git status'
+alias gst=' clear && git status'
 alias gtag='git tag'
-# +----------  rollback ------------+
+# rollback
 alias gunstage='git reset HEAD --'
 alias groll='git checkout HEAD --'
 alias gchead='git checkout HEAD --'
 alias grhead='git reset HEAD --'
-# +---------- GIT底层命令 ----------+
+# GIT底层命令
 alias gindex='git ls-files -s'
 alias gtree='git ls-tree -r'
 alias gtype='git cat-file -t'
@@ -195,28 +130,32 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias '.bashrc'='vim ~/.bashrc && source ~/.bashrc'
-alias bgrep='cat ~/.bashrc | grep'
+alias bgrep='cat ~/.bashrc | grep --color=auto'
 alias calculator='python3'
 alias clean='sudo apt autoclean'
 alias desktop='cd ~/Desktop && ls'
 alias document='cd ~/Documents && ls'
 alias download='cd ~/Downloads && ls'
-alias dir='dir --fromat=long'
+alias dir='dir --fromat=long --color=auto'
 alias du='du -h'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 alias free='free -h'
 alias '.gitconfig'='vim ~/.gitconfig'
+alias grep='grep --color=auto'
 
-alias hgrep='history | grep'
+alias hgrep='history | grep --color=auto'
 alias id_rsa.pub='echo "~/.ssh/id_rsa.pub: " && cat ~/.ssh/id_rsa.pub'
 alias install='sudo apt install'
 alias jnotebook='jupyter notebook &>/dev/null &'
-alias l='ls -C'
-alias la='ls -CA'
-alias ll='ls -ClhA'
-alias less='less -m'
+alias l='ls --color=auto -C'
+alias la='ls --color=auto -CA'
+alias ll='ls --color=auto -ClhA'
+alias less='less --color=auto -m'
 
 alias profile='sudo vim /etc/profile && source /etc/profile'
 alias remove='sudo apt autoremove'
+alias s='source ~/.bashrc'
 alias schmod='sudo chmod'
 alias shadowsocks='sudo sslocal -c ~/Documents/ss.json -d restart'
 alias smkdir='sudo mkdir'
@@ -230,6 +169,7 @@ alias t3='tree -L 3'
 alias t4='tree -L 4'
 alias t5='tree -L 5'
 
+alias vdir='vdir --color=auto'
 alias update='sudo apt update'
 alias upgrade='sudo apt full-upgrade'
 alias .vimrc='vim /home/ypl/workspace/yuanpeilin.github.io/software/src/vimrc'
