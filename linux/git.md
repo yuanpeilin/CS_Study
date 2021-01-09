@@ -78,7 +78,7 @@ git config --global alias.cp      cherry-pick
 git config --global alias.di      diff
 git config --global alias.dn      'diff --name-status'
 git config --global alias.dc      'diff --cached'
-git config --global alias.ds      'diff --staged'
+git config --global alias.ds      'diff --stat'
 git config --global alias.ft      fetch
 git config --global alias.index   'ls-files -s'
 git config --global alias.lo      'log --oneline --graph --all'
