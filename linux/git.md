@@ -44,8 +44,11 @@
 * **`git checkout <remote_branch_name>`** 本地不存在对应的分支, 新建一个跟踪远程的分支并切换
 * **`git checkout -b <branch_name>`** 创建并切换到创建的分支
 * **`git checkout -b <local_branch_name> origin/<remote_branch_name>`** 本地新建一个跟踪远程的分支
-* **`git checkout HEAD -- <file>`** 将暂存区和工作区换成HEAD指向的file
-* **`git checkout --conflict=diff3 <file_path>`** 带有base版本的差异比较
+* **`git checkout <file path>`** 将工作区和暂存区的file换成暂存区的file(**只动工作区**)
+    * 修改一个文件, 状态为` M`, 执行命令后修改会被撤销
+    * 修改一个文件添加进暂存区, 再次修改此文件, 状态为`MM`, 修改被撤销而暂存区不变
+* **`git checkout HEAD -- <file path>`** 将暂存区和工作区换成HEAD指向的file(**动工作区和暂存区**)
+* **`git checkout --conflict=diff3 <file path>`** 带有base版本的差异比较
 
 # cherry-pick
 * **`git cherry-pick <commit_id>`** 取出某一个提交应用到当前分支
@@ -271,7 +274,7 @@ git config --global web.browser open
     * `--soft` 不修改working directory和index, 只修改**HEAD**的内容. 本质上是撤销了某一次的commit命令
     * `--mixed` 不修改working directory, 只修改**index**和**HEAD**的内容
     * `--hard` 修改**working directory**和**index**和**HEAD**的内容
-* **`git reset HEAD -- <file>`** 将暂存区的file替换成HEAD指向的file, 可以把提交到暂存区的修改unstaged
+* **`git reset HEAD -- <file>`** 将暂存区的file替换成HEAD指向的file, 可以把提交到暂存区的修改unstaged(**只动暂存区**)
 
 # revert
 * **`git revert HEAD`** 撤销HEAD的修改
