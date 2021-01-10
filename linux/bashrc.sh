@@ -6,7 +6,7 @@
 # If not running interactively, don't do anything ($- will output himBHs)
 case $- in
     *i*) ;;
-      *) return;;
+    *) return;;
 esac
 
 # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
@@ -42,11 +42,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
 fi
 
 # +----------------------------------+
@@ -70,7 +70,7 @@ mkcd() {
 gadd() {
     git add "${1:-.}"
     clear
-    git status
+    git status -bs
 }
 
 # +----------------------------------+
@@ -88,6 +88,7 @@ alias gds='git diff --stat'
 alias gdc='git diff --cached'
 alias gdhead='git diff HEAD'
 alias gfc='git fetch'
+alias glast='git log --stat -1 HEAD'
 alias glo='git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>" --graph'
 alias gloa='git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>" --graph --all'
 alias glol='git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>" --graph'
@@ -110,7 +111,7 @@ alias gsdrop='git stash drop'
 alias gslist='git stash list'
 alias gsshow='git stash show'
 alias gspop='git stash pop'
-alias gst=' clear && git status'
+alias gst=' clear && git status -bs'
 alias gtag='git tag'
 # rollback
 alias gunstage='git reset HEAD --'
@@ -180,5 +181,5 @@ alias ws='cd ~/workspace && ls'
 # |            USER alias            |
 # +----------------------------------+
 PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\] \[\e[01;34m\]\w$(git_branch)\[\e[00m\]\$ '
-alias yuanpeilin='cd ~/workspace/yuanpeilin.github.io && git status'
+alias yuanpeilin='cd ~/workspace/yuanpeilin.github.io && git status -bs'
 alias vultr_japen='ssh ypl@149.28.29.166'

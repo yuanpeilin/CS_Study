@@ -55,10 +55,10 @@
 
 # config
 ### 查看配置与范围
-* **`git config [--system | --global] --list [--show-origin]`** 小范围会覆盖大范围的配置, .git/config的配置变量会覆盖/etc/gitconfig中的配置变量
-    * 不加参数对应的配置文件位于.git/config, 仅对当前仓库生效
-    * `--global`选项对应的配置文件位于\~/.gitconfig, 对当前用户的的所有仓库生效
-    * `--system`选项对应的配置文件位于/etc/gitconfig, 每一个用户都会生效
+**`git config [--system | --global] --list [--show-origin]`** 小范围会覆盖大范围的配置, .git/config的配置变量会覆盖/etc/gitconfig中的配置变量
+* 不加参数对应的配置文件位于.git/config, 仅对当前仓库生效
+* `--global`选项对应的配置文件位于\~/.gitconfig, 对当前用户的的所有仓库生效
+* `--system`选项对应的配置文件位于/etc/gitconfig, 每一个用户都会生效
 
 ### push.default
 2.0之前为matching, 2.0之后为simple
@@ -81,6 +81,7 @@ git config --global alias.dc      'diff --cached'
 git config --global alias.ds      'diff --stat'
 git config --global alias.ft      fetch
 git config --global alias.index   'ls-files -s'
+git config --global alias.last    'log --stat -1 HEAD'
 git config --global alias.lo      'log --oneline --graph --all'
 git config --global alias.loa     "log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>' --graph --all"
 git config --global alias.lol     "log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>' --graph"
@@ -93,7 +94,7 @@ git config --global alias.roll    'checkout HEAD --'
 git config --global alias.rs      reset
 git config --global alias.rv      revert
 git config --global alias.sa      stash
-git config --global alias.st      status
+git config --global alias.st      'status -bs'
 git config --global alias.type    'cat-file -t'
 git config --global alias.tree    'ls-tree -r'
 git config --global alias.unstage 'reset HEAD --'
@@ -167,7 +168,7 @@ git log --format="%h - %an, %ar : %s"
 * **`git ls-remote <remote-repo>`** 查看某个远程仓库详细信息(需要网络)
 * **`git show <reversion id>:<file apth>`** 查看某个版本中的某个文件
 * **`git gc --prune=now --aggressive`** 清理仓库中的孤儿对象
-* **`git rev-list --count <branch name>`** 计算制定分支的提交数量
+* **`git rev-list --count <branch name>`** 计算指定分支的提交数量
 
 ### 使用不同的配置文件
 * **`gitdir`** 匹配目录, 注意是 **git** 不是get
