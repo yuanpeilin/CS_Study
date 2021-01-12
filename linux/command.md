@@ -670,6 +670,34 @@ scp local_file username@ip: remote_file
 ```
 
 # sed
+### 语法
+**`sed [-nefri] [command] file`**
+* 选项
+    - `-n` 只有经过处理的行才显示, 否则全部显示
+    - `-i` 直接操作文件而不是输出
+* 常用命令
+    - `a` 新增
+    - `c` 取代
+    - `d` 删除
+    - `i` 插入
+    - `p` 显示
+
+### 例子
+```sh
+sed '1a drink tea' a.txt    #第一行后增加字符串"drink tea"
+sed '1,3a drink tea' a.txt  #第一行到第三行每行后增加字符串"drink tea"
+
+sed '1c Hi' a.txt                #第一行代替为Hi
+sed 's/ruby/bird/g' a.txt        #替换ruby为bird
+
+sed -i '2d' a.txt    # 删除第二行, 改变文件
+sed '2d' a.txt       # 删除第二行, 只输出到控制台, 不改变文件
+sed '2,4d' a.txt     # 删除第二三四行
+sed '$d' a.txt       #删除最后一行
+sed '2,$d' a.txt     #删除第二行到最后一行
+
+sed -n '1p' a.txt    #显示第一行 
+```
 
 # shopt
 显示和设置shell中的行为选项
