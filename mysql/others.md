@@ -1,38 +1,24 @@
 # 目录
-- [数据存放位置](#数据存放位置)
-- [配置文件](#配置文件)
+- [其他](#其他)
+    - [初始配置](#初始配置)
+    - [远程访问](#远程访问)
+    - [修改字符集](#修改字符集)
+    - [数据存放位置](#数据存放位置)
+    - [配置文件](#配置文件)
+    - [提示符](#提示符)
 - [ACID](#acid)
-    - [Atomicity(原子性)](#atomicity原子性)
-    - [Consistency(一致性)](#consistency一致性)
-    - [Isolation(隔离性)](#isolation隔离性)
-    - [Durability(持久性)](#durability持久性)
-- [提示符](#提示符)
 - [数据类型](#数据类型)
 
 
 
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+***********************************************************************************************************
+***********************************************************************************************************
 
 
-# MySQL
+
+# 其他
 ### 初始配置
-1. Linux下的mysql安装好之后未设置root密码, 需要使用系统分配的初始帐号登录
-    ```sh
-    $ sudo cat /etc/mysql/debian.cnf
-
-    # Automatically generated for Debian scripts. DO NOT TOUCH!
-    [client]
-    host     = localhost
-    user     = debian-sys-maint
-    password = St749MTlhAuOqlKi
-    socket   = /var/run/mysqld/mysqld.sock
-    [mysql_upgrade]
-    host     = localhost
-    user     = debian-sys-maint
-    password = St749MTlhAuOqlKi
-    socket   = /var/run/mysqld/mysqld.sock
-    ```
+1. Linux下的mysql安装好之后未设置root密码, 需要使用系统分配的初始帐号登录, 位于 */etc/mysql/debian.cnf*
 2. 登录方式: mysql有 **auth_socket** 和 **mysql_native_password** 两种登录方式
     ```sql
     select user, plugin from mysql.user;
@@ -50,6 +36,13 @@
     update mysql.user set authentication_string=PASSWORD('newPwd'), plugin='mysql_native_password' where user='root';
     ```
 
+### 远程访问
+修改 */etc/mysql/mysql.conf.d/mysqld.cnf* , 修改`bind-address = 127.0.0.1`为`bind-address = 0.0.0.0`
+```sql
+select host, user from mysql.user;
+update mysql.user set host = '%' where user = 'root';
+```
+
 ### 修改字符集
 * 查看字符集
     ```sql
@@ -60,13 +53,11 @@
     set character_set_server = utf8;
     ```
 
-
-# 数据存放位置
+### 数据存放位置
 表的组成详见[索引](index.md/#相关文件)  
 
 ```sql
 show variables like '%datadir%';
-
 +---------------+-----------------+
 | Variable_name | Value           |
 +---------------+-----------------+
@@ -74,22 +65,17 @@ show variables like '%datadir%';
 +---------------+-----------------+
 ```
 
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
-# 配置文件
+### 配置文件
 `/etc/mysql/mysql.conf.d/mysqld.cnf`  
 
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
+### 提示符
+* \D 完整的日期
+* \d 当前数据库
+* \h 服务器名称
+* \u 当前用户
+```sh
+mysql -uroot -p123456 --prompt='\u@\h \d> ' --database=must
+```
 
 # ACID
 ### Atomicity(原子性)
@@ -106,29 +92,6 @@ show variables like '%datadir%';
 
 ### Durability(持久性)
 事务处理结束后, 对数据的修改就是永久的, 即便系统故障也不会丢失
-
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
-
-# 提示符
-* \D 完整的日期
-* \d 当前数据库
-* \h 服务器名称
-* \u 当前用户
-```sh
-mysql -uroot -p123456 --prompt='\u@\h \d> ' --database=must
-```
-
-
-
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-
-
 
 # 数据类型
 
