@@ -593,12 +593,12 @@ root     2   0.0        0.0       0         0         ?         S      Mar27    
 pstree -aup
 
 init,1
-  ├─acpid,2866
-  ├─atd,3060
-  ├─auditd,2516
-  │   ├─python,2518 /sbin/audispd
-  │   └─{auditd},2517
-  ├─automount,2842
+    ├─acpid,2866
+    ├─atd,3060
+    ├─auditd,2516
+    │    ├─python,2518 /sbin/audispd
+    │    └─{auditd},2517
+    ├─automount,2842
 ```
 
 # rsync
@@ -689,6 +689,7 @@ sed '1,3a drink tea' a.txt  #第一行到第三行每行后增加字符串"drink
 
 sed '1c Hi' a.txt                #第一行代替为Hi
 sed 's/ruby/bird/g' a.txt        #替换ruby为bird
+sed '1s/ruby/bird/g' a.txt       #只将第一行的ruby替换为bird
 
 sed -i '2d' a.txt    # 删除第二行, 改变文件
 sed '2d' a.txt       # 删除第二行, 只输出到控制台, 不改变文件
