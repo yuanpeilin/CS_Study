@@ -42,6 +42,7 @@ todo_getopts(){
             d)
                 temp="$OPTARG"'s/\[ \] \\e\[1m/\[\*\] \\e\[9m/g'
                 sed -i "$temp" ~/.todo
+                unset temp
                 todo_list_task
                 ;;
             l)
@@ -55,6 +56,7 @@ todo_getopts(){
                     sed -i "$OPTARG"d ~/.todo
                     todo_list_task
                 fi
+                unset temp if_done
                 ;;
             R)
                 sed -i "$OPTARG"d ~/.todo
