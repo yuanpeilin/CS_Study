@@ -3,7 +3,7 @@
 * **b** [`bg`](#bg)
 * **c** [`cat`](#cat) [`chattr`](#chattr) [`chgrp`](#chgrp) [`chkconfig`](#chkconfig) [`chmod`](#chmod) [`chown`](#chown) [`corntab`](#corntab) [`cp`](#cp) [`cut`](#cut)
 * **d** [`df`](#df) [`disown`](#disown) [`du`](#du)
-* **e** [`egrep`](#egrep)
+* **e** [`echo`](#echo) [`egrep`](#egrep)
 * **f** [`fallocate`](#fallocate) [`fdisk`](#fdisk) [`fg`](#fg) [`file`](#file) [`find`](#find) [`free`](#free)
 * **g** [`grep`](#grep) [`gzip`](#gzip)
 * **h** [`head`](#head)
@@ -227,6 +227,43 @@ $ du -hs *
 4.0K    bluebloodv0.1.pub
 508K    imgs
 4.0K    README.md
+```
+
+# echo
+### 语法
+* `-e` 使反斜杠可以起到转义的作用
+
+### 颜色表
+
+字体颜色 | 背景色 | 颜色
+-------- | ------ | ----
+30       | 40     | 黑色
+31       | 41     | 紅色
+32       | 42     | 綠色
+33       | 43     | 黃色
+34       | 44     | 藍色
+35       | 45     | 紫紅色
+36       | 46     | 青藍色
+37       | 47     | 白色
+
+代码 | 效果
+---- | ----
+0    | 默认
+1    | 加粗
+3    | 斜体
+4    | 下划线
+5    | 闪烁
+7    | 反色(字体和背景对掉)
+8    | 不可见
+9    | 字体中间横线
+
+### 例子
+```sh
+# 字体颜色, 背景色, 效果没有先后之分
+echo -e "\e[31;43;1m SomeWord \e[0m"
+echo -e "\e[01;34m SomeWord \e[00m"
+echo -e "\033[01;34m SomeWord \033[00m"
+PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 ```
 
 # egrep
