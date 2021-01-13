@@ -5,7 +5,8 @@ todo_help(){
     -d <number>   done
     -h            help
     -l            list all tasks
-    -r <number>   remove the task"
+    -r <number>   remove the finished task
+    -R <number>   force remove the task"
 }
 
 todo_list_task(){
@@ -19,7 +20,7 @@ todo_list_task(){
 }
 
 todo_getopts(){
-    while getopts ":a:cd:h:lr:" arg
+    while getopts ":a:cd:h:lr:R:" arg
     do
         case "$arg" in
             a)
@@ -46,6 +47,16 @@ todo_getopts(){
             l)
                 todo_list_task;;
             r)
+                temp=`sed -n "$OPTARG"p ~/.todo`
+                if_done=`echo $temp | grep '[*]' | wc -l`
+                if [ $if_done -eq 0 ]; then
+                    echo -e "\e[1;31m WARNING: \e[0m task is not finished! Use -R instead."
+                else
+                    sed -i "$OPTARG"d ~/.todo
+                    todo_list_task
+                fi
+                ;;
+            R)
                 sed -i "$OPTARG"d ~/.todo
                 todo_list_task
                 ;;
