@@ -184,45 +184,7 @@ PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\
 alias yuanpeilin='cd ~/workspace/yuanpeilin.github.io && git status -bs'
 alias vultr_japen='ssh ypl@149.28.29.166'
 
-todo_help(){
-    echo -e "\e[1m Usage: \e[0m
-    -a <string>   add
-    -d <number>   do
-    -h            help
-    -l            list
-    -r <number>   remove"
-}
-
-todo_getopts(){
-    while getopts ":a:d:h:r:l" arg; do
-        case "$arg" in
-            a)
-                echo "[ ] \e[0m $OPTARG \e[0m" >> ~/.todo;;
-            d)
-                sed -n "$OPTARG"p ~/.todo | sed -i 's/\[ \] \\e\[0m/\[\*\] \\e\[9m/g'
-                ;;
-            l)
-                i=1
-                while read -r line; do
-                    echo -e " $i $line"
-                    i=$((i+1))
-                done < ~/.todo
-                unset i
-                ;;
-            r)
-                sed -i "$OPTARG"d ~/.todo;;
-            *)
-                todo_help;;
-        esac
-    done
-    shift $(($OPTIND-1))
-    unset OPTARG OPTIND
-}
-
 todo(){
-    if [ "$#" -eq 0 ]; then
-        todo_help
-    else
-        todo_getopts "$@"
-    fi
+    . ~/bash/todo.sh "$@"
 }
+clear && todo -l
