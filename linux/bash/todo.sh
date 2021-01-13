@@ -10,11 +10,12 @@ todo_help(){
 
 todo_list_task(){
     i=1
-    while read -r line; do
+    while read -r line
+    do
         echo -e " $i $line"
         i=$((i+1))
     done < ~/.todo
-    unset i
+    unset i line
 }
 
 todo_getopts(){
@@ -26,8 +27,16 @@ todo_getopts(){
                 todo_list_task
                 ;;
             c)
+                line_list=`grep -n '[*]' ~/.todo | cut -d ":" -f 1`
+                i=0
+                for var in $line_list
+                do
+                    var=$((var-i))
+                    sed -i "$var"d ~/.todo
+                    let i++
+                done
+                unset var i line_list
                 todo_list_task
-                
                 ;;
             d)
                 temp="$OPTARG"'s/\[ \] \\e\[1m/\[\*\] \\e\[9m/g'
@@ -37,7 +46,9 @@ todo_getopts(){
             l)
                 todo_list_task;;
             r)
-                sed -i "$OPTARG"d ~/.todo;;
+                sed -i "$OPTARG"d ~/.todo
+                todo_list_task
+                ;;
             *)
                 todo_help;;
         esac
