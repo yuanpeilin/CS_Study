@@ -1,4 +1,3 @@
-```
 # Others
 *.exe
 *Test.java
@@ -23,7 +22,7 @@ META-INF/
 .springBeans
 bin/
 
-# Package Files #
+# Package Files
 *.jar
 *.war
 *.nar
@@ -31,4 +30,3 @@ bin/
 *.zip
 *.tar.gz
 *.rar
-```
