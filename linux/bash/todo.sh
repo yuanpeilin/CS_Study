@@ -11,12 +11,18 @@ todo_help(){
 
 todo_list_task(){
     i=1
-    while read -r line
-    do
-        echo -e " $i $line"
+    while read -r line; do
+        status=$(echo "$line" | awk -F '::' '{print $1}')
+        content=$(echo "$line" | awk -F '::' '{print $2}')
+        date=$(echo "$line" | awk -F '::' '{print $3}')
+        if [[ "$status" == "U" ]]; then
+            echo  -e "$i [ ] \e[1m$content     $date\e[0m"
+        else
+            echo -e "$i [*] \e[9m$content     $date\e[0m"
+        fi
         i=$((i+1))
     done < ~/.todo
-    unset i line
+    unset i line status content date
 }
 
 todo_getopts(){
@@ -25,12 +31,12 @@ todo_getopts(){
         case "$arg" in
             a)
                 date=$(date +'%Y/%m/%d')
-                echo "[ ] \e[1m $OPTARG \t $date \e[0m" >> ~/.todo
+                echo "U::$OPTARG::$date" >> ~/.todo
                 unset date
                 todo_list_task
                 ;;
             c)
-                line_list=$(grep -n '[*]' ~/.todo | cut -d ":" -f 1)
+                line_list=$(grep -n 'D::' ~/.todo | cut -d ":" -f 1)
                 i=0
                 for var in $line_list
                 do
@@ -42,7 +48,7 @@ todo_getopts(){
                 todo_list_task
                 ;;
             d)
-                temp="$OPTARG"'s/\[ \] \\e\[1m/\[\*\] \\e\[9m/g'
+                temp="$OPTARG"'s/U::/D::/g'
                 sed -i "$temp" ~/.todo
                 unset temp
                 todo_list_task
@@ -51,7 +57,7 @@ todo_getopts(){
                 todo_list_task;;
             r)
                 temp=$(sed -n "$OPTARG"p ~/.todo)
-                if_done=$(echo $temp | grep '[*]' | wc -l)
+                if_done=$(echo $temp | grep 'D::' | wc -l)
                 if [[ "$if_done" == 0 ]]; then
                     echo -e "\e[1;31m WARNING: \e[0m task is not finished! Use -R instead."
                 else
