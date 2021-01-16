@@ -52,7 +52,7 @@ todo_getopts(){
             r)
                 temp=$(sed -n "$OPTARG"p ~/.todo)
                 if_done=$(echo $temp | grep '[*]' | wc -l)
-                if [ $if_done -eq 0 ]; then
+                if [[ "$if_done" == 0 ]]; then
                     echo -e "\e[1;31m WARNING: \e[0m task is not finished! Use -R instead."
                 else
                     sed -i "$OPTARG"d ~/.todo
@@ -72,7 +72,7 @@ todo_getopts(){
 }
 
 main(){
-    if [ "$#" -eq 0 ]; then
+    if [[ "$#" == 0 ]]; then
         todo_help
     else
         todo_getopts "$@"
