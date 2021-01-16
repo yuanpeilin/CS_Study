@@ -24,13 +24,13 @@ todo_getopts(){
     do
         case "$arg" in
             a)
-                date=`date +'%Y/%m/%d'`
+                date=$(date +'%Y/%m/%d')
                 echo "[ ] \e[1m $OPTARG     $date \e[0m" >> ~/.todo
                 unset date
                 todo_list_task
                 ;;
             c)
-                line_list=`grep -n '[*]' ~/.todo | cut -d ":" -f 1`
+                line_list=$(grep -n '[*]' ~/.todo | cut -d ":" -f 1)
                 i=0
                 for var in $line_list
                 do
@@ -50,8 +50,8 @@ todo_getopts(){
             l)
                 todo_list_task;;
             r)
-                temp=`sed -n "$OPTARG"p ~/.todo`
-                if_done=`echo $temp | grep '[*]' | wc -l`
+                temp=$(sed -n "$OPTARG"p ~/.todo)
+                if_done=$(echo $temp | grep '[*]' | wc -l)
                 if [ $if_done -eq 0 ]; then
                     echo -e "\e[1;31m WARNING: \e[0m task is not finished! Use -R instead."
                 else
