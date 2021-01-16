@@ -71,8 +71,12 @@ todo_getopts(){
     unset arg temp OPTARG OPTIND
 }
 
-if [ "$#" -eq 0 ]; then
-    todo_help
-else
-    todo_getopts "$@"
-fi
+main(){
+    if [ "$#" -eq 0 ]; then
+        todo_help
+    else
+        todo_getopts "$@"
+    fi
+}
+
+main "$@"
