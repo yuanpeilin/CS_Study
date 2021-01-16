@@ -48,3 +48,23 @@ export  CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
 export  PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
 export  JRE_HOME=$JAVA_HOME/jre
 ```
+
+# 查看系统配置
+```sh
+# 查看操作系统详细信息, issue比较简洁
+ls /etc | grep release | xargs cat
+ls /etc | grep issue | xargs cat
+```
+
+```sh
+# 查看内核版本
+uname -a
+uname -r
+
+# 查看CPU详细信息, 名称, 物理个数, 核心数, 线程数
+lscpu
+grep 'model name' /proc/cpuinfo | sort -u
+grep 'physical id' /proc/cpuinfo | sort -u | wc -l
+grep 'core id' /proc/cpuinfo | sort -u | wc -l
+grep 'processor' /proc/cpuinfo | sort -u | wc -l
+```

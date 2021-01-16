@@ -194,10 +194,14 @@ cut -d " " -f 2- --complement file
 ```
 
 # df
+查看磁盘整体使用情况
+
 ### 语法
-* `-a` 列出所有文件系统,  包含具有0 Blocks的文件系统
-* `-h` 友好显示数据
+* `-a` 列出所有文件系统, 包含具有0 Blocks的文件系统
+* `-h` 以KB, MB, GB为单位
 * `-H` 同`-h`, 进制为1000
+* `-i` 显示inode信息
+* `-T` 显示文件系统类型
 
 # disown
 使一个后台进程持续运行  
@@ -206,27 +210,20 @@ cut -d " " -f 2- --complement file
 用于显示目录或文件的大小, 无参数递归显示当前目录下所有文件的大小  
 
 ### 语法
-`du [-hHs] [--max-depth=<目录层数>] [目录或文件]`  
-* `-h` 以K, M, G为单位
-* `-H` 与`-h`参数相同, 但是K, M, G是以1000为换算单位
+`du [-hHs] [--max-depth=<number>] [directory]`
+* `-h` 以KB, MB, GB为单位
+* `-H` 类似`-h`, 以1000为换算单位
 * `-s` 仅显示总计
 
 ### 例子
-显示当前目录的大小  
 ```sh
-$ du -hs
-1.6M    .
+# 显示当前目录的大小  
+du -hs
 ```
 
-显示当前下目录下所有目录及文件的大小  
 ```sh
-$ du -hs *
-4.0K    ARCHITECTURE.md
-72K     BlueBlood-OS-v0.1
-4.0K    bluebloodv0.1
-4.0K    bluebloodv0.1.pub
-508K    imgs
-4.0K    README.md
+# 显示当前下目录下所有目录及文件的大小  
+du -hs *
 ```
 
 # echo
