@@ -3,7 +3,7 @@
 * **b** [`bg`](#bg)
 * **c** [`cat`](#cat) [`chattr`](#chattr) [`chgrp`](#chgrp) [`chkconfig`](#chkconfig) [`chmod`](#chmod) [`chown`](#chown) [`corntab`](#corntab) [`cp`](#cp) [`cut`](#cut)
 * **d** [`df`](#df) [`disown`](#disown) [`du`](#du)
-* **e** [`echo`](#echo) [`egrep`](#egrep)
+* **e** [`echo`](#echo) [`egrep`](#egrep) [`export`](#export)
 * **f** [`fallocate`](#fallocate) [`fdisk`](#fdisk) [`fg`](#fg) [`file`](#file) [`find`](#find) [`free`](#free)
 * **g** [`grep`](#grep) [`gzip`](#gzip)
 * **h** [`head`](#head)
@@ -271,6 +271,12 @@ PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 * `-A` 
 * `-B` 
 * `-C` 
+
+# export
+输出环境变量, 不接变量名输出所有环境变量, 仅当前session有效
+
+### 语法
+`export <variable name>`
 
 # fallocate
 创建空文件  
