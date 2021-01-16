@@ -24,7 +24,9 @@ todo_getopts(){
     do
         case "$arg" in
             a)
-                echo "[ ] \e[1m $OPTARG \e[0m" >> ~/.todo
+                date=`date +'%Y/%m/%d'`
+                echo "[ ] \e[1m $OPTARG     $date \e[0m" >> ~/.todo
+                unset date
                 todo_list_task
                 ;;
             c)
