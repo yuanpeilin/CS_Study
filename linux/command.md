@@ -4,7 +4,7 @@
 * **c** [`cat`](#cat) [`chattr`](#chattr) [`chgrp`](#chgrp) [`chkconfig`](#chkconfig) [`chmod`](#chmod) [`chown`](#chown) [`corntab`](#corntab) [`cp`](#cp) [`cut`](#cut)
 * **d** [`df`](#df) [`disown`](#disown) [`du`](#du)
 * **e** [`echo`](#echo) [`egrep`](#egrep) [`export`](#export)
-* **f** [`fallocate`](#fallocate) [`fdisk`](#fdisk) [`fg`](#fg) [`file`](#file) [`find`](#find) [`free`](#free)
+* **f** [`fallocate`](#fallocate) [`fdisk`](#fdisk) [`fg`](#fg) [`file`](#file) [`fim`](#fim) [`find`](#find) [`free`](#free)
 * **g** [`grep`](#grep) [`gzip`](#gzip)
 * **h** [`head`](#head)
 * **i** [`ifconfig`](#ifconfig) [`imagemagick`](#imagemagick)
@@ -293,6 +293,16 @@ PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 ```sh
 $ file shell.md 
 shell.md: exported SGML document, UTF-8 Unicode text
+```
+
+# fim
+### 例子
+```sh
+# 查看图片
+fim a.jpg
+
+# 以ASCII码形式查看图片
+fim -t a.jpg
 ```
 
 # find
