@@ -30,14 +30,15 @@
 
 ### 语法
 ```sh
-if condition1 then
+if condition1; then
     command1
-elif condition2 then
+elif condition2; then
     command2
 else
     commandN
 fi
 ```
+
 ### 例子
 ```sh
 #!/bin/bash
@@ -87,6 +88,7 @@ while [ $num -lt 10 ]; do
     num=`expr $num + 1`
 done
 ```
+
 ```sh
 #!/bin/bash
 # 批量增加20个用户并设置密码
@@ -98,25 +100,31 @@ while [ $num -le 20 ]; do
 done
 ```
 
+```sh
+while read -r line; do
+    echo $line
+done < ~/.todo
+```
+
 # case
 ### 语法
 ```sh
 case variable in
-pattern1)
-    command1
-    command2
-    ...
-    commandN
-    ;;
-pattern2)
-    command1
-    command2
-    ...
-    commandN
-    ;;
-*)
-    command
-    ;;
+    pattern1)
+        command1
+        command2
+        ...
+        commandN
+        ;;
+    pattern2)
+        command1
+        command2
+        ...
+        commandN
+        ;;
+    *)
+        command
+        ;;
 esac
 ```
 
@@ -166,10 +174,10 @@ ${var:+value}   | 返回value    | 返回null               | 返回null        
 
 ```sh
 # !/bin/bash
-
 name=${ 1:? requires an argument }
 echo Hello $name
 ```
+
 ```sh
 [root@localhost ~]# checker
 requires an argument
@@ -215,6 +223,7 @@ echo '<<< echo $x >>> displays the value of x, which is' "$x"
 * 使用$[ ] `$[算术式]`
 * 使用置命令declare `declare -i 变量=算术式`
 * 使用内置命令let `let 算术式`
+
 ```sh
 r=$((2+5\*8))
 $((${j:-8}+2))
