@@ -54,8 +54,7 @@ fi
 # for
 ### 语法
 ```sh
-for var in item1 item2 ... itemN
-do
+for var in item1 item2 ... itemN; do
     command1
     command2
     ...
@@ -66,8 +65,7 @@ done
 ### 例子
 ```sh
 #!/bin/bash
-for TIME in "Morning" "Noon" "Evening"
-do
+for TIME in "Morning" "Noon" "Evening"; do
     echo "The $TIME of the day."
 done
 ```
@@ -75,8 +73,7 @@ done
 # while
 ### 语法
 ```sh
-while condition
-do
+while condition; do
     command
 done
 ```
@@ -85,8 +82,7 @@ done
 ```sh
 #!/bin/bash
 num=1
-while [ $num -lt 10 ]
-do
+while [ $num -lt 10 ]; do
     echo $num
     num=`expr $num + 1`
 done
@@ -95,8 +91,7 @@ done
 #!/bin/bash
 # 批量增加20个用户并设置密码
 declare –i num=1
-while [ $num -le 20 ]
-do
+while [ $num -le 20 ]; do
     useradd stu$num
     echo "123456" | passwd --stdin stu$num &> /dev/null
     num=`expr $num + 1`
@@ -144,8 +139,7 @@ esac
 # select
 ### 语法
 ```sh
-select variable in [list]
-do
+select variable in [list]; do
     command
 done
 ```
@@ -153,8 +147,7 @@ done
 ### 例子
 ```sh
 #!/bin/bash
-select var in "dog" "cat" "bee"
-do
+select var in "dog" "cat" "bee"; do
     echo "you like $var"
     break
 done
@@ -269,8 +262,7 @@ echo ${@:3:2}   # v3 v4
 ```sh
 COUNT = 0
 NUMBER = $1
-while [ $COUNT –lt  $NUMBER ]
-do
+while [ $COUNT –lt  $NUMBER ]; do
     COUNT=`expr $COUNT + 1`
     TOKEN='$' $COUNT
 
