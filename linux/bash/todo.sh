@@ -26,16 +26,15 @@ todo_list_task(){
 }
 
 todo_getopts(){
-    while getopts ":a:cd:h:lr:R:" arg
-    do
+    while getopts ":a:cd:h:lr:R:" arg; do
         case "$arg" in
-            a)
+            a) # Add
                 date=$(date +'%Y/%m/%d')
                 echo "U::$OPTARG::$date" >> ~/.todo
                 unset date
                 todo_list_task
                 ;;
-            c)
+            c) # Clean
                 line_list=$(grep -n 'D::' ~/.todo | cut -d ":" -f 1)
                 i=0
                 for var in $line_list
@@ -47,15 +46,15 @@ todo_getopts(){
                 unset var i line_list
                 todo_list_task
                 ;;
-            d)
+            d) # Done
                 temp="$OPTARG"'s/U::/D::/g'
                 sed -i "$temp" ~/.todo
                 unset temp
                 todo_list_task
                 ;;
-            l)
+            l) # List
                 todo_list_task;;
-            r)
+            r) # Remove
                 temp=$(sed -n "$OPTARG"p ~/.todo)
                 if_done=$(echo $temp | grep 'D::' | wc -l)
                 if [[ "$if_done" == 0 ]]; then
@@ -66,7 +65,7 @@ todo_getopts(){
                 fi
                 unset temp if_done
                 ;;
-            R)
+            R) # force Remove
                 sed -i "$OPTARG"d ~/.todo
                 todo_list_task
                 ;;
