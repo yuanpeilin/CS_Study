@@ -1,5 +1,4 @@
-# He is GOD
-![He is GOD](linus.jpg)
+![](linus.jpg)
 
 * [**面试**](interview/)
     - [面试合集](interview/questions.md)
