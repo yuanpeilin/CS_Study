@@ -218,27 +218,14 @@ echo '<<< echo $x >>> displays the value of x, which is' "$x"
 ```
 
 # 整数运算
-* 算术扩展 `$((算术式))`
-* 使用外部程序expr `expr 算术式`
-* 使用$[ ] `$[算术式]`
-* 使用置命令declare `declare -i 变量=算术式`
-* 使用内置命令let `let 算术式`
 
-```sh
-r=$((2+5\*8))
-$((${j:-8}+2))
-r=`expr 4+5`
-r=$[4+5]
-declare -i r=8+16
-let r=8+16
-```
-
-```sh
-num=`expr $num + 1` # 加号左右必须得有空格
-num=$((num+1))
-let num++ 
-let num=num+1
-```
+Expression             | Example                           | increase                     | Comment
+---------------------- | --------------------------------- | ---------------------------- | -------
+$((算术式))            | r=$((2+5\*8)) <br> $((${j:-8}+2)) | num=$((num+1))               | -
+expr 算术式            | r=\`expr 4+5\`                    | num=\`expr $num + 1\`        | 加号左右必须得有空格
+$[算术式]              | r=$[4+5]                          | -                            | -
+declare -i 变量=算术式 | declare -i r=8+16                 | -                            | -
+let 算术式             | let r=8+16                        | let num++ <br> let num=num+1 | -
 
 # 特殊变量
 变量 | 作用说明
