@@ -35,7 +35,7 @@ todo_getopts(){
                 todo_list_task
                 ;;
             c) # Clean
-                line_list=$(grep -n 'D::' ~/.todo | cut -d ":" -f 1)
+                line_list=$(grep -n --text 'D::' ~/.todo | cut -d ":" -f 1)
                 i=0
                 for var in $line_list
                 do
