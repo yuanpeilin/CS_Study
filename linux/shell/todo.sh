@@ -41,7 +41,7 @@ todo_getopts(){
                 do
                     var=$((var-i))
                     sed -i "$var"d ~/.todo
-                    let i++
+                    i=$((i+1))
                 done
                 unset var i line_list
                 todo_list_task
@@ -56,7 +56,7 @@ todo_getopts(){
                 todo_list_task;;
             r) # Remove
                 temp=$(sed -n "$OPTARG"p ~/.todo)
-                if_done=$(echo $temp | grep 'D::' | wc -l)
+                if_done=$(echo "$temp" | grep -c 'D::')
                 if [[ "$if_done" == 0 ]]; then
                     echo -e "\e[1;31m WARNING: \e[0m task is not finished! Use -R instead."
                 else
