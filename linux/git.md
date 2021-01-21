@@ -267,6 +267,7 @@ git config --global web.browser open
 * **`git remote show origin`** 查看某个远程仓库详细信息(需要网络)
 * **`git remote rename <old name> <new name>`** 重命名仓库
 * **`git remote prune origin --dry-rnu`** 列出仍在跟踪但远程已删除的分支
+* **`git remote set-url origin <url>`** 设置远程仓库地址
 
 # reset
 * **`git reset [--hard | --mixed | --soft] HEAD^`** 回退到上一个版本
