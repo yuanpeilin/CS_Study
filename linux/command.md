@@ -805,6 +805,10 @@ sort -k1, 1 | sort -s -k2, 2
 ```
 
 # ssh
+### 语法
+`-t` 分配TTY, 执行远程命令使用
+
+### 配置
 配置文件位于 */etc/ssh/sshd_config*
 ```sh
 PermitRootLogin no # 禁止root登录
