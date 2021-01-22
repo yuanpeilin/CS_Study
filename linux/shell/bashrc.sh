@@ -82,6 +82,25 @@ gadd() {
     git status -bs
 }
 
+bak(){
+    if [[ "$#" == 0 ]]; then
+        echo -e '\e[1mbak\e[0m will backup files as xxx.bak'
+        echo ''
+        echo -e '\e[1mUsage:\e[0m'
+        echo '    bak <file path1> [file path2...]'
+    else
+        for file in "$@"; do
+            bak_file=$(echo "file".bak | sed 's/\///g')
+            if [[ -e "$bak_file" ]]; then
+                echo -e "\e[31;01mWARNING:\e[0m $file back up failed, $bak_file already exists"
+            else
+                cp -dpr "$file" "$bak_file" && echo "$file backed up"
+            fi
+        done
+        unset file bak_file
+    fi
+}
+
 todo(){
     . ~/bash/todo.sh "$@"
 }
