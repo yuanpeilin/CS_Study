@@ -390,8 +390,9 @@ $ find / \( -size +1k -a -size -10M -a -type f \) -exec rm -rf {} \;
 ### 语法
 * `-i` 忽略大小写
 * `-r` 递归, 搜索目录
+* `-E` extended regexp
+* `-v` `--invert-match` 对结果取反
 `-o` 
-`-v` 
 `-A` 
 `-B` 
 `-C` 
