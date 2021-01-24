@@ -1,13 +1,13 @@
 todo_help(){
-    echo -e "\e[1m Usage: \e[0m
-    -a <string>   add a task
-    -c            clear all finished tasks
-    -d <number>   done
-    -h            help
-    -l            list all tasks
-    -L            list all tasks with time
-    -r <number>   remove the finished task
-    -R <number>   force remove the task"
+    echo -e "\e[1m Usage: \e[0m"
+    echo -e "    -a <string>   add a task"
+    echo -e "    -c            clear all finished tasks"
+    echo -e "    -d <number>   done"
+    echo -e "    -h            help"
+    echo -e "    -l            list all tasks"
+    echo -e "    -L            list all tasks with time"
+    echo -e "    -r <number>   remove the finished task"
+    echo -e "    -R <number>   force remove the task"
 }
 
 todo_list_task(){
