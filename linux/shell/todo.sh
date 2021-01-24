@@ -16,9 +16,9 @@ todo_list_task(){
         content=$(echo "$line" | awk -F '::' '{print $2}')
         date=$(echo "$line" | awk -F '::' '{print $3}')
         if [[ "$status" == "U" ]]; then
-            echo  -e "$i [ ] \e[1m$content     $date\e[0m"
+            printf "\e[01m%b %-30b %b \n\e[00m" "$i [ ]" "${content:0:30}" "$date"
         else
-            echo -e "$i [*] \e[9m$content     $date\e[0m"
+            printf "\e[09m%b %-30b %b \n\e[00m" "$i [*]" "${content:0:30}" "$date"
         fi
         i=$((i+1))
     done < ~/.todo
