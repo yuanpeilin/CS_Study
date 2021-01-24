@@ -728,23 +728,30 @@ scp local_file username@ip: remote_file
     - `d` 删除
     - `i` 插入
     - `p` 显示
+    - `s` 查找和替换
 
 ### 例子
 ```sh
-sed '1a drink tea' a.txt    #第一行后增加字符串"drink tea"
-sed '1,3a drink tea' a.txt  #第一行到第三行每行后增加字符串"drink tea"
+sed '1a drink tea' a.txt       #第一行后增加字符串"drink tea"
+sed '1,3a drink tea' a.txt     #第一行到第三行每行后增加字符串"drink tea"
 
-sed '1c Hi' a.txt                #第一行代替为Hi
-sed 's/ruby/bird/g' a.txt        #替换ruby为bird
-sed '1s/ruby/bird/g' a.txt       #只将第一行的ruby替换为bird
+sed '1c Hi' a.txt            #第一行代替为Hi
 
-sed -i '2d' a.txt    # 删除第二行, 改变文件
-sed '2d' a.txt       # 删除第二行, 只输出到控制台, 不改变文件
-sed '2,4d' a.txt     # 删除第二三四行
-sed '$d' a.txt       #删除最后一行
-sed '2,$d' a.txt     #删除第二行到最后一行
+sed '2d' a.txt        #删除第二行, 只输出到控制台, 不改变文件
+sed -i '2d' a.txt     #删除第二行, 改变文件
 
-sed -n '1p' a.txt    #显示第一行 
+sed -n '1p' a.txt        #显示第一行
+sed -n '$p' a.txt        #显示最后一行
+sed -n '2,4p' a.txt      #显示第二三四行
+sed -n '2,$p' a.txt      #显示第二行到最后一行
+sed -n '2p;$p' a.txt     #显示第二行和最后一行
+sed -n '1~2p' a.txt      #从第一行开始每隔两行打印(打印1 3 5 7 9...行)
+sed -n '/aa/p' a.txt     #输出符合aa的行, 斜线内是一个模式pattern
+
+sed 's/ruby/bird/' a.txt       #将第一个匹配到的ruby替换为bird
+sed 's/ruby/bird/2' a.txt      #将第二个匹配到的ruby替换为bird
+sed 's/ruby/bird/g' a.txt      #将所有ruby替换为bird(g表示global, 全局替换)
+sed '1s/ruby/bird/g' a.txt     #只将第一行的ruby替换为bird
 ```
 
 # shopt
