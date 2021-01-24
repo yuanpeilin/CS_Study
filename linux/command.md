@@ -775,13 +775,6 @@ sed -n '1p' a.txt    #显示第一行
 
 ### 例子
 ```sh
-# 对文本文件做集合交、并、差运算
-sort a b | uniq > c      # a并b
-sort a b | uniq -d > c   # a交b
-sort a b | uniq -u > c   # a-b
-```
-
-```sh
 # 以冒号为分隔符, 根据第二个字段的自然数值进行排序
 sort -n -k 2 -t ':' a.txt
 
@@ -994,7 +987,7 @@ sudo ufw allow from 192.168.1.1
 ```
 
 # uniq
-检查及删除文本文件中重复出现的行列(但是要求重复的行在相邻的行!!!)  
+检查及删除文本文件中重复出现的行列, **要求重复的行为相邻的行**
 
 ### 语法
 `uniq [-cdu] [输入文件] [输出文件]`  
@@ -1005,36 +998,19 @@ sudo ufw allow from 192.168.1.1
 * `[输出文件]` 指定输出的文件. 如果不指定此选项, 则将内容显示到标准输出设备
 
 ### 例子
-```
-1a
-2b
-2b
-3c
-4d
-4d
-4d
-```
-
-<br>
-
-去掉重复的行  
 ```sh
-$ uniq file1 
-1a
-2b
-3c
-4d
+# 对文本文件做集合交、并、差运算
+sort a b | uniq > c      # a并b
+sort a b | uniq -d > c   # a交b
+sort a b | uniq -u > c   # a-b
 ```
 
-<br>
-
-删除文件中重复出现的行, 并显示该行重复出现的次数  
 ```sh
-$ uniq -c file1
-  1 1a
-  2 2b
-  1 3c
-  3 4d
+# 去掉重复的行  
+uniq file
+
+# 删除文件中重复出现的行, 并显示输出行重复的次数
+uniq -c file
 ```
 
 # whereis
