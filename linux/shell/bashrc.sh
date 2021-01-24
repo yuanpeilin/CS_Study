@@ -104,7 +104,7 @@ bak(){
 todo(){
     . ~/bash/todo.sh "$@"
 }
-clear && todo -l
+clear && todo -L
 
 # +----------------------------------+
 # |            USER alias            |

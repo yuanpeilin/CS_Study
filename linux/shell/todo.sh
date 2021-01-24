@@ -5,6 +5,7 @@ todo_help(){
     -d <number>   done
     -h            help
     -l            list all tasks
+    -L            list all tasks with time
     -r <number>   remove the finished task
     -R <number>   force remove the task"
 }
@@ -14,11 +15,13 @@ todo_list_task(){
     while read -r line; do
         status=$(echo "$line" | awk -F '::' '{print $1}')
         content=$(echo "$line" | awk -F '::' '{print $2}')
-        date=$(echo "$line" | awk -F '::' '{print $3}')
+        if [[ "$#" == 1 && "$1" == "time" ]]; then
+            date=$(echo "$line" | awk -F '::' '{print $3}')
+        fi
         if [[ "$status" == "U" ]]; then
-            printf "\e[01m%b %-30b %b \n\e[00m" "$i [ ]" "${content:0:30}" "$date"
+            printf "\e[01m%b %b %b \n\e[00m" "$i [ ]" "${content:0:30}" "   $date"
         else
-            printf "\e[09m%b %-30b %b \n\e[00m" "$i [*]" "${content:0:30}" "$date"
+            printf "\e[09m%b %b %b \n\e[00m" "$i [*]" "${content:0:30}" "   $date"
         fi
         i=$((i+1))
     done < ~/.todo
@@ -26,7 +29,7 @@ todo_list_task(){
 }
 
 todo_getopts(){
-    while getopts ":a:cd:h:lr:R:" arg; do
+    while getopts ":a:cd:h:Llr:R:" arg; do
         case "$arg" in
             a) # Add
                 date=$(date +'%Y/%m/%d')
@@ -54,6 +57,8 @@ todo_getopts(){
                 ;;
             l) # List
                 todo_list_task;;
+            L) # List with time
+                todo_list_task "time";;
             r) # Remove
                 temp=$(sed -n "$OPTARG"p ~/.todo)
                 if_done=$(echo "$temp" | grep -c 'D::')
