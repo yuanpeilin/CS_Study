@@ -79,27 +79,28 @@ git config --global alias.cm      commit
 git config --global alias.co      checkout
 git config --global alias.cp      cherry-pick
 git config --global alias.di      diff
-git config --global alias.dn      'diff --name-status'
 git config --global alias.dc      'diff --cached'
+git config --global alias.dn      'diff --name-status'
 git config --global alias.ds      'diff --stat'
 git config --global alias.ft      fetch
 git config --global alias.index   'ls-files -s'
 git config --global alias.last    'log --stat -1 HEAD'
 git config --global alias.lo      'log --oneline --graph --all'
 git config --global alias.loa     "log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>' --graph --all"
-git config --global alias.lol     "log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>' --graph"
 git config --global alias.lof     "log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>'"
+git config --global alias.lol     "log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>' --graph"
 git config --global alias.ls      ls-files
 git config --global alias.print   'cat-file -p'
 git config --global alias.rb      rebase
 git config --global alias.re      remote
+git config --global alias.rf      reflog
 git config --global alias.roll    'checkout HEAD --'
 git config --global alias.rs      reset
 git config --global alias.rv      revert
 git config --global alias.sa      stash
 git config --global alias.st      'status -bs'
-git config --global alias.type    'cat-file -t'
 git config --global alias.tree    'ls-tree -r'
+git config --global alias.type    'cat-file -t'
 git config --global alias.unstage 'reset HEAD --'
 git config --global core.editor vim
 ```
