@@ -1,4 +1,5 @@
 # 内置变量
+假如一行有六个字段, `NF`结果为6, `$NF`才表示最后一个字段
 
 变量     | 说明
 -------- | ----
@@ -10,7 +11,7 @@ RS       | 输入的记录分隔符, 默认为换行符
 OFS      | 输出字段分隔符, 默认也是空格
 ORS      | 输出的记录分隔符, 默认为换行符
 NF       | 当前记录中的字段个数, 就是有多少列
-NR       | 已经读出的记录数, 就是行号, 从1开始, 如果有多个文件话, 这个值也是不断累加中. 
+NR       | 已经读出的记录数, 就是行号
 FNR      | 当前记录数, 与NR不同的是, 这个值会是各个文件自己的行号
 
 # 函数
@@ -56,6 +57,7 @@ awk '$2>3 || NR==1' netstat.txt
 
 # 显示行号
 awk '$2>3{print NR,$0}' netstat.txt
+awk '{print NR ") " $0}' netstat.txt #原样输出要加双引号
 
 # 显示最后一行
 awk 'END{print $0}' netstat.txt
@@ -65,6 +67,9 @@ awk '{print $1, $4}' netstat.txt
 
 # 只显示最后一列
 awk '{print $NF}' netstat.txt
+
+# 只显示倒数第二列
+awk '{print $(NF-1)}' netstat.txt
 ```
 
 * 指定分隔符
@@ -105,6 +110,6 @@ awk -F ': ' '$1 == "root" || $1 == "bin" {print $1}' demo.txt
 
 * if语句
 ```sh
-# if结构还可以指定else部分
+# 输出第一个字段的第一个字符大于m的行
 awk -F ': ' '{if ($1 > "m") print $1; else print "---"}' demo.txt
 ```
