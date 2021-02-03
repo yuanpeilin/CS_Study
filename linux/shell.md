@@ -17,6 +17,7 @@
     - [条件测试表达式](#条件测试表达式)
     - [整数值比较操作符含义](#整数值比较操作符含义)
     - [文件属性检查](#文件属性检查)
+    - [字符串检查](#字符串检查)
 - [getopts](#getopts)
 
 
@@ -288,9 +289,10 @@ test   | 需要         | `!` `-a` `-o`    | `-eq` `-gt` `-lt` `-ge` `-le`      
 * -ge: 大于或等于(Greater or Equal)
 
 ### 文件属性检查
-* `-c file` 字符专用文件
+* `-b file` 文件是一个块文件
+* `-c file` 文件是一个字符文件
 * `-d file` file存在并且是一个目录
-* `-b file` 块专用文件
+* `-h file` 文件是一个符号链接
 * `-L file` 文件是一个符号链接
 * `-p file` 文件是一个命名管道
 
@@ -298,22 +300,26 @@ test   | 需要         | `!` `-a` `-o`    | `-eq` `-gt` `-lt` `-ge` `-le`      
 
 * `-r file` 对file有读权限
 * `-w file` 对file有写权限
-* `-x file` 对file有可执行权限, 如果为目录, 则用目录搜索权限
+* `-x file` 对file有可执行权限
 
 <br>
 
-* `-f file` file存在并且为正规文件(亦即不是一个目录或其他特殊类型文件)
-* `-e file` file存在(空文本文件或文件夹都算)
-* `-a file` file存在(空文本文件或文件夹都算)
-* `-s file` 文件存在且非空(文件夹也算, 文件夹里面没有文件不算空)
+* `-f file` file存在并且为正规文件(即不是一个目录或其他特殊类型文件)
+* `-e file` file存在(空文本文件和空文件夹都算存在)
+* `-a file` file存在(空文本文件和空文件夹都算存在)
+* `-s file` 文件存在且非空(空文件夹都算存在, 空文件不算返回false)
 
 <br>
 
 * `-O file` 你是file的所有者
 * `-G file` 文件存在且属于有效组ID (如果你在多个组中, 则匹配其中一个)
-* `file1 -nt file2` file比file2新  (文件修改时间)
-* `file1 -ot file2` file比file2旧  (文件修改时间)
-* `-t file` 如果fd(文件描述符)被一个终端打开则为真
+* `file1 -nt file2` file1比file2新(文件修改时间)
+* `file1 -ot file2` file1比file2旧(文件修改时间)
+* `file1 -ef file2` file1和file2inode相同
+
+### 字符串检查
+* `-z string` 字符串长度为0
+* `-n string` 字符串长度不为0
 
 # getopts
 `while getopts :xyn: name`
