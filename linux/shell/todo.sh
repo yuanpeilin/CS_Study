@@ -13,15 +13,15 @@ todo_help(){
 todo_list_task(){
     i=1
     while read -r line; do
-        status=$(echo "$line" | awk -F '::' '{print $1}')
-        content=$(echo "$line" | awk -F '::' '{print $2}')
+        status=$(echo "$line" | cut -d " " -f 1)
+        content=$(echo "$line" | cut -d " " -f 3-)
         if [[ "$#" == 1 && "$1" == "time" ]]; then
-            date=$(echo "$line" | awk -F '::' '{print $3}')
+            date=$(echo "$line" | cut -d " " -f 2)
         fi
         if [[ "$status" == "U" ]]; then
-            printf "\e[01m%b %b %b \n\e[00m" "$i [ ]" "${content:0:30}" "   $date"
+            printf "\e[01m%-2s %s %s \n\e[00m" "$i [ ]" "${content:0:30}" "   $date"
         else
-            printf "\e[09m%b %b %b \n\e[00m" "$i [*]" "${content:0:30}" "   $date"
+            printf "\e[09m%-2s %s %s \n\e[00m" "$i [*]" "${content:0:30}" "   $date"
         fi
         i=$((i+1))
     done < ~/.todo
@@ -33,12 +33,12 @@ todo_getopts(){
         case "$arg" in
             a) # Add
                 date=$(date +'%Y/%m/%d')
-                echo "U::$OPTARG::$date" >> ~/.todo
+                echo "U $date $OPTARG" >> ~/.todo
                 unset date
                 todo_list_task
                 ;;
             c) # Clean
-                line_list=$(grep -n --text 'D::' ~/.todo | cut -d ":" -f 1)
+                line_list=$(grep -nE --text '^D' ~/.todo | cut -d ":" -f 1)
                 i=0
                 for var in $line_list
                 do
@@ -50,7 +50,7 @@ todo_getopts(){
                 todo_list_task
                 ;;
             d) # Done
-                temp="$OPTARG"'s/U::/D::/g'
+                temp="$OPTARG"'s/U/D/'
                 sed -i "$temp" ~/.todo
                 unset temp
                 todo_list_task
@@ -60,15 +60,14 @@ todo_getopts(){
             L) # List with time
                 todo_list_task "time";;
             r) # Remove
-                temp=$(sed -n "$OPTARG"p ~/.todo)
-                if_done=$(echo "$temp" | grep -c 'D::')
-                if [[ "$if_done" == 0 ]]; then
+                if_done=$(sed -n "$OPTARG"p ~/.todo | cut -d " " -f 1)
+                if [[ "$if_done" == U ]]; then
                     echo -e "\e[1;31m WARNING: \e[0m task is not finished! Use -R instead."
                 else
                     sed -i "$OPTARG"d ~/.todo
                     todo_list_task
                 fi
-                unset temp if_done
+                unset if_done
                 ;;
             R) # force Remove
                 sed -i "$OPTARG"d ~/.todo
