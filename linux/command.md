@@ -46,7 +46,7 @@ at now + 1munites
 ```
 
 # bg
-将处于后台的进程放到后台继续运行, 需指定任务序号  
+将处于后台的进程放到后台继续运行, 需指定任务序号
 
 # cat
 ### 语法
@@ -60,7 +60,7 @@ at now + 1munites
 
 # chkconfig
 ### 语法
-`chkconfig [--add][--del][--list]<service_name>`  
+`chkconfig [--add][--del][--list]<service_name>`
 * `--add <service_name>` 增加httpd服务
 * `--del <service_name>` 删除httpd服务
 * `--list` 列出所有的系统服务
@@ -101,10 +101,10 @@ chkconfig --add httpd
 * `-R` 对目前目录下的所有文件与子目录进行相同的权限变更
 
 # chown
-新文件所有者和新文件所属组可以省略一个, 但是冒号不能省  
+新文件所有者和新文件所属组可以省略一个, 但是冒号不能省
 
 ### 语法
-`chown [新文件所有者]:[新文件所属组] FILE_NAME`  
+`chown [新文件所有者]:[新文件所属组] FILE_NAME`
 * `-R` 递归
 
 # corntab
@@ -180,10 +180,10 @@ cut -d " " -f 2- --complement file
 * `-T` 显示文件系统类型
 
 # disown
-使一个后台进程持续运行  
+使一个后台进程持续运行
 
 # du
-用于显示目录或文件的大小, 无参数递归显示当前目录下所有文件的大小  
+用于显示目录或文件的大小, 无参数递归显示当前目录下所有文件的大小
 
 ### 语法
 `du [-hHs] [--max-depth=<number>] [directory]`
@@ -193,12 +193,10 @@ cut -d " " -f 2- --complement file
 
 ### 例子
 ```sh
-# 显示当前目录的大小  
+# 显示当前目录的大小
 du -hs
-```
 
-```sh
-# 显示当前下目录下所有目录及文件的大小  
+# 显示当前下目录下所有目录及文件的大小
 du -hs *
 ```
 
@@ -255,19 +253,20 @@ PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 `export <variable name>`
 
 # fallocate
-创建空文件  
+创建空文件
 
 # fdisk
 
 # fg
-将处于后台的进程恢复到前台运行, 需指定任务序号  
+将处于后台的进程恢复到前台运行, 需指定任务序号
 
 # file
 查看文件详细信息(主要用来查看编码)
 
 ### 例子
 ```sh
-$ file shell.md 
+file shell.md
+
 shell.md: exported SGML document, UTF-8 Unicode text
 ```
 
@@ -282,10 +281,10 @@ fim -t a.jpg
 ```
 
 # find
-不设置查找范围参数, 则find命令将在当前目录下查找子目录与文件  
+不设置查找范围参数, 则find命令将在当前目录下查找子目录与文件
 
 ### 语法
-`find [查找范围] [查找条件] [动作]`  
+`find [查找范围] [查找条件] [动作]`
 * `-name file_name` 根据名称进行查找, 大小写敏感
 * `-iname file_name` 根据名称进行查找, 大小写不敏感
 * `-type [d | f | c | b | l]` 根据文件类型进行查找
@@ -298,66 +297,55 @@ fim -t a.jpg
 * `-inum <number>` 根据inode进行查找
 
 ### 例子
-根据时间查找:  
+* 根据时间查找
 ```sh
 # 七天前, 内容发生改变的文件
-$ find / -mtime +7
+find / -mtime +7
 
 # 四天前那天, 内容发生改变的文件
-$ find / -mtime 4
+find / -mtime 4
 
 # 七天之内, 内容发生改变的文件
-$ find / -mtime -7
+find / -mtime -7
 ```
 
-<br>
-
-根据大小进行查找:  
+* 根据大小进行查找
 ```sh
 # 查找小于3k的文件
-$ find / -size -3k -ls
+find / -size -3k -ls
 
 # 查找大小为10M的文件
-$ find / -size 10M -ls
+find / -size 10M -ls
 
 # 查找大于100字节的文件
-$ find / -size +100c -ls
+find / -size +100c -ls
 ```
 
-<br>
-
-根据所属用户进行查找:  
+* 根据所属用户进行查找
 ```sh
 # 在根目录下找到文件拥有者为root的文件
-$ find / -user root -ls
-$ find / -user 0 -ls
+find / -user root -ls
+find / -user 0 -ls
 ```
 
-<br>
-
-根据访问权限进行查找:  
+* 根据访问权限进行查找
 ```sh
 # 找到制定权限的文件
-$ find / -perm 754 -ls
+find / -perm 754 -ls
 ```
 
-<br>
-
-多个条件 使用多个条件时, 要用圆括号, 且要使用\进行转义:  
-* `-a` 与 
-* `-o` 或 
-* `!` 非
-
+* 多个条件 使用多个条件时, 要用圆括号, 且要使用\进行转义
+    * `-a` 与
+    * `-o` 或
+    * `!` 非
 ```sh
-$ find / \( -size +1k -a -size -10M -a -type f \) -ls;
+find / \( -size +1k -a -size -10M -a -type f \) -ls;
 ```
 
-<br>
-
-动作选项:  
-* `-exec`表示动作的开始
-* `{}`表示查找到的文件
-* `\;`表示动作的结束
+* 动作选项
+    * `-exec`表示动作的开始
+    * `{}`表示查找到的文件
+    * `\;`表示动作的结束
 ```sh
 # 找到指定文件并删除
 $ find / \( -size +1k -a -size -10M -a -type f \) -exec rm -rf {} \;
@@ -379,15 +367,11 @@ $ find / \( -size +1k -a -size -10M -a -type f \) -exec rm -rf {} \;
 
 # gzip
 ### 例子
-解压文件:  
 ```sh
+# 解压文件
 gzip -d test.gz
-```
 
-<br>
-
-调节压缩比(默认为6. 9为最大压缩比, 压缩的文件最小):  
-```sh
+# 调节压缩比(默认为6. 9为最大压缩比, 压缩的文件最小)
 gzip -9 test.txt
 ```
 
@@ -419,7 +403,7 @@ convert -sample 50%x50% test.jpg test_modify.jpg
 ```
 
 # jobs
-查看处于后台的任务列表  
+查看处于后台的任务列表
 
 ### 例子
 ```sh
@@ -432,14 +416,14 @@ jobs
 # join
 
 # jq
-处理XMl  
+处理XMl
 
 # kill
-默认的信号为SIGTERM(15)  
+默认的信号为SIGTERM(15)
 
 ### 例子
-强制杀死进程  
 ```sh
+# 强制杀死进程
 kill -9 PID
 ```
 
@@ -451,11 +435,10 @@ kill -9 PID
 
 # ln
 ### 语法
-`ln [-s] [链接指向的文件] [链接名]`  
+`ln [-s] [链接指向的文件] [链接名]`
 
 # locate
-在数据库(/var/lib/mlocate/mlocate.db)中查找符合条件的文档  
-更新数据库使用`updatedb`  
+在数据库(/var/lib/mlocate/mlocate.db)中查找符合条件的文档, 更新数据库使用`updatedb`
 
 # ls
 ### 语法
@@ -468,7 +451,7 @@ kill -9 PID
 * `-F` 文件夹后会有`/`
 
 ### 例子
-文件类型  
+文件类型
 * d 目录文件
 * \- 普通文件
 * c 字符设备文件
@@ -501,6 +484,7 @@ netstat -lntp
 ### 语法
 * `-m` 设置存取权限
 * `-p` 确保目录名称存在, 不存在的就建一个(嵌套创建目录)
+
 ### 例子
 ```sh
 mkdir -p -m 700 test
@@ -528,37 +512,18 @@ Markdown, HTML, 以及所有文档格式之间的转换
 
 # pgrep
 ### 语法
-`pgrep [-l] [-U username] [-t tty_name] <progress_name>`  
+`pgrep [-l] [-U username] [-t tty_name] <progress_name>`
 * `-l` 列出进程的名称
 * `-U` 根据进程所属的用户名进行查找
 * `-t` 根据进程所在的终端进行查找
 
 ### 例子
-一个简单的例子  
 ```sh
-pgrep "init"
-
-1
-```
-
-<br>
-
-列出进程名  
-```sh
+# 列出进程名
 pgrep -l "log"
 
-2538 syslogd
-2541 klogd
-```
-
-<br>
-
-根据用户名列出进程  
-```sh
+# 根据用户名列出进程
 pgrep -l -U teacher -t tty1
-
-27483 bash
-27584 vim
 ```
 
 # pkill
@@ -567,7 +532,7 @@ pgrep -l -U teacher -t tty1
 
 # ps
 ### 语法
-`ps -aux`  
+`ps -aux`
 * `a` 显示当前终端下的所有进程信息
 * `u` 使用以用户为主的格式输出进程信息
 * `x` 显示当前用户在所有终端下的进程信息
@@ -679,20 +644,16 @@ runlevel
 
 # scp
 ### 语法
-`scp [-pr] [-P port] [[user@]host1: ]file1 [...] [[user@]host2: ]file2`  
+`scp [-pr] [-P port] [[user@]host1: ]file1 [...] [[user@]host2: ]file2`
 * `-p` 保留原文件的修改时间, 访问时间和访问权限
 * `-r` 递归复制整个目录
 
 ### 例子
-从远程复制到本地  
 ```sh
+# 从远程复制到本地
 scp username@ip: remote_file local_file
-```
 
-<br>
-
-从本地复制到远程  
-```sh
+# 从本地复制到远程
 scp local_file username@ip: remote_file
 ```
 
@@ -744,7 +705,7 @@ sed '1s/ruby/bird/g' a.txt     #只将第一行的ruby替换为bird
 
 # sort
 ### 语法
-`sort [-bcdfimMnr][-o<输出文件>][-t<分隔字符>][+<起始栏位>-<结束栏位>][文件]`  
+`sort [-bcdfimMnr][-o<输出文件>][-t<分隔字符>][+<起始栏位>-<结束栏位>][文件]`
 * `-b` 忽略空格, 以第一个可见字符排序
 * `-h` `--human-numeric-sort` 相当与`-h`的升级版, 还包括进制排序, 例如2K排在1G前面
 * `-k F[.C][OPTS][,F[.C][OPTS]]` `--key` 指定字段进行排序, 如果不设置end部分则认定end为行尾
@@ -803,15 +764,11 @@ PubkeyAuthentication yes # 使用密钥登录
 `-c <数目>` 显示的字节数
 
 ### 例子
-显示文件 notes.log 的内容, 从第 20 行至文件末尾:  
 ```sh
+# 显示文件 notes.log 的内容, 从第 20 行至文件末尾
 tail +20 notes.log
-```
 
-<br>
-
-显示文件 notes.log 的最后 10 个字符:  
-```sh
+# 显示文件 notes.log 的最后 10 个字符
 tail -c 10 notes.log
 ```
 
@@ -830,36 +787,20 @@ tail -c 10 notes.log
 * `--delete` 从打包文件中删除指定的文件
 
 ### 例子
-多个文件打包成一个文件  
 ```sh
+# 多个文件打包成一个文件
 tar -cf test.tar test1.txt test2.txt test3.txt
-```
 
-<br>
-
-查看打包文件的内容  
-```sh
+# 查看打包文件的内容
 tar -tf test.tar
-```
 
-<br>
-
-删除打包文件中的指定文件  
-```sh
+# 删除打包文件中的指定文件
 tar -f test.tar --delete test3.txt
-```
 
-<br>
-
-将test01.tar合并到test.tar中  
-```sh
+# 将test01.tar合并到test.tar中
 tar -f test.tar -A test01.tar
-```
 
-<br>
-
-向打包文件中增加文件  
-```sh
+# 向打包文件中增加文件
 tar -f test.tar -r test4.txt
 ```
 
@@ -867,23 +808,23 @@ tar -f test.tar -r test4.txt
 从标准输入读取数据, 并将其输出到文件中. 对于重定向`>`, 如果右边的文件存在的话就会清空文件再执行左边的命令将结果输出到文件, 可结合`tee`和管道解决此问题
 
 ### 语法
-`tee [-ai][文件...]`  
+`tee [-ai][文件...]`
 * `-a` 附加到文件的后面, 而非覆盖它
 * `-i` 忽略中断信号
 
 ### 例子
 ```sh
-# 将用户输入的数据同时保存到文件"file1"和"file2"中  
+# 将用户输入的数据同时保存到文件"file1"和"file2"中
 tee file1 file2
 
-# 将标准输入复制到文件  
+# 将标准输入复制到文件
 ls -al | tee file.txt
 ```
 
 # top
-按P键根据CPU占用情况对进程列表进行排序  
-按M键根据内存占用情况进行排序  
-按N键根据启动时间进行排序  
+* 按P键根据CPU占用情况对进程列表进行排序
+* 按M键根据内存占用情况进行排序
+* 按N键根据启动时间进行排序
 
 ### 例子
 * `PR` 进程优先级
@@ -907,12 +848,12 @@ PID  USER   PR    NI   VIRT    RES    SHR     S  %CPU %MEM    TIME+     COMMAND
 
 # tree
 ### 语法
-`tree [-d] [-L n]`  
+`tree [-d] [-L n]`
 * `-d` 只列出目录
 * `-L n` 递归深度
 
 # truncate
-创建稀疏文件  
+创建稀疏文件
 
 # type
 判断命令到底是可执行文件、shell内置命令还是别名
@@ -923,7 +864,6 @@ type mv
 
 mv is /bin/mv
 ```
-<br>
 
 ```sh
 type ls
@@ -933,43 +873,23 @@ ls is aliased to `ls --color=auto'
 
 # ufw
 ### 例子
-启用  
 ```sh
+# 启用
 sudo ufw enable
-```
 
-<br>
-
-关闭  
-```sh
+# 关闭
 sudo ufw disable
-```
 
-<br>
-
-查看防火墙状态  
-```sh
+# 查看防火墙状态
 sudo ufw status
-```
 
-<br>
-
-允许外部访问80端口  
-```sh
+# 允许外部访问80端口
 sudo ufw allow 80
-```
 
-<br>
-
-禁止外部访问80 端口  
-```sh
+# 禁止外部访问80 端口
 sudo ufw delete allow 80
-```
 
-<br>
-
-允许此IP访问所有的本机端口  
-```sh
+# 允许此IP访问所有的本机端口
 sudo ufw allow from 192.168.1.1 
 ```
 
@@ -977,7 +897,7 @@ sudo ufw allow from 192.168.1.1
 检查及删除文本文件中重复出现的行列, **要求重复的行为相邻的行**
 
 ### 语法
-`uniq [-cdu] [输入文件] [输出文件]`  
+`uniq [-cdu] [输入文件] [输出文件]`
 * `-d, --repeated` 仅显示重复出现的行列
 * `-u, --unique` 仅显示出一次的行列
 * `-c, --count` 在每列旁边显示该行重复出现的次数
@@ -993,7 +913,7 @@ sort a b | uniq -u > c   # a-b
 ```
 
 ```sh
-# 去掉重复的行  
+# 去掉重复的行
 uniq file
 
 # 删除文件中重复出现的行, 并显示输出行重复的次数
@@ -1001,10 +921,10 @@ uniq -c file
 ```
 
 # whereis
-whereis命令用于查找文件, 只能用于查找二进制文件、源代码文件和man手册页  
+whereis命令用于查找文件, 只能用于查找二进制文件、源代码文件和man手册页
 
 ### 语法
-`whereis [-bfmsu][-B <目录>...][-M <目录>...][-S <目录>...][文件...]`  
+`whereis [-bfmsu][-B <目录>...][-M <目录>...][-S <目录>...][文件...]`
 * `-b` 只查找二进制文件
 * `-B<目录>` 只在设置的目录下查找二进制文件
 * `-m` 只查找说明文件
@@ -1013,13 +933,13 @@ whereis命令用于查找文件, 只能用于查找二进制文件、源代码�
 * `-S<目录>` 只在设置的目录下查找原始代码文件
 
 # xargs
-可以控制每行参数个数(-L)和最大并行数(-P)  
+可以控制每行参数个数(-L)和最大并行数(-P)
 
 ### 语法
 * `-i` 
 
 ### 例子
-如果你不确定它们是否会按你想的那样工作, 先使用 xargs echo 查看一下. 此外, 使用 -I{} 会很方便. 例如:  
+如果你不确定它们是否会按你想的那样工作, 先使用 xargs echo 查看一下. 此外, 使用 -I{} 会很方便. 例如:
 ```
 find . -name '*.py' | xargs grep some_function
     cat hosts | xargs -I{} ssh root@{} hostname
