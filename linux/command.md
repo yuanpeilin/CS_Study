@@ -1,5 +1,5 @@
 # 目录
-* **a** [`at`](#at) [`atq`](#atq) [`atrm`](#atrm)
+* **a** [`at`](#at)
 * **b** [`bg`](#bg)
 * **c** [`cat`](#cat) [`chattr`](#chattr) [`chgrp`](#chgrp) [`chkconfig`](#chkconfig) [`chmod`](#chmod) [`chown`](#chown) [`corntab`](#corntab) [`cp`](#cp) [`cut`](#cut)
 * **d** [`df`](#df) [`disown`](#disown) [`du`](#du)
@@ -29,41 +29,21 @@
 
 
 # at
-定时启动任务, 属于一次性计划任务  
-位置: /etc/init.d/atd  
+定时启动任务, 属于一次性计划任务, 位于 */etc/init.d/atd*
 
 ### 语法
-`at [HH:MM] [yyyy-mm-dd]`  
+`at [HH:MM] [yyyy-mm-dd]`
+* `-c <number>` 显示任务详情
+* `-d <number>` 删除一个任务, 相当于`atrm`
+* `-l` 列出当前任务, 相当于`atq`
 
 ### 例子
-
 ```sh
-service atd start
-
-启动 atd: [确定]
-```
-
-```sh
-# ctrl+D提交任务
+# 命令输入完成后使用Ctrl+D提交任务
 at 23:45
-
-at> shutdown -h now
-at> <EOT>
-job 1 at 2009-09-14 23: 45
+at 8:00 2020-01-01
+at now + 1munites
 ```
-
-# atq
-查询当前设置的at任务列表  
-
-### 例子
-```sh
-atq
-
-1 2009-09-14 23: 45 a root
-```
-
-# atrm
-删除指定任务编号的at任务  
 
 # bg
 将处于后台的进程放到后台继续运行, 需指定任务序号  
