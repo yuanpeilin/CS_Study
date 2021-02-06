@@ -43,8 +43,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/bash/.bash_aliases ]; then
-    . ~/bash/.bash_aliases
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -102,17 +102,6 @@ bak(){
 }
 
 todo(){
-    . ~/bash/todo.sh "$@"
+    . ~/todo.sh "$@"
 }
 clear && todo -L
-
-# +----------------------------------+
-# |            USER alias            |
-# +----------------------------------+
-PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\] \[\e[01;34m\]\w$(git_branch)\[\e[00m\]\$ '
-
-export CDPATH=.:/home/ypl/
-
-alias yuanpeilin='cd ~/workspace/yuanpeilin.github.io && git status -bs'
-alias vultr_japen='ssh ypl@149.28.29.166'
-

@@ -99,3 +99,13 @@ alias upgrade='sudo apt full-upgrade'
 alias .vimrc='vim /home/ypl/workspace/yuanpeilin.github.io/software/src/vimrc'
 alias wl='wc -l'
 alias ws='cd ~/workspace && ls'
+
+# +----------------------------------+
+# |            USER alias            |
+# +----------------------------------+
+PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\] \[\e[01;34m\]\w$(git_branch)\[\e[00m\]\$ '
+
+export CDPATH=.:/home/ypl/
+
+alias yuanpeilin='cd ~/workspace/yuanpeilin.github.io && git status -bs'
+alias vultr_japen='ssh ypl@149.28.29.166'
