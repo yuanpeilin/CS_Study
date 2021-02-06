@@ -695,6 +695,21 @@ sed 's/ruby/bird/g' a.txt      #将所有ruby替换为bird(g表示global, 全局
 sed '1s/ruby/bird/g' a.txt     #只将第一行的ruby替换为bird
 ```
 
+# shift
+若脚本参数多于9个, 就需要通过shift函数, 让第一个参数出队, 队列中顺序左移, 第10个参数入队到$9中, 因此shift可以处理脚本超过10个参数的情况
+
+### 例子
+```sh
+COUNT = 0
+NUMBER = $1
+while [ $COUNT –lt  $NUMBER ]; do
+    COUNT=`expr $COUNT + 1`
+    TOKEN='$' $COUNT
+
+    shift # $2 become $1
+done
+```
+
 # shopt
 显示和设置shell中的行为选项
 

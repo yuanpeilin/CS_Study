@@ -5,20 +5,19 @@
 - [while](#while)
 - [case](#case)
 - [select](#select)
-- [存在性测试](#存在性测试)
+- [getopts](#getopts)
+- [位置参数](#位置参数)
 - [切割字符串](#切割字符串)
 - [模式匹配](#模式匹配)
 - [引号](#引号)
 - [整数运算](#整数运算)
 - [特殊变量](#特殊变量)
-- [位置参数](#位置参数)
-- [shift](#shift)
+- [存在性测试](#存在性测试)
 - [条件测试](#条件测试)
     - [条件测试表达式](#条件测试表达式)
     - [整数值比较操作符含义](#整数值比较操作符含义)
     - [文件属性检查](#文件属性检查)
     - [字符串检查](#字符串检查)
-- [getopts](#getopts)
 
 
 
@@ -168,28 +167,44 @@ select var in "dog" "cat" "bee"; do
 done
 ```
 
-# 存在性测试
-大括号里面直接写变量名或数字, 括号外面已经有`$`符号了无需再添加
-
-表达式          | 存在且非null | 值为null               | 不存在                 | 意图
---------------- | ------------ | ---------------------- | ---------------------- | ----
-${var-value}    | 返回var      | 返回var                | 返回value              | 测存在性, 不测空值
-${var:-value}   | 返回var      | 返回value              | 返回value              | 变量未定义或不存在, 则返回一个默认值
-${var:=value}   | 返回var      | 将var值置为value且返回 | 将var值置为value且返回 | 变量未定义或不存在, 则为变量设置默认值
-${var:?message} | 返回var      | 返回message并退出脚本  | 返回message并退出脚本  | 捕获未定义变量造成的异常
-${var:+value}   | 返回value    | 返回null               | 返回null               | 修改一个已存在变量的值
-
+# getopts
+`while getopts :xyn: name`
+x、y和n是选项. 在本例中, 第一个选项由一个冒号引导, 表示getopts不报告错误信息. 如果选项后有一个冒号, 表示该选项需要一个参数. 参数是一个不用短划线引导的词. -n选项需要一个参数  
+遇到不含短划线的选项时, getopts就认为选项列表已结束  
+每次被调用时, getopts都将找到的下一个选项放到变量name中(这个变量名可任意选择). 如果遇到非法变量, getopots就将name的值设为问号  
+getopts函数提供两个变量来保持参数的记录: `OPTIND`和`OPTARG`
+* `OPTIND`是一个专用变量, 初始化为1, 每次getopts处理完一个命令行参数后, OPTIND就增加为getopts下一个要处理的参数的序号
+* `OPTARG`变量包含了合法参数的值
 ```sh
-# !/bin/bash
-name=${ 1:? requires an argument }
-echo Hello $name
+#!/bin/bash  #test.sh
+while getopts "a:bc" arg   #选项后面的冒号表示该选项需要参数
+do
+    case $arg in
+        a)
+            echo "a's arg:$OPTARG"        #参数存在$OPTARG中
+            ;;
+        b)
+            echo "b"
+            ;;
+        c)
+            echo "c"
+            ;;
+        ?)  #当有不认识的选项的时候arg为?
+            echo "unkonw argument"
+            exit 1
+            ;;
+    esac
+done
 ```
 
+# 位置参数
+* `${@:begin}` 从begin开始, 取后面所有的位置参数
+* `${@:begin:count}` 从begin开始, 取后面count个的位置参数
+
 ```sh
-[root@localhost ~]# checker
-requires an argument
-[root@localhost ~]# checker  jerry
-Hello jerry
+test.sh v1 v2 v3 v4 v5
+echo ${@:3}     # v3 v4 v5
+echo ${@:3:2}   # v3 v4
 ```
 
 # 切割字符串
@@ -246,27 +261,28 @@ $?   | 上一条命令执行后返回的状态, 当返回状态值为0时表示�
 $$   | 当前所在进程的进程号
 $!   | 后台运行的最后一个进程号
 
-# 位置参数
-* `${@:begin}` 从begin开始, 取后面所有的位置参数
-* `${@:begin:count}` 从begin开始, 取后面count个的位置参数
+# 存在性测试
+大括号里面直接写变量名或数字, 括号外面已经有`$`符号了无需再添加
+
+表达式          | 存在且非null | 值为null               | 不存在                 | 意图
+--------------- | ------------ | ---------------------- | ---------------------- | ----
+${var-value}    | 返回var      | 返回var                | 返回value              | 测存在性, 不测空值
+${var:-value}   | 返回var      | 返回value              | 返回value              | 变量未定义或不存在, 则返回一个默认值
+${var:=value}   | 返回var      | 将var值置为value且返回 | 将var值置为value且返回 | 变量未定义或不存在, 则为变量设置默认值
+${var:?message} | 返回var      | 返回message并退出脚本  | 返回message并退出脚本  | 捕获未定义变量造成的异常
+${var:+value}   | 返回value    | 返回null               | 返回null               | 修改一个已存在变量的值
+
 ```sh
-test.sh v1 v2 v3 v4 v5
-echo ${@:3}   # v3 v4 v5
-echo ${@:3:2}   # v3 v4
+# !/bin/bash
+name=${ 1:? requires an argument }
+echo Hello $name
 ```
 
-# shift
-若脚本参数多于9个, 就需要通过shift函数, 让第一个参数出队, 队列中顺序左移, 第10个参数入队到$9中, 因此shift可以处理脚本超过10个参数的情况
-例如:
 ```sh
-COUNT = 0
-NUMBER = $1
-while [ $COUNT –lt  $NUMBER ]; do
-    COUNT=`expr $COUNT + 1`
-    TOKEN='$' $COUNT
-
-    shift # $2 become $1
-done
+[root@localhost ~]# checker
+requires an argument
+[root@localhost ~]# checker  jerry
+Hello jerry
 ```
 
 # 条件测试
@@ -320,33 +336,3 @@ test   | 需要         | `!` `-a` `-o`    | `-eq` `-gt` `-lt` `-ge` `-le`      
 ### 字符串检查
 * `-z string` 字符串长度为0
 * `-n string` 字符串长度不为0
-
-# getopts
-`while getopts :xyn: name`
-x、y和n是选项. 在本例中, 第一个选项由一个冒号引导, 表示getopts不报告错误信息. 如果选项后有一个冒号, 表示该选项需要一个参数. 参数是一个不用短划线引导的词. -n选项需要一个参数  
-遇到不含短划线的选项时, getopts就认为选项列表已结束  
-每次被调用时, getopts都将找到的下一个选项放到变量name中(这个变量名可任意选择). 如果遇到非法变量, getopots就将name的值设为问号  
-getopts函数提供两个变量来保持参数的记录: `OPTIND`和`OPTARG`
-* `OPTIND`是一个专用变量, 初始化为1, 每次getopts处理完一个命令行参数后, OPTIND就增加为getopts下一个要处理的参数的序号
-* `OPTARG`变量包含了合法参数的值
-```sh
-#!/bin/bash  #test.sh
-while getopts "a:bc" arg   #选项后面的冒号表示该选项需要参数
-do
-    case $arg in
-        a)
-            echo "a's arg:$OPTARG"        #参数存在$OPTARG中
-            ;;
-        b)
-            echo "b"
-            ;;
-        c)
-            echo "c"
-            ;;
-        ?)  #当有不认识的选项的时候arg为?
-            echo "unkonw argument"
-            exit 1
-            ;;
-    esac
-done
-```
