@@ -4,6 +4,7 @@ todo_help(){
     echo -e "    -c            clear all finished tasks"
     echo -e "    -d <number>   done"
     echo -e "    -h            help"
+    echo -e "    -i            edit"
     echo -e "    -l            list all tasks"
     echo -e "    -L            list all tasks with time"
     echo -e "    -r <number>   remove the finished task"
@@ -29,7 +30,7 @@ todo_list_task(){
 }
 
 todo_getopts(){
-    while getopts ":a:cd:h:Llr:R:" arg; do
+    while getopts ":a:cd:hiLlr:R:" arg; do
         case "$arg" in
             a) # Add
                 date=$(date +'%Y/%m/%d')
@@ -55,6 +56,8 @@ todo_getopts(){
                 unset temp
                 todo_list_task
                 ;;
+            i) # edit
+                vim ~/.todo;;
             l) # List
                 todo_list_task;;
             L) # List with time
