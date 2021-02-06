@@ -686,6 +686,24 @@ sed 's/ruby/bird/g' a.txt      #将所有ruby替换为bird(g表示global, 全局
 sed '1s/ruby/bird/g' a.txt     #只将第一行的ruby替换为bird
 ```
 
+# seq
+从1开始输出, 在shell脚本中的某些情况下代替自增
+
+### 语法
+**`seq [-w] <number>`**
+- `-w` 位数不足的补0, 使输出等宽
+
+### 例子
+```sh
+seq 6
+1
+2
+3
+4
+5
+6
+```
+
 # shift
 若脚本参数多于9个, 就需要通过shift函数, 让第一个参数出队, 队列中顺序左移, 第10个参数入队到$9中, 因此shift可以处理脚本超过10个参数的情况
 
