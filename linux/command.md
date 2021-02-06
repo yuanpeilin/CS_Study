@@ -3,7 +3,7 @@
 * **b** [`bg`](#bg)
 * **c** [`cat`](#cat) [`chattr`](#chattr) [`chgrp`](#chgrp) [`chkconfig`](#chkconfig) [`chmod`](#chmod) [`chown`](#chown) [`corntab`](#corntab) [`cp`](#cp) [`cut`](#cut)
 * **d** [`df`](#df) [`disown`](#disown) [`du`](#du)
-* **e** [`echo`](#echo) [`egrep`](#egrep) [`export`](#export)
+* **e** [`echo`](#echo) [`export`](#export)
 * **f** [`fallocate`](#fallocate) [`fdisk`](#fdisk) [`fg`](#fg) [`file`](#file) [`fim`](#fim) [`find`](#find) [`free`](#free)
 * **g** [`grep`](#grep) [`gzip`](#gzip)
 * **h** [`head`](#head)
@@ -237,15 +237,6 @@ echo -e "\033[01;34m SomeWord \033[00m"
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 ```
 
-# egrep
-### 语法
-* `-i` 
-* `-o` 
-* `-v` 
-* `-A` 
-* `-B` 
-* `-C` 
-
 # export
 输出环境变量, 不接变量名输出所有环境变量, 仅当前session有效
 
@@ -356,14 +347,14 @@ $ find / \( -size +1k -a -size -10M -a -type f \) -exec rm -rf {} \;
 
 # grep
 ### 语法
+* `-A <number>` 除了当前行, 还输出当前行 **后面** number行
+* `-B <number>` 除了当前行, 还输出当前行 **前面** number行
+* `-C <number>` 除了当前行, 还输出当前行 **前后** number行
+* `-E` `--extended-regexp` extended regexp
 * `-i` 忽略大小写
+* `-o` 仅输出匹配的部分(默认输出匹配的行)
 * `-r` 递归, 搜索目录
-* `-E` extended regexp
 * `-v` `--invert-match` 对结果取反
-`-o` 
-`-A` 
-`-B` 
-`-C` 
 
 # gzip
 ### 例子
