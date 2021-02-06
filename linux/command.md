@@ -16,7 +16,7 @@
 * **p** [`pandoc`](#pandoc) [`pgrep`](#pgrep) [`pkill`](#pkill) [`ps`](#ps) [`pstree`](#pstree)
 * **r** [`rsync`](#rsync) [`runlevel`](#runlevel)
 * **s** [`scp`](#scp) [`sed`](#sed) [`shopt`](#shopt) [`sort`](#sort) [`ssh`](#ssh)
-* **t** [`tail`](#tail) [`tar`](#tar) [`tee`](#tee) [`top`](#top) [`tree`](#tree) [`truncate`](#truncate) [`type`](#type)
+* **t** [`tail`](#tail) [`tar`](#tar) [`tee`](#tee) [`top`](#top) [`tr`](#tr) [`tree`](#tree) [`truncate`](#truncate) [`type`](#type)
 * **u** [`ufw`](#ufw) [`uniq`](#uniq)
 * **w** [`whereis`](#whereis)
 * **x** [`xargs`](#xargs) [`xmlstarlet`](#xmlstarlet)
@@ -868,6 +868,20 @@ PID  USER   PR    NI   VIRT    RES    SHR     S  %CPU %MEM    TIME+     COMMAND
 3165 ypl    20    0   51320   4132   3392     R   6.2  0.1    0: 00.01  top
 1    root   20    0  225528   9336   6740     S   0.0  0.3    0: 02.87  systemd
 2    root   20    0       0      0      0     S   0.0  0.0    0: 00.02  kthreadd
+```
+
+# tr
+translate, 转换大小写
+
+### 例子
+```sh
+# 小写转换为大写
+echo Hello There | tr [:lower:] [:upper:]
+echo Hello There | tr a-z A-Z
+
+# 大写转换为小写
+echo Hello There | tr [:upper:] [:lower:]
+echo Hello There | tr A-Z a-z
 ```
 
 # tree
