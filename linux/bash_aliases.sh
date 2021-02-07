@@ -109,3 +109,4 @@ export CDPATH=.:/home/ypl/
 
 alias yuanpeilin='cd ~/workspace/yuanpeilin.github.io && git status -bs'
 alias vultr_japen='ssh ypl@149.28.29.166'
+export VULTR='149.28.29.166'
