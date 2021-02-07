@@ -1,7 +1,7 @@
 # 目录
 * **a** [`at`](#at)
 * **b** [`bg`](#bg)
-* **c** [`cat`](#cat) [`chattr`](#chattr) [`chgrp`](#chgrp) [`chkconfig`](#chkconfig) [`chmod`](#chmod) [`chown`](#chown) [`corntab`](#corntab) [`cp`](#cp) [`cut`](#cut)
+* **c** [`cat`](#cat) [`chattr`](#chattr) [`chgrp`](#chgrp) [`chkconfig`](#chkconfig) [`chmod`](#chmod) [`chown`](#chown) [`corntab`](#corntab) [`cp`](#cp) [`curl`](#curl) [`cut`](#cut)
 * **d** [`df`](#df) [`disown`](#disown) [`du`](#du)
 * **e** [`echo`](#echo) [`export`](#export)
 * **f** [`fallocate`](#fallocate) [`fdisk`](#fdisk) [`fg`](#fg) [`file`](#file) [`fim`](#fim) [`find`](#find) [`free`](#free)
@@ -149,6 +149,47 @@ HOME=/
 * `-p` 原封不动的拷贝权限、时间戳等, 前提是用户对文件有写权限
 * `-d` 复制是链接文件的话, 复制此链接. 否则不加此参数的话, 复制的是链接指向的文件
 * `-a` 相当与`-dpr`
+
+# curl
+### 例子
+```sh
+# 不带任何参数, 就是发送GET请求(即显示网页源代码)
+curl www.baidu.com
+curl example.com?data=xxx&time=xxx
+
+# 将网页保存为文件
+curl -o <file path> www.baidu.com
+
+# 自动跳转
+curl -L www.baidu.com
+
+# 除了显示网页源代码, 显示HTTP请求头信息
+curl -i www.baidu.com
+
+# 显示HTTP通信整个过程
+curl -v www.baidu.com
+
+# 显示详细的HTTP通信整个过程
+curl --trace output.txt www.baidu.com
+curl --trace-ascii output.txt www.baidu.com
+
+# 设置代理
+curl -x socks5://localhost:1080 www.baidu.com
+```
+
+* 发送POST请求
+```sh
+curl -X POST -d "data=xxx" example.com
+curl -X POST --data "data=xxx" example.com
+curl -X POST -d "data=xxx" -d "data=xxx" example.com
+curl -X POST -d "data=xxx&data=xxx" example.com
+
+# 读取文件
+curl -d '@data.txt' example.com
+
+# 自动进行URL编码
+curl -X POST --data-urlencode "date=xxx" example.com
+```
 
 # cut
 ### 语法
