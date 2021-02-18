@@ -69,7 +69,6 @@
 * [**Software**](software/)
     - [Apache2](software/apache.md)
     - [Eclipse](software/eclipse.md)
-    - [fcitx](software/fcitx.md)
     - [IDEA](software/idea.md)
     - [Jupyter](software/jupyter.md)
     - [Linux](software/linux.md)
