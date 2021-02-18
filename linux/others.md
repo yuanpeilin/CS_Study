@@ -4,7 +4,7 @@
 - [Software](#software)
 - [忽略大小写](#忽略大小写)
 - [输入法](#输入法)
-- [[安装插件](https://extensions.gnome.org)](#安装插件httpsextensionsgnomeorg)
+- [安装插件](#安装插件)
 - [Tweaks](#tweaks)
 - [dconf](#dconf)
 - [安装Java](#安装java)
