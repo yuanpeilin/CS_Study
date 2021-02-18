@@ -1,31 +1,41 @@
+- [模式](#模式)
+    - [normal模式](#normal模式)
+    - [insert模式](#insert模式)
+    - [command模式](#command模式)
+    - [visual模式](#visual模式)
+- [分屏](#分屏)
+    - [启动分屏](#启动分屏)
+    - [分屏快捷键](#分屏快捷键)
+- [分页](#分页)
+    - [启动分页](#启动分页)
+    - [分页快捷键](#分页快捷键)
+- [查找替换](#查找替换)
+    - [查找](#查找)
+    - [替换](#替换)
+- [初始配置](#初始配置)
+    - [需要的插件](#需要的插件)
+    - [手动安装插件](#手动安装插件)
+    - [自动安装插件(vim-plug)](#自动安装插件vim-plug)
+    - [vimrc](#vimrc)
+
+
+
+******************************************************************************************************
+
+
+
 # 模式
-insert模式(i)
-normal模式(esc)
-visual模式(v, 移动光标复制或删除)
+* normal模式(esc)
+* insert模式(i)
+* command模式(:)
+* visual模式(v字符选取, V行选取)
 
-# 可视模式
-
-Symbol  | DESCRIPTION
-------- | -----------
-`J`     | 把所有的行连接起来变成一行
-`<` `>` | 左右缩进
-`=`     | 自动缩进
-
-# normal模式快捷键
-### 插入模式
+### normal模式
+* 光标移动
 
 Symbol | DESCRIPTION
 ------ | -----------
-`a`    | 在光标后插入
-`i`    | 在光标前插入
-`o`    | 在当前行后插入一个新行
-`O`    | 在当前行前插入一个新行
-
-### 光标移动
-
-Symbol | DESCRIPTION
------- | -----------
-`0`    | 到行头(数字零)
+`0`    | 到行头
 `$`    | 到行尾
 `^`    | 到行头(到本行头第一个不是blank字符的位置)
 `g_`   | 到行尾(到本行尾最后一个不是blank字符的位置)
@@ -37,8 +47,22 @@ Symbol | DESCRIPTION
 `e`    | 到下一个单词的结尾
 `*`    | 匹配光标当前所在的单词, 下一个匹配单词
 `#`    | 匹配光标当前所在的单词, 上一个匹配单词
+`H`    | 将光标移动到当前显示页的第一行
+`L`    | 将光标移动到当前显示页的最后一行
 
-### 复制删除
+
+* 翻页
+Symbol  | DESCRIPTION
+------- | -----------
+`<C-d>` | 向下半页(down)
+`<C-u>` | 向上半页(up)
+`<C-f>` | 向下整页(forward)
+`<C-b>` | 向上整页(back)
+`zt`    | 翻页到光标位于屏幕开始(不移动光标, 只翻页)
+`zz`    | 翻页到光标位于屏幕中间(不移动光标, 只翻页)
+`zb`    | 翻页到光标位于屏幕末尾(不移动光标, 只翻页)
+
+* 复制删除
 
 Symbol  | DESCRIPTION
 ------- | -----------
@@ -50,25 +74,42 @@ Symbol  | DESCRIPTION
 `p`     | 粘贴
 `yy`    | 复制当前行
 
-### 其他
+* 查找
+
+Symbol       | DESCRIPTION
+------------ | -----------
+`f <letter>` | 到下一个以letter开头单词的位置(find)
+`t <letter>` | 到下一个以letter开头单词的前一格(to)
+
+* 其他
 
 Symbol | DESCRIPTION
 ------ | -----------
 `gU`   | 变大写
 `gu`   | 变小写
 
-# 命令
+### insert模式
 
-Command | Description
-------- | -----------
-`:e` | <FILE_PATH> 打开一个文件
-`:saveas <FILE_PATH>` | 另存为 <FILE_PATH>
-`:bn` | 切换下一个文件
-`:bp` | 切换上一个文件
-`:.` | (小数点)可以重复上一次的命令
-`N<command>` | 重复某个命令N次
+Symbol | DESCRIPTION
+------ | -----------
+`a`    | 在光标后插入
+`i`    | 在光标前插入
+`o`    | 在当前行后插入一个新行
+`O`    | 在当前行前插入一个新行
 
-# 浏览目录
+### command模式
+
+Command               | Description
+--------------------- | -----------
+`:e <FILE_PATH>`      | 打开一个文件
+`:e .`                | 打开当前目录
+`:saveas <FILE_PATH>` | 另存为
+`:bn`                 | 切换下一个文件
+`:bp`                 | 切换上一个文件
+`:.`                  | (小数点)可以重复上一次的命令
+`N<command>`          | 重复某个命令N次
+
+* 浏览目录
 使用`:E`浏览目录, 在此界面可执行以下命令:  
 
 Command           | Description
@@ -82,24 +123,24 @@ Command           | Description
 `:blast` `bl`     | 
 `:bfirst` `bf`    | 
 
+### visual模式
+
+Symbol  | DESCRIPTION
+------- | -----------
+`J`     | 把所有的行连接起来变成一行
+`<` `>` | 左右缩进
+`=`     | 自动缩进
+
 # 分屏
 ### 启动分屏
-垂直分屏, 左右各一半(n代表屏幕个数):  
 ```sh
+# 垂直分屏, 左右各一半(n代表屏幕个数)
 vim -On file1 file2 ...
-```
-```vim
-`:vsp FILE_NAME`
-```
+:vsp FILE_NAME
 
-<br>
-
-水平分屏:  
-```sh
+# 水平分屏
 vim -on file1 file2 ...
-```
-```vim
-`:sp FILE_NAME`
+:sp FILE_NAME
 ```
 
 ### 分屏快捷键
@@ -121,6 +162,15 @@ vim -on file1 file2 ...
 * `:sp FILE_NAME` 上下分割，并打开一个新的文件
 * `:vsp FILE_NAME` 左右分割，并打开一个新的文件
 
+# 分页
+### 启动分页
+* `:tabe <FILE_PATH>` 分页
+* `:tabe .`
+
+### 分页快捷键
+* `gt` 下一页
+* `gT` 上一页
+
 # 查找替换
 ### 查找
 在normal模式下按下`/`, 后面加要搜索的内容, 可以是正则表达式  
@@ -128,7 +178,7 @@ vim -on file1 file2 ...
 输入`:noh`(no highlight search)取消高亮  
 
 ### 替换
-`:[range]s/pattern/string/[c,e,g,i]`  
+`:[range]s/pattern/string/[c,e,g,i]`
 
 Parameter | Description
 --------- | -----------
@@ -137,7 +187,7 @@ pattern   | 要被替换的字符串, 可以是正则表达式
 string    | string将取代pattern
 c         | confirm, 每次替换前会询问
 e         | error, 不显示错误
-g         | global, 不询问全部替换
+g         | global, 全局替换, 默认替换第一个
 i         | ignore, 不区分大小写
 
 # 初始配置
