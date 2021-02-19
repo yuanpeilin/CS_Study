@@ -84,7 +84,7 @@ nmap <Leader>F #
 nmap <Leader>] zM
 nmap <Leader>[ zR
 nmap <Leader>a za
-" 多窗口
+" 多窗口光标移动
 nnoremap <Leader>e <C-W><C-W>
 nnoremap <Leader>h <C-W>h
 nnoremap <Leader>j <C-W>j
@@ -99,6 +99,10 @@ nnoremap <Leader>L <C-W>L
 nnoremap <Leader>= <C-W>=
 nnoremap <Leader>+ <C-W>+
 nnoremap <Leader>- <C-W>-
+" 移动tab
+nnoremap <Leader>t gt
+nnoremap <Leader>T gT
+
 
 " +----------------------------------+
 " |               基本               |
