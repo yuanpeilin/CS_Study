@@ -16,15 +16,15 @@ todo_help() {
 todo_list_task() {
     i=1
     while read -r line; do
-        status=$(echo "$line" | cut -d " " -f 1)
-        content=$(echo "$line" | cut -d " " -f 3-)
+        status=${line:0:1}
+        content=${line:13}
         if [[ "$#" == 1 && "$1" == "time" ]]; then
-            date=$(echo "$line" | cut -d " " -f 2)
+            date=${line:2:10}
         fi
         if [[ "$status" == "U" ]]; then
-            printf "\e[01m%-2s %s %s \n\e[00m" "$i [ ]" "${content:0:30}" "   $date"
+            printf "\e[01m%-2s %s %s \n\e[00m" "$i [ ]" "$content" "   $date"
         else
-            printf "\e[09m%-2s %s %s \n\e[00m" "$i [*]" "${content:0:30}" "   $date"
+            printf "\e[09m%-2s %s %s \n\e[00m" "$i [*]" "$content" "   $date"
         fi
         i=$((i + 1))
     done <"$path"
