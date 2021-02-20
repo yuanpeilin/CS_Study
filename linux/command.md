@@ -661,7 +661,9 @@ runlevel
 # scp
 ### 语法
 **`scp [-pr] [-P port] [[user@]host1: ]file1 [...] [[user@]host2: ]file2`**
+- `-C` 允许压缩
 - `-p` 保留原文件的修改时间, 访问时间和访问权限
+- `-P port` 指定端口
 - `-r` 递归复制整个目录
 
 ### 例子
