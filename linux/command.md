@@ -401,8 +401,10 @@ gzip -9 test.txt
 
 # head
 ### 语法
-- `-c<数目>` 显示的字节数
-- `-n<行数>` 显示的行数
+- `-c <number>` 显示开头number个字节
+- `-<number>` 显示开头number行
+- `-n <number>` 显示开头number行
+- `-n -<number>` 显示所有行除了最后number行
 
 
 # ifconfig
@@ -810,18 +812,13 @@ PubkeyAuthentication yes # 使用密钥登录
 
 # tail
 ### 语法
+- `-c <number>` 显示最后number个字节
 - `-f` 循环读取, 可以上下滚动查看内容, 退出之后有残留信息
-- `-n <行数>` 显示文件的尾部 n 行内容
-- `-c <数目>` 显示的字节数
-
-### 例子
-```sh
-# 显示文件 notes.log 的内容, 从第 20 行至文件末尾
-tail +20 notes.log
-
-# 显示文件 notes.log 的最后 10 个字符
-tail -c 10 notes.log
-```
+- `-<number>` 显示文件最后number行
+- `+<number>` 从第number行开始显示
+- `-n <number>` 显示文件最后number行
+- `-n +<number>` 从第number行开始显示
+- `-n -<number>` 显示文件最后number行
 
 # tar
 ### 语法
