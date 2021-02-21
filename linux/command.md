@@ -383,7 +383,9 @@ $ find / \( -size +1k -a -size -10M -a -type f \) -exec rm -rf {} \;
 - `-A <number>` 除了当前行, 还输出当前行 **后面** number行
 - `-B <number>` 除了当前行, 还输出当前行 **前面** number行
 - `-C <number>` 除了当前行, 还输出当前行 **前后** number行
-- `-E` `--extended-regexp` extended regexp
+- `-E` `--extended-regexp` ERE, 参考[linux/regex.md](regex.md)
+- `-G` `--basic-regexp` BRE
+- `-P` `--perl-regexp` PCRE
 - `-i` 忽略大小写
 - `-o` 仅输出匹配的部分(默认输出匹配的行)
 - `-r` 递归, 搜索目录
