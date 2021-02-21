@@ -685,6 +685,7 @@ scp local_file username@ip: remote_file
 - 选项
     - `-n` 只有经过处理的行才显示, 否则全部显示
     - `-i` 直接操作文件而不是输出
+    - `-E` ERE, 默认为BRE
 - 常用命令
     - `a` 新增
     - `c` 取代
