@@ -898,7 +898,13 @@ PID  USER   PR    NI   VIRT    RES    SHR     S  %CPU %MEM    TIME+     COMMAND
 ```
 
 # tr
-translate, 转换大小写
+只从输入流读取数据, 不读取文件
+
+### 语法
+- `tr <pattern1> <pattern2>` 使用pattern2取代pattern1
+- `tr -s <pattern1> <pattern2>` 缩减连续重复的字符, 视为单个字符
+- `tr -c <pattern1> <pattern2>` 反选, 使用pattern2取代非pattern1
+- `tr -d <pattern>` 删除pattern
 
 ### 例子
 ```sh
@@ -906,9 +912,9 @@ translate, 转换大小写
 echo Hello There | tr [:lower:] [:upper:]
 echo Hello There | tr a-z A-Z
 
-# 大写转换为小写
-echo Hello There | tr [:upper:] [:lower:]
-echo Hello There | tr A-Z a-z
+# 将CRLF转换为LF
+tr '\r\n' '\n' file
+tr -d '\r' file
 ```
 
 # tree
