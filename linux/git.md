@@ -106,6 +106,11 @@ git config --global core.editor vim
 git config --global core.excludesfile '~/.gitignore'
 ```
 
+```
+[includeIf "gitdir/i:~/Desktop/"]
+    path = ~/.gitconfig2
+```
+
 # diff
 * **`git [--name-only | --name-status] [commit_id...] [file_name]`** 
 * **`git diff --name-status <commit_id1> <commit_id2>`** 获取两次commit修改的文件
