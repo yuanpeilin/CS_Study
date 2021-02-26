@@ -103,6 +103,7 @@ git config --global alias.tree    'ls-tree -r'
 git config --global alias.type    'cat-file -t'
 git config --global alias.unstage 'reset HEAD --'
 git config --global core.editor vim
+git config --global core.excludesfile '~/.gitignore'
 ```
 
 # diff
