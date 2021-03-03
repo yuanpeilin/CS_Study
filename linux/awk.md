@@ -113,3 +113,11 @@ awk -F ': ' '$1 == "root" || $1 == "bin" {print $1}' demo.txt
 # 输出第一个字段的第一个字符大于m的行
 awk -F ': ' '{if ($1 > "m") print $1; else print "---"}' demo.txt
 ```
+
+* 使用shell变量
+```sh
+# 将shell变量变成了awk变量
+line=2
+awk -v aline="$line" 'NR==aline{print $0}' file.txt
+awk 'NR=="'$line'"{print $0}' file.txt
+```
