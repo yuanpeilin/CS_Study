@@ -104,4 +104,4 @@ bak(){
 todo(){
     . ~/todo.sh "$@"
 }
-clear && todo -L
+clear && todo -l

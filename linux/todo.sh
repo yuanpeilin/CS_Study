@@ -1,3 +1,4 @@
+#!/bin/bash
 path=/var/todo/todo
 
 todo_help() {
@@ -7,7 +8,7 @@ todo_help() {
     echo -e "    -d <number>   done"
     echo -e "    -h            help"
     echo -e "    -i            edit data file: /var/todo/todo"
-    echo -e "    -l            list all tasks"
+    echo -e "    -l            list unfinished tasks"
     echo -e "    -L            list all tasks with time"
     echo -e "    -r <number>   remove the finished task"
     echo -e "    -R <number>   force remove the task"
@@ -18,13 +19,13 @@ todo_list_task() {
     while read -r line; do
         status=${line:0:1}
         content=${line:13}
-        if [[ "$#" == 1 && "$1" == "time" ]]; then
+        if [[ "$#" == 1 ]]; then
             date=${line:2:10}
             date="   $date"
         fi
         if [[ "$status" == "U" ]]; then
             printf "\e[01m%2s %s %s %s \n\e[00m" "$i" "[ ]" "$content" "   $date"
-        else
+        elif [[ "$#" == 1 ]]; then
             printf "\e[09m%2s %s %s %s \n\e[00m" "$i" "[*]" "$content" "   $date"
         fi
         i=$((i + 1))
