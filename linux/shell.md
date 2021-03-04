@@ -272,19 +272,6 @@ ${var:=value}   | 返回var      | 将var值置为value且返回 | 将var值置�
 ${var:?message} | 返回var      | 返回message并退出脚本  | 返回message并退出脚本  | 捕获未定义变量造成的异常
 ${var:+value}   | 返回value    | 返回null               | 返回null               | 修改一个已存在变量的值
 
-```sh
-# !/bin/bash
-name=${ 1:? requires an argument }
-echo Hello $name
-```
-
-```sh
-[root@localhost ~]# checker
-requires an argument
-[root@localhost ~]# checker  jerry
-Hello jerry
-```
-
 # 条件测试
 测试特定的表达式是否成立, 当条件成立时, 命令执行后的返回值为0, 否则为其他数值
 
