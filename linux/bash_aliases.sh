@@ -110,4 +110,13 @@ export VULTR='149.28.149.197'
 
 alias yuanpeilin='cd ~/workspace/yuanpeilin.github.io && git status -bs'
 alias svultr='ssh root@$VULTR'
-alias mc='java -jar /opt/hmcl/HMCL-3.3.172.jar &>/dev/null &'
+
+mc() {
+    fcitx_pids=$(ps -ef | grep fcitx | awk '{print $2}' | tr '\n' ' ')
+    echo "$fcitx_pids"
+    for pid in $fcitx_pids; do
+        kill $pid
+    done
+    unset fcitx_pids pid
+    java -jar /opt/hmcl/HMCL-3.3.172.jar &>/dev/null &
+}
