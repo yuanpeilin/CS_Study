@@ -106,8 +106,8 @@ alias ws='cd ~/workspace && ls'
 PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\] \[\e[01;34m\]\w$(git_branch)\[\e[00m\]\$ '
 
 export CDPATH=.:/home/ypl/
-export VULTR='149.28.29.166'
+export VULTR='149.28.149.197'
 
 alias yuanpeilin='cd ~/workspace/yuanpeilin.github.io && git status -bs'
-alias vultr_japen='ssh ypl@$VULTR'
+alias svultr='ssh root@$VULTR'
 alias mc='java -jar /opt/hmcl/HMCL-3.3.172.jar &>/dev/null &'
