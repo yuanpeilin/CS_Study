@@ -103,31 +103,17 @@ chkconfig --add httpd
 配置文件位于 */etc/init.d/crond*, RHEL将任务存储在 */var/spool/cron/用户名* , Debian将任务存储在 */var/spool/cron/crontabs/用户名* 
 
 ### 说明
-不使用`*`则不会重复执行, 例如`1 * * * *`只会在每个小时的第一分钟执行, `1/* * * * *`才表示每分钟执行一次
 * `*` 表示该范围内的任意时间, 表示间隔的多个不连续时间点
-* `-` 表示一个连续的时间范围,如`1-4`表示整数1,2,3,4
-* `/` 指定间隔的时间频率,如在日期字段中的`*/3`表示每隔3天
+* `-` 表示一个连续的时间范围, 如`1-4`表示整数1,2,3,4
+* `/` 指定间隔的时间频率, 如在日期字段中的`*/3`表示每隔3天. 不使用`*`则不会重复执行, 例如`1 * * * *`只会在每个小时的第一分钟执行, `1/* * * * *`才表示每分钟执行一次
+* `@reboot` 启动时执行, 使用此项则不需要再指定时间频率, 后面直接加命令即可
 
 ```
-分钟  小时   天    月  星期    命令
+分钟  小时   天    月  星期
 0     17      *    *   1-5     周一到周五每天17: 00
 30    8       *    *   1,3,5   每周一、三、五的8点30分
 0     8-18/2  *    *   *       8点到18点之间每隔2小时
 0     *       */3  *   *       每隔3天
-```
-
-```sh
-cat /etc/crontab
-
-SHELL=/bin/bash
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
-MAILTO=root
-HOME=/
-# run-parts
-01 * * * * root run-parts /etc/cron.hourly
-02 4 * * * root run-parts /etc/cron.daily
-22 4 * * 0 root run-parts /etc/cron.weekly
-42 4 1 * * root run-parts /etc/cron.monthly
 ```
 
 ### 语法
