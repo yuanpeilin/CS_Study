@@ -15,7 +15,7 @@
 * **n** [`ncdu`](#ncdu) [`netstat`](#netstat) [`nohub`](#nohub)
 * **p** [`pandoc`](#pandoc) [`pgrep`](#pgrep) [`pkill`](#pkill) [`ps`](#ps) [`pstree`](#pstree)
 * **r** [`rsync`](#rsync) [`runlevel`](#runlevel)
-* **s** [`scp`](#scp) [`sed`](#sed) [`shopt`](#shopt) [`sort`](#sort) [`ssh`](#ssh)
+* **s** [`scp`](#scp) [`sed`](#sed) [`shopt`](#shopt) [`sort`](#sort)
 * **t** [`tail`](#tail) [`tar`](#tar) [`tee`](#tee) [`top`](#top) [`tr`](#tr) [`tree`](#tree) [`truncate`](#truncate) [`type`](#type)
 * **u** [`ufw`](#ufw) [`uniq`](#uniq)
 * **w** [`whereis`](#whereis)
@@ -782,21 +782,6 @@ sort -t ':' -k 1.3,1.3 -k 3 a.txt
 
 # 以第二个域为主关键字, 第一个域为次关键字进行排序
 sort -k1, 1 | sort -s -k2, 2
-```
-
-# ssh
-### 语法
-- `-t` 分配TTY, 执行远程命令使用
-
-### 配置
-配置文件位于 */etc/ssh/sshd_config*
-```sh
-PermitRootLogin no # 禁止root登录
-ClientAliveInterval 600 # 断线重连时间
-MaxAuthTries 3 # 最大尝试次数
-PasswordAuthentication no # 禁止密码登录
-PermitEmptyPasswords no # 禁止空白密码登录
-PubkeyAuthentication yes # 使用密钥登录
 ```
 
 # tail
