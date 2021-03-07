@@ -135,7 +135,10 @@ git config --global core.excludesfile '~/.gitignore'
 * **`git log [--since | --after | --until | --before]=<time>`** 通过时间过滤. time可以是2008-01-15或是2 years 1 day 3 minutes ago
     * since/after 指定时间开始, 一直输出到最近的一次提交
     * 从最开始的提交开始, until/before 指定时间
-* **`git log -S <string>`** 查看某个字符串的历史(俗称鹤嘴锄pickaxe)
+* **`git log --author=<string>`** 查看指定作者的提交历史
+* **`git log --committer=<string>`** 查看指定提交者的提交历史
+* **`git log --grep=<string>`** 查看提交说明中包含指定字符的提交历史
+* **`git log -S <string>`** 查看文件内容中某个字符串的历史(俗称鹤嘴锄pickaxe)
 * **`git log -g <string>`** 使用正则表达式
 * **`git log --oneline --graph <branch1>..<branch2>`** 两点: 属于branch2但不属于branch1的提交
 * **`git log --left-right <branch1>...<branch2>`** 三点: 不同时属于branch1和branch2提交
