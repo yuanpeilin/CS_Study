@@ -44,9 +44,9 @@
 * **`git checkout <remote_branch_name>`** 本地不存在对应的分支, 新建一个跟踪远程的分支并切换
 * **`git checkout -b <branch_name>`** 创建并切换到创建的分支
 * **`git checkout -b <local_branch_name> origin/<remote_branch_name>`** 本地新建一个跟踪远程的分支
-* **`git checkout <file path>`** 将工作区和暂存区的file换成暂存区的file(**只动工作区**)
+* **`git checkout <file path>`** 将工作区和暂存区的file换成暂存区的file(**动工作区和暂存区(实际只动工作区)**)
     * 修改一个文件, 状态为` M`, 执行命令后修改会被撤销
-    * 修改一个文件添加进暂存区, 再次修改此文件, 状态为`MM`, 修改被撤销而暂存区不变
+    * 修改一个文件添加进暂存区, 再次修改此文件, 状态为`MM`, 执行命令后修改被撤销而暂存区不变
 * **`git checkout HEAD -- <file path>`** 将暂存区和工作区换成HEAD指向的file(**动工作区和暂存区**)
 * **`git checkout --conflict=diff3 <file path>`** 带有base版本的差异比较
 
@@ -139,7 +139,6 @@ git config --global core.excludesfile '~/.gitignore'
 * **`git log --committer=<string>`** 查看指定提交者的提交历史
 * **`git log --grep=<string>`** 查看提交说明中包含指定字符的提交历史
 * **`git log -S <string>`** 查看文件内容中某个字符串的历史(俗称鹤嘴锄pickaxe)
-* **`git log -g <string>`** 使用正则表达式
 * **`git log --oneline --graph <branch1>..<branch2>`** 两点: 属于branch2但不属于branch1的提交
 * **`git log --left-right <branch1>...<branch2>`** 三点: 不同时属于branch1和branch2提交
 
