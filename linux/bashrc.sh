@@ -101,7 +101,50 @@ bak(){
     fi
 }
 
+cd_git_project() {
+    clear
+    cd "$1"
+    echo -e '\e[01m--------------------\e[00m'
+    git log -9 --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>" --graph
+    echo -e '\e[01m--------------------\e[00m'
+    if [[ -z $(git stash list) ]]; then
+        echo 'no stash'
+    else
+        git stash list
+    fi
+    echo -e '\e[01m--------------------\e[00m'
+    git branch -vv
+    echo -e '\e[01m--------------------\e[00m'
+    if [[ -z $(git status -s) ]]; then
+        echo 'No file changed'
+    else
+        git status -sb
+    fi
+    echo -e '\e[01m--------------------\e[00m'
+}
+alias yuanpeilin='cd_git_project ~/workspace/yuanpeilin.github.io'
+
 todo(){
     . ~/todo.sh "$@"
 }
 clear && todo -l
+
+# +----------------------------------+
+# |            USER alias            |
+# +----------------------------------+
+PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\] \[\e[01;34m\]\w$(git_branch)\[\e[00m\]\$ '
+
+export CDPATH=.:/home/ypl/
+
+export VULTR='149.28.149.197'
+alias svultr='ssh root@$VULTR'
+
+mc() {
+    fcitx_pids=$(ps -ef | grep fcitx | awk '{print $2}' | tr '\n' ' ')
+    echo "$fcitx_pids"
+    for pid in $fcitx_pids; do
+        kill $pid
+    done
+    unset fcitx_pids pid
+    java -jar /opt/hmcl/HMCL-3.3.172.jar &>/dev/null &
+}
