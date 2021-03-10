@@ -10,7 +10,7 @@
 * **i** [`ifconfig`](#ifconfig) [`imagemagick`](#imagemagick)
 * **j** [`jobs`](#jobs) [`join`](#join) [`jq`](#jq)
 * **k** [`kill`](#kill)
-* **l** [`less`](#less) [`ln`](#ln) [`locate`](#locate) [`ls`](#ls) [`lsattr`](#lsattr) [`lsblk`](#lsblk) [`lsof`](#lsof)
+* **l** [`less`](#less) [`ln`](#ln) [`local`](#local) [`locate`](#locate) [`ls`](#ls) [`lsattr`](#lsattr) [`lsblk`](#lsblk) [`lsof`](#lsof)
 * **m** [`md5sum`](#md5sum) [`mkdir`](#mkdir) [`mkfs`](#mkfs) [`mount`](#mount)
 * **n** [`ncdu`](#ncdu) [`netstat`](#netstat) [`nohub`](#nohub)
 * **p** [`pandoc`](#pandoc) [`pgrep`](#pgrep) [`pkill`](#pkill) [`ps`](#ps) [`pstree`](#pstree)
@@ -257,10 +257,11 @@ PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 ```
 
 # export
-输出环境变量, 不接变量名输出所有环境变量, 仅当前session有效
+输出环境变量, 当前shell进程和子进程都有效. 不接变量名输出所有环境变量
 
 ### 语法
-**`export <variable name>`**
+**`export <variable>`**
+**`export <variable>=<value>`**
 
 # fallocate
 创建空文件
@@ -442,6 +443,9 @@ kill -9 PID
 # ln
 ### 语法
 **`ln [-s] [链接指向的文件] [链接名]`**
+
+# local
+定义局部变量, 仅在函数内部有效
 
 # locate
 在数据库(/var/lib/mlocate/mlocate.db)中查找符合条件的文档, 更新数据库使用`updatedb`
