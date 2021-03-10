@@ -2,7 +2,7 @@
 * **a** [`at`](#at)
 * **b** [`bg`](#bg)
 * **c** [`cat`](#cat) [`chattr`](#chattr) [`chgrp`](#chgrp) [`chkconfig`](#chkconfig) [`chmod`](#chmod) [`chown`](#chown) [`corntab`](#corntab) [`cp`](#cp) [`curl`](#curl) [`cut`](#cut)
-* **d** [`df`](#df) [`disown`](#disown) [`du`](#du)
+* **d** [`declare`](#declare) [`df`](#df) [`disown`](#disown) [`du`](#du)
 * **e** [`echo`](#echo) [`export`](#export)
 * **f** [`fallocate`](#fallocate) [`fdisk`](#fdisk) [`fg`](#fg) [`file`](#file) [`fim`](#fim) [`find`](#find) [`free`](#free)
 * **g** [`grep`](#grep) [`gzip`](#gzip)
@@ -187,6 +187,15 @@ cut -d " " -f 2- file
 # 显示除了第2列及之后的内容(只显示第一列)
 cut -d " " -f 2- --complement file
 ```
+
+# declare
+### 语法
+**`declare [+/-][rxi] variable=value`**
+* `+/-` `-`可用来指定变量的属性, `+`则是取消变量所设的属性
+* `-f` 仅显示函数
+* `r` 将变量设置为只读
+* `x` 指定的变量会成为环境变量, 等价于[export](#export)
+* `i` 设置变量为整数
 
 # df
 查看磁盘整体使用情况
