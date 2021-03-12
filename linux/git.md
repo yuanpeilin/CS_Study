@@ -239,7 +239,10 @@ git log --format="%h - %an, %ar : %s"
 # plumbing
 * **`git cat-file -p [commit_hash]`** 查对象的**内容**
 * **`git cat-file -t [commit_hash]`** 查对象的**类型**
-* **`git ls-files -s`** 查看暂存区
+* **`git ls-files -c`** 查看暂存区(只输出文件名)
+* **`git ls-files -s`** 查看暂存区(包括文件名和SHA1值)
+* **`git ls-files --eol`** 查看文件的换行符
+* **`git ls-files --ignore --others --exclude-standard`** 查看被排除追踪的文件
 * **`git ls-files -u`** 查看(合并冲突时)未暂存的文件
 * **`git hash-object -w file_url`** 生成一个key:value(hashcode:压缩后的文件)存储到.git/object
 * **`git update-index --add --cacheinfo 100644 hash test.txt`** 往暂存区添加一条记录
