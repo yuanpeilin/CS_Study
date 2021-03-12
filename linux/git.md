@@ -71,6 +71,14 @@
 * **simple:** simple和upstream是相似的, 只有一点不同, simple必须保证本地分支和它的远程upstream分支同名, 否则会拒绝push操作
 * **matching:** push所有本地和远程两端都存在的同名分支
 
+### 在浏览器打开帮助手册
+```sh
+sudo apt install git-doc
+git config --global help.browser google-chrome / chromium
+git config --global help.format web
+git config --global web.browser open
+```
+
 ### 配置别名
 ```sh
 git config --global alias.br      branch
@@ -105,6 +113,11 @@ git config --global alias.unstage 'reset HEAD --'
 git config --global core.editor vim
 git config --global core.excludesfile '~/.gitignore'
 ```
+
+### 使用不同的配置文件
+* **`gitdir`** 匹配目录, 注意是 **git** 不是get
+* **`gitdir/i`** 忽略大小写
+* **`onbranch`** 根据分支匹配
 
 ```
 [includeIf "gitdir/i:~/Desktop/"]
@@ -181,24 +194,6 @@ git log --format="%h - %an, %ar : %s"
 * **`git show <reversion id>:<file apth>`** 查看某个版本中的某个文件
 * **`git gc --prune=now --aggressive`** 清理仓库中的孤儿对象
 * **`git rev-list --count <branch name>`** 计算指定分支的提交数量
-
-### 使用不同的配置文件
-* **`gitdir`** 匹配目录, 注意是 **git** 不是get
-* **`gitdir/i`** 忽略大小写
-* **`onbranch`** 根据分支匹配
-
-```
-[includeIf "gitdir/i:~/Desktop/"]
-    path = ~/Desktop/.gitconfig 
-```
-
-### 在浏览器打开帮助手册
-```sh
-sudo apt install git-doc
-git config --global help.browser google-chrome
-git config --global help.format web
-git config --global web.browser open
-```
 
 ### .git目录结构
 ```
