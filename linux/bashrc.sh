@@ -136,7 +136,7 @@ PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\
 
 export CDPATH=.:/home/ypl/
 
-export VULTR='149.28.149.197'
+export VULTR='104.156.252.159'
 alias svultr='ssh root@$VULTR'
 
 mc() {
