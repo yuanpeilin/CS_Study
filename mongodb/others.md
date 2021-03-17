@@ -10,11 +10,11 @@ port=27017 # 端口
 ```
 
 ### 远程访问
-db.createUser({user:'root',pwd:'980620',roles:['root']}) 创建root用户并设置密码
-db.createUser({user:'ypl',pwd:'980620',roles: [{role:'readWrite',db:'ypl'}]})
-db.auth('root','980620') 验证用户, 返回1表示成功(要先执行use admin)
-db.system.users.find() 查看所有用户(要先执行use admin)
-修改 /etc/mongodb.conf
+* `db.createUser({user:'root',pwd:'980620',roles:['root']})` 创建root用户并设置密码
+* `db.createUser({user:'ypl',pwd:'980620',roles: [{role:'readWrite',db:'ypl'}]})`
+* `db.auth('root','980620')` 验证用户, 返回1表示成功(要先执行use admin)
+* `db.system.users.find()` 查看所有用户(要先执行use admin)
+* 修改 /etc/mongodb.conf
 ```
 bind_ip=0.0.0.0
 noauth = off
@@ -44,26 +44,33 @@ auth = true
 * **admin** 这是root数据库, 如果将一个用户添加到这个数据库, 这个用户就自动继承所有数据库的权限
 
 # 数据库
-use <database name>   使用数据库, 如果数据库不存在就自动创建
-show dbs   查看当前有权限查看的所有数据库
-show databases   查看当前有权限查看的所有数据库
-db              正在使用的数据库
-db.dropDatabase()   删除数据库
+* `use <database name>`   使用数据库, 如果数据库不存在就自动创建
+* `show dbs`   查看当前有权限查看的所有数据库
+* `show databases`   查看当前有权限查看的所有数据库
+* `db`              正在使用的数据库
+* `db.dropDatabase()`   删除数据库
 
 # 集合
-db.createCollection(<collection name>)   创建集合
-db.createCollection("user")   比如创建一个叫user的集合
-show tables   查看当前数据库中的集合
-show collections   查看当前数据库中的集合
-du.<collection name>.drop()   删除集合
+* `db.createCollection(<collection name>)`   创建集合
+* `db.createCollection("user")`   比如创建一个叫user的集合
+* `show tables`   查看当前数据库中的集合
+* `show collections`   查看当前数据库中的集合
+* `du.<collection name>.drop()`   删除集合
+
+# 文件操作
+* `mongofiles -d <database name> -l <local file path> put <new file name>` 存储文件
+* `mongofiles -d <database name> list` 列出所有文件
+* `mongofiles -d <database name> get <file name>` 获取文件
+* `mongofiles -d <database name> -l <local path> get <file name>` 获取文件
+* `mongofiles -d <database name> delete <file name>` 删除文件
 
 # 插入文档
-db.<collection name>.save(<BSON Document>)   插入文档. 如果 _id 主键存在则更新数据, 如果不存在就插入数据, 该方法新版本中已废弃
-db.<collection name>.insert(<BSON Document>)   插入文档. 若插入的数据主键已经存在, 则会抛`org.springframework.dao.DuplicateKeyException`异常, 提示主键重复, 不保存当前数据
-db.<collection name>.insertOne(<BSON Document>)   插入文档
-db.user.insert({name: "张三", age: 23})   插入文档
-**批量插入** 如果在插入过程中有一条数据失败, 就会终止插入, 但是在此之前的数据都会插入成功
-插入数据较多的情况下可能会报错, 可以在命令前后使用try catch进行异常捕捉
+* `db.<collection name>.save(<BSON Document>)`   插入文档. 如果 _id 主键存在则更新数据, 如果不存在就插入数据, 该方法新版本中已废弃
+* `db.<collection name>.insert(<BSON Document>)`   插入文档. 若插入的数据主键已经存在, 则会抛`org.springframework.dao.DuplicateKeyException`异常, 提示主键重复, 不保存当前数据
+* `db.<collection name>.insertOne(<BSON Document>)`   插入文档
+* `db.user.insert({name: "张三", age: 23})`   插入文档
+* **批量插入** 如果在插入过程中有一条数据失败, 就会终止插入, 但是在此之前的数据都会插入成功
+* 插入数据较多的情况下可能会报错, 可以在命令前后使用try catch进行异常捕捉
 ```
 db.<collection name>.insertMany(
     [<BSON Document1>, <BSON Document2>...],
@@ -80,6 +87,7 @@ try {
 ```
 
 # 更新文档
+* 格式
 ```
 db.<collection name>.update(
     {BSON格式查询条件},
@@ -91,7 +99,7 @@ db.<collection name>.update(
 )
 ```
 
-**覆盖修改** 修改完成后发现这条文档只剩下name字段了, 其他字段被覆盖掉了, 因此实际使用不可以这么写
+* **覆盖修改** 修改完成后发现这条文档只剩下name字段了, 其他字段被覆盖掉了, 因此实际使用不可以这么写
 ```
 db.user.update(
     {_id: "1"},
@@ -99,7 +107,7 @@ db.user.update(
 )
 ```
 
-**局部修改** 使用修改器`$set`来实现, 修改成功后其他字段依然存在
+* **局部修改** 使用修改器`$set`来实现, 修改成功后其他字段依然存在
 ```
 db.user.update(
     {_id: "1"},
@@ -107,7 +115,7 @@ db.user.update(
 )
 ```
 
-**批量修改** 更新所有年龄是18岁的用户, 年龄更新为19
+* **批量修改** 更新所有年龄是18岁的用户, 年龄更新为19
 ```
 db.user.update(
     {age: NumberInt(18)},
@@ -116,7 +124,7 @@ db.user.update(
 )
 ```
 
-**列值自增** 使用`$inc`
+* **列值自增** 使用`$inc`
 ```
 db.<collection name>.update(
 	{_id: "1"},
@@ -125,27 +133,27 @@ db.<collection name>.update(
 ```
 
 # 删除文档
-db.<collection name>称.remove(BSON格式条件)
-db.<collection name>称.remove({}) 删除所有数据
+* `db.<collection name>称.remove(BSON格式条件)`
+* `db.<collection name>称.remove({})` 删除所有数据
 
 # 查询文档
-查询使用`find()`或者`findOne()`
-db.<collection name>.find(BSON格式条件).pretty()
-db.user.find({_id: "1"})   查询编号是1的用户
-db.user.find({sex: "1", age: "18"})   `find()`方法可以传入多个键值对, 类似于SQL的AND条件
-db.<collection name>.find({$or: [{key1, value1}, {key2, value2}]})   关键字 `$or` 用来实现or查询
-db.user.find({$or: [{age: 17}, {age: 19}]})   查询年龄是17或者19的用户
-db.user.find({sex: "1", $or: [{age: 17}, {age: 19}]})   查询性别是男, 并且年龄是17或者19的用户
-db.user.find({_id: "1"}, {name: 1, age: 1, _id: 0})   投影查询, 只查询name, age字段
-db.<collection name>.count(BSON格式条件)   统计查询
-db.user.count({age: "1"})   统计所有性别为男的数据
-分页查询, 使用`limit`读取指定数量的数据, `skip`跳过指定数量的数据, 二者搭配来进行分页查询. limit参数默认是20, skip参数默认是0
-db.<collection name>.find().limit(3)   查询返回前三条记录
-db.<collection name>.find().skip(3)   跳过前3条记录
-db.<collection name>.find().skip(0).limit(2)   每页查询2条数据
-db.<collection name>.find().skip(2).limit(2)   每页查询2条数据
-db.<collection name>.find().skip(3).limit(2)   每页查询2条数据
-db.user.find().sort({sex: 1, age: -1})   sort方法可以指定排序的字段, 值为1升序, 值为-1降序. 根据性别升序排序, 并根据年龄降序排序
+* 查询使用`find()`或者`findOne()`
+* `db.<collection name>.find(BSON格式条件).pretty()`
+* `db.user.find({_id: "1"})`   查询编号是1的用户
+* `db.user.find({sex: "1", age: "18"})`   `find()`方法可以传入多个键值对, 类似于SQL的AND条件
+* `db.<collection name>.find({$or: [{key1, value1}, {key2, value2}]})`   关键字 `$or` 用来实现or查询
+* `db.user.find({$or: [{age: 17}, {age: 19}]})`   查询年龄是17或者19的用户
+* `db.user.find({sex: "1", $or: [{age: 17}, {age: 19}]})`   查询性别是男, 并且年龄是17或者19的用户
+* `db.user.find({_id: "1"}, {name: 1, age: 1, _id: 0})`   投影查询, 只查询name, age字段
+* `db.<collection name>.count(BSON格式条件)`   统计查询
+* `db.user.count({age: "1"})`   统计所有性别为男的数据
+* 分页查询, 使用`limit`读取指定数量的数据, `skip`跳过指定数量的数据, 二者搭配来进行分页查询. limit参数默认是20, skip参数默认是0
+* `db.<collection name>.find().limit(3)`   查询返回前三条记录
+* `db.<collection name>.find().skip(3)`   跳过前3条记录
+* `db.<collection name>.find().skip(0).limit(2)`   每页查询2条数据
+* `db.<collection name>.find().skip(2).limit(2)`   每页查询2条数据
+* `db.<collection name>.find().skip(3).limit(2)`   每页查询2条数据
+* `db.user.find().sort({sex: 1, age: -1})`   sort方法可以指定排序的字段, 值为1升序, 值为-1降序. 根据性别升序排序, 并根据年龄降序排序
 
 操作        | 格式                               | 范例                                 | MySQL中类似语句                        
 ----------- | ---------------------------------- | ------------------------------------ | ---------------------------------------
@@ -161,12 +169,13 @@ db.user.find().sort({sex: 1, age: -1})   sort方法可以指定排序的字段, 
 类型为...   | {key: {$type: "string"}}           | db.user.find(age: {$type: 'string'}) | 无. 查询用户集合中age是String类型的数据
 
 # 角色
-db.runCommand({rolesInfo: 1})   查询所有角色权限(仅用户自定义角色)
-db.runCommand({rolesInfo: 1, showBuiltinRoles: true})   查询所有角色权限(包含内置角色)
-db.runCommand({rolesInfo: 角色名})   查询当前数据库中指定角色的权限
-db.runCommand({rolesInfo: {role: 角色名, db: 数据库名}})   查询其他数据库中指定的角色权限
+* `db.runCommand({rolesInfo: 1})`   查询所有角色权限(仅用户自定义角色)
+* `db.runCommand({rolesInfo: 1, showBuiltinRoles: true})`   查询所有角色权限(包含内置角色)
+* `db.runCommand({rolesInfo: 角色名})`   查询当前数据库中指定角色的权限
+* `db.runCommand({rolesInfo: {role: 角色名, db: 数据库名}})`   查询其他数据库中指定的角色权限
 
 ### 常见角色
+
 | 角色                 | 描述                                           |
 | -------------------- | ---------------------------------------------- |
 | read                 | 指定数据库的读权限                             |
