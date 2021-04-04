@@ -62,11 +62,10 @@ daemon:*:17937:0:99999:7:::
 * `-r` 将用户目录一并删除
 
 ### 查看用户
-`finger` 查看用户详细信息  
+* `finger` 查看用户详细信息  
 ```sh
-$ finger ypl
-Login:  ypl                      Name:  ypl
-Directory:  /home/ypl                    Shell:  /bin/bash
+Login:  ypl                              Name: ypl
+Directory:  /home/ypl                    Shell: /bin/bash
 On since Thu Jun 13 13: 57 (CST) on : 0 from : 0 (messages off)
 No mail.
 No Plan.
@@ -74,9 +73,8 @@ No Plan.
 
 <br>
 
-`id` 显示用户的UID与所属组  
+* `id` 显示用户的UID与所属组  
 ```sh
-id ypl
 uid=1000(ypl) gid=1000(ypl) groups=1000(ypl),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),116(lpadmin),126(sambashare)
 ```
 
