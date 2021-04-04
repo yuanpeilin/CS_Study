@@ -146,5 +146,6 @@ mc() {
         kill $pid
     done
     unset fcitx_pids pid
+    cd ~
     java -jar /opt/hmcl/HMCL-3.3.172.jar &>/dev/null &
 }
