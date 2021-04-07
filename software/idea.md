@@ -1,17 +1,18 @@
 # Keymap
 
 path                                        | shortcut           | comment
-:------------------------------------------ | :----------------- | :------
-Editor actions -> Duplicate entire lines    | Alt + Shift + Down | 
+------------------------------------------- | ------------------ | -------
+Editor actions -> Duplicate entire lines    | Alt + Shift + Down | 复制一行
 Main menu -> Edit -> Find -> Find In Path   | Ctrl + H           | 全局查找
 Main menu -> View -> Parameter info         | Ctrl + Alt + /     | 提示某个方法参数的类型
 Main menu -> View -> Quick documentation    | F2                 | 查看文档
 Main menu -> View -> Recent files           | Ctrl + E           | 最近使用的文件
-Main menu -> Code -> Folding -> Expand all  | Ctrl + [           | 
-Main menu -> Navigate -> Go To File         | Ctrl + Shift + R   | 
+Main menu -> Code -> Folding -> Expand all  | Ctrl + [           | 展开/关闭 括号
+Main menu -> Navigate -> Go To File         | Ctrl + Shift + R   | 定位文件
 Main menu -> Navigate -> Back & Forward     | Alt + Left         | 返回上次编辑的地方
 Main menu -> Navigate -> File structure     | Ctrl + O           | 查看类结构(方法, 变量等)
 Main menu -> Navigate -> Method hierarchy   | Ctrl + Alt + H     | 查看方法在哪被调用
+Main menu - Navigate - Go to implementation | Ctrl + T           | 查看实现类
 Main menu -> Code -> Generate               | Alt + Insert       | 
 Main menu -> Run -> Run                     | F9                 | 
 Main menu -> Run -> Debug                   | F10                | 
