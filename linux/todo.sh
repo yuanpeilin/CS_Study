@@ -21,12 +21,12 @@ todo_list_task() {
         content=${line:13}
         if [[ "$#" == 1 ]]; then
             date=${line:2:10}
-            date="   $date"
+            date="$date"
         fi
         if [[ "$status" == "U" ]]; then
-            printf "\e[01m%2s %s %s %s \n\e[00m" "$i" "[ ]" "$content" "   $date"
+            printf "\e[01m %s %2s %s %s \n\e[00m" "$date" "$i" "[ ]" "$content"
         elif [[ "$#" == 1 ]]; then
-            printf "\e[09m%2s %s %s %s \n\e[00m" "$i" "[*]" "$content" "   $date"
+            printf "\e[09m %s %2s %s %s \n\e[00m" "$date" "$i" "[*]" "$content"
         fi
         i=$((i + 1))
     done <"$path"
