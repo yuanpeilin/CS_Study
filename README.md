@@ -70,6 +70,7 @@
     - [Apache2](software/apache.md)
     - [Eclipse](software/eclipse.md)
     - [IDEA](software/idea.md)
+    - [plantUML](software/plantuml.md)
     - [Shadowsocks](software/shadowsocks.md)
     - [Sublime](software/sublime.md)
 * [**Web**](web/)
