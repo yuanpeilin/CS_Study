@@ -11,7 +11,6 @@
 - [merge](#merge)
 - [others](#others)
     - [使用不同的配置文件](#使用不同的配置文件)
-    - [在浏览器打开帮助手册](#在浏览器打开帮助手册)
     - [git目录结构](#git目录结构)
 - [plumbing](#plumbing)
 - [push](#push)
@@ -79,6 +78,12 @@ git config --global help.format web
 git config --global web.browser open
 ```
 
+### 设置ss代理
+```
+git config --global http.proxy 'socks5://127.0.0.1:1080'
+git config --global https.proxy 'socks5://127.0.0.1:1080'
+```
+
 ### 配置别名
 ```sh
 git config --global alias.br      branch
@@ -112,16 +117,6 @@ git config --global alias.type    'cat-file -t'
 git config --global alias.unstage 'reset HEAD --'
 git config --global core.editor vim
 git config --global core.excludesfile '~/.gitignore'
-```
-
-### 使用不同的配置文件
-* **`gitdir`** 匹配目录, 注意是 **git** 不是get
-* **`gitdir/i`** 忽略大小写
-* **`onbranch`** 根据分支匹配
-
-```
-[includeIf "gitdir/i:~/Desktop/"]
-    path = ~/.gitconfig2
 ```
 
 # diff
@@ -194,6 +189,16 @@ git log --format="%h - %an, %ar : %s"
 * **`git show <reversion id>:<file apth>`** 查看某个版本中的某个文件
 * **`git gc --prune=now --aggressive`** 清理仓库中的孤儿对象
 * **`git rev-list --count <branch name>`** 计算指定分支的提交数量
+
+### 使用不同的配置文件
+* **`gitdir`** 匹配目录, 注意是 **git** 不是get
+* **`gitdir/i`** 忽略大小写
+* **`onbranch`** 根据分支匹配
+
+```
+[includeIf "gitdir/i:~/Desktop/"]
+    path = ~/.gitconfig2
+```
 
 ### .git目录结构
 ```
