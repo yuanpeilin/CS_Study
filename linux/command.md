@@ -16,7 +16,7 @@
 * **p** [`pandoc`](#pandoc) [`pgrep`](#pgrep) [`pkill`](#pkill) [`ps`](#ps) [`pstree`](#pstree)
 * **r** [`rsync`](#rsync) [`runlevel`](#runlevel)
 * **s** [`scp`](#scp) [`sed`](#sed) [`shopt`](#shopt) [`sort`](#sort)
-* **t** [`tail`](#tail) [`tar`](#tar) [`tee`](#tee) [`top`](#top) [`tr`](#tr) [`tree`](#tree) [`truncate`](#truncate) [`type`](#type)
+* **t** [`tail`](#tail) [`tar`](#tar) [`tee`](#tee) [`timedatectl`](#timedatectl) [`top`](#top) [`tr`](#tr) [`tree`](#tree) [`truncate`](#truncate) [`type`](#type)
 * **u** [`ufw`](#ufw) [`uniq`](#uniq) [`useradd`](user.md/#增加用户) [`userdel`](user.md/#删除用户) [`usermod`](user.md/#修改用户)
 * **w** [`whereis`](#whereis)
 * **x** [`xargs`](#xargs) [`xmlstarlet`](#xmlstarlet)
@@ -857,6 +857,13 @@ tee file1 file2
 
 # 将标准输入复制到文件
 ls -al | tee file.txt
+```
+
+# timedatectl
+RTC(Real-time clock)称为硬件时钟或BIOS时钟, 位于主板硬件上. Linux认为硬件时钟存储UTC, Windows认为硬件时钟为本地实际时间
+```sh
+# 将硬件时钟设为本地实际时间
+timedatectl set-local-rtc 1
 ```
 
 # top
