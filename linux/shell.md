@@ -1,10 +1,11 @@
 # 目录
 - [Debug](#debug)
-- [if](#if)
-- [for](#for)
-- [while](#while)
-- [case](#case)
-- [select](#select)
+- 流程控制
+    - [if](#if)
+    - [for](#for)
+    - [while](#while)
+    - [case](#case)
+    - [select](#select)
 - [getopts](#getopts)
 - [位置参数](#位置参数)
 - [切割字符串](#切割字符串)
@@ -244,7 +245,7 @@ echo '<<< echo $x >>> displays the value of x, which is' "$x"
 Expression             | Example                           | increase                     | Comment
 ---------------------- | --------------------------------- | ---------------------------- | -------
 $((算术式))            | r=$((2+5\*8)) <br> $((${j:-8}+2)) | num=$((num+1))               | -
-expr 算术式            | r=\`expr 4+5\`                    | num=\`expr $num + 1\`        | 加号左右必须得有空格
+expr 算术式            | r=\`expr 4 + 5\`                  | num=\`expr $num + 1\`        | 加号左右必须得有空格
 $[算术式]              | r=$[4+5]                          | -                            | -
 declare -i 变量=算术式 | declare -i r=8+16                 | -                            | -
 let 算术式             | let r=8+16                        | let num++ <br> let num=num+1 | -
