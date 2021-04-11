@@ -530,7 +530,11 @@ mkdir -p -m 700 test
 # nohub
 
 # pandoc
-Markdown, HTML, 以及所有文档格式之间的转换
+### 例子
+```sh
+# 将markdown转换为html
+pandoc -s a.md -o a.html
+```
 
 # pgrep
 ### 语法
