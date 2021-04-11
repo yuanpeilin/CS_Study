@@ -124,6 +124,11 @@ cd_git_project() {
 }
 alias yuanpeilin='cd_git_project ~/workspace/yuanpeilin.github.io'
 
+plant_uml_server(){
+    cd /opt/plantuml-server
+    sudo mvn jetty:run -Djetty.port=9999 &>/dev/null &
+}
+
 todo(){
     . ~/todo.sh "$@"
 }

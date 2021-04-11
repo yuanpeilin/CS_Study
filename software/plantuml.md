@@ -2,9 +2,13 @@
 * 要求有java
 * 下载graphviz `sudo apt install graphviz`
 * 下载plantUML [https://plantuml.com/zh/download](https://plantuml.com/zh/download)
-* vscode集成: 安装 **plantUML** 插件, 并在settings.json加入下面的内容
-    - 修改Render为`PlantUMLServer`
-    - 修改Server为`http://www.plantuml.com/plantuml`
+* vscode集成: 安装 **plantUML** 插件
+
+# 服务器
+* 下载PlantUML-Server [https://github.com/plantuml/plantuml-server](https://github.com/plantuml/plantuml-server)
+* 安装 maven
+* 运行 `mvn jetty:run -Djetty.port=9999 &>/dev/null &`
+* 服务器地址设置为 `http://localhost:9999/plantuml/`
 
 # 箭头
 * 实线箭头 `->` `<-`
