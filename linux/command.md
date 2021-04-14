@@ -17,7 +17,7 @@
 * **r** [`rsync`](#rsync) [`runlevel`](#runlevel)
 * **s** [`scp`](#scp) [`sed`](#sed) [`shopt`](#shopt) [`sort`](#sort)
 * **t** [`tail`](#tail) [`tar`](#tar) [`tee`](#tee) [`timedatectl`](#timedatectl) [`top`](#top) [`tr`](#tr) [`tree`](#tree) [`truncate`](#truncate) [`type`](#type)
-* **u** [`ufw`](#ufw) [`uniq`](#uniq) [`useradd`](user.md/#增加用户) [`userdel`](user.md/#删除用户) [`usermod`](user.md/#修改用户)
+* **u** [`ufw`](#ufw) [`uniq`](#uniq) [`uptime`](#uptime) [`useradd`](user.md/#增加用户) [`userdel`](user.md/#删除用户) [`usermod`](user.md/#修改用户)
 * **w** [`whereis`](#whereis)
 * **x** [`xargs`](#xargs) [`xmlstarlet`](#xmlstarlet)
 
@@ -976,6 +976,11 @@ uniq file
 
 # 删除文件中重复出现的行, 并显示输出行重复的次数
 uniq -c file
+```
+# uptime
+### 例子
+```sh
+23:41:47 up  2:40,  1 user,  load average: 0.06, 0.31, 0.31
 ```
 
 # whereis
