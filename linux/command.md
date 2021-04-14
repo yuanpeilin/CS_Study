@@ -4,7 +4,7 @@
 * **c** [`cat`](#cat) [`chattr`](#chattr) [`chgrp`](#chgrp) [`chkconfig`](#chkconfig) [`chmod`](#chmod) [`chown`](#chown) [`corntab`](#corntab) [`cp`](#cp) [`curl`](#curl) [`cut`](#cut)
 * **d** [`declare`](#declare) [`df`](#df) [`disown`](#disown) [`du`](#du)
 * **e** [`echo`](#echo) [`export`](#export)
-* **f** [`fallocate`](#fallocate) [`fdisk`](#fdisk) [`fg`](#fg) [`file`](#file) [`fim`](#fim) [`find`](#find) [`finger`](user.md/#查看用户) [`free`](#free)
+* **f** [`fallocate`](#fallocate) [`fdisk`](#fdisk) [`ffmpeg`](#ffmpeg) [`fg`](#fg) [`file`](#file) [`fim`](#fim) [`find`](#find) [`finger`](user.md/#查看用户) [`free`](#free)
 * **g** [`grep`](#grep) [`groupadd`](user.md/#增加组) [`groupdel`](user.md/#删除组) [`groupmod`](user.md/#修改组) [`gpasswd`](user.md/#修改组) [`gzip`](#gzip)
 * **h** [`head`](#head)
 * **i** [`id`](user.md/#查看用户) [`ifconfig`](#ifconfig) [`imagemagick`](#imagemagick)
@@ -277,6 +277,13 @@ PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 创建空文件
 
 # fdisk
+
+# ffmpeg
+### 例子
+```sh
+# 录屏
+ffmpeg -video_size 1920x1080 -framerate 60 -f x11grab -i :0.0+0,0 output.mp4
+```
 
 # fg
 将处于后台的进程恢复到前台运行, 需指定任务序号
