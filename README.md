@@ -22,6 +22,7 @@
     - [RegEx](linux/regex.md)
     - [shell](linux/shell.md)
     - [ssh](linux/ssh.md)
+    - [systemd](linux/systemd.md)
     - [todo](linux/shell/todo.sh)
     - [用户管理](linux/user.md)
     - [Vim](linux/vim.md)

@@ -209,7 +209,26 @@ cut -d " " -f 2- --complement file
 * `-T` 显示文件系统类型
 
 # disown
-使一个后台进程持续运行
+将指定任务从后台任务列表(jobs命令的返回结果)之中移除, 但任务还会继续执行
+
+### 例子
+```sh
+# 移出最近一个正在执行的后台任务
+disown
+
+# 移出所有正在执行的后台任务
+disown -r
+
+# 移出所有后台任务
+disown -a
+
+# 不移出后台任务，但是让它们不会收到SIGHUP信号
+disown -h
+
+# 根据jobId，移出指定的后台任务
+disown %2
+disown -h %2
+```
 
 # du
 用于显示目录或文件的大小, 无参数递归显示当前目录下所有文件的大小
@@ -535,6 +554,7 @@ mkdir -p -m 700 test
 * `-p` 
 
 # nohub
+nohup命令不会自动把进程变为后台任务, 使用时所以必须加上`&`符号
 
 # pandoc
 ### 例子
@@ -771,6 +791,9 @@ done
 * `shopt` 显示所有的行为及其状态
 * `shopt -s <behavior>` 打开行为
 * `shopt -u <behavior>` 关闭行为
+
+### 具体行为
+- **huponexit** 退出session时是否把SIGHUP信号发给后台任务, 默认为 `OFF` 不发送, 即退出session后台任务继续执行
 
 # sort
 ### 语法
