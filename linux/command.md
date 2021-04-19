@@ -395,7 +395,10 @@ find / \( -size +1k -a -size -10M -a -type f \) -ls;
     * `\;`表示动作的结束
 ```sh
 # 找到指定文件并删除
-$ find / \( -size +1k -a -size -10M -a -type f \) -exec rm -rf {} \;
+find / \( -size +1k -a -size -10M -a -type f \) -exec rm -rf {} \;
+
+# 找到当前路径下损坏的符号链接并删除
+find . -xtype l -exec rm {} \;
 ```
 
 # free
