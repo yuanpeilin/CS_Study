@@ -849,34 +849,23 @@ sort -k1, 1 | sort -s -k2, 2
 
 # tar
 ### 语法
-* `-f` 指定打包文件名
-* `-z` 通过gzip指令处理打包文件
-* `-j` 通过bz2指令处理打包文件
 * `-c` 建立打包文件
-* `-x` 从打包文件中还原文件
-* `-v` 显示指令执行过程
-* `-t` 列出打包文件的内容
-* `-A` 合并打包文件
-* `-r` 向打包文件中增加文件
 * `-C` 指定解压路径
-* `--delete` 从打包文件中删除指定的文件
+* `-f` 指定打包文件名
+* `-j` 使用bz2压缩或解压
+* `-J` 使用xz压缩或解压
+* `-t` 列出打包文件的内容
+* `-v` 显示指令执行过程
+* `-x` 从打包文件中提取文件
+* `-z` 使用gzip压缩或解压
 
 ### 例子
 ```sh
-# 多个文件打包成一个文件
-tar -cf test.tar test1.txt test2.txt test3.txt
+# 解压并指定路径
+tar -zxvf jdk.tar.gz -C /opt/jdk/
 
-# 查看打包文件的内容
-tar -tf test.tar
-
-# 删除打包文件中的指定文件
-tar -f test.tar --delete test3.txt
-
-# 将test01.tar合并到test.tar中
-tar -f test.tar -A test01.tar
-
-# 向打包文件中增加文件
-tar -f test.tar -r test4.txt
+# 创建压缩文件ziped_documents.tgz
+tar -zcvf ziped_documents.tgz ~/Documents
 ```
 
 # tee
