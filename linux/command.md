@@ -8,15 +8,15 @@
 * **g** [`grep`](#grep) [`groupadd`](user.md/#增加组) [`groupdel`](user.md/#删除组) [`groupmod`](user.md/#修改组) [`gpasswd`](user.md/#修改组) [`gzip`](#gzip)
 * **h** [`head`](#head)
 * **i** [`id`](user.md/#查看用户) [`ifconfig`](#ifconfig) [`imagemagick`](#imagemagick)
-* **j** [`jobs`](#jobs) [`join`](#join) [`jq`](#jq)
+* **j** [`jobs`](#jobs) [`join`](#join) [`journalctl`](systemd.md/#日志管理) [`jq`](#jq)
 * **k** [`kill`](#kill)
-* **l** [`less`](#less) [`ln`](#ln) [`local`](#local) [`locate`](#locate) [`ls`](#ls) [`lsattr`](#lsattr) [`lsblk`](#lsblk) [`lsof`](#lsof)
+* **l** [`less`](#less) [`ln`](#ln) [`local`](#local) [`localectl`](systemd.md/#localectl) [`locate`](#locate) [`loginctl`](systemd.md/#loginctl) [`ls`](#ls) [`lsattr`](#lsattr) [`lsblk`](#lsblk) [`lsof`](#lsof)
 * **m** [`md5sum`](#md5sum) [`mkdir`](#mkdir) [`mkfs`](#mkfs) [`mount`](#mount)
 * **n** [`ncdu`](#ncdu) [`netstat`](#netstat) [`nohub`](#nohub)
 * **p** [`pandoc`](#pandoc) [`pgrep`](#pgrep) [`pkill`](#pkill) [`ps`](#ps) [`pstree`](#pstree)
 * **r** [`rsync`](#rsync) [`runlevel`](#runlevel)
-* **s** [`scp`](#scp) [`sed`](#sed) [`shopt`](#shopt) [`sort`](#sort)
-* **t** [`tail`](#tail) [`tar`](#tar) [`tee`](#tee) [`timedatectl`](#timedatectl) [`top`](#top) [`tr`](#tr) [`tree`](#tree) [`truncate`](#truncate) [`type`](#type)
+* **s** [`scp`](#scp) [`sed`](#sed) [`shopt`](#shopt) [`sort`](#sort) [`systemd-analyze](systemd.md/#systemd-analyze) [`systemctrl`](systemd.md/#unit)
+* **t** [`tail`](#tail) [`tar`](#tar) [`tee`](#tee) [`timedatectl`](systemd.md/#timedatectl) [`top`](#top) [`tr`](#tr) [`tree`](#tree) [`truncate`](#truncate) [`type`](#type)
 * **u** [`ufw`](#ufw) [`uniq`](#uniq) [`uptime`](#uptime) [`useradd`](user.md/#增加用户) [`userdel`](user.md/#删除用户) [`usermod`](user.md/#修改用户)
 * **w** [`whereis`](#whereis)
 * **x** [`xargs`](#xargs) [`xmlstarlet`](#xmlstarlet)
@@ -885,13 +885,6 @@ tee file1 file2
 
 # 将标准输入复制到文件
 ls -al | tee file.txt
-```
-
-# timedatectl
-RTC(Real-time clock)称为硬件时钟或BIOS时钟, 位于主板硬件上. Linux认为硬件时钟存储UTC, Windows认为硬件时钟为本地实际时间
-```sh
-# 将硬件时钟设为本地实际时间
-timedatectl set-local-rtc 1
 ```
 
 # top
