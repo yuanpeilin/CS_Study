@@ -1,4 +1,5 @@
 # 目录
+- [blame](#blame)
 - [branch](#branch)
 - [checkout](#checkout)
 - [cherry-pick](#cherry-pick)
@@ -27,6 +28,10 @@
 *********************************************************************************
 
 
+
+# blame
+* **`git blame [--] <file path>`** 查看文件每一行修改的时间与作者
+* **`git blame -L <n,m> [--] <file path>`** 查看文件n到m行修改的时间与作者
 
 # branch
 * **`git branch`** 查看所有分支
