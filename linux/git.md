@@ -19,6 +19,7 @@
 - [remote](#remote)
 - [reset](#reset)
 - [revert](#revert)
+- [show](#show)
 - [stash](#stash)
 - [tag](#tag)
 
@@ -191,7 +192,6 @@ git log --format="%h - %an, %ar : %s"
 * **`git status [ -s | --short]`** 简单展示状态: 左栏为暂存区的状态, 右栏为工作区的状态
 * **`git difftool --tool-help`** 系统支持哪些Git Diff插件
 * **`git ls-remote <remote-repo>`** 查看某个远程仓库详细信息(需要网络)
-* **`git show <reversion id>:<file apth>`** 查看某个版本中的某个文件
 * **`git gc --prune=now --aggressive`** 清理仓库中的孤儿对象
 * **`git rev-list --count <branch name>`** 计算指定分支的提交数量
 
@@ -305,6 +305,8 @@ git log --format="%h - %an, %ar : %s"
 
 # show
 * **`git show <tag_name>`** 查看标签具体信息
+* **`git show --no-patch <reversion id>`** 查看某个版本信息
+* **`git show <reversion id>:<file apth>`** 查看某个版本中的某个文件
 * **`git show :<number>:<file_name>`** 查看合并冲突时index中的文件, number取值为1-3, 1表示共同祖先, 2是当前分支的版本, 3是他们的版本
 
 # stash
