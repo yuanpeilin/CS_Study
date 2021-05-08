@@ -115,7 +115,7 @@ cd_git_project() {
     clear
     cd "$1"
     echo -e '\e[01m--------------------\e[00m'
-    git log -9 --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>" --graph
+    git log -9 --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) <%an>" --graph
     echo -e '\e[01m--------------------\e[00m'
     if [[ -z $(git stash list) ]]; then
         echo 'no stash'
@@ -154,12 +154,10 @@ todo(){
 # +----------------------------------+
 # |          some GIT alias          |
 # +----------------------------------+
-alias g='clear && git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>" --graph -15 && echo ""'
-alias gg='clear && git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>" --graph --all -15 && echo ""'
-alias glof='git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>"'
-alias glo='git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>" --graph'
-alias glol='git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>" --graph'
-alias gloa='git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>" --graph --all'
+alias g='clear && git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) <%an>" --graph -15 && echo ""'
+alias gg='clear && git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) <%an>" --graph --all -15 && echo ""'
+alias glo='git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) <%an>" --graph'
+alias gloa='git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) <%an>" --graph --all'
 alias gbr='git branch -vv'
 alias gbrvv='git branch -vv'
 alias gclone='git clone'
@@ -190,7 +188,7 @@ alias gsapply='git stash apply'
 alias gsclear='git stash clear'
 alias gsdrop='git stash drop'
 alias gslist='git stash list'
-alias gspop='git stash pop --index'
+alias gspop='git stash pop --index --include-untracked'
 alias gsshow='git stash show'
 alias gst=' clear && git status -bs'
 alias gtag='git tag'
