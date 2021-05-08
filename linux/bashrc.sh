@@ -138,6 +138,15 @@ plant_uml_server(){
     sudo mvn jetty:run -Djetty.port=9999 &>/dev/null &
 }
 
+# ln_check   源文件路径   源文件名   链接文件路径   链接文件名
+ln_check(){
+    if [[ $(ls -l "$1" | grep "$2" | awk '{print $2}') < 2 ]]; then
+        rm "$3$4"
+        ln "$1$2" "$3$4"
+        echo "link $3$4 has broken, delete it and link again. Source: $1$2"
+    fi
+}
+
 todo(){
     . ~/todo.sh "$@"
 }
@@ -270,6 +279,15 @@ alias upgrade='sudo apt full-upgrade'
 alias .vimrc='vim /home/ypl/workspace/yuanpeilin.github.io/software/src/vimrc'
 alias wl='wc -l'
 alias ws='cd ~/workspace && ls'
+
+# +----------------------------------+
+# |           Start Script           |
+# +----------------------------------+
+clear
+todo -l
+ln_check /home/ypl/workspace/yuanpeilin.github.io/linux/ bashrc.sh /home/ypl/ .bashrc
+ln_check /home/ypl/workspace/yuanpeilin.github.io/linux/ todo.sh /home/ypl/ todo.sh
+ln_check /home/ypl/workspace/yuanpeilin.github.io/linux/src/ vimrc /home/ypl/ .vimrc
 
 # +----------------------------------+
 # |            USER alias            |
