@@ -56,6 +56,9 @@ tcp        8      0 127.0.0.1:27017         0.8.0.0:*               LISTEN
 # 例子
 * 显示指定行和列
 ```sh
+# 格式化输出
+awk '{printf("%s %s", $1, $2)}' file.txt
+
 # 显示第一行
 awk 'NR==1{print $0}' file.txt
 awk 'NR==1' file.txt
