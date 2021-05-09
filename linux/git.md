@@ -64,7 +64,7 @@
 # config
 ### 查看配置与范围
 **`git config [--system | --global] --list [--show-origin]`** 小范围会覆盖大范围的配置, .git/config的配置变量会覆盖/etc/gitconfig中的配置变量
-* 不加参数对应的配置文件位于.git/config, 仅对当前仓库生效
+* `不加参数`对应的配置文件位于.git/config, 仅对当前仓库生效
 * `--global`选项对应的配置文件位于\~/.gitconfig, 对当前用户的的所有仓库生效
 * `--system`选项对应的配置文件位于/etc/gitconfig, 每一个用户都会生效
 
@@ -76,22 +76,9 @@
 * **simple:** simple和upstream是相似的, 只有一点不同, simple必须保证本地分支和它的远程upstream分支同名, 否则会拒绝push操作
 * **matching:** push所有本地和远程两端都存在的同名分支
 
-### 在浏览器打开帮助手册
+### 配置
 ```sh
-sudo apt install git-doc
-git config --global help.browser google-chrome / chromium
-git config --global help.format web
-git config --global web.browser open
-```
-
-### 设置ss代理
-```
-git config --global http.proxy 'socks5://127.0.0.1:1080'
-git config --global https.proxy 'socks5://127.0.0.1:1080'
-```
-
-### 配置别名
-```sh
+# 配置别名
 git config --global alias.br      branch
 git config --global alias.cat     cat-file
 git config --global alias.cm      commit
@@ -102,21 +89,31 @@ git config --global alias.dc      'diff --cached'
 git config --global alias.dn      'diff --name-status'
 git config --global alias.ds      'diff --stat'
 git config --global alias.ft      fetch
-git config --global alias.last    'log --stat -1 HEAD'
-git config --global alias.lo      "log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>'"
-git config --global alias.loa     "log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) %C(blue)<%an>' --graph --all"
+git config --global alias.last    'show --stat HEAD'
+git config --global alias.lo      "log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) <%an>' --graph"
+git config --global alias.loa     "log --format='%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) <%an>' --graph --all"
 git config --global alias.ls      ls-files
-git config --global alias.print   'cat-file -p'
 git config --global alias.rb      rebase
 git config --global alias.re      remote
 git config --global alias.rf      reflog
-git config --global alias.roll    'checkout HEAD --'
 git config --global alias.rs      reset
 git config --global alias.rv      revert
 git config --global alias.sa      stash
-git config --global alias.st      'status -bs'
+git config --global alias.st      status
+# 设置换行符
+git config --global core.autocrlf input
+git config --global merge.renormalize true
+# 设置ss代理
+git config --global http.proxy 'socks5://127.0.0.1:1080'
+git config --global https.proxy 'socks5://127.0.0.1:1080'
+# 在浏览器打开帮助手册 (此外还要 sudo apt install git-doc)
+git config --global help.browser google-chrome
+git config --global help.format web
+git config --global web.browser open
+# 其他
 git config --global core.editor vim
 git config --global core.excludesfile '~/.gitignore'
+git config --global pull.rebase true
 ```
 
 # diff

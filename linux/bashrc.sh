@@ -62,15 +62,6 @@ fi
 # +----------------------------------+
 # |           Environment            |
 # +----------------------------------+
-PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\] \[\e[01;34m\]\w$(git_branch)\[\e[00m\]\$ '
-
-export JAVA_HOME='/opt/java8/jdk1.8.0_281'
-export PATH=$JAVA_HOME/bin:$PATH
-
-
-# +----------------------------------+
-# |             function             |
-# +----------------------------------+
 git_branch() {
     branch="`git branch 2>/dev/null | grep "^\*" | sed -e "s/^\*\ //"`"
     if [ "${branch}" != "" ];then
@@ -80,16 +71,18 @@ git_branch() {
         echo "($branch)"
     fi
 }
+PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\] \[\e[01;34m\]\w$(git_branch)\[\e[00m\]\$ '
 
+export JAVA_HOME='/opt/java8/jdk1.8.0_281'
+export PATH=$JAVA_HOME/bin:$PATH
+
+
+# +----------------------------------+
+# |             function             |
+# +----------------------------------+
 mkcd() {
     mkdir "$1"
     cd "$1"
-}
-
-gadd() {
-    git add "${1:-.}"
-    clear
-    git status -bs
 }
 
 bak(){
@@ -159,7 +152,6 @@ alias gg='clear && git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C
 alias glo='git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) <%an>" --graph'
 alias gloa='git log --format="%C(yellow)%h%Creset %C(auto)%d%Creset %s %C(blue)(%cr) <%an>" --graph --all'
 alias gbr='git branch -vv'
-alias gbrvv='git branch -vv'
 alias gclone='git clone'
 alias gca='git commit --amend'
 alias gcma='git commit -a -m'
@@ -171,30 +163,32 @@ alias gdn='git diff --name-status'
 alias gds='git diff --stat'
 alias gft='git fetch'
 alias gindex='git ls-files -s'
-alias glast='git log --stat -1 HEAD'
-alias gmerge='git merge --no-ff'
+alias glast='git show --stat HEAD'
+alias gmerge='git merge --no-ff -m'
 alias gpprint='git cat-file -p'
 alias gptags='git push origin --tags'
 alias gpull='git pull'
-alias gpulla='git pull --all'
 alias gpush='git push'
-alias gpusha='git push --all'
 alias grf='git reflog'
 alias gre='git remote'
 alias grev='git remote -v'
-alias groll='git checkout HEAD --'
-alias gsa='git stash'
-alias gsapply='git stash apply'
+alias gsa='git stash --include-untracked'
+alias gsapply='git stash apply --index '
 alias gsclear='git stash clear'
 alias gsdrop='git stash drop'
 alias gslist='git stash list'
-alias gspop='git stash pop --index --include-untracked'
+alias gspop='git stash pop --index'
 alias gsshow='git stash show'
 alias gst=' clear && git status -bs'
 alias gtag='git tag'
 alias gtree='git ls-tree -r'
 alias gtype='git cat-file -t'
-alias gunstage='git reset HEAD --'
+
+gadd() {
+    git add "${1:-.}"
+    clear
+    git status -bs
+}
 
 gproxy() {
     echo "before:"
