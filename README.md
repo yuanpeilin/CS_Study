@@ -14,6 +14,7 @@
     - [bashrc](linux/shell/bashrc.sh)
     - [Command](linux/command.md)
     - [文件系统](linux/filesystem.md)
+    - [FTP](linux/ftp.md)
     - [Git](linux/git.md)
     - [Kconfig](linux/kconfig.md)
     - [Makefile](linux/makefile.md)
