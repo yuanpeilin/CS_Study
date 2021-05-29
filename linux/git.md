@@ -22,6 +22,7 @@
 - [show](#show)
 - [stash](#stash)
 - [tag](#tag)
+- [worktree](#worktree)
 
 
 
@@ -100,6 +101,7 @@ git config --global alias.rs      reset
 git config --global alias.rv      revert
 git config --global alias.sa      stash
 git config --global alias.st      status
+git config --global alias.wt      worktree
 # 设置换行符
 git config --global core.autocrlf input
 git config --global merge.renormalize true
@@ -317,3 +319,9 @@ git log --format="%h - %an, %ar : %s"
 * **`git tag <tag_name> [commit_id]`** 新建一个lightweight标签, 本质是一个指向commit对象的指针, 使用`git cat-file -t`查看为commit
 * **`git tag -a <tag_name> -m <tag_description> [commit_id]`** 新建一个annotated标签, 是一个tag对象
 * **`git tag -d <tag_name>`** 删除本地标签
+
+# worktree
+* **`git worktree add <path> [commit-id]`** 新建一个worktree
+* **`git worktree list`** 列出所有的worktree
+* **`git worktree move <path> <new-path>`** 移动worktree
+* **`git worktree remove <path>`** 移除某个worktree
