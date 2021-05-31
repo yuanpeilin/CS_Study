@@ -15,8 +15,8 @@
 * **n** [`ncdu`](#ncdu) [`netstat`](#netstat) [`nohub`](#nohub)
 * **p** [`pandoc`](#pandoc) [`pgrep`](#pgrep) [`pkill`](#pkill) [`ps`](#ps) [`pstree`](#pstree)
 * **r** [`rsync`](#rsync) [`runlevel`](#runlevel)
-* **s** [`scp`](#scp) [`sed`](#sed) [`shopt`](#shopt) [`sort`](#sort) [`systemd-analyze](systemd.md/#systemd-analyze) [`systemctrl`](systemd.md/#unit)
-* **t** [`tail`](#tail) [`tar`](#tar) [`tee`](#tee) [`timedatectl`](systemd.md/#timedatectl) [`top`](#top) [`tr`](#tr) [`tree`](#tree) [`truncate`](#truncate) [`type`](#type)
+* **s** [`scp`](#scp) [`sed`](#sed) [`shopt`](#shopt) [`sort`](#sort) [`systemd-analyze`](systemd.md/#systemd-analyze) [`systemctrl`](systemd.md/#unit)
+* **t** [`tail`](#tail) [`tar`](#tar) [`tee`](#tee) [`timedatectl`](systemd.md/#timedatectl) [`top`](#top) [`tr`](#tr) [`trap`](#trap) [`tree`](#tree) [`truncate`](#truncate) [`type`](#type)
 * **u** [`ufw`](#ufw) [`uniq`](#uniq) [`uptime`](#uptime) [`useradd`](user.md/#增加用户) [`userdel`](user.md/#删除用户) [`usermod`](user.md/#修改用户)
 * **w** [`whereis`](#whereis)
 * **x** [`xargs`](#xargs) [`xmlstarlet`](#xmlstarlet)
@@ -222,10 +222,10 @@ disown -r
 # 移出所有后台任务
 disown -a
 
-# 不移出后台任务，但是让它们不会收到SIGHUP信号
+# 不移出后台任务, 但是让它们不会收到SIGHUP信号
 disown -h
 
-# 根据jobId，移出指定的后台任务
+# 根据jobId, 移出指定的后台任务
 disown %2
 disown -h %2
 ```
@@ -930,6 +930,36 @@ echo Hello There | tr a-z A-Z
 # 将CRLF转换为LF
 tr '\r\n' '\n' file
 tr -d '\r' file
+```
+
+# trap
+### 语法
+* `trap ' command' singal` 自定义进程收到系统发出的指定信号后, 将执行command, 而不会执行原操作
+* `trap '' singal` 忽略信号的操作
+* `trap '-' singal` 恢复原信号的操作
+
+### 常用信号
+
+信号    | 说明
+------- | ----
+SIGHUP  | 无须关闭进程而让其重读配置文件
+SIGINT  | 中止正在运行的进程；相当于Ctrl+c
+SIGQUIT | 相当于ctrl+\
+SIGKILL | 强制杀死正在运行的进程
+SIGTERM | 终止正在运行的进程（默认为15）
+SIGCONT | 继续运行
+SIGSTOP | 后台休眠
+
+### 例子
+```sh
+#!/bin/bash
+
+# 打印0-9, ctrl+c不能终止, 而是输出指定的信息
+trap 'echo press ctrl+c' 2
+for ((i=0;i<10;i++));do
+    sleep 1
+    echo $i
+done
 ```
 
 # tree
