@@ -73,6 +73,11 @@ for var in item1 item2 ... itemN; do
     commandN
 done
 ```
+```sh
+for (( exp1; exp2; exp3 )); do
+    command1
+done
+```
 
 ### 例子
 ```sh
@@ -80,6 +85,12 @@ done
 for TIME in "Morning" "Noon" "Evening"; do
     echo "The $TIME of the day."
 done
+```
+```sh
+for (( i=1,num=0;i<=100;i++ ));do
+    [ $[i%2] -eq 1 ] && let sum+=i
+done
+echo sum=$sum
 ```
 
 # while
@@ -156,8 +167,14 @@ esac
 ```
 
 # select
+### 用法
+* select会显示PS3提示符
+* 用户输入被保存在内置变量`REPLY`中
+* select是个无限循环, 因此要用`break`命令退出循环
+
 ### 语法
 ```sh
+PS3="Please choose the menu: "
 select variable in [list]; do
     command
 done
@@ -166,6 +183,7 @@ done
 ### 例子
 ```sh
 #!/bin/bash
+PS3="Please choose the animal: "
 select var in "dog" "cat" "bee"; do
     echo "you like $var"
     break
