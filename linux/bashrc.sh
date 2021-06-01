@@ -80,11 +80,6 @@ export PATH=$JAVA_HOME/bin:$PATH
 # +----------------------------------+
 # |             function             |
 # +----------------------------------+
-mkcd() {
-    mkdir "$1"
-    cd "$1"
-}
-
 bak(){
     if [[ "$#" == 0 ]]; then
         echo -e '\e[1mbak\e[0m will backup files as xxx.bak'
@@ -126,9 +121,32 @@ cd_git_project() {
     echo -e '\e[01m--------------------\e[00m'
 }
 
-plant_uml_server(){
-    cd /opt/plantuml-server
-    sudo mvn jetty:run -Djetty.port=9999 &>/dev/null &
+color(){
+    echo -e "\e[01m 01 \e[00m"
+    echo -e "\e[02m 02 \e[00m"
+    echo -e "\e[03m 03 \e[00m"
+    echo -e "\e[04m 04 \e[00m"
+    echo -e "\e[05m 05 \e[00m"
+    echo -e "\e[06m 06 \e[00m"
+    echo -e "\e[07m 07 \e[00m"
+    echo -e "\e[08m 08 \e[00m"
+    echo -e "\e[09m 09 \e[00m"
+    echo -e "----------------"
+    echo -e "\e[31m 31 \e[00m"
+    echo -e "\e[32m 32 \e[00m"
+    echo -e "\e[33m 33 \e[00m"
+    echo -e "\e[34m 34 \e[00m"
+    echo -e "\e[35m 35 \e[00m"
+    echo -e "\e[36m 36 \e[00m"
+    echo -e "\e[37m 37 \e[00m"
+    echo -e "----------------"
+    echo -e "\e[41m 41 \e[00m"
+    echo -e "\e[42m 42 \e[00m"
+    echo -e "\e[43m 43 \e[00m"
+    echo -e "\e[44m 44 \e[00m"
+    echo -e "\e[45m 45 \e[00m"
+    echo -e "\e[46m 46 \e[00m"
+    echo -e "\e[47m 47 \e[00m"
 }
 
 # ln_check   源文件路径   源文件名   链接文件路径   链接文件名
@@ -138,6 +156,16 @@ ln_check(){
         ln "$1$2" "$3$4"
         echo "link $3$4 has broken, delete it and link again. Source: $1$2"
     fi
+}
+
+mkcd() {
+    mkdir "$1"
+    cd "$1"
+}
+
+plant_uml_server(){
+    cd /opt/plantuml-server
+    sudo mvn jetty:run -Djetty.port=9999 &>/dev/null &
 }
 
 todo(){
