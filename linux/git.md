@@ -136,7 +136,7 @@ git config --global pull.rebase true
 * **`git log --oneline --all --graph`** 查看分支图
 * **`git log --format='%c(yellow)%h%creset %c(auto)%d%creset %s %c(green)(%cr) %c(blue)<%an> <file_path>'`** 查看某个文件的修改历史
 * **`git log -1`** 限制输出长度
-* **`git log [-p | --patch]`** 以补丁的形式查看日志(类似diff, 改动了哪些地方)
+* **`git log [-p | --patch]`** 以patch的形式查看日志(类似diff, 改动了哪些地方)
 * **`git log --stat`** 查看每一个日志的统计信息(增加多少行, 删除多少行)
 * **`git log --pretty=[oneline | short | full | medium | fuller | raw]`** 格式化日志, oneline最简略, fuller最详细, 默认为full
 * **`git log [--since | --after | --until | --before]=<time>`** 通过时间过滤. time可以是2008-01-15或是2 years 1 day 3 minutes ago
@@ -187,6 +187,9 @@ git log --format="%h - %an, %ar : %s"
 * **`git ls-remote <remote-repo>`** 查看某个远程仓库详细信息(需要网络)
 * **`git gc --prune=now --aggressive`** 清理仓库中的孤儿对象
 * **`git rev-list --count <branch name>`** 计算指定分支的提交数量
+* **`git clone --bare <url>`** 克隆一个bare仓库
+* **`git clone -o <name> <url>`** 指定远程仓库名(取代origin)
+* **`git ls-remote origin`** 列出远程仓库信息(分支, tag, PR及其的hash值)
 
 ### 使用不同的配置文件
 * **`gitdir`** 匹配目录, 注意是 **git** 不是get
@@ -257,7 +260,7 @@ git log --format="%h - %an, %ar : %s"
 * **`git push origin <tag_name>`** 推送标签到远程
 * **`git push origin --tags`** 推送所有标签到远程
 * **`git push origin :refs/tags/<tag_name>`** 删除远程标签
-* **`git push origin <local_branch_name>:<remote_branch_name>`** 推送本地分支到制定的远程分支
+* **`git push origin <local_branch_name>:<remote_branch_name>`** 推送本地分支到指定的远程分支
 * **`git push origin --delete <remote_branch_name>`** 删除远程分支
 * **`git push origin --delete <tag_name>`** 删除远程标签(删除本地标签后, 远程标签不会删除, 必须手动删除远程标签)
 * **`git push origin :<remote_branch_name>`** 删除远程分支(推送空分支到远程)
@@ -275,7 +278,7 @@ git log --format="%h - %an, %ar : %s"
 * **`git remote add <repository_name> <ssh | https>`** 使本地仓库与远程仓库关联
 * **`git remote`** 查看所有远程仓库
 * **`git remote -v`** 查看远程仓库信息
-* **`git remote show origin`** 查看某个远程仓库详细信息(需要网络)
+* **`git remote show origin`** 查看某个远程仓库详细信息, 需要网络(Fetch URL, Push URL, 远程分支)
 * **`git remote rename <old name> <new name>`** 重命名仓库
 * **`git remote prune origin --dry-rnu`** 列出仍在跟踪但远程已删除的分支
 * **`git remote set-url origin <url>`** 设置远程仓库地址
