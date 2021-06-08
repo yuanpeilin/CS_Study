@@ -7,7 +7,8 @@
     - [while](#while)
     - [case](#case)
     - [select](#select)
-- [getopts](#getopts)
+    - [getopt](#getopt)
+    - [getopts](#getopts)
 - [位置参数](#位置参数)
 - [切割字符串](#切割字符串)
 - [模式匹配](#模式匹配)
@@ -190,14 +191,64 @@ select var in "dog" "cat" "bee"; do
 done
 ```
 
+# getopt
+### 语法
+* 如果某个短选项的参数是可选的, 那么它的参数必须紧跟在选项名后面, 不能使用空格分开
+* 如果某个长选项的参数是可选的, 那么它的参数必须使用"="连接
+
+### 例子
+```sh
+parameters=$(getopt -o la:r:: --long list,add:,remove:: -n "$0" -- "$@")
+# parameters=$(getopt -o la:r:: -l list,add:,remove:: -n "$0" -- "$@")
+# parameters=$(getopt --short la:r:: --longoptions list,add:,remove:: -n "$0" -- "$@")
+[ $? != 0 ] && exit 1
+
+# 将$parameters设置为位置参数
+eval set -- "$parameters"
+
+while true ; do
+    case "$1" in
+        -l|--list)   #不带参数
+            echo "list"
+            shift
+            ;;
+        -a|--add)   #带参数
+            echo "-a $2"
+            shift 2
+            ;;
+        -r|--remove)   #带可选参数
+            case "$2" in
+                "") echo "-r without parameter" ;;
+                *) echo "parameter of -r is $2";;
+            esac
+            shift 2
+            ;;
+        --)
+            case "$2" in
+                "") ;;
+                *) echo "after -- is $2";;
+            esac
+            break
+            ;;
+        *) 
+            echo "wrong"
+            exit 1
+            ;;
+    esac
+done
+```
+
 # getopts
-`while getopts :xyn: name`
+### 语法
+**`while getopts :xyn: name`**  
 x、y和n是选项. 在本例中, 第一个选项由一个冒号引导, 表示getopts不报告错误信息. 如果选项后有一个冒号, 表示该选项需要一个参数. 参数是一个不用短划线引导的词. -n选项需要一个参数  
 遇到不含短划线的选项时, getopts就认为选项列表已结束  
 每次被调用时, getopts都将找到的下一个选项放到变量name中(这个变量名可任意选择). 如果遇到非法变量, getopots就将name的值设为问号  
 getopts函数提供两个变量来保持参数的记录: `OPTIND`和`OPTARG`
 * `OPTIND`是一个专用变量, 初始化为1, 每次getopts处理完一个命令行参数后, OPTIND就增加为getopts下一个要处理的参数的序号
 * `OPTARG`变量包含了合法参数的值
+
+### 例子
 ```sh
 #!/bin/bash  #test.sh
 while getopts "a:bc" arg   #选项后面的冒号表示该选项需要参数
