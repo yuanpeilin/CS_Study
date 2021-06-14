@@ -3,7 +3,7 @@
 * **b** [`bg`](#bg)
 * **c** [`case`](shell.md/#case) [`cat`](#cat) [`chattr`](#chattr) [`chgrp`](#chgrp) [`chkconfig`](#chkconfig) [`chmod`](#chmod) [`chown`](#chown) [`corntab`](#corntab) [`cp`](#cp) [`curl`](#curl) [`cut`](#cut)
 * **d** [`declare`](#declare) [`df`](#df) [`disown`](#disown) [`du`](#du)
-* **e** [`echo`](#echo) [`export`](#export)
+* **e** [`echo`](#echo) [`eval`](#eval) [`export`](#export)
 * **f** [`fallocate`](#fallocate) [`fdisk`](#fdisk) [`ffmpeg`](#ffmpeg) [`fg`](#fg) [`file`](#file) [`fim`](#fim) [`find`](#find) [`finger`](user.md/#查看用户) [`for`](shell.md/#for) [`free`](#free)
 * **g** [`getopt`](shell.md/#getopt) [`getopts`](shell.md/#getopts) [`grep`](#grep) [`groupadd`](user.md/#增加组) [`groupdel`](user.md/#删除组) [`groupmod`](user.md/#修改组) [`gpasswd`](user.md/#修改组) [`gzip`](#gzip)
 * **h** [`head`](#head)
@@ -283,6 +283,22 @@ echo -e "\e[31;43;1m SomeWord \e[0m"
 echo -e "\e[01;34m SomeWord \e[00m"
 echo -e "\033[01;34m SomeWord \033[00m"
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+```
+
+# eval
+会将命令执行一次之后再次执行
+
+### 例子
+```sh
+$ echo "hello World" > file
+
+$ test="cat file"
+
+$ echo "$test"
+cat file
+
+$ eval "$test"
+hello World
 ```
 
 # export
