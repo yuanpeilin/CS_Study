@@ -1,99 +1,108 @@
 #!/bin/bash
 path=/var/todo/todo
 
-todo_help() {
-    echo -e "\e[1m Usage: \e[0m"
-    echo -e "    -a <string>   add a task"
-    echo -e "    -c            clear all finished tasks"
-    echo -e "    -d <number>   done"
-    echo -e "    -h            help"
-    echo -e "    -i            edit data file: /var/todo/todo"
-    echo -e "    -l            list unfinished tasks"
-    echo -e "    -L            list all tasks with time"
-    echo -e "    -r <number>   remove the finished task"
-    echo -e "    -R <number>   force remove the task"
-}
-
-todo_list_task() {
-    i=1
+todo_list() {
+    # 每行样式: D 2021/06/09 ggg
+    local i=1
     while read -r line; do
-        status=${line:0:1}
-        content=${line:13}
-        if [[ "$#" == 1 ]]; then
-            date=${line:2:10}
-            date="$date"
-        fi
+        local status=${line:0:1}
+        local date=${line:2:10}
+        local content=${line:13}
+        [[ "$1" != "time" ]] && date=""
         if [[ "$status" == "U" ]]; then
-            printf "\e[01m %s %2s %s %s \n\e[00m" "$date" "$i" "[ ]" "$content"
+            printf "\e[01m %2s %s %s %s \n\e[00m" "$i" "$date" "[ ]" "$content"
         elif [[ "$#" == 1 ]]; then
-            printf "\e[09m %s %2s %s %s \n\e[00m" "$date" "$i" "[*]" "$content"
+            printf "\e[09m %2s %s %s %s \n\e[00m" "$i" "$date" "[*]" "$content"
         fi
         i=$((i + 1))
     done <"$path"
-    unset i line status content date
 }
 
-todo_getopts() {
-    while getopts ":a:cd:hiLlr:R:" arg; do
-        case "$arg" in
-        a) # Add
-            date=$(date +'%Y/%m/%d')
-            echo "U $date $OPTARG" >>"$path"
-            unset date
-            todo_list_task
-            ;;
-        c) # Clean
-            line_list=$(grep -nE --text '^D' "$path" | cut -d ":" -f 1)
-            i=0
-            for var in $line_list; do
-                var=$((var - i))
-                sed -i "$var"d "$path"
-                i=$((i + 1))
-            done
-            unset var i line_list
-            todo_list_task
-            ;;
-        d) # Done
-            temp="$OPTARG"'s/U/D/'
-            sed -i "$temp" "$path"
-            unset temp
-            todo_list_task
-            ;;
-        i) # edit
-            vim "$path" ;;
-        l) # List
-            todo_list_task ;;
-        L) # List with time
-            todo_list_task "time" ;;
-        r) # Remove
-            if_done=$(sed -n "$OPTARG"p "$path" | cut -d " " -f 1)
-            if [[ "$if_done" == U ]]; then
-                echo -e "\e[1;31m WARNING: \e[0m task is not finished! Use -R instead."
-            else
-                sed -i "$OPTARG"d "$path"
-                todo_list_task
-            fi
-            unset if_done
-            ;;
-        R) # force Remove
-            sed -i "$OPTARG"d "$path"
-            todo_list_task
-            ;;
-        *)
-            todo_help
-            ;;
+todo_add() {
+    local date=$(date +'%Y/%m/%d')
+    echo "U $date $2" >>"$path"
+    todo_list
+}
+
+todo_clean() {
+    local line_list=$(grep -nE --text '^D' "$path" | cut -d ":" -f 1)
+    local i=0
+    for fixed_line_number in $line_list; do
+        fixed_line_number=$((fixed_line_number - i))
+        sed -i "$fixed_line_number"d "$path"
+        i=$((i + 1))
+    done
+    unset fixed_line_number
+    todo_list "time"
+}
+
+todo_done() {
+    local temp="$2"'s/^U/D/'
+    sed -i "$temp" "$path"
+    todo_list
+}
+
+todo_help() {
+    echo -e "\e[1m Usage: \e[0m"
+    echo -e "    -a, --add <string>      add a task"
+    echo -e "    -c, --clean             clear all finished tasks"
+    echo -e "    -d, --done <number>     done a task"
+    echo -e "    -h, --help              help"
+    echo -e "    -i, --insert            insert data file: $path"
+    echo -e "    -l, --list              list all unfinished tasks"
+    echo -e "    -L, --LIST              list all tasks with time"
+    echo -e "    -r, --remove <number>   remove the task"
+}
+
+todo_insert() {
+    vim "$path"
+}
+
+todo_remove() {
+    sed -n "$2"p "$path"
+    echo ""
+    sed -i "$2"d "$path"
+    todo_list
+}
+
+todo_getopt() {
+    local parameters_count="$#"
+    local parameters=$(getopt -o a:cd:hiLlr: --long add:,clean,done:,help,insert,LIST,list,remove: -n "$0" -- "$@" 2>/dev/null)
+
+    # 将$parameters设置为位置参数
+    eval set -- "$parameters"
+    # 下面一行用于处理错误的参数, 并给出help
+    # eval处理后, 若有错误的选项, 例如todo --lllst, 会去掉错误选项并加上--, $@会解析成todo --
+    # 由于会自动多加--, 所以处理后的$#需要减一
+    [[ "$parameters_count" != $(("$#" - 1)) ]] && todo_help && return 1
+
+    while true; do
+        case "$1" in
+        -a | --add) todo_add "$@" && shift 2 ;;
+        -c | --clean) todo_clean && shift ;;
+        -d | --done) todo_done "$@" && shift 2 ;;
+        -h | --help) todo_help && shift ;;
+        -i | --insert) todo_insert && shift ;;
+        -l | --list) todo_list && shift ;;
+        -L | --LIST) todo_list "time" && shift ;;
+        -r | --remove) todo_remove "$@" && shift 2 ;;
+        --) break ;;
+        *) todo_help && return 2 ;;
         esac
     done
-    unset arg temp OPTARG OPTIND
 }
 
 main() {
-    if [[ "$#" == 0 ]]; then
+    if [[ "$#" != 1 && "$#" != 2 ]]; then
         todo_help
+        return 3
     else
-        todo_getopts "$@"
+        todo_getopt "$@"
     fi
 }
 
 main "$@"
-unset path
+# 由于执行下面的unset之后$?会变成0, 所以此处需要一个临时变量记录main的$?
+temp="$?"
+unset path todo_list todo_add todo_clean todo_done todo_help todo_insert todo_remove todo_getopt main
+return "$temp"
