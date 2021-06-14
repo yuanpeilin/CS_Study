@@ -66,15 +66,9 @@ todo_remove() {
 }
 
 todo_getopt() {
-    local parameters_count="$#"
     local parameters=$(getopt -o a:cd:hiLlr: --long add:,clean,done:,help,insert,LIST,list,remove: -n "$0" -- "$@" 2>/dev/null)
 
-    # 将$parameters设置为位置参数
-    eval set -- "$parameters"
-    # 下面一行用于处理错误的参数, 并给出help
-    # eval处理后, 若有错误的选项, 例如todo --lllst, 会去掉错误选项并加上--, $@会解析成todo --
-    # 由于会自动多加--, 所以处理后的$#需要减一
-    [[ "$parameters_count" != $(("$#" - 1)) ]] && todo_help && return 1
+    [[ "$#" == 0 ]] && todo_help && return 1
 
     while true; do
         case "$1" in
