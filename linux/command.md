@@ -40,7 +40,7 @@
 ### 例子
 ```sh
 # 命令输入完成后使用Ctrl+D提交任务
-at 23:45
+$ at 23:45
 at 8:00 2020-01-01
 at now + 1munites
 ```
@@ -112,7 +112,7 @@ chkconfig --add httpd
 ```
 分钟  小时   天    月  星期
 0     17      *    *   1-5     周一到周五每天17: 00
-30    8       *    *   1,3,5   每周一、三、五的8点30分
+30    8       *    *   1,3,5   每周一, 三, 五的8点30分
 0     8-18/2  *    *   *       8点到18点之间每隔2小时
 0     *       */3  *   *       每隔3天
 ```
@@ -125,7 +125,7 @@ chkconfig --add httpd
 # cp
 ### 语法
 * `-r` 复制该目录下所有的子目录和文件
-* `-p` 原封不动的拷贝权限、时间戳等, 前提是用户对文件有写权限
+* `-p` 原封不动的拷贝权限, 时间戳等, 前提是用户对文件有写权限
 * `-d` 复制是链接文件的话, 复制此链接. 否则不加此参数的话, 复制的是链接指向的文件
 * `-a` 相当与`-dpr`
 
@@ -133,41 +133,41 @@ chkconfig --add httpd
 ### 例子
 ```sh
 # 不带任何参数, 就是发送GET请求(即显示网页源代码)
-curl www.baidu.com
-curl example.com?data=xxx&time=xxx
+$ curl www.baidu.com
+$ curl example.com?data=xxx&time=xxx
 
 # 将网页保存为文件
-curl -o <file path> www.baidu.com
+$ curl -o <file path> www.baidu.com
 
 # 自动跳转
-curl -L www.baidu.com
+$ curl -L www.baidu.com
 
 # 除了显示网页源代码, 显示HTTP请求头信息
-curl -i www.baidu.com
+$ curl -i www.baidu.com
 
 # 显示HTTP通信整个过程
-curl -v www.baidu.com
+$ curl -v www.baidu.com
 
 # 显示详细的HTTP通信整个过程
-curl --trace output.txt www.baidu.com
-curl --trace-ascii output.txt www.baidu.com
+$ curl --trace output.txt www.baidu.com
+$ curl --trace-ascii output.txt www.baidu.com
 
 # 设置代理
-curl -x socks5://localhost:1080 www.baidu.com
+$ curl -x socks5://localhost:1080 www.baidu.com
 ```
 
 * 发送POST请求
 ```sh
-curl -X POST -d "data=xxx" example.com
-curl -X POST --data "data=xxx" example.com
-curl -X POST -d "data=xxx" -d "data=xxx" example.com
-curl -X POST -d "data=xxx&data=xxx" example.com
+$ curl -X POST -d "data=xxx" example.com
+$ curl -X POST --data "data=xxx" example.com
+$ curl -X POST -d "data=xxx" -d "data=xxx" example.com
+$ curl -X POST -d "data=xxx&data=xxx" example.com
 
 # 读取文件
-curl -d '@data.txt' example.com
+$ curl -d '@data.txt' example.com
 
 # 自动进行URL编码
-curl -X POST --data-urlencode "date=xxx" example.com
+$ curl -X POST --data-urlencode "date=xxx" example.com
 ```
 
 # cut
@@ -180,13 +180,13 @@ curl -X POST --data-urlencode "date=xxx" example.com
 ### 例子
 ```sh
 # 显示第2, 3列
-cut -d " " -f 2,3 file
+$ cut -d " " -f 2,3 file
 
 # 显示第2列及之后内容
-cut -d " " -f 2- file
+$ cut -d " " -f 2- file
 
 # 显示除了第2列及之后的内容(只显示第一列)
-cut -d " " -f 2- --complement file
+$ cut -d " " -f 2- --complement file
 ```
 
 # declare
@@ -214,20 +214,20 @@ cut -d " " -f 2- --complement file
 ### 例子
 ```sh
 # 移出最近一个正在执行的后台任务
-disown
+$ disown
 
 # 移出所有正在执行的后台任务
-disown -r
+$ disown -r
 
 # 移出所有后台任务
-disown -a
+$ disown -a
 
 # 不移出后台任务, 但是让它们不会收到SIGHUP信号
-disown -h
+$ disown -h
 
 # 根据jobId, 移出指定的后台任务
-disown %2
-disown -h %2
+$ disown %2
+$ disown -h %2
 ```
 
 # du
@@ -242,10 +242,10 @@ disown -h %2
 ### 例子
 ```sh
 # 显示当前目录的大小
-du -hs
+$ du -hs
 
 # 显示当前下目录下所有目录及文件的大小
-du -hs *
+$ du -hs *
 ```
 
 # echo
@@ -279,10 +279,10 @@ du -hs *
 ### 例子
 ```sh
 # 字体颜色, 背景色, 效果没有先后之分
-echo -e "\e[31;43;1m SomeWord \e[0m"
-echo -e "\e[01;34m SomeWord \e[00m"
-echo -e "\033[01;34m SomeWord \033[00m"
-PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+$ echo -e "\e[31;43;1m SomeWord \e[0m"
+$ echo -e "\e[01;34m SomeWord \e[00m"
+$ echo -e "\033[01;34m SomeWord \033[00m"
+$ PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 ```
 
 # eval
@@ -317,7 +317,7 @@ hello World
 ### 例子
 ```sh
 # 录屏
-ffmpeg -video_size 1920x1080 -framerate 60 -f x11grab -i :0.0+0,0 output.mp4
+$ ffmpeg -video_size 1920x1080 -framerate 60 -f x11grab -i :0.0+0,0 output.mp4
 ```
 
 # fg
@@ -328,8 +328,7 @@ ffmpeg -video_size 1920x1080 -framerate 60 -f x11grab -i :0.0+0,0 output.mp4
 
 ### 例子
 ```sh
-file shell.md
-
+$ le shell.md
 shell.md: exported SGML document, UTF-8 Unicode text
 ```
 
@@ -337,10 +336,10 @@ shell.md: exported SGML document, UTF-8 Unicode text
 ### 例子
 ```sh
 # 查看图片
-fim a.jpg
+$ fim a.jpg
 
 # 以ASCII码形式查看图片
-fim -t a.jpg
+$ fim -t a.jpg
 ```
 
 # find
@@ -363,38 +362,38 @@ fim -t a.jpg
 * 根据时间查找
 ```sh
 # 七天前, 内容发生改变的文件
-find / -mtime +7
+$ find / -mtime +7
 
 # 四天前那天, 内容发生改变的文件
-find / -mtime 4
+$ find / -mtime 4
 
 # 七天之内, 内容发生改变的文件
-find / -mtime -7
+$ find / -mtime -7
 ```
 
 * 根据大小进行查找
 ```sh
 # 查找小于3k的文件
-find / -size -3k -ls
+$ find / -size -3k -ls
 
 # 查找大小为10M的文件
-find / -size 10M -ls
+$ find / -size 10M -ls
 
 # 查找大于100字节的文件
-find / -size +100c -ls
+$ find / -size +100c -ls
 ```
 
 * 根据所属用户进行查找
 ```sh
 # 在根目录下找到文件拥有者为root的文件
-find / -user root -ls
-find / -user 0 -ls
+$ find / -user root -ls
+$ find / -user 0 -ls
 ```
 
 * 根据访问权限进行查找
 ```sh
 # 找到制定权限的文件
-find / -perm 754 -ls
+$ find / -perm 754 -ls
 ```
 
 * 多个条件 使用多个条件时, 要用圆括号, 且要使用\进行转义
@@ -402,7 +401,7 @@ find / -perm 754 -ls
     * `-o` 或
     * `!` 非
 ```sh
-find / \( -size +1k -a -size -10M -a -type f \) -ls;
+$ find / \( -size +1k -a -size -10M -a -type f \) -ls;
 ```
 
 * 动作选项
@@ -411,10 +410,10 @@ find / \( -size +1k -a -size -10M -a -type f \) -ls;
     * `\;`表示动作的结束
 ```sh
 # 找到指定文件并删除
-find / \( -size +1k -a -size -10M -a -type f \) -exec rm -rf {} \;
+$ find / \( -size +1k -a -size -10M -a -type f \) -exec rm -rf {} \;
 
 # 找到当前路径下损坏的符号链接并删除
-find . -xtype l -exec rm {} \;
+$ find . -xtype l -exec rm {} \;
 ```
 
 # free
@@ -437,10 +436,10 @@ find . -xtype l -exec rm {} \;
 ### 例子
 ```sh
 # 解压文件
-gzip -d test.gz
+$ gzip -d test.gz
 
 # 调节压缩比(默认为6. 9为最大压缩比, 压缩的文件最小)
-gzip -9 test.txt
+$ gzip -9 test.txt
 ```
 
 # head
@@ -457,19 +456,19 @@ gzip -9 test.txt
 ### 例子
 ```sh
 # 获取图片信息
-identify test.jpg
+$ identify test.jpg
 
 # 转化图片格式
-convert  test.jpg  test.png
+$ convert  test.jpg  test.png
 
 # 改变图像大小
-convert -resize 1024x768 test.jpg test_modify.jpg
+$ convert -resize 1024x768 test.jpg test_modify.jpg
 
 # 设置图像质量, 质量值为0-100之间的数值, 数字越大, 质量越好. 一般指定70-80
-convert -resize 1024x768 -quality 75 test.jpg test_modify.jpg
+$ convert -resize 1024x768 -quality 75 test.jpg test_modify.jpg
 
 # 缩放图片
-convert -sample 50%x50% test.jpg test_modify.jpg
+$ convert -sample 50%x50% test.jpg test_modify.jpg
 ```
 
 # jobs
@@ -486,7 +485,7 @@ convert -sample 50%x50% test.jpg test_modify.jpg
 ### 例子
 ```sh
 # 强制杀死进程
-kill -9 PID
+$ kill -9 PID
 ```
 
 # less
@@ -542,7 +541,7 @@ drwx------   1                ypl          ypl              4096       May 12 18
 
 ### 例子
 ```sh
-netstat -lntp
+$ netstat -lntp
 ```
 
 # md5sum
@@ -554,7 +553,7 @@ netstat -lntp
 
 ### 例子
 ```sh
-mkdir -p -m 700 test
+$ mkdir -p -m 700 test
 ```
 
 # mkfs
@@ -579,7 +578,7 @@ nohup命令不会自动把进程变为后台任务, 使用时所以必须加上`
 ### 例子
 ```sh
 # 将markdown转换为html
-pandoc -s a.md -o a.html
+$ pandoc -s a.md -o a.html
 ```
 
 # pgrep
@@ -592,10 +591,10 @@ pandoc -s a.md -o a.html
 ### 例子
 ```sh
 # 列出进程名
-pgrep -l "log"
+$ pgrep -l "log"
 
 # 根据用户名列出进程
-pgrep -l -U teacher -t tty1
+$ pgrep -l -U teacher -t tty1
 ```
 
 # pkill
@@ -654,8 +653,7 @@ root     2   0.0        0.0       0         0         ?         S      Mar27    
 
 ### 例子
 ```sh
-pstree -aup
-
+$ pstree -aup
 init,1
     ├─acpid,2866
     ├─atd,3060
@@ -688,7 +686,7 @@ id : runlevels : action  : process
 1. id 也称标记字段, 由1-4个字符组成, 用以区别于其他行的配置, 所以id标记字段必须是唯一的, 用于在inittab文件中唯一标识一个配置记录
 2. runlevels 运行级别字段, 用于指定该记录在哪些运行级别中运行, 取值数字0-6
 3. action 动作类型字段, 动作类型字段描述了该行配置所对应的操作类别, 一般为固定值, 较常用的类型如下: 
-4. process 用于指定该行配置所对应的实际操作, 可以是具体的命令、脚本程序等
+4. process 用于指定该行配置所对应的实际操作, 可以是具体的命令, 脚本程序等
 
 字段        | 说明
 ----------  | ----
@@ -705,12 +703,12 @@ respawn     | 一旦该行配置所对应的进程被终止, 则重新启动该�
 
 ### 例子
 ```sh
-runlevel
+$ runlevel
 N 5
 
-init 3
+$ init 3
 
-runlevel
+$ runlevel
 5 3
 ```
 
@@ -725,10 +723,10 @@ runlevel
 ### 例子
 ```sh
 # 从远程复制到本地
-scp username@ip: remote_file local_file
+$ scp username@ip: remote_file local_file
 
 # 从本地复制到远程
-scp local_file username@ip: remote_file
+$ scp local_file username@ip: remote_file
 ```
 
 # sed
@@ -748,26 +746,26 @@ scp local_file username@ip: remote_file
 
 ### 例子
 ```sh
-sed '1a drink tea' a.txt       #第一行后增加字符串"drink tea"
-sed '1,3a drink tea' a.txt     #第一行到第三行每行后增加字符串"drink tea"
+$ sed '1a drink tea' a.txt       #第一行后增加字符串"drink tea"
+$ sed '1,3a drink tea' a.txt     #第一行到第三行每行后增加字符串"drink tea"
 
-sed '1c Hi' a.txt            #第一行代替为Hi
+$ sed '1c Hi' a.txt            #第一行代替为Hi
 
-sed '2d' a.txt        #删除第二行, 只输出到控制台, 不改变文件
-sed -i '2d' a.txt     #删除第二行, 改变文件
+$ sed '2d' a.txt        #删除第二行, 只输出到控制台, 不改变文件
+$ sed -i '2d' a.txt     #删除第二行, 改变文件
 
-sed -n '1p' a.txt        #显示第一行
-sed -n '$p' a.txt        #显示最后一行
-sed -n '2,4p' a.txt      #显示第二三四行
-sed -n '2,$p' a.txt      #显示第二行到最后一行
-sed -n '2p;$p' a.txt     #显示第二行和最后一行
-sed -n '1~2p' a.txt      #从第一行开始每隔两行打印(打印1 3 5 7 9...行)
-sed -n '/aa/p' a.txt     #输出符合aa的行, 斜线内是一个模式pattern
+$ sed -n '1p' a.txt        #显示第一行
+$ sed -n '$p' a.txt        #显示最后一行
+$ sed -n '2,4p' a.txt      #显示第二三四行
+$ sed -n '2,$p' a.txt      #显示第二行到最后一行
+$ sed -n '2p;$p' a.txt     #显示第二行和最后一行
+$ sed -n '1~2p' a.txt      #从第一行开始每隔两行打印(打印1 3 5 7 9...行)
+$ sed -n '/aa/p' a.txt     #输出符合aa的行, 斜线内是一个模式pattern
 
-sed 's/ruby/bird/' a.txt       #将第一个匹配到的ruby替换为bird
-sed 's/ruby/bird/2' a.txt      #将第二个匹配到的ruby替换为bird
-sed 's/ruby/bird/g' a.txt      #将所有ruby替换为bird(g表示global, 全局替换)
-sed '1s/ruby/bird/g' a.txt     #只将第一行的ruby替换为bird
+$ sed 's/ruby/bird/' a.txt       #将第一个匹配到的ruby替换为bird
+$ sed 's/ruby/bird/2' a.txt      #将第二个匹配到的ruby替换为bird
+$ sed 's/ruby/bird/g' a.txt      #将所有ruby替换为bird(g表示global, 全局替换)
+$ sed '1s/ruby/bird/g' a.txt     #只将第一行的ruby替换为bird
 ```
 
 # seq
@@ -779,7 +777,7 @@ sed '1s/ruby/bird/g' a.txt     #只将第一行的ruby替换为bird
 
 ### 例子
 ```sh
-seq 6
+$ seq 6
 1
 2
 3
@@ -835,22 +833,22 @@ done
 ### 例子
 ```sh
 # 以冒号为分隔符, 根据第二个字段的自然数值进行排序
-sort -n -k 2 -t ':' a.txt
+$ sort -n -k 2 -t ':' a.txt
 
 # 根据第二个字段排序, 值相同的情况根据第三个字段排序
-sort -t ':' -k 2 -k 3 a.txt
+$ sort -t ':' -k 2 -k 3 a.txt
 
 # 根据第三个字段降序排序, 值相同则根据第二个字段升序排序
-sort -t ':' -k 3r -k 2 a.txt
+$ sort -t ':' -k 3r -k 2 a.txt
 
 # 根据第一个字段的第二个字符到第四个字符排序开始排序
-sort -t ':' -k 1.2,1.4 a.txt
+$ sort -t ':' -k 1.2,1.4 a.txt
 
 # 只根据地一个字段的第三个字符排序, 相同则根据第三个字段排序
-sort -t ':' -k 1.3,1.3 -k 3 a.txt
+$ sort -t ':' -k 1.3,1.3 -k 3 a.txt
 
 # 以第二个域为主关键字, 第一个域为次关键字进行排序
-sort -k1, 1 | sort -s -k2, 2
+$ sort -k1, 1 | sort -s -k2, 2
 ```
 
 # tail
@@ -878,10 +876,10 @@ sort -k1, 1 | sort -s -k2, 2
 ### 例子
 ```sh
 # 解压并指定路径
-tar -zxvf jdk.tar.gz -C /opt/jdk/
+$ tar -zxvf jdk.tar.gz -C /opt/jdk/
 
 # 创建压缩文件ziped_documents.tgz
-tar -zcvf ziped_documents.tgz ~/Documents
+$ tar -zcvf ziped_documents.tgz ~/Documents
 ```
 
 # tee
@@ -897,10 +895,10 @@ tar -zcvf ziped_documents.tgz ~/Documents
 ### 例子
 ```sh
 # 将用户输入的数据同时保存到文件"file1"和"file2"中
-tee file1 file2
+$ tee file1 file2
 
 # 将标准输入复制到文件
-ls -al | tee file.txt
+$ ls -al | tee file.txt
 ```
 
 # top
@@ -940,12 +938,12 @@ PID  USER   PR    NI   VIRT    RES    SHR     S  %CPU %MEM    TIME+     COMMAND
 ### 例子
 ```sh
 # 小写转换为大写
-echo Hello There | tr [:lower:] [:upper:]
-echo Hello There | tr a-z A-Z
+$ echo Hello There | tr [:lower:] [:upper:]
+$ echo Hello There | tr a-z A-Z
 
 # 将CRLF转换为LF
-tr '\r\n' '\n' file
-tr -d '\r' file
+$ tr '\r\n' '\n' file
+$ tr -d '\r' file
 ```
 
 # trap
@@ -968,8 +966,6 @@ SIGSTOP | 后台休眠
 
 ### 例子
 ```sh
-#!/bin/bash
-
 # 打印0-9, ctrl+c不能终止, 而是输出指定的信息
 trap 'echo press ctrl+c' 2
 for ((i=0;i<10;i++));do
@@ -988,28 +984,28 @@ done
 创建稀疏文件
 
 # type
-判断命令到底是可执行文件、shell内置命令还是别名
+判断命令到底是可执行文件, shell内置命令还是别名
 
 # ufw
 ### 例子
 ```sh
 # 启用
-sudo ufw enable
+$ sudo ufw enable
 
 # 关闭
-sudo ufw disable
+$ sudo ufw disable
 
 # 查看防火墙状态
-sudo ufw status
+$ sudo ufw status
 
 # 允许外部访问80端口
-sudo ufw allow 80
+$ sudo ufw allow 80
 
 # 禁止外部访问80 端口
-sudo ufw delete allow 80
+$ sudo ufw delete allow 80
 
 # 允许此IP访问所有的本机端口
-sudo ufw allow from 192.168.1.1 
+$ sudo ufw allow from 192.168.1.1 
 ```
 
 # uniq
@@ -1025,27 +1021,29 @@ sudo ufw allow from 192.168.1.1
 
 ### 例子
 ```sh
-# 对文本文件做集合交、并、差运算
-sort a b | uniq > c      # a并b
-sort a b | uniq -d > c   # a交b
-sort a b | uniq -u > c   # a-b
+# 对文本文件做集合交, 并, 差运算
+$ sort a b | uniq > c      # a并b
+$ sort a b | uniq -d > c   # a交b
+$ sort a b | uniq -u > c   # a-b
 ```
 
 ```sh
 # 去掉重复的行
-uniq file
+$ uniq file
 
 # 删除文件中重复出现的行, 并显示输出行重复的次数
-uniq -c file
+$ uniq -c file
 ```
+
 # uptime
 ### 例子
 ```sh
+$ uptime
 23:41:47 up  2:40,  1 user,  load average: 0.06, 0.31, 0.31
 ```
 
 # whereis
-whereis命令用于查找文件, 只能用于查找二进制文件、源代码文件和man手册页
+whereis命令用于查找文件, 只能用于查找二进制文件, 源代码文件和man手册页
 
 ### 语法
 **`whereis [-bfmsu][-B <目录>...][-M <目录>...][-S <目录>...][文件...]`**
