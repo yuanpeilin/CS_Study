@@ -11,7 +11,7 @@
 * **j** [`jobs`](#jobs) [`join`](#join) [`journalctl`](systemd.md/#日志管理) [`jq`](#jq)
 * **k** [`kill`](#kill)
 * **l** [`less`](#less) [`ln`](#ln) [`local`](#local) [`localectl`](systemd.md/#localectl) [`locate`](#locate) [`loginctl`](systemd.md/#loginctl) [`ls`](#ls) [`lsattr`](#lsattr) [`lsblk`](#lsblk) [`lsof`](#lsof)
-* **m** [`md5sum`](#md5sum) [`mkdir`](#mkdir) [`mkfs`](#mkfs) [`mount`](#mount)
+* **m** [`man`](#man) [`md5sum`](#md5sum) [`mkdir`](#mkdir) [`mkfs`](#mkfs) [`mount`](#mount)
 * **n** [`ncdu`](#ncdu) [`netstat`](#netstat) [`nohub`](#nohub)
 * **p** [`pandoc`](#pandoc) [`pgrep`](#pgrep) [`pkill`](#pkill) [`ps`](#ps) [`pstree`](#pstree)
 * **r** [`rsync`](#rsync) [`runlevel`](#runlevel)
@@ -564,6 +564,39 @@ drwx------   1                ypl          ypl              4096       May 12 18
 ### 例子
 ```sh
 $ netstat -lntp
+```
+
+# man
+### 分类
+
+章节 | 说明                                         | Commment
+---- | -------------------------------------------- | --------
+1    | 普通的命令                                   | Executable programs or shell commands
+2    | 系统调用,如open,write                        | System calls (functions provided by the kernel)
+3    | 库函数,如printf,fread                        | Library calls (functions within program libraries)
+4    | 特殊文件,即/dev下的各种设备文件              | Special files (usually found in /dev)
+5    | 文件的格式, 如passwd                         | File formats and conventions eg /etc/passwd
+6    | 游戏                                         | Games
+7    | 附件和变量, 如全局变量environ                | Miscellaneous (including macro packages and conventions), e.g. man(7), groff(7)
+8    | 系统管理用的命令, 只能由root使用, 如ifconfig | System administration commands (usually only for root)
+9    | 跟kernel有关的文件                           | Kernel routines [Non standard]
+
+### 语法
+* `man <章节> <command>` 从指定章节查看手册
+* `man -f <command>` 显示command在哪些手册中
+* `man -w <command>` 显示手册所在的路径
+* `man -aw command` 显示所有章节的手册路径
+* `man -M <path> <command>` 从指定目录查看手册
+
+### 例子
+```sh
+# 查看sleep出现的章节
+$ man -f sleep
+sleep (1)            - delay for a specified amount of time
+sleep (3)            - sleep for a specified number of seconds
+
+# 指定路径, 查看中文手册
+$ man -M /usr/share/man/zh_CN/ ln
 ```
 
 # md5sum

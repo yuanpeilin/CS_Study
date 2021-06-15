@@ -277,6 +277,7 @@ alias l='ls -C'
 alias la='ls -CA'
 alias ll='ls -ClhA'
 alias less='less --color=auto -m'
+alias manzh_CN='man -M /usr/share/man/zh_CN/'
 
 alias profile='sudo vim /etc/profile && source /etc/profile'
 alias remove='sudo apt autoremove'
