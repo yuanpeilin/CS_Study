@@ -1,7 +1,7 @@
 # 目录
 * **a** [`at`](#at)
 * **b** [`bg`](#bg)
-* **c** [`case`](shell.md/#case) [`cat`](#cat) [`chattr`](#chattr) [`chgrp`](#chgrp) [`chkconfig`](#chkconfig) [`chmod`](#chmod) [`chown`](#chown) [`corntab`](#corntab) [`cp`](#cp) [`curl`](#curl) [`cut`](#cut)
+* **c** [`case`](shell.md/#case) [`cat`](#cat) [`chattr`](#chattr) [`chgrp`](#chgrp) [`chkconfig`](#chkconfig) [`chmod`](#chmod) [`chown`](#chown) [`col`](#col) [`corntab`](#corntab) [`cp`](#cp) [`curl`](#curl) [`cut`](#cut)
 * **d** [`declare`](#declare) [`df`](#df) [`disown`](#disown) [`du`](#du)
 * **e** [`echo`](#echo) [`eval`](#eval) [`export`](#export)
 * **f** [`fallocate`](#fallocate) [`fdisk`](#fdisk) [`ffmpeg`](#ffmpeg) [`fg`](#fg) [`file`](#file) [`fim`](#fim) [`find`](#find) [`finger`](user.md/#查看用户) [`for`](shell.md/#for) [`free`](#free)
@@ -98,6 +98,18 @@ chkconfig --add httpd
 ### 语法
 **`chown [新文件所有者]:[新文件所属组] FILE_NAME`**
 * `-R` 递归
+
+# col
+过滤掉控制字符
+
+### 语法
+* `-b` 过滤掉所有的控制字符, 包括RLF和HRLF
+* `-f` 只滤除RLF字符
+
+### 例子
+```sh
+$ man man | col-b > man_help
+```
 
 # corntab
 配置文件位于 */etc/init.d/crond*, RHEL将任务存储在 */var/spool/cron/用户名* , Debian将任务存储在 */var/spool/cron/crontabs/用户名*  
