@@ -81,7 +81,7 @@ todo_getopt() {
         -L | --LIST) todo_list "time" && shift ;;
         -r | --remove) todo_remove "$@" && shift 2 ;;
         --) break ;;
-        *) todo_help && return 2 ;;
+        *) break && return 2 ;;
         esac
     done
 }
