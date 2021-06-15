@@ -6,7 +6,7 @@
 * **e** [`echo`](#echo) [`eval`](#eval) [`export`](#export)
 * **f** [`fallocate`](#fallocate) [`fdisk`](#fdisk) [`ffmpeg`](#ffmpeg) [`fg`](#fg) [`file`](#file) [`fim`](#fim) [`find`](#find) [`finger`](user.md/#查看用户) [`for`](shell.md/#for) [`free`](#free)
 * **g** [`getopt`](shell.md/#getopt) [`getopts`](shell.md/#getopts) [`grep`](#grep) [`groupadd`](user.md/#增加组) [`groupdel`](user.md/#删除组) [`groupmod`](user.md/#修改组) [`gpasswd`](user.md/#修改组) [`gzip`](#gzip)
-* **h** [`head`](#head)
+* **h** [`hash`](#hash) [`head`](#head)
 * **i** [`id`](user.md/#查看用户) [`if`](shell.md/#if) [`ifconfig`](#ifconfig) [`imagemagick`](#imagemagick)
 * **j** [`jobs`](#jobs) [`join`](#join) [`journalctl`](systemd.md/#日志管理) [`jq`](#jq)
 * **k** [`kill`](#kill)
@@ -441,6 +441,16 @@ $ gzip -d test.gz
 # 调节压缩比(默认为6. 9为最大压缩比, 压缩的文件最小)
 $ gzip -9 test.txt
 ```
+
+# hash
+新开一个shell时, 就会初始化一个hash表, hash表会记录命令执行过的路径. 再次执行命令时, 会先去hash表中找, 找不到才会去找PATH
+
+### 语法
+* `hash -d <command>` 从hash表中删除某条命令
+* `hash -l` 列出当前hash表
+* `hash -p <command path> <alias>` 自定义命令的别名
+* `hash -r` 清空hash表
+* `hash -t <command>` 显示命令的路径, 相当与`hash -l | grep <command>`
 
 # head
 ### 语法
