@@ -4,6 +4,7 @@
     - [Debug](#debug)
     - [option argument paramete](#选项)
 - **流程控制**
+    - [数组](#数组)
     - [if](#if)
     - [for](#for)
     - [while](#while)
@@ -40,6 +41,56 @@ $ bash -x <shell script>
 ```
 
 # 选项
+
+# 数组
+### 数组定义
+```sh
+array=(01 002 3 004)
+
+array=(005 '006' 007 "008")
+
+array[0]=9; array[1]=010; array[2]=11
+```
+
+### 字符串转数组
+```sh
+temp="a bb c"
+array=(${temp// / })
+```
+
+### 打印数组最后一个
+```sh
+echo ${array[${#array[*]}-1]}
+
+echo ${array[-1]}
+```
+
+### 获取数组长度
+```sh
+echo ${#array[*]}
+echo "${#array[*]}"
+echo ${#array[@]}
+echo "${#array[@]}"
+```
+
+### 数组遍历
+```sh
+for ((i=0; i<4; i++));do
+    echo ${array[i]}
+done
+
+for temp in ${array[*]}; do
+    echo $temp
+done
+
+echo ${array[*]}
+
+echo "${array[*]}"
+
+echo ${array[@]}
+
+echo "${array[@]}"
+```
 
 # if
 `if`和`then`在同一行的话, 判断条件后要加一个分号
