@@ -3,8 +3,10 @@
     - [查看shell类型](#查看shell类型)
     - [Debug](#debug)
     - [option argument paramete](#选项)
-- **流程控制**
+* **变量类型**
     - [数组](#数组)
+    - [Map](#map)
+* **流程控制**
     - [if](#if)
     - [for](#for)
     - [while](#while)
@@ -43,53 +45,98 @@ $ bash -x <shell script>
 # 选项
 
 # 数组
-### 数组定义
+### 定义数组
 ```sh
-array=(01 002 3 004)
+declare -a array=(01 002 3 004)
 
-array=(005 '006' 007 "008")
+declare -a array=([0]="01" [1]="002" [2]="3" [3]="004")
+
+array=(01 002 3 004)
 
 array[0]=9; array[1]=010; array[2]=11
 ```
 
-### 字符串转数组
+### 访问数组
 ```sh
-temp="a bb c"
-array=(${temp// / })
-```
+# 获取数组所有元素
+declare -p array
+echo ${array[*]}
+echo "${array[*]}"
+echo ${array[@]}
+echo "${array[@]}"
 
-### 打印数组最后一个
-```sh
-echo ${array[${#array[*]}-1]}
+# 获取所有索引
+echo ${!array[*]}
+echo ${!array[@]}
 
-echo ${array[-1]}
-```
-
-### 获取数组长度
-```sh
+# 获取数组长度
 echo ${#array[*]}
 echo "${#array[*]}"
 echo ${#array[@]}
 echo "${#array[@]}"
-```
 
-### 数组遍历
-```sh
-for ((i=0; i<4; i++));do
+# 获取数组最后一个元素
+echo ${array[${#array[*]}-1]}
+echo ${array[-1]}
+
+# 数组遍历
+for ((i=0; i<${#array[*]}; i++));do
+    echo ${array[i]}
+done
+
+for i in ${!array[*]}; do
     echo ${array[i]}
 done
 
 for temp in ${array[*]}; do
     echo $temp
 done
+```
 
-echo ${array[*]}
+### 操作数组
+```sh
+# 字符串转数组
+temp="a bb c"
+array=(${temp// / })
 
-echo "${array[*]}"
+# 往数组中添加元素
+array+=(test)
 
-echo ${array[@]}
+# 删除数组的某个元素
+unset array[2]
 
-echo "${array[@]}"
+# 数组传递给函数
+ff() {
+    declare -n array_f="$1"
+    echo "${array_f[*]}"
+    declare +n array_f   # 取消引用
+}
+array=(1 er three dddd)
+ff array   # 注意此处没有$符号
+```
+
+*************************************************************************
+
+# Map
+### 定义map
+```sh
+array=([one]=1 [six]=liu)
+```
+
+```sh
+declare -A array
+array[one]=1
+array[six]=wu
+```
+
+### 访问map
+```sh
+# 访问单个元素
+${array[one]}
+
+# 获取所有key
+${!array[*]}
+${!array[@]}
 ```
 
 # if
