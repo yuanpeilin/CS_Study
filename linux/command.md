@@ -620,7 +620,7 @@ $ man -f sleep
 sleep (1)            - delay for a specified amount of time
 sleep (3)            - sleep for a specified number of seconds
 
-# 指定路径, 查看中文手册
+# 指定路径, 查看中文手册 (apt install manpages-zh)
 $ man -M /usr/share/man/zh_CN/ ln
 ```
 
@@ -1065,6 +1065,37 @@ done
 
 # type
 判断命令到底是可执行文件, shell内置命令还是别名
+
+### 语法
+* `-f` 取消对函数的查找
+
+### 例子
+```sh
+$ type cd
+cd is a shell builtin
+
+$ type find
+find is /usr/bin/find
+
+$ type git
+git is hashed (/usr/bin/git)
+
+$ type todo
+todo is a function
+todo ()
+{
+    . ~/todo.sh "$@"
+}
+
+$ type gst
+gst is aliased to 'clear && git status -bs'
+```
+
+```sh
+$ type -a pwd
+pwd is a shell builtin
+pwd is /bin/pwd
+```
 
 # ufw
 ### 例子
