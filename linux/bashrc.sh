@@ -313,8 +313,10 @@ ln_check /home/ypl/workspace/yuanpeilin.github.io/linux/src/ vimrc /home/ypl/ .v
 # +----------------------------------+
 # |            USER alias            |
 # +----------------------------------+
-export VULTR='104.156.252.159'
+export VULTR='207.148.71.20'
+export V='207.148.71.20'
 
+alias sv='ssh root@$VULTR'
 alias svultr='ssh root@$VULTR'
 alias yuanpeilin='cd_git_project ~/workspace/yuanpeilin.github.io'
 
