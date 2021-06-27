@@ -31,6 +31,7 @@ PubkeyAuthentication yes # 使用密钥登录
 - `-N <pass phrase>` 提供新密码
 - `-P <pass phrase>` 提供旧密码
 - `-p` 修改密码
+- `-R` 移除服务器指纹
 - `-t <type>` 指定新密钥生成类型, 有 **dsa** **ecdsa** **ed25519** **rsa**
 - `-v` 显示指纹的图形
 
@@ -40,6 +41,7 @@ PubkeyAuthentication yes # 使用密钥登录
 * `ssh-keygen -p -P 'old paaword' -N 'new password' -f id_rsa` 修改密钥的密码
 * `ssh-keygen -E MD5 -l -f id_rsa.pub` 打印指纹
 * `ssh-keygen -E SHA256 -lv -f id_rsa.pub` 打印指纹并显示图像
+* `ssh-keygen -f "/home/ypl/.ssh/known_hosts" -R "20.14.71.18"` 移除已知的服务器指纹
 
 # ssh-keyscan
 获取公钥信息
