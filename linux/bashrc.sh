@@ -60,45 +60,8 @@ fi
 
 
 # +----------------------------------+
-# |           Environment            |
-# +----------------------------------+
-git_branch() {
-    branch="`git branch 2>/dev/null | grep "^\*" | sed -e "s/^\*\ //"`"
-    if [ "${branch}" != "" ];then
-        if [ "${branch}" = "(no branch)" ];then
-            branch="(`git rev-parse --short HEAD`...)"
-        fi
-        echo "($branch)"
-    fi
-}
-PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\] \[\e[01;34m\]\w$(git_branch)\[\e[00m\]\$ '
-
-export JAVA_HOME='/opt/java8/jdk1.8.0_281'
-export PATH=$JAVA_HOME/bin:$PATH
-
-
-# +----------------------------------+
 # |             function             |
 # +----------------------------------+
-bak(){
-    if [[ "$#" == 0 ]]; then
-        echo -e '\e[1mbak\e[0m will backup files as xxx.bak'
-        echo ''
-        echo -e '\e[1mUsage:\e[0m'
-        echo '    bak <file path1> [file path2...]'
-    else
-        for file in "$@"; do
-            bak_file=$(echo "file".bak | sed 's/\///g')
-            if [[ -e "$bak_file" ]]; then
-                echo -e "\e[31;01mWARNING:\e[0m $file back up failed, $bak_file already exists"
-            else
-                cp -dpr "$file" "$bak_file" && echo "$file backed up"
-            fi
-        done
-        unset file bak_file
-    fi
-}
-
 cd_git_project() {
     clear
     cd "$1"
@@ -147,15 +110,6 @@ color(){
     echo -e "\e[45m 45 \e[00m"
     echo -e "\e[46m 46 \e[00m"
     echo -e "\e[47m 47 \e[00m"
-}
-
-# ln_check   源文件路径   源文件名   链接文件路径   链接文件名
-ln_check(){
-    if [[ $(ls -l "$1" | grep "$2" | awk '{print $2}') < 2 ]]; then
-        rm "$3$4"
-        ln "$1$2" "$3$4"
-        echo "link $3$4 has broken, delete it and link again. Source: $1$2"
-    fi
 }
 
 mkcd() {
@@ -247,30 +201,16 @@ gunproxy() {
 # +----------------------------------+
 # |           OTHER alias            |
 # +----------------------------------+
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias vdir='vdir --color=auto'
-
 alias ..='cd ..'
 alias ...='cd ../..'
-alias ....='cd ../../..'
 alias '.bashrc'='vim ~/.bashrc && source ~/.bashrc'
-alias '.bash_aliases'='vim ~/.bash_aliases && source ~/.bashrc'
-alias bgrep='cat ~/.bashrc | grep'
-alias calculator='python3'
 alias clean='sudo apt autoclean'
 alias desktop='cd ~/Desktop && ls'
 alias document='cd ~/Documents && ls'
 alias download='cd ~/Downloads && ls'
-alias du='du -h'
-alias free='free -h'
 alias '.gitconfig'='vim ~/.gitconfig'
 
 alias hgrep='history | grep'
-alias id_rsa.pub='echo "~/.ssh/id_rsa.pub: " && cat ~/.ssh/id_rsa.pub'
-alias install='sudo apt install'
 alias jnotebook='jupyter notebook &>/dev/null &'
 alias l='ls -C'
 alias la='ls -CA'
@@ -280,13 +220,8 @@ alias manzh_CN='man -M /usr/share/man/zh_CN/'
 alias profile='sudo vim /etc/profile && source /etc/profile'
 alias remove='sudo apt autoremove'
 alias s='source ~/.bashrc'
-alias schmod='sudo chmod'
 alias shadowsocks='sudo sslocal -c ~/Documents/ss.json -d restart'
-alias smkdir='sudo mkdir'
-alias sql="mysql -uroot -p980620 --prompt='\u@\h [\d]> ' --database=must"
 alias 'ss.json'='vim ~/Documents/ss.json'
-alias sservice='sudo service'
-alias svim='sudo vim'
 alias t1='tree -L 1'
 alias t2='tree -L 2'
 alias t3='tree -L 3'
@@ -296,17 +231,40 @@ alias t5='tree -L 5'
 alias update='sudo apt update'
 alias upgrade='sudo apt full-upgrade'
 alias .vimrc='vim ~/.vimrc'
-alias wl='wc -l'
 alias ws='cd ~/workspace && ls'
 
 # +----------------------------------+
 # |           Start Script           |
 # +----------------------------------+
 clear
-todo -l
+
+ln_check(){
+    # ln_check   源文件路径   源文件名   链接文件路径   链接文件名
+    if [[ $(ls -l "$1" | grep "$2" | awk '{print $2}') < 2 ]]; then
+        rm "$3$4"
+        ln "$1$2" "$3$4"
+        echo "link $3$4 has broken, delete it and link again. Source: $1$2"
+    fi
+}
 ln_check /home/ypl/workspace/yuanpeilin.github.io/linux/ bashrc.sh /home/ypl/ .bashrc
 ln_check /home/ypl/workspace/yuanpeilin.github.io/linux/ todo.sh /home/ypl/ todo.sh
 ln_check /home/ypl/workspace/yuanpeilin.github.io/linux/src/ vimrc /home/ypl/ .vimrc
+
+todo -l
+
+git_branch() {
+    branch="`git branch 2>/dev/null | grep "^\*" | sed -e "s/^\*\ //"`"
+    if [ "${branch}" != "" ];then
+        if [ "${branch}" = "(no branch)" ];then
+            branch="(`git rev-parse --short HEAD`...)"
+        fi
+        echo "($branch)"
+    fi
+}
+PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\] \[\e[01;34m\]\w$(git_branch)\[\e[00m\]\$ '
+
+export JAVA_HOME='/opt/java8/jdk1.8.0_281'
+export PATH=$JAVA_HOME/bin:$PATH
 
 # +----------------------------------+
 # |            USER alias            |
@@ -317,6 +275,7 @@ export V='207.148.71.20'
 alias sv='ssh root@$VULTR'
 alias svultr='ssh root@$VULTR'
 alias yuanpeilin='cd_git_project ~/workspace/yuanpeilin.github.io'
+alias sql="mysql -uroot -p980620 --prompt='\u@\h [\d]> ' --database=must"
 
 mc() {
     fcitx_pids=$(ps -ef | grep fcitx | awk '{print $2}' | tr '\n' ' ')
