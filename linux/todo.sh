@@ -9,18 +9,18 @@ todo_list() {
         local date=${line:2:10}
         local content=${line:13}
         [[ "$1" != "time" ]] && date=""
-        if [[ "$status" == "U" ]]; then
-            printf "\e[01m %2s %s %s %s \n\e[00m" "$i" "$date" "[ ]" "$content"
+        if [[ "${status}" == "U" ]]; then
+            printf "\e[01m %2s %s %s %s \n\e[00m" "${i}" "${date}" "[ ]" "${content}"
         elif [[ "$#" == 1 ]]; then
-            printf "\e[09m %2s %s %s %s \n\e[00m" "$i" "$date" "[*]" "$content"
+            printf "\e[09m %2s %s %s %s \n\e[00m" "${i}" "${date}" "[*]" "${content}"
         fi
         i=$((i + 1))
-    done <"$path"
+    done <"${path}"
 }
 
 todo_add() {
     local date=$(date +'%Y/%m/%d')
-    echo "U $date $2" >>"$path"
+    echo "U ${date} $2" >>"$path"
     todo_list
 }
 
@@ -29,7 +29,7 @@ todo_clean() {
     local i=0
     for fixed_line_number in $line_list; do
         fixed_line_number=$((fixed_line_number - i))
-        sed -i "$fixed_line_number"d "$path"
+        sed -i "${fixed_line_number}"d "${path}"
         i=$((i + 1))
     done
     unset fixed_line_number
@@ -38,7 +38,7 @@ todo_clean() {
 
 todo_done() {
     local temp="$2"'s/^U/D/'
-    sed -i "$temp" "$path"
+    sed -i "${temp}" "${path}"
     todo_list
 }
 
@@ -55,13 +55,13 @@ todo_help() {
 }
 
 todo_insert() {
-    vim "$path"
+    vim "${path}"
 }
 
 todo_remove() {
-    sed -n "$2"p "$path"
+    sed -n "$2"p "${path}"
     echo ""
-    sed -i "$2"d "$path"
+    sed -i "$2"d "${path}"
     todo_list
 }
 
@@ -99,4 +99,4 @@ main "$@"
 # 由于执行下面的unset之后$?会变成0, 所以此处需要一个临时变量记录main的$?
 temp="$?"
 unset path todo_list todo_add todo_clean todo_done todo_help todo_insert todo_remove todo_getopt main
-return "$temp"
+return "${temp}"

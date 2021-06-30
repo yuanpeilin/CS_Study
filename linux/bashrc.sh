@@ -320,7 +320,7 @@ alias yuanpeilin='cd_git_project ~/workspace/yuanpeilin.github.io'
 
 mc() {
     fcitx_pids=$(ps -ef | grep fcitx | awk '{print $2}' | tr '\n' ' ')
-    echo "$fcitx_pids"
+    echo "${fcitx_pids}"
     for pid in $fcitx_pids; do
         kill $pid
     done
