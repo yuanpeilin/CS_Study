@@ -608,10 +608,11 @@ $ netstat -lntp
 
 ### 语法
 * `man <章节> <command>` 从指定章节查看手册
-* `man -f <command>` 显示command在哪些手册中
+* `man -f <command>` 显示command在哪些章节中
 * `man -w <command>` 显示手册所在的路径
 * `man -aw command` 显示所有章节的手册路径
 * `man -M <path> <command>` 从指定目录查看手册
+* `man -p <program>` 指定分页程序, 如less more cat pager等
 
 ### 例子
 ```sh
@@ -620,8 +621,18 @@ $ man -f sleep
 sleep (1)            - delay for a specified amount of time
 sleep (3)            - sleep for a specified number of seconds
 
+$ man  -w sleep
+/usr/share/man/man1/sleep.1.gz
+
+$ man  -aw sleep
+/usr/share/man/man1/sleep.1.gz
+/usr/share/man/man3/sleep.3.gz
+
 # 指定路径, 查看中文手册 (apt install manpages-zh)
 $ man -M /usr/share/man/zh_CN/ ln
+
+# 将man手册打印成pdf(apt install groff)
+man -Tpdf bash > bash.pdf
 ```
 
 # md5sum
