@@ -3,11 +3,12 @@ path=/var/todo/todo
 
 todo_list() {
     # 每行样式: D 2021/06/09 ggg
-    local i=1
+    local i status date content
+    i=1
     while read -r line; do
-        local status=${line:0:1}
-        local date=${line:2:10}
-        local content=${line:13}
+        status=${line:0:1}
+        date=${line:2:10}
+        content=${line:13}
         [[ "$1" != "time" ]] && date=""
         if [[ "${status}" == "U" ]]; then
             printf "\e[01m %2s %s %s %s \n\e[00m" "${i}" "${date}" "[ ]" "${content}"
@@ -19,14 +20,16 @@ todo_list() {
 }
 
 todo_add() {
-    local date=$(date +'%Y/%m/%d')
+    local date
+    date=$(date +'%Y/%m/%d')
     echo "U ${date} $2" >>"$path"
     todo_list
 }
 
 todo_clean() {
-    local line_list=$(grep -nE --text '^D' "$path" | cut -d ":" -f 1)
-    local i=0
+    local line i
+    line_list=$(grep -nE --text '^D' "$path" | cut -d ":" -f 1)
+    i=0
     for fixed_line_number in $line_list; do
         fixed_line_number=$((fixed_line_number - i))
         sed -i "${fixed_line_number}"d "${path}"
@@ -37,7 +40,8 @@ todo_clean() {
 }
 
 todo_done() {
-    local temp="$2"'s/^U/D/'
+    local temp
+    temp="$2"'s/^U/D/'
     sed -i "${temp}" "${path}"
     todo_list
 }
