@@ -239,16 +239,18 @@ alias ws='cd ~/workspace && ls'
 clear
 
 ln_check(){
-    # ln_check   源文件路径   源文件名   链接文件路径   链接文件名
-    if [[ $(ls -l "$1" | grep "$2" | awk '{print $2}') < 2 ]]; then
-        rm "$3$4"
-        ln "$1$2" "$3$4"
-        echo "link $3$4 has broken, delete it and link again. Source: $1$2"
+    (( $# != 2 )) && echo "Parameter must be 2" && return 1
+
+    local linked_count=$(ls -l "$1" | awk '{print $2}')
+    if (( ${linked_count} != 2 )); then
+        rm "$1"
+        ln "$1" "$2"
+        echo "link $2 has broken, delete it and link again. Source file path: $1"
     fi
 }
-ln_check /home/ypl/workspace/yuanpeilin.github.io/linux/ bashrc.sh /home/ypl/ .bashrc
-ln_check /home/ypl/workspace/yuanpeilin.github.io/linux/ todo.sh /home/ypl/ todo.sh
-ln_check /home/ypl/workspace/yuanpeilin.github.io/linux/src/ vimrc /home/ypl/ .vimrc
+ln_check /home/ypl/workspace/yuanpeilin.github.io/linux/bashrc.sh /home/ypl/.bashrc
+ln_check /home/ypl/workspace/yuanpeilin.github.io/linux/todo.sh /home/ypl/todo.sh
+ln_check /home/ypl/workspace/yuanpeilin.github.io/linux/src/vimrc /home/ypl/.vimrc
 
 todo -l
 
