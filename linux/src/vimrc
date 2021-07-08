@@ -45,11 +45,6 @@ endif
 
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
-"set showcmd		" Show (partial) command in status line.
-"set showmatch		" Show matching brackets.
-"set ignorecase		" Do case insensitive matching
-"set smartcase		" Do smart case matching
-"set incsearch		" Incremental search
 "set autowrite		" Automatically save before commands like :next and :make
 "set hidden		" Hide buffers when they are abandoned
 "set mouse=a		" Enable mouse usage (all modes)
@@ -63,10 +58,10 @@ endif
 " +----------------------------------+
 " |              快捷键              |
 " +----------------------------------+
-nmap H 10h
-nmap J 10j
-nmap K 10k
-nmap L 10l
+nmap H 30h
+nmap J 30j
+nmap K 30k
+nmap L 30l
 
 let mapleader=" "
 nmap <Leader>W :w<CR>:q<CR>
@@ -74,15 +69,15 @@ nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
 nmap <leader>Q :q!<CR>
 
-" 定义快捷键在结对符之间跳转
+" 对应括号之间跳转
 nmap <Leader>m %
 
 " 查找
-nmap <Leader>f *
-nmap <Leader>F #
+nmap <Leader>n *
+nmap <Leader>N #
 " 折叠
-nmap <Leader>] zM
-nmap <Leader>[ zR
+nmap <Leader>[ zM
+nmap <Leader>] zR
 nmap <Leader>a za
 " 多窗口光标移动
 nnoremap <Leader>e <C-W><C-W>
@@ -122,7 +117,7 @@ filetype indent on
 " +----------------------------------+
 " |               外观               |
 " +----------------------------------+
-" 显示行号
+" [nu] 显示行号
 set number
 " 显示光标所在的当前行的行号, 其他行都为相对于该行的相对行号
 set relativenumber
@@ -138,11 +133,11 @@ set showcmd
 " +----------------------------------+
 " |               搜索               |
 " +----------------------------------+
-" 搜索时, 不高亮显示匹配结果
+" [hls] 搜索时, 不高亮显示匹配结果
 set nohlsearch
-" 输入搜索模式时, 每输入一个字符, 就自动跳到第一个匹配的结果
+" [is] 输入搜索模式时, 每输入一个字符, 就自动跳到第一个匹配的结果
 set incsearch
-" 搜索时忽略大小写
+" [ic] 搜索时忽略大小写
 set ignorecase
 " 如果同时打开了ignorecase, 那么对于只有一个大写字母的搜索词, 将大小写敏感; 其他情况都是大小写不敏感
 set smartcase
@@ -173,14 +168,3 @@ set linebreak
 set foldmethod=syntax
 " 启动 vim 时关闭折叠代码
 set nofoldenable
-
-" +----------------------------------+
-" |             vim-plug             |
-" +----------------------------------+
-" call plug#begin()
-" Plug 'itchyny/lightline.vim'
-" Plug 'preservim/NERDTree'
-" call plug#end()
-" |------------ lightline ------------|
-" set laststatus=2
-" set noshowmode
