@@ -204,7 +204,6 @@ gunproxy() {
 alias ..='cd ..'
 alias ...='cd ../..'
 alias '.bashrc'='vim ~/.bashrc && source ~/.bashrc'
-alias clean='sudo apt autoclean'
 alias desktop='cd ~/Desktop && ls'
 alias document='cd ~/Documents && ls'
 alias download='cd ~/Downloads && ls'
@@ -212,13 +211,12 @@ alias '.gitconfig'='vim ~/.gitconfig'
 
 alias hgrep='history | grep'
 alias jnotebook='jupyter notebook &>/dev/null &'
-alias l='ls -C'
-alias la='ls -CA'
-alias ll='ls -ClhA'
+alias l='ls -F'
+alias la='ls -AF'
+alias ll='ls -AFhl'
 alias manzh_CN='man -M /usr/share/man/zh_CN/'
 
 alias profile='sudo vim /etc/profile && source /etc/profile'
-alias remove='sudo apt autoremove'
 alias s='source ~/.bashrc'
 alias shadowsocks='sudo sslocal -c ~/Documents/ss.json -d restart'
 alias 'ss.json'='vim ~/Documents/ss.json'
@@ -289,3 +287,4 @@ mc() {
     cd ~
     java -jar /opt/hmcl/HMCL-3.3.172.jar &>/dev/null &
 }
+
