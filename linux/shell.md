@@ -17,6 +17,7 @@
 * [重定向](#重定向)
 * [切割参数](#切割参数)
 * [切割字符串](#切割字符串)
+* [字符串替换](#字符串替换)
 * [模式匹配](#模式匹配)
 * [引号](#引号)
 * [整数运算](#整数运算)
@@ -406,6 +407,36 @@ ${string:offset:length} | 从offset开始, 长度为length
 filename=/etc/apache2
 echo ${filename:1:3} # etc
 echo ${filename:5} # apache2
+```
+
+# 字符串替换
+* `${string/pattern/string}` 将`string`中的第一个`pattern`被替换为`string`
+* `${string//pattern/string}` 将`string`中所有的`pattern`被替换为`string`
+* `${string/#pattern/string}` `string`的开头完全匹配`pattern`的话, 将其替换为`string`
+* `${string/%pattern/string}` `string`的结尾完全匹配`pattern`的话, 将其替换为`string`
+
+```sh
+$ a='aa1aa2aa3aa4aa'
+
+$ echo ${a/aa/bb}
+bb1aa2aa3aa4aa5
+
+$ echo ${a//aa/bb}
+bb1bb2bb3bb4bb5
+
+$ echo ${a/%aa/bb}
+aa1aa2aa3aa4aa5
+
+$ echo ${a/#aa/bb}
+bb1aa2aa3aa4aa5
+
+$ a=aa1aa2aa3aa4aa
+
+$ echo ${a/#aa/bb}
+bb1aa2aa3aa4aa
+
+$ echo ${a/%aa/bb}
+aa1aa2aa3aa4bb
 ```
 
 # 模式匹配
