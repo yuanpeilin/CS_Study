@@ -281,11 +281,13 @@ PS1='\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\
 export JAVA_HOME='/opt/java8/jdk1.8.0_281'
 export PATH=$JAVA_HOME/bin:$PATH
 
+[[ -f ~/.bashrc.temp ]] && source ~/.bashrc.temp
+
 # +----------------------------------+
 # |            USER alias            |
 # +----------------------------------+
-export VULTR='207.148.71.20'
-export V='207.148.71.20'
+export VULTR='144.202.89.76'
+export V='144.202.89.76'
 
 alias sv='ssh root@$VULTR'
 alias svultr='ssh root@$VULTR'
