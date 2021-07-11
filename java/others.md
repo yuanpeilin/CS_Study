@@ -2,6 +2,7 @@
 - [日期](#日期)
 - [访问修饰符](#访问修饰符)
 - [配置文件](#配置文件)
+- [Windows运行脚本](#运行脚本)
 
 
 
@@ -51,4 +52,15 @@ properties.load(inputStream);
 InputStream inputStream = PropertyUtil.class.getClassLoader().getResourceAsStream("system.properties");
 Properties properties = new Properties();
 properties.load(inputStream);
+```
+
+# 运行脚本
+```java
+ProcessBuilder builder = new ProcessBuilder("bash.exe", "~/test.sh");
+Process process = builder.start();
+process.wait();
+Scanner scanner = new Scanner(process.getInputStream());
+while (scanner.hasNext()) {
+    System.out.println(scanner.next());
+}
 ```
