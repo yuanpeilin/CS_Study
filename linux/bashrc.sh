@@ -123,17 +123,17 @@ plant_uml_server(){
 }
 
 sysinfo(){
-    os_name=$(grep -E '^NAME=' /etc/os-release | cut -d '"' -f 2)
-    os_version=$(grep -E '^VERSION=' /etc/os-release | cut -d '"' -f 2)
-    kernel_version=$(uname -r)
-    cpu_name=$(grep 'model name' /proc/cpuinfo | sort -u | tr '\t' ' ' | cut -d ' ' -f 4-)
-    cpu_core_count=$(grep 'core id' /proc/cpuinfo | sort -u | wc -l)
-    cpu_thread_count=$(grep 'processor' /proc/cpuinfo | sort -u | wc -l)
-    memory_total=$(free -m | grep 'Mem' | awk '{print $2}')
-    memory_used=$(free -m | grep 'Mem' | awk '{print $3}')
-    memory_rest=$(free -m | grep 'Mem' | awk '{print $4}')
-    memory_swap=$(free -m | grep 'Swap' | awk '{print $2}')
-    disk_info=$(df -hlt ext4)
+    echo "Kernel:  $(uname -r)"
+    echo "OS:  $(grep -E '^NAME=' /etc/os-release | cut -d '"' -f 2)"
+    echo "OS Version:  $(grep -E '^VERSION=' /etc/os-release | cut -d '"' -f 2)"
+    echo "CPU:  $(grep 'model name' /proc/cpuinfo | sort -u | tr '\t' ' ' | cut -d ' ' -f 4-)"
+    echo "CPU Cores:  $(grep 'core id' /proc/cpuinfo | sort -u | wc -l)"
+    echo "CPU Threads:  $(grep 'processor' /proc/cpuinfo | sort -u | wc -l)"
+    echo ""
+    free -h
+    echo ""
+    df -ht ext4
+    df -hit ext4
 }
 
 todo(){
