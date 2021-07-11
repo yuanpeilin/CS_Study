@@ -15,7 +15,7 @@
 * **n** [`ncdu`](#ncdu) [`netstat`](#netstat) [`nohub`](#nohub)
 * **p** [`pandoc`](#pandoc) [`pgrep`](#pgrep) [`pkill`](#pkill) [`ps`](#ps) [`pstree`](#pstree)
 * **r** [`rsync`](#rsync) [`runlevel`](#runlevel)
-* **s** [`scp`](#scp) [`sed`](#sed) [`select`](shell.md/#select) [`shopt`](#shopt) [`sort`](#sort) [`ssh`](ssh.md/#ssh) [`ssh-keygen`](ssh.md/#sshkeygen) [`ssh-keyscan`](ssh.md/#sshkeyscan) [`systemd-analyze`](systemd.md/#systemd-analyze) [`systemctrl`](systemd.md/#unit)
+* **s** [`scp`](#scp) [`sed`](#sed) [`select`](shell.md/#select) [`shopt`](#shopt) [`sort`](#sort) [`source`](#source) [`ssh`](ssh.md/#ssh) [`ssh-keygen`](ssh.md/#sshkeygen) [`ssh-keyscan`](ssh.md/#sshkeyscan) [`systemd-analyze`](systemd.md/#systemd-analyze) [`systemctrl`](systemd.md/#unit)
 * **t** [`tail`](#tail) [`tar`](#tar) [`tee`](#tee) [`timedatectl`](systemd.md/#timedatectl) [`top`](#top) [`tr`](#tr) [`trap`](#trap) [`tree`](#tree) [`truncate`](#truncate) [`type`](#type)
 * **u** [`ufw`](#ufw) [`uniq`](#uniq) [`uptime`](#uptime) [`useradd`](user.md/#增加用户) [`userdel`](user.md/#删除用户) [`usermod`](user.md/#修改用户)
 * **w** [`whereis`](#whereis) [`while`](shell.md/#while)
@@ -941,6 +941,10 @@ $ sort -t ':' -k 1.3,1.3 -k 3 a.txt
 # 以第二个域为主关键字, 第一个域为次关键字进行排序
 $ sort -k1, 1 | sort -s -k2, 2
 ```
+
+# source
+在当前的shell环境执行脚本, `source file.sh`可缩写为`. file.sh`(脚本无需执行权限)  
+执行脚本`./file.sh` `bash file.txt`是在子shell中执行, 不会影响到父shell  
 
 # tail
 ### 语法
