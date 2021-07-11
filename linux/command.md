@@ -60,32 +60,29 @@ at now + 1munites
 
 # chkconfig
 ### 语法
-**`chkconfig [--add][--del][--list]<service_name>`**
-* `--add <service_name>` 增加httpd服务
-* `--del <service_name>` 删除httpd服务
-* `--list` 列出所有的系统服务
-* `--list <service_name` 列出服务设置情况
-
-<br>
-
-**`chkconfig [--level <等级代号>][系统服务][on/off/reset]`**
-* `--level <service_name> <runlevel> <on|off>` 设置服务的运行级别为on或off
+* **`chkconfig [--add][--del][--list]<service_name>`**
+    - `--add <service_name>` 增加httpd服务
+    - `--del <service_name>` 删除httpd服务
+    - `--list` 列出所有的系统服务
+    - `--list <service_name` 列出服务设置情况
+* **`chkconfig [--level <等级代号>][系统服务][on/off/reset]`**
+    - `--level <service_name> <runlevel> <on|off>` 设置服务的运行级别为on或off
 
 ### 例子
 ```sh
-chkconfig --list network
+$ chkconfig --list network
 network         0:关闭  1:关闭  2:启用  3:启用  4:启用  5:启用  6:关闭
 
-chkconfig --list
+$ chkconfig --list
 acpid           0:关闭  1:关闭  2:关闭  3:启用  4:启用  5:启用  6:关闭
 anacron         0:关闭  1:关闭  2:启用  3:关闭  4:启用  5:关闭  6:关闭
 apmd            0:关闭  1:关闭  2:启用  3:启用  4:启用  5:启用  6:关闭
 
-chkconfig --level 35 mysqld on
+$ chkconfig --level 35 mysqld on
 
-chkconfig --level httpd 2345 on
+$ chkconfig --level httpd 2345 on
 
-chkconfig --add httpd
+$ chkconfig --add httpd
 ```
 
 # chmod
@@ -365,7 +362,7 @@ $ ffmpeg -video_size 1920x1080 -framerate 60 -f x11grab -i :0.0+0,0 output.mp4
 
 ### 例子
 ```sh
-$ le shell.md
+$ file shell.md
 shell.md: exported SGML document, UTF-8 Unicode text
 ```
 
@@ -585,11 +582,6 @@ drwx------   1                ypl          ypl              4096       May 12 18
 
 # lsof
 查看开启的套接字和文件
-
-### 例子
-```sh
-$ netstat -lntp
-```
 
 # man
 ### 分类

@@ -222,13 +222,14 @@ alias desktop='cd ~/Desktop && ls'
 alias document='cd ~/Documents && ls'
 alias download='cd ~/Downloads && ls'
 alias '.gitconfig'='vim ~/.gitconfig'
+alias grep='grep --color'
 
 alias hgrep='history | grep'
 alias jnotebook='jupyter notebook &>/dev/null &'
-alias l='ls -F'
-alias la='ls -AF'
-alias ll='ls -Fhl'
-alias lla='ls -AFhl'
+alias l='ls -F --color=auto'
+alias la='ls -AF --color=auto'
+alias ll='ls -Fhl --color=auto'
+alias lla='ls -AFhl --color=auto'
 alias manzh_CN='man -M /usr/share/man/zh_CN/'
 
 alias profile='sudo vim /etc/profile && source /etc/profile'
@@ -256,7 +257,7 @@ ln_check(){
 
     local linked_count=$(ls -l "$1" | awk '{print $2}')
     if (( ${linked_count} != 2 )); then
-        rm "$1"
+        rm "$2"
         ln "$1" "$2"
         echo "link $2 has broken, delete it and link again. Source file path: $1"
     fi
