@@ -20,26 +20,26 @@
 ### 初始配置
 1. Linux下的mysql安装好之后未设置root密码, 需要使用系统分配的初始帐号登录, 位于 */etc/mysql/debian.cnf*
 2. 登录方式: mysql有 **auth_socket** 和 **mysql_native_password** 两种登录方式
-    ```sql
-    select user, plugin from mysql.user;
-    +------------------+-----------------------+
-    | user             | plugin                |
-    +------------------+-----------------------+
-    | root             | auth_socket           |
-    | mysql.session    | mysql_native_password |
-    | mysql.sys        | mysql_native_password |
-    | debian-sys-maint | mysql_native_password |
-    +------------------+-----------------------+
-    ```
+```sql
+select user, plugin from mysql.user;
++------------------+-----------------------+
+| user             | plugin                |
++------------------+-----------------------+
+| root             | auth_socket           |
+| mysql.session    | mysql_native_password |
+| mysql.sys        | mysql_native_password |
+| debian-sys-maint | mysql_native_password |
++------------------+-----------------------+
+```
 3. 修改root密码和登录方式
-    ```sql
-    update mysql.user set authentication_string=PASSWORD('newPwd'), plugin='mysql_native_password' where user='root';
-    ```
+```sql
+update mysql.user set authentication_string=PASSWORD('newPwd'), plugin='mysql_native_password' where user='root';
+```
 
 ### 远程访问
 修改 */etc/mysql/mysql.conf.d/mysqld.cnf* , 修改`bind-address = 127.0.0.1`为`bind-address = 0.0.0.0`
 ```sql
-select host, user from mysql.user;
+select user, host from mysql.user;
 update mysql.user set host = '%' where user = 'root';
 ```
 

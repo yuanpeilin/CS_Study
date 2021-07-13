@@ -142,11 +142,12 @@ ORDER BY vend_id,prod_price;
 ```
 
 ### 3. 限制行数 LIMIT
-`LIMIT 3` 返回前三条记录(返回第零条 第一条 第二条记录)  
-`LIMIT 3, 2` 从0开始编号, 包括第三条记录, 返回两条记录(返回第三条 第四条记录)  
+* `LIMIT 3` 返回前三条记录(返回第0条 第1条 第2条记录)
+* `LIMIT 3, 2` 从0开始编号, 包括第3条记录, 返回2条记录(返回第3条 第4条记录, 前面还有第0条 第1条 第2条记录)
 ```sql
 SELECT * FROM users LIMIT 3;
 SELECT * FROM users LIMIT 3, 2;
+SELECT * FROM users LIMIT 3 OFFSET 2;
 ```
 
 ### 4. 排序 ORDER BY
